@@ -1,0 +1,7 @@
+{
+  "modules": {
+    "Dignite.CarMarketplace": {
+      "path": "Dignite.CarMarketplace.abpmdl.json"
+    }
+  }
+}

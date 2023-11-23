@@ -1,0 +1,111 @@
+{
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {},
+      "host": {}
+    }
+  },
+  "packages": {
+    "Dignite.CarMarketplace.Domain.Shared": {
+      "path": "src/Dignite.CarMarketplace.Domain.Shared/Dignite.CarMarketplace.Domain.Shared.abppkg.json",
+      "folder": "src"
+    },
+    "Dignite.CarMarketplace.Domain": {
+      "path": "src/Dignite.CarMarketplace.Domain/Dignite.CarMarketplace.Domain.abppkg.json",
+      "folder": "src"
+    },
+    "Dignite.CarMarketplace.Application.Contracts": {
+      "path": "src/Dignite.CarMarketplace.Application.Contracts/Dignite.CarMarketplace.Application.Contracts.abppkg.json",
+      "folder": "src"
+    },
+    "Dignite.CarMarketplace.Application": {
+      "path": "src/Dignite.CarMarketplace.Application/Dignite.CarMarketplace.Application.abppkg.json",
+      "folder": "src"
+    },
+    "Dignite.CarMarketplace.EntityFrameworkCore": {
+      "path": "src/Dignite.CarMarketplace.EntityFrameworkCore/Dignite.CarMarketplace.EntityFrameworkCore.abppkg.json",
+      "folder": "src"
+    },
+    "Dignite.CarMarketplace.MongoDB": {
+      "path": "src/Dignite.CarMarketplace.MongoDB/Dignite.CarMarketplace.MongoDB.abppkg.json",
+      "folder": "src"
+    },
+    "Dignite.CarMarketplace.HttpApi": {
+      "path": "src/Dignite.CarMarketplace.HttpApi/Dignite.CarMarketplace.HttpApi.abppkg.json",
+      "folder": "src"
+    },
+    "Dignite.CarMarketplace.HttpApi.Client": {
+      "path": "src/Dignite.CarMarketplace.HttpApi.Client/Dignite.CarMarketplace.HttpApi.Client.abppkg.json",
+      "folder": "src"
+    },
+    "Dignite.CarMarketplace.TestBase": {
+      "path": "test/Dignite.CarMarketplace.TestBase/Dignite.CarMarketplace.TestBase.abppkg.json",
+      "folder": "test"
+    },
+    "Dignite.CarMarketplace.EntityFrameworkCore.Tests": {
+      "path": "test/Dignite.CarMarketplace.EntityFrameworkCore.Tests/Dignite.CarMarketplace.EntityFrameworkCore.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Dignite.CarMarketplace.MongoDB.Tests": {
+      "path": "test/Dignite.CarMarketplace.MongoDB.Tests/Dignite.CarMarketplace.MongoDB.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Dignite.CarMarketplace.Domain.Tests": {
+      "path": "test/Dignite.CarMarketplace.Domain.Tests/Dignite.CarMarketplace.Domain.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Dignite.CarMarketplace.Application.Tests": {
+      "path": "test/Dignite.CarMarketplace.Application.Tests/Dignite.CarMarketplace.Application.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Dignite.CarMarketplace.HttpApi.Host": {
+      "path": "host/Dignite.CarMarketplace.HttpApi.Host/Dignite.CarMarketplace.HttpApi.Host.abppkg.json",
+      "folder": "host"
+    },
+    "Dignite.CarMarketplace.Web": {
+      "path": "src/Dignite.CarMarketplace.Web/Dignite.CarMarketplace.Web.abppkg.json",
+      "folder": "src"
+    },
+    "Dignite.CarMarketplace.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/Dignite.CarMarketplace.HttpApi.Client.ConsoleTestApp/Dignite.CarMarketplace.HttpApi.Client.ConsoleTestApp.abppkg.json",
+      "folder": "test"
+    },
+    "Dignite.CarMarketplace.Web.Host": {
+      "path": "host/Dignite.CarMarketplace.Web.Host/Dignite.CarMarketplace.Web.Host.abppkg.json",
+      "folder": "host"
+    },
+    "Dignite.CarMarketplace.AuthServer": {
+      "path": "host/Dignite.CarMarketplace.AuthServer/Dignite.CarMarketplace.AuthServer.abppkg.json",
+      "folder": "host"
+    },
+    "Dignite.CarMarketplace.Host.Shared": {
+      "path": "host/Dignite.CarMarketplace.Host.Shared/Dignite.CarMarketplace.Host.Shared.abppkg.json",
+      "folder": "host"
+    },
+    "Dignite.CarMarketplace.Web.Unified": {
+      "path": "host/Dignite.CarMarketplace.Web.Unified/Dignite.CarMarketplace.Web.Unified.abppkg.json",
+      "folder": "host"
+    },
+    "Dignite.CarMarketplace.Blazor": {
+      "path": "src/Dignite.CarMarketplace.Blazor/Dignite.CarMarketplace.Blazor.abppkg.json",
+      "folder": "src"
+    },
+    "Dignite.CarMarketplace.Blazor.Host": {
+      "path": "host/Dignite.CarMarketplace.Blazor.Host/Dignite.CarMarketplace.Blazor.Host.abppkg.json",
+      "folder": "host"
+    },
+    "Dignite.CarMarketplace.Blazor.Server": {
+      "path": "src/Dignite.CarMarketplace.Blazor.Server/Dignite.CarMarketplace.Blazor.Server.abppkg.json",
+      "folder": "src"
+    },
+    "Dignite.CarMarketplace.Blazor.WebAssembly": {
+      "path": "src/Dignite.CarMarketplace.Blazor.WebAssembly/Dignite.CarMarketplace.Blazor.WebAssembly.abppkg.json",
+      "folder": "src"
+    },
+    "Dignite.CarMarketplace.Blazor.Server.Host": {
+      "path": "host/Dignite.CarMarketplace.Blazor.Server.Host/Dignite.CarMarketplace.Blazor.Server.Host.abppkg.json",
+      "folder": "host"
+    }
+  }
+}

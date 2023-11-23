@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.prod.json",
+  "compilerOptions": {
+    "paths": {
+      "@dignite/car-marketplace": [
+        "projects/car-marketplace/src/public-api.ts"
+      ],
+      "@dignite/car-marketplace/config": [
+        "projects/car-marketplace/config/src/public-api.ts"
+      ],
+      "@proxy": ["projects/car-marketplace/src/lib/proxy/index.ts"],
+      "@proxy/*": ["projects/car-marketplace/src/lib/proxy/*"]
+    }
+  }
+}
