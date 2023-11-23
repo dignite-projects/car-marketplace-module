@@ -1,6 +1,6 @@
 ﻿using Dignite.CarMarketplace.Cars;
 using Dignite.CarMarketplace.Dealers;
-using Dignite.CarMarketplace.Users;
+using Dignite.CmsKit.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
@@ -10,7 +10,6 @@ namespace Dignite.CarMarketplace.EntityFrameworkCore;
 [ConnectionStringName(CarMarketplaceDbProperties.ConnectionStringName)]
 public class CarMarketplaceDbContext : AbpDbContext<CarMarketplaceDbContext>, ICarMarketplaceDbContext
 {
-    public DbSet<CarUser> User { get; set; }
     public DbSet<Dealer> Dealer { get; set; }
     public DbSet<Brand> Brand { get; set; }
     public DbSet<Model> Model { get; set; }

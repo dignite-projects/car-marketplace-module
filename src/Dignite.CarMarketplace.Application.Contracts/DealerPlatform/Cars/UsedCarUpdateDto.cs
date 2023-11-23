@@ -2,8 +2,7 @@
 
 namespace Dignite.CarMarketplace.DealerPlatform.Cars
 {
-    public class UsedCarUpdateDto:UsedCarCreateOrUpdateDtoBase, IHasConcurrencyStamp
+    public class UsedCarUpdateDto:UsedCarCreateOrUpdateDtoBase
     {
-        public string ConcurrencyStamp { get; set; }
     }
 }

@@ -1,10 +1,10 @@
-﻿using Dignite.CarMarketplace.Users;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using Volo.Abp;
 using Volo.Abp.Application.Dtos;
+using Volo.CmsKit.Users;
 
 namespace Dignite.CarMarketplace.DealerPlatform.Dealers;
 
@@ -46,7 +46,7 @@ public class DealerController : CarMarketplaceController, IDealerAppService
     [HttpGet]
     [Route("administrators")]
     [Authorize]
-    public async Task<ListResultDto<CarUserDto>> GetAdministratorsAsync()
+    public async Task<ListResultDto<CmsUserDto>> GetAdministratorsAsync()
     {
         return await _dealerAppService.GetAdministratorsAsync();
     }

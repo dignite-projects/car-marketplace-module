@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Dignite.CarMarketplace.Cars;
 using Dignite.CarMarketplace.Dealers;
-using Dignite.CarMarketplace.Users;
 
 namespace Dignite.CarMarketplace;
 
@@ -9,7 +8,6 @@ public class CarMarketplaceApplicationAutoMapperProfile : Profile
 {
     public CarMarketplaceApplicationAutoMapperProfile()
     {
-        CreateMap<CarUser, CarUserDto>().MapExtraProperties();
         CreateMap<Dealer, Admin.Dealers.DealerDto>();
         CreateMap<Dealer, DealerPlatform.Dealers.DealerDto>();
         CreateMap<Dealer, Public.Dealers.DealerDto>();

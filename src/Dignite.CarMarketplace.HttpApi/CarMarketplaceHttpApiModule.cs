@@ -4,12 +4,14 @@ using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Microsoft.Extensions.DependencyInjection;
+using Dignite.CmsKit.Public;
 
 namespace Dignite.CarMarketplace;
 
 [DependsOn(
     typeof(CarMarketplaceApplicationContractsModule),
-    typeof(AbpAspNetCoreMvcModule))]
+    typeof(AbpAspNetCoreMvcModule),
+    typeof(DigniteCmsKitPublicHttpApiModule))]
 public class CarMarketplaceHttpApiModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)

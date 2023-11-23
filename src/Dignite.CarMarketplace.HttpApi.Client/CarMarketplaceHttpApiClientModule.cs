@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Dignite.CmsKit.Public;
+using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Http.Client;
 using Volo.Abp.Modularity;
 using Volo.Abp.VirtualFileSystem;
@@ -7,7 +8,8 @@ namespace Dignite.CarMarketplace;
 
 [DependsOn(
     typeof(CarMarketplaceApplicationContractsModule),
-    typeof(AbpHttpClientModule))]
+    typeof(AbpHttpClientModule),
+    typeof(DigniteCmsKitPublicHttpApiClientModule))]
 public class CarMarketplaceHttpApiClientModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)

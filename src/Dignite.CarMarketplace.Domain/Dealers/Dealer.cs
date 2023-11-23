@@ -81,7 +81,7 @@ namespace Dignite.CarMarketplace.Dealers
             return Administrators.Any(r => r.UserId == userId);
         }
 
-        public virtual void Update(string name, string address, string contactPerson, string contactNumber, double? latitude, double? longitude)
+        public virtual void UpdateInternal(string name, string address, string contactPerson, string contactNumber, double? latitude, double? longitude)
         {
             Name = name;
             Address = address;

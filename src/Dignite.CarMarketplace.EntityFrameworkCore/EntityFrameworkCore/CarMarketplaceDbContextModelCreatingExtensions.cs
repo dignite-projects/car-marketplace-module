@@ -1,10 +1,10 @@
 ﻿using Dignite.CarMarketplace.Cars;
 using Dignite.CarMarketplace.Dealers;
-using Dignite.CarMarketplace.Users;
+using Dignite.CmsKit.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
 using Volo.Abp.EntityFrameworkCore.Modeling;
-using Volo.Abp.Users.EntityFrameworkCore;
+using Volo.CmsKit.EntityFrameworkCore;
 
 namespace Dignite.CarMarketplace.EntityFrameworkCore;
 
@@ -15,19 +15,8 @@ public static class CarMarketplaceDbContextModelCreatingExtensions
     {
         Check.NotNull(builder, nameof(builder));
 
-
-        builder.Entity<CarUser>(b =>
-        {
-            b.ToTable(CarMarketplaceDbProperties.DbTablePrefix + "Users", CarMarketplaceDbProperties.DbSchema);
-
-            b.ConfigureByConvention();
-            b.ConfigureAbpUser();
-
-            b.HasIndex(x => new { x.TenantId, x.UserName });
-
-            b.ApplyObjectExtensionMappings();
-        });
-
+        builder.ConfigureCmsKit();
+        builder.ConfigureDigniteCmsKit();
 
         builder.Entity<Dealer>(b =>
         {

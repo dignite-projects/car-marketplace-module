@@ -1,5 +1,4 @@
 ﻿using Dignite.CarMarketplace.Dealers;
-using Dignite.CarMarketplace.Users;
 using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
@@ -7,19 +6,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Users;
+using Volo.CmsKit.Users;
 
 namespace Dignite.CarMarketplace.DealerPlatform.Dealers
 {
     public class DealerAppService : CarMarketplaceAppService, IDealerAppService
     {
         private readonly IDealerRepository _dealerRepository;
-        private readonly ICarUserRepository _carUserRepository;
+        private readonly ICmsUserRepository _cmsUserRepository;
         private readonly DealerManager _dealerManager;
 
-        public DealerAppService(IDealerRepository dealerRepository, ICarUserRepository carUserRepository, DealerManager dealerManager)
+        public DealerAppService(IDealerRepository dealerRepository, ICmsUserRepository cmsUserRepository, DealerManager dealerManager)
         {
             _dealerRepository = dealerRepository;
-            _carUserRepository = carUserRepository;
+            _cmsUserRepository = cmsUserRepository;
             _dealerManager = dealerManager;
         }
 
@@ -54,16 +54,17 @@ namespace Dignite.CarMarketplace.DealerPlatform.Dealers
         }
 
         [Authorize]
-        public async Task<ListResultDto<CarUserDto>> GetAdministratorsAsync()
+        public async Task<ListResultDto<CmsUserDto>> GetAdministratorsAsync()
         {
+            var userId = CurrentUser.GetId();
             var entity = await _dealerRepository.FindByAdministratorAsync(CurrentUser.GetId(), true);
-            var users = await _carUserRepository.GetListAsync(
+            var users = await _cmsUserRepository.GetListAsync(
                 entity.Administrators.Select(a => a.UserId)
                 .ToArray()
                 );
 
-            return new ListResultDto<CarUserDto>(
-                ObjectMapper.Map<List<CarUser>, List<CarUserDto>>(users)
+            return new ListResultDto<CmsUserDto>(
+                ObjectMapper.Map<List<CmsUser>, List<CmsUserDto>>(users)
                 );
         }
 
@@ -83,7 +84,7 @@ namespace Dignite.CarMarketplace.DealerPlatform.Dealers
         public async Task<DealerDto> UpdateAsync(Guid id, DealerUpdateDto input)
         {
             var entity = await _dealerRepository.FindByAdministratorAsync(CurrentUser.GetId(), false);
-            entity.Update(input.Name,input.Address,input.ContactPerson,input.ContactNumber,input.Latitude,input.Longitude);
+            entity.UpdateInternal(input.Name,input.Address,input.ContactPerson,input.ContactNumber,input.Latitude,input.Longitude);
             entity.SetAuthenticationStatus(AuthenticationStatus.Waiting);
             await _dealerRepository.UpdateAsync(entity);
             return ObjectMapper.Map<Dealer, DealerDto>(entity);

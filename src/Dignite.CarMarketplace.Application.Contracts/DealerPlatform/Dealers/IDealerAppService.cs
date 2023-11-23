@@ -1,8 +1,8 @@
-﻿using Dignite.CarMarketplace.Users;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
+using Volo.CmsKit.Users;
 
 namespace Dignite.CarMarketplace.DealerPlatform.Dealers;
 
@@ -12,7 +12,7 @@ public interface IDealerAppService: IApplicationService
     Task<DealerDto> UpdateAsync(Guid id, DealerUpdateDto input);
 
     Task<DealerDto> FindByCurrentUserAsync();
-    Task<ListResultDto<CarUserDto>> GetAdministratorsAsync();
+    Task<ListResultDto<CmsUserDto>> GetAdministratorsAsync();
 
     Task AddAdministrator(Guid userId);
     Task RemoveAdministratorAsync(Guid userId);

@@ -4,6 +4,7 @@ using Volo.Abp.Modularity;
 using Volo.Abp.Application;
 using Microsoft.AspNetCore.Authorization;
 using Dignite.CarMarketplace.DealerPlatform.Dealers;
+using Dignite.CmsKit.Public;
 
 namespace Dignite.CarMarketplace;
 
@@ -11,7 +12,8 @@ namespace Dignite.CarMarketplace;
     typeof(CarMarketplaceDomainModule),
     typeof(CarMarketplaceApplicationContractsModule),
     typeof(AbpDddApplicationModule),
-    typeof(AbpAutoMapperModule)
+    typeof(AbpAutoMapperModule),
+    typeof(DigniteCmsKitPublicApplicationModule)
     )]
 public class CarMarketplaceApplicationModule : AbpModule
 {

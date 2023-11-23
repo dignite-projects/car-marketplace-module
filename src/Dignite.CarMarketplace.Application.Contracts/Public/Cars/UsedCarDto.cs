@@ -58,12 +58,12 @@ namespace Dignite.CarMarketplace.Public.Cars
         /// <summary>
         /// 交强险过期日期
         /// </summary>
-        public DateTime CompulsoryInsuranceExpirationDate { get; set; }
+        public DateTime? CompulsoryInsuranceExpirationDate { get; set; }
 
         /// <summary>
         /// 商业险过期日期
         /// </summary>
-        public DateTime CommercialInsuranceExpirationDate { get; set; }
+        public DateTime? CommercialInsuranceExpirationDate { get; set; }
 
         public string Color { get; set; }
 

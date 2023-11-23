@@ -116,7 +116,7 @@ public class UsedCarAppService : CarMarketplaceAppService, IUsedCarAppService
         var trim = await _trimRepository.GetAsync(input.TrimId);
         usedCar.SetStatus(input.Status);
         usedCar.SetConfig(trim);
-        usedCar.Update(
+        usedCar.UpdateInternal(
             trim,
             input.Name, input.Description,
             input.RegistrationDate,

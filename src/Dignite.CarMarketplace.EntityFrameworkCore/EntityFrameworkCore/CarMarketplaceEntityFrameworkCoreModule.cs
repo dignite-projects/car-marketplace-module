@@ -1,6 +1,6 @@
 ﻿using Dignite.CarMarketplace.Cars;
 using Dignite.CarMarketplace.Dealers;
-using Dignite.CarMarketplace.Users;
+using Dignite.CmsKit.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.Modularity;
@@ -11,7 +11,8 @@ namespace Dignite.CarMarketplace.EntityFrameworkCore;
 [DependsOn(
     typeof(CarMarketplaceDomainModule),
     typeof(AbpUsersEntityFrameworkCoreModule),
-    typeof(AbpEntityFrameworkCoreModule)
+    typeof(AbpEntityFrameworkCoreModule),
+    typeof(DigniteCmsKitEntityFrameworkCoreModule)
 )]
 public class CarMarketplaceEntityFrameworkCoreModule : AbpModule
 {
@@ -19,7 +20,6 @@ public class CarMarketplaceEntityFrameworkCoreModule : AbpModule
     {
         context.Services.AddAbpDbContext<CarMarketplaceDbContext>(options =>
         {
-            options.AddRepository<CarUser, EfCoreCarUserRepository>();
             options.AddRepository<Brand, EfCoreBrandRepository>();
             options.AddRepository<ConfigurationItem, EfCoreConfigurationItemRepository>();
             options.AddRepository<Model, EfCoreModelRepository>();

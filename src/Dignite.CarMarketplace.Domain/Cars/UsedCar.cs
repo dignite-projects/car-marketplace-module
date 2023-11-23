@@ -14,7 +14,7 @@ namespace Dignite.CarMarketplace.Cars
         {
         }
 
-        public UsedCar(Guid id,  Trim trim, string name, string description, Guid dealerId, DateTime registrationDate, float totalMileage, int transfersCount, DateTime compulsoryInsuranceExpirationDate, DateTime commercialInsuranceExpirationDate, string color, float price, Guid? tenantId)
+        public UsedCar(Guid id,  Trim trim, string name, string description, Guid dealerId, DateTime registrationDate, float totalMileage, int transfersCount, DateTime? compulsoryInsuranceExpirationDate, DateTime? commercialInsuranceExpirationDate, string color, float price, Guid? tenantId)
             :base(id)
         {
             BrandId = trim.Model.BrandId;
@@ -84,12 +84,12 @@ namespace Dignite.CarMarketplace.Cars
         /// <summary>
         /// 交强险过期日期
         /// </summary>
-        public DateTime CompulsoryInsuranceExpirationDate { get; set; }
+        public DateTime? CompulsoryInsuranceExpirationDate { get; set; }
 
         /// <summary>
         /// 商业险过期日期
         /// </summary>
-        public DateTime CommercialInsuranceExpirationDate { get; set; }
+        public DateTime? CommercialInsuranceExpirationDate { get; set; }
 
         public string Color { get; set; }
 
@@ -134,7 +134,7 @@ namespace Dignite.CarMarketplace.Cars
         {
             Status = status;
         }
-        public void Update(Trim trim, string name, string description, DateTime registrationDate, float totalMileage, int transfersCount, DateTime compulsoryInsuranceExpirationDate, DateTime commercialInsuranceExpirationDate, string color, float price)            
+        public void UpdateInternal(Trim trim, string name, string description, DateTime registrationDate, float totalMileage, int transfersCount, DateTime? compulsoryInsuranceExpirationDate, DateTime? commercialInsuranceExpirationDate, string color, float price)            
         {
             BrandId = trim.Model.BrandId;
             ModelId = trim.ModelId;
