@@ -5,11 +5,11 @@ namespace Dignite.CarMarketplace.Public.Cars
 {
     public class GetUsedCarsInput : PagedAndSortedResultRequestDto
     {
-        public string Filter { get; set; }
+        public string? Filter { get; set; }
         public Guid? BrandId { get; set; }
         public Guid? ModelId { get; set; }
         public Guid? DealerId { get; set; }
-        public string Color { get; set; }
+        public string? Color { get; set; }
 
         /// <summary>
         /// 上牌日期
@@ -32,16 +32,16 @@ namespace Dignite.CarMarketplace.Public.Cars
         /// <summary>
         /// 变速箱类型
         /// </summary>
-        public string TransmissionType { get; set; }
+        public string? TransmissionType { get; set; }
 
         /// <summary>
         /// 动力类型
         /// </summary>
-        public string PowerType { get; set; }
+        public string? PowerType { get; set; }
 
         /// <summary>
         /// 车型级别(Suv\MPV\豪华车等等)
         /// </summary>
-        public string ModelLevel { get; set; }
+        public string? ModelLevel { get; set; }
     }
 }

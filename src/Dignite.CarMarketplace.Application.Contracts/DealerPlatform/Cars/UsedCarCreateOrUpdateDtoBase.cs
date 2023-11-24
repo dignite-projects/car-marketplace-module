@@ -61,7 +61,7 @@ namespace Dignite.CarMarketplace.DealerPlatform.Cars
         /// 
         /// </summary>
         [DynamicStringLength(typeof(UsedCarConsts), nameof(UsedCarConsts.MaxColorLength))]
-        public string Color { get; set; }
+        public string? Color { get; set; }
 
         /// <summary>
         /// 价格

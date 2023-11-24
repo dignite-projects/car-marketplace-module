@@ -5,7 +5,7 @@ namespace Dignite.CarMarketplace.Admin.Dealers
 {
     public class GetDealersInput : PagedAndSortedResultRequestDto
     {
-        public string Filter { get; set; }
-        public AuthenticationStatus AuthenticationStatus { get; set; }
+        public string? Filter { get; set; }
+        public AuthenticationStatus? AuthenticationStatus { get; set; }
     }
 }
