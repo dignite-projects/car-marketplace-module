@@ -9,11 +9,10 @@ namespace Dignite.CarMarketplace.Cars
     /// </summary>
     public class Model : CreationAuditedEntity<Guid>
     {
-        public Model(Guid id, Guid brandId, Brand brand, string group, string name, int number)
+        public Model(Guid id, Guid brandId, string group, string name, int number)
             : base(id)
         {
             BrandId = brandId;
-            Brand = brand;
             Group = group;
             Name = name;
             Number = number;

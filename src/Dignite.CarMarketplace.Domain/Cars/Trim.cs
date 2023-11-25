@@ -13,11 +13,10 @@ namespace Dignite.CarMarketplace.Cars
         {
         }
 
-        public Trim(Guid id, Guid modelId, Model model, int year, string name, int number)
+        public Trim(Guid id, Guid modelId, string year, string name, int number)
             : base(id)
         {
             ModelId = modelId;
-            Model = model;
             Year = year;
             Name = name;
             Number = number;
@@ -29,7 +28,7 @@ namespace Dignite.CarMarketplace.Cars
         /// <summary>
         /// 年代款
         /// </summary>
-        public int Year { get; set; }
+        public string Year { get; set; }
 
         /// <summary>
         /// 车款名称

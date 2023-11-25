@@ -4,6 +4,7 @@ using Dignite.CarMarketplace.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 
@@ -12,9 +13,11 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Dignite.CarMarketplace.Migrations
 {
     [DbContext(typeof(CarMarketplaceHttpApiHostMigrationsDbContext))]
-    partial class CarMarketplaceHttpApiHostMigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231125152238_modify-trim-year-type")]
+    partial class modifytrimyeartype
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -149,8 +152,8 @@ namespace Dignite.CarMarketplace.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
 
                     b.Property<int>("Number")
                         .HasColumnType("int");

@@ -76,7 +76,8 @@ public static class CarMarketplaceDbContextModelCreatingExtensions
             b.ConfigureByConvention();
 
             //Properties
-            b.Property(q => q.Name).IsRequired().HasMaxLength(ModelConsts.MaxNameLength);
+            b.Property(q => q.Name).IsRequired().HasMaxLength(TrimConsts.MaxNameLength);
+            b.Property(q => q.Year).IsRequired().HasMaxLength(TrimConsts.MaxYearLength);
 
             b.HasIndex(q => q.ModelId);
 
@@ -93,10 +94,10 @@ public static class CarMarketplaceDbContextModelCreatingExtensions
 
             //Properties
             b.Property(q => q.Color).HasMaxLength(UsedCarConsts.MaxColorLength);
-            b.Property(q => q.Name).HasMaxLength(UsedCarConsts.MaxNameLength);
+            b.Property(q => q.Name).IsRequired().HasMaxLength(UsedCarConsts.MaxNameLength);
+            b.Property(q => q.Description).HasMaxLength(UsedCarConsts.MaxDescriptionLength);
             b.Property(q => q.TransmissionType).HasMaxLength(UsedCarConsts.MaxTransmissionTypeLength);
             b.Property(q => q.PowerType).HasMaxLength(UsedCarConsts.MaxPowerTypeLength);
-            b.Property(q => q.Description).HasMaxLength(UsedCarConsts.MaxDescriptionLength);
             b.Property(q => q.ModelLevel).HasMaxLength(UsedCarConsts.MaxModelLevelLength);
 
             //Indexes
