@@ -10,6 +10,9 @@ public class CarMarketplacePermissionDefinitionProvider : PermissionDefinitionPr
     {
         var myGroup = context.AddGroup(CarMarketplacePermissions.GroupName, L("Permission:CarMarketplace"));
 
+        var saleCars = myGroup.AddPermission(CarMarketplacePermissions.SaleCars.Default, L("Permission:SaleCars"));
+        saleCars.AddChild(CarMarketplacePermissions.SaleCars.Management, L("Permission:Management"));
+
         var usedCars = myGroup.AddPermission(CarMarketplacePermissions.UsedCars.Default, L("Permission:UsedCars"));
         usedCars.AddChild(CarMarketplacePermissions.UsedCars.Management, L("Permission:Management"));
 

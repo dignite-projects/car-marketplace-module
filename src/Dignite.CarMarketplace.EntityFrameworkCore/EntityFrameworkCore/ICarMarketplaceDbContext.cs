@@ -10,10 +10,11 @@ namespace Dignite.CarMarketplace.EntityFrameworkCore;
 public interface ICarMarketplaceDbContext : IEfCoreDbContext
 {
     DbSet<Dealer> Dealer { get; }
+    DbSet<DealerAdministrator> DealerAdministrator { get; }
     DbSet<Brand> Brand { get; }
     DbSet<Model> Model { get; }
     DbSet<Trim> Trim { get; }
     DbSet<ConfigurationItem> ConfigurationItem { get; }
     DbSet<UsedCar> UsedCar { get; }
-    DbSet<DealerAdministrator> DealerAdministrator { get; }
+    DbSet<SaleCar> SaleCar { get; }
 }

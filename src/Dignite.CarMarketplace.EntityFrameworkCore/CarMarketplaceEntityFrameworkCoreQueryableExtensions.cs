@@ -47,5 +47,15 @@ namespace Dignite.CarMarketplace
 
             return queryable;
         }
+        public static IQueryable<SaleCar> IncludeDetails(this IQueryable<SaleCar> queryable, bool include = true)
+        {
+            if (!include)
+            {
+                return queryable;
+            }
+
+            return queryable
+                .Include(s => s.Model);
+        }
     }
 }

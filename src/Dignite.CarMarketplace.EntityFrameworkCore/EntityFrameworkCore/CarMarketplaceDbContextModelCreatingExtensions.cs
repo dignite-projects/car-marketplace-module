@@ -113,7 +113,21 @@ public static class CarMarketplaceDbContextModelCreatingExtensions
             b.HasIndex(q => q.ModelLevel);
             b.HasIndex(q => q.Price);
             b.HasIndex(q => q.RegistrationDate);
+        });
 
+
+        builder.Entity<SaleCar>(b =>
+        {
+            //Configure table & schema name
+            b.ToTable(CarMarketplaceDbProperties.DbTablePrefix + "SaleCars", CarMarketplaceDbProperties.DbSchema);
+
+            b.ConfigureByConvention();
+
+            //Properties
+            b.Property(q => q.Description).IsRequired(false).HasMaxLength(SaleCarConsts.MaxDescriptionLength);
+            b.Property(q => q.Address).IsRequired().HasMaxLength(SaleCarConsts.MaxAddressLength);
+            b.Property(q => q.ContactPerson).IsRequired().HasMaxLength(SaleCarConsts.MaxContactPersonLength);
+            b.Property(q => q.ContactNumber).IsRequired().HasMaxLength(SaleCarConsts.MaxContactNumberLength);
 
         });
 
@@ -126,7 +140,6 @@ public static class CarMarketplaceDbContextModelCreatingExtensions
             //Properties
             b.Property(q => q.Name).IsRequired().HasMaxLength(ConfigurationItemConsts.MaxNameLength);
             b.Property(q => q.Group).IsRequired().HasMaxLength(ConfigurationItemConsts.MaxGroupLength);
-
         });
     }
 }

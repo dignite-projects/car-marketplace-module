@@ -1,4 +1,6 @@
-﻿using Dignite.CarMarketplace.Dealers;
+﻿using Dignite.CarMarketplace.Cars;
+using Dignite.CarMarketplace.Dealers;
+using System;
 using System.Threading.Tasks;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
@@ -15,14 +17,22 @@ public class CarMarketplaceDataSeedContributor : IDataSeedContributor, ITransien
     private readonly ICurrentTenant _currentTenant;
     private readonly IDealerRepository _dealerRepository;
     private readonly ICmsUserRepository _cmsUserRepository;
+    private readonly IBrandRepository _brandRepository;
+    private readonly IModelRepository _modelRepository;
+    private readonly ISaleCarRepository _saleCarRepository;
     private readonly CarMarketplaceTestData _testData;
 
-    public CarMarketplaceDataSeedContributor(IGuidGenerator guidGenerator, ICurrentTenant currentTenant, IDealerRepository dealerRepository, ICmsUserRepository cmsUserRepository, CarMarketplaceTestData testData)
+    public CarMarketplaceDataSeedContributor(IGuidGenerator guidGenerator, ICurrentTenant currentTenant, IDealerRepository dealerRepository, ICmsUserRepository cmsUserRepository, IBrandRepository brandRepository, IModelRepository modelRepository,
+        ISaleCarRepository saleCarRepository,
+        CarMarketplaceTestData testData)
     {
         _guidGenerator = guidGenerator;
         _currentTenant = currentTenant;
         _dealerRepository = dealerRepository;
         _cmsUserRepository = cmsUserRepository;
+        _brandRepository = brandRepository;
+        _modelRepository = modelRepository;
+        _saleCarRepository = saleCarRepository;
         _testData = testData;
     }
 
@@ -32,6 +42,9 @@ public class CarMarketplaceDataSeedContributor : IDataSeedContributor, ITransien
         {
             await SeedDealersAsync();
             await SeedUsersAsync();
+            await SendBrandsAsync();
+            await SendModelAsync();
+            await SendSaleCarAsync();
         }
     }
     private async Task SeedDealersAsync()
@@ -51,5 +64,26 @@ public class CarMarketplaceDataSeedContributor : IDataSeedContributor, ITransien
             "user2@volo.com",
             "user", "2")),
             autoSave: true);
+    }
+    private async Task SendBrandsAsync()
+    {
+        await _brandRepository.InsertAsync(
+            new Brand(_testData.BmwBrandId, _testData.BmwBrandName, "B", 0),
+        autoSave: true
+            );
+    }
+    private async Task SendModelAsync()
+    {
+        await _modelRepository.InsertAsync(
+            new Model(_testData.BmwModelId,_testData.BmwBrandId,"华晨宝马", _testData.BmwBrandName, 0),
+        autoSave: true
+            );
+    }
+    private async Task SendSaleCarAsync()
+    {
+        await _saleCarRepository.InsertAsync(
+            new SaleCar(_testData.SaleCarlId,_testData.BmwModelId,null,DateTime.Now.AddYears(-3),3,"北京大兴","李先生","13900011112",null),
+        autoSave: true
+            );
     }
 }
