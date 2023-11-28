@@ -1,6 +1,7 @@
 ﻿using Dignite.CarMarketplace.Cars;
 using Dignite.CarMarketplace.Dealers;
 using Dignite.CmsKit.EntityFrameworkCore;
+using Dignite.FileExplorer.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
 using Volo.Abp.EntityFrameworkCore.Modeling;
@@ -17,6 +18,7 @@ public static class CarMarketplaceDbContextModelCreatingExtensions
 
         builder.ConfigureCmsKit();
         builder.ConfigureDigniteCmsKit();
+        builder.ConfigureFileExplorer(); //Add this line to configure the FileExplorer Module
 
         builder.Entity<Dealer>(b =>
         {

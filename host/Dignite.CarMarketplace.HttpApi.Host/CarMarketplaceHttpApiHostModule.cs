@@ -33,6 +33,10 @@ using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using Volo.Abp.VirtualFileSystem;
+using Dignite.CarMarketplace.BlobStoring;
+using Volo.Abp.BlobStoring;
+using Dignite.Abp.BlobStoring;
+using Volo.Abp.BlobStoring.FileSystem;
 
 namespace Dignite.CarMarketplace;
 
@@ -49,7 +53,8 @@ namespace Dignite.CarMarketplace;
     typeof(AbpSettingManagementEntityFrameworkCoreModule),
     typeof(AbpTenantManagementEntityFrameworkCoreModule),
     typeof(AbpAspNetCoreSerilogModule),
-    typeof(AbpSwashbuckleModule)
+    typeof(AbpSwashbuckleModule),
+    typeof(AbpBlobStoringFileSystemModule)
     )]
 public class CarMarketplaceHttpApiHostModule : AbpModule
 {
@@ -153,6 +158,23 @@ public class CarMarketplaceHttpApiHostModule : AbpModule
                     .AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowCredentials();
+            });
+        });
+
+        Configure<AbpBlobStoringOptions>(options =>
+        {
+            options.Containers
+                .Configure<CarPicsBlobContainer>(container =>
+                {
+                    container.SetBlobNameGenerator<UsedCarCellPicBlobNameGenerator>();
+                });
+
+            options.Containers.ConfigureAll((containerName, containerConfiguration) =>
+            {
+                containerConfiguration.UseFileSystem(fileSystem =>
+                {
+                    fileSystem.BasePath = Directory.GetCurrentDirectory() + "/wwwroot";
+                });
             });
         });
     }

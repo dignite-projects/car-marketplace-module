@@ -7,13 +7,15 @@ using Volo.Abp.Validation;
 using Volo.Abp.Validation.Localization;
 using Volo.Abp.VirtualFileSystem;
 using Dignite.CmsKit;
+using Dignite.FileExplorer;
 
 namespace Dignite.CarMarketplace;
 
 [DependsOn(
     typeof(AbpValidationModule),
     typeof(AbpDddDomainSharedModule),
-    typeof(DigniteCmsKitDomainSharedModule)
+    typeof(DigniteCmsKitDomainSharedModule),
+    typeof(FileExplorerDomainSharedModule)
 )]
 public class CarMarketplaceDomainSharedModule : AbpModule
 {

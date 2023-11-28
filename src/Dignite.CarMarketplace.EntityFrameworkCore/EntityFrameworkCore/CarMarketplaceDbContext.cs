@@ -1,6 +1,6 @@
 ﻿using Dignite.CarMarketplace.Cars;
 using Dignite.CarMarketplace.Dealers;
-using Dignite.CmsKit.EntityFrameworkCore;
+using Dignite.FileExplorer.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;

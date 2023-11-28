@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Dignite.CmsKit.Application" Version="1.5.0" />
+    <PackageReference Include="Dignite.FileExplorer.Application" Version="1.6.0" />
     <PackageReference Include="Volo.Abp.AutoMapper" Version="7.4.2" />
     <PackageReference Include="Volo.Abp.Ddd.Application" Version="7.4.2" />
     <ProjectReference Include="..\Dignite.CarMarketplace.Application.Contracts\Dignite.CarMarketplace.Application.Contracts.csproj" />

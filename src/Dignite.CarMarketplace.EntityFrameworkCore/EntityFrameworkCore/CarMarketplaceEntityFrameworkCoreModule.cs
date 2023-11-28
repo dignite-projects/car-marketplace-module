@@ -1,6 +1,7 @@
 ﻿using Dignite.CarMarketplace.Cars;
 using Dignite.CarMarketplace.Dealers;
 using Dignite.CmsKit.EntityFrameworkCore;
+using Dignite.FileExplorer.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.Modularity;
@@ -12,7 +13,8 @@ namespace Dignite.CarMarketplace.EntityFrameworkCore;
     typeof(CarMarketplaceDomainModule),
     typeof(AbpUsersEntityFrameworkCoreModule),
     typeof(AbpEntityFrameworkCoreModule),
-    typeof(DigniteCmsKitEntityFrameworkCoreModule)
+    typeof(DigniteCmsKitEntityFrameworkCoreModule),
+    typeof(FileExplorerEntityFrameworkCoreModule)
 )]
 public class CarMarketplaceEntityFrameworkCoreModule : AbpModule
 {
