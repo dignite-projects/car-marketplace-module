@@ -2,6 +2,16 @@
   "culture": "zh-Hans",
   "texts": {
     "MyAccount": "我的账户",
-    "SamplePageMessage": "CarMarketplace模块的示例页面"
+    "SamplePageMessage": "CarMarketplace模块的示例页面",
+    "LeftFront": "左前45度图",
+    "RightRear": "左前45度图",
+    "Side": "左前45度图",
+    "DirectlyFront": "左前45度图",
+    "DirectlyBehind": "左前45度图",
+    "WingSection": "左前45度图",
+    "FrontRow": "左前45度图",
+    "BehindRow": "左前45度图",
+    "Trunk": "左前45度图",
+    "EngineRoom": "左前45度图"
   }
 }

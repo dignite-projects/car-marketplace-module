@@ -10,6 +10,9 @@ using Volo.Abp.BlobStoring;
 using Dignite.CarMarketplace.BlobStoring;
 using Dignite.Abp.BlobStoring;
 using System.Collections.Generic;
+using Microsoft.Extensions.Localization;
+using Volo.Abp.Localization;
+using Dignite.CarMarketplace.Localization;
 
 namespace Dignite.CarMarketplace;
 
@@ -43,6 +46,9 @@ public class CarMarketplaceApplicationModule : AbpModule
 
         Configure<AbpBlobStoringOptions>(options =>
         {
+            var stringLocalizerFactory = context.Services.GetRequiredService<IStringLocalizerFactory>();
+            var stringLocalizer = stringLocalizerFactory.Create(typeof(CarMarketplaceResource));
+
             options.Containers
                 .Configure<CarPicsBlobContainer>(container =>
                 {
@@ -61,18 +67,24 @@ public class CarMarketplaceApplicationModule : AbpModule
                     });
                     container.SetFileGridConfiguration(fg => fg.FileCells = new List<FileCell>
                     {
-                        new FileCell("左前"),
-                        new FileCell("右后"),
-                        new FileCell("侧面"),
-                        new FileCell("正后"),
-                        new FileCell("驾驶座"),
-                        new FileCell("仪表盘"),
-                        new FileCell("前排"),
-                        new FileCell("后排"),
-                        new FileCell("后备箱"),
-                        new FileCell("发动机舱")
+                        new FileCell("LeftFront",L("LeftFront")),               //左前方
+                        new FileCell("RightRear",L("RightRear")),               //右后方
+                        new FileCell("Side",L("Side")),                         //侧面
+                        new FileCell("DirectlyFront",L("DirectlyFront")),       //正前
+                        new FileCell("DirectlyBehind",L("DirectlyBehind")),     //正后
+                        new FileCell("WingSection",L("WingSection")),           //中控
+                        new FileCell("FrontRow",L("FrontRow")),                 //前排
+                        new FileCell("BehindRow",L("BehindRow")),               //后排
+                        new FileCell("Trunk",L("Trunk")),                       //后备箱
+                        new FileCell("EngineRoom",L("EngineRoom"))              //发动机舱
                     });
                 });
         });
+    }
+
+
+    private static LocalizableString L(string name)
+    {
+        return LocalizableString.Create<CarMarketplaceResource>(name);
     }
 }
