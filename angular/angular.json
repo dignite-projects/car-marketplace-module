@@ -11,6 +11,11 @@
       "root": "projects/car-marketplace",
       "sourceRoot": "projects/car-marketplace/src",
       "prefix": "lib",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -67,7 +72,15 @@
             "tsConfig": "projects/dev-app/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "allowedCommonJsDependencies": ["chart.js", "js-sha256"],
-            "assets": ["projects/dev-app/src/favicon.ico", "projects/dev-app/src/assets"],
+            "assets": [
+              "projects/dev-app/src/favicon.ico",
+              "projects/dev-app/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
+            ],
             "styles": [
               {
                 "input": "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
@@ -104,6 +117,8 @@
                 "inject": true,
                 "bundleName": "bootstrap-ltr.min"
               },
+              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
+              "projects/dev-app/src/theme.less",
               "projects/dev-app/src/styles.scss"
             ],
             "scripts": []
@@ -113,7 +128,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
+                  "maximumWarning": "3mb",
                   "maximumError": "5mb"
                 },
                 {
@@ -184,6 +199,41 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": ["projects/dev-app/**/*.ts", "projects/dev-app/**/*.html"]
+          }
+        }
+      }
+    },
+    "theme-basic-zorro": {
+      "projectType": "library",
+      "root": "projects/theme-basic-zorro",
+      "sourceRoot": "projects/theme-basic-zorro/src",
+      "prefix": "dig",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/theme-basic-zorro/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/theme-basic-zorro/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/theme-basic-zorro/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/theme-basic-zorro/tsconfig.spec.json",
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         }
       }

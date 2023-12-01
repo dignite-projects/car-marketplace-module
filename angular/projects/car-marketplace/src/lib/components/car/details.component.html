@@ -1,0 +1,93 @@
+<div page>
+    <div class="site-page-header-ghost-wrapper">
+        <nz-page-header [nzGhost]="false" nzBackIcon>
+            <nz-page-header-title>二手车详情</nz-page-header-title>
+            <nz-page-header-extra *ngIf="false">
+                <nz-space>
+                    <button *nzSpaceItem nz-button nzType="primary">新建</button>
+                </nz-space>
+            </nz-page-header-extra>
+        </nz-page-header>
+    </div>
+    <div class="site_box" content>
+        <div class="site_content">
+            <nz-descriptions nzBordered>
+                <nz-descriptions-item nzTitle="名称" [nzSpan]="3">{{UsedCarDetail.name}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="品牌" [nzSpan]="1">
+                    <ng-container *ngFor="let item of brandList">
+                        <ng-container *ngIf="item.id===UsedCarDetail.brandId">
+                            {{item.name}}
+                        </ng-container>
+                    </ng-container>
+                </nz-descriptions-item>
+                <nz-descriptions-item nzTitle="车型" [nzSpan]="1">
+                    <ng-container *ngFor="let item of modelList">
+                        <ng-container *ngIf="item.id===UsedCarDetail.modelId">
+                            {{item.name}}
+                        </ng-container>
+                    </ng-container>
+                </nz-descriptions-item>
+                <nz-descriptions-item nzTitle="车款" [nzSpan]="1">
+                    <ng-container *ngFor="let item of trimList">
+                        <ng-container *ngIf="item.id===UsedCarDetail.trimId">
+                            {{item.name}}
+                        </ng-container>
+                    </ng-container>
+                </nz-descriptions-item>
+                <nz-descriptions-item nzTitle="modelLevel"
+                    [nzSpan]="1">{{UsedCarDetail.modelLevel}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="powerType"
+                    [nzSpan]="1">{{UsedCarDetail.powerType}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="transmissionType"
+                    [nzSpan]="1">{{UsedCarDetail.transmissionType}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="总公里(万)">{{UsedCarDetail.totalMileage}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="过户次数">{{UsedCarDetail.transfersCount}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="价格">{{UsedCarDetail.price}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="颜色">{{UsedCarDetail.color}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="状态" [nzSpan]="2">
+                    <ng-container *ngFor="let item of carStatusList">
+                        <ng-container *ngIf="item.value===UsedCarDetail.status">
+                            {{item.displayName}}
+                        </ng-container>
+                    </ng-container>
+                </nz-descriptions-item>
+                <nz-descriptions-item nzTitle="创建时间	" [nzSpan]="3">
+                    {{UsedCarDetail.creationTime|dateT:'yy-mm-dd hh:mm:ss'}}
+                </nz-descriptions-item>
+                <nz-descriptions-item nzTitle="初次上牌日期"
+                    [nzSpan]="3">{{UsedCarDetail.registrationDate|dateT:'yy-mm-dd'}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="交强险过期日期"
+                    [nzSpan]="3">{{UsedCarDetail.compulsoryInsuranceExpirationDate|dateT:'yy-mm-dd'}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="交强险过期日期"
+                    [nzSpan]="3">{{UsedCarDetail.commercialInsuranceExpirationDate|dateT:'yy-mm-dd'}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="车辆描述情况" [nzSpan]="3">
+                    {{UsedCarDetail.description}}
+                </nz-descriptions-item>
+                <ng-container *ngFor="let item of fileCells">
+                    <nz-descriptions-item [nzTitle]="item.displayName" [nzSpan]="3">
+                        <div class="upload_box">
+                            <div class="upload_body upload_view" *ngFor="let elf of item.fileListView; let fi=index">
+                                <img [src]="elf.src" class="upload_view_img" alt="">
+                                <div class="hover_operate">
+                                    <span class="btn1icon" nz-icon nzType="eye" (click.stop)="handlePreview(elf)"
+                                        nzTheme="outline"></span>
+                                </div>
+                            </div>
+                            <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent"
+                                (nzOnCancel)="previewVisible = false" [nzFooter]="null">
+                                <ng-template #modalContent>
+                                    <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
+                                </ng-template>
+                            </nz-modal>
+                        </div>
+                    </nz-descriptions-item>
+                </ng-container>
+            </nz-descriptions>
+
+
+
+
+
+        </div>
+    </div>
+</div>

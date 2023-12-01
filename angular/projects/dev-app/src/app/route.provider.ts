@@ -20,6 +20,7 @@ function configureRoutes(routesService: RoutesService) {
         order: 1,
         layout: eLayoutType.application,
       },
+     
     ]);
   };
 }

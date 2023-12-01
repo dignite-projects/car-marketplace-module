@@ -9,7 +9,12 @@
         "projects/car-marketplace/config/src/public-api.ts"
       ],
       "@proxy": ["projects/car-marketplace/src/lib/proxy/index.ts"],
-      "@proxy/*": ["projects/car-marketplace/src/lib/proxy/*"]
+      "@proxy/*": [
+        "projects/car-marketplace/src/lib/proxy/*"
+      ],
+      "theme-basic": [
+        "dist/theme-basic"
+      ]
     }
   }
 }

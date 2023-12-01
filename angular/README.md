@@ -25,3 +25,13 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## 执行说明
+
+1.如没有node_modules文件夹，需要执行 yarn install 加载依赖文件
+
+2.在根目录下执行 ng serve --open 运行项目
+
+3.线上运行前，需在projects\dev-app\src\environments下设置访问地址
+
+4.可在对应项目目录下执行ng build 进行打包，会在dist目录下生成对应打包文件

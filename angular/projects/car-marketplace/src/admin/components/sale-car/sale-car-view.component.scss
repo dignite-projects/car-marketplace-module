@@ -1,0 +1,16 @@
+$group_head: 50px;
+$borderBottomColor: #00000020;
+
+.site_box {
+    padding-top: 6px;
+
+    .site_content {
+        flex: 4;
+        height: 100%;
+        width: 100%;
+        border: 1px solid $borderBottomColor;
+        background-color: #ffffff;
+        border-radius: 6px;
+        overflow-x: auto;
+    }
+}

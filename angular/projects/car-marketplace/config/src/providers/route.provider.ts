@@ -17,10 +17,28 @@ export function configureRoutes(routesService: RoutesService) {
       {
         path: '/car-marketplace',
         name: eCarMarketplaceRouteNames.CarMarketplace,
-        iconClass: 'fas fa-book',
+        iconClass: 'calendar',
         layout: eLayoutType.application,
         order: 3,
-      },
+      }, {
+        path: '/car-marketplace/car',
+        name: eCarMarketplaceRouteNames.Car,
+        iconClass: 'car',
+        layout: eLayoutType.application,
+        order: 4,
+      }, {
+        path: '/administrator',
+        name: eCarMarketplaceRouteNames.Administrator,
+        iconClass: 'dollar',
+        layout: eLayoutType.application,
+        order: 5,
+      }, {
+        path: '/administrator/saleCar',
+        name: eCarMarketplaceRouteNames.SaleCar,
+        iconClass: 'console-sql',
+        layout: eLayoutType.application,
+        order: 5,
+      }
     ]);
   };
 }

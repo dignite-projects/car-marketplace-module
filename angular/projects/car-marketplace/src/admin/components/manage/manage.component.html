@@ -1,0 +1,129 @@
+<div page>
+    <div class="site-page-header-ghost-wrapper">
+        <nz-page-header [nzGhost]="false">
+            <nz-page-header-title>车商管理</nz-page-header-title>
+            <nz-page-header-extra *ngIf="false">
+                <nz-space>
+                    <button *nzSpaceItem nz-button nzType="primary">新建</button>
+                </nz-space>
+            </nz-page-header-extra>
+        </nz-page-header>
+    </div>
+    <div class="site_box" content>
+        <div class="site_content">
+            <div class="site_search">
+                <form nz-form #searchForm="ngForm">
+                    <nz-form-item search>
+                        <nz-form-control>
+                            <div class="search-box flex align-center justify-between">
+                                <div class="search-box-content">
+                                    <div class="search-box-item">
+                                        <input type="text" autocomplete="off" field nz-input placeholder="请输入名称"
+                                            [(ngModel)]="search.filter" name="Filter" />
+                                    </div>
+                                    <div class="search-box-item">
+                                        <nz-select nzShowSearch nzAllowClear nzPlaceHolder="选择认证状态"
+                                            [(ngModel)]="search.authenticationStatus" name="AuthenticationStatus">
+                                            <ng-container *ngFor="let item of authenticationStatusList">
+                                                <nz-option [nzLabel]="item.displayName"
+                                                    [nzValue]="item.value"></nz-option>
+                                            </ng-container>
+                                        </nz-select>
+                                    </div>
+                                </div>
+                                <button nz-button nzType="primary" (click.stop)="searchSite()">
+                                    <span nz-icon nzType="search" nzTheme="outline"></span>
+                                </button>
+                            </div>
+                        </nz-form-control>
+                    </nz-form-item>
+                </form>
+            </div>
+
+            <div class="site_table" tablefield #tablebox>
+                <nz-table #basicTable [nzData]="CarMarketplaceList" [nzFrontPagination]="false">
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>联系人</th>
+                            <th>联系邮箱</th>
+                            <th>地址</th>
+                            <th>状态</th>
+                            <th>创建时间</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of CarMarketplaceList">
+                            <td>{{ data.name }}</td>
+                            <td>{{ data.contactPerson }}</td>
+                            <td>{{ data.contactNumber }}</td>
+                            <td>{{ data.address }}</td>
+                            <td>
+                                <ng-container *ngFor="let item of authenticationStatusList">
+                                    <ng-container *ngIf="data.authenticationStatus === item.value">{{
+                                        item.displayName
+                                        }}</ng-container>
+                                </ng-container>
+                            </td>
+                            <td>{{ data.creationTime | dateT : 'yy-mm-dd hh:mm:ss' }}</td>
+                            <td>
+                                <button nz-button nzType="primary" nz-dropdown nzTrigger="click"
+                                    [nzDropdownMenu]="menu">
+                                    操作
+                                    <span nz-icon nzType="down"></span>
+                                </button>
+                                <nz-dropdown-menu #menu="nzDropdownMenu">
+                                    <ul nz-menu>
+                                        <li nz-menu-item *ngIf="data.authenticationStatus === 0"
+                                            (click.stop)="authenticateCarMarketplace(data, 'yes')">
+                                            批准
+                                        </li>
+                                        <li nz-menu-item *ngIf="data.authenticationStatus === 0"
+                                            (click.stop)="authenticateCarMarketplace(data, 'no')">
+                                            不批准
+                                        </li>
+                                        <li nz-menu-item *ngIf="data.authenticationStatus !== 0"
+                                            (click.stop)="changeStatus(data)">
+                                            状态
+                                        </li>
+                                        <!-- <li nz-menu-item (click.stop)="editStieShowModal(data)">编辑</li> -->
+                                        <li nz-menu-item (click.stop)="SiteDelete(data)">删除</li>
+                                    </ul>
+                                </nz-dropdown-menu>
+                            </td>
+                        </tr>
+                    </tbody>
+                </nz-table>
+                <div class="pagination">
+                    <nz-pagination style="float: right" [nzPageIndex]="SkipCount + 1" [nzPageSize]="MaxResultCount"
+                        [nzTotal]="pageTotal" (nzPageIndexChange)="nzPageIndexChange($event)"></nz-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form nz-form #newFroupForm="ngForm" autocomplete="off">
+        <nz-modal [(nzVisible)]="isNewGroup" [nzTitle]="modalTitle" [nzOkDisabled]="!newFroupForm.valid"
+            (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzClassName="newFroupForm">
+            <ng-container *nzModalContent class="nzModalContent">
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="24" nzFor="StatusValue" nzRequired>状态</nz-form-label>
+                    <nz-form-control [nzErrorTip]="combineTpl">
+                        <nz-select nzShowSearch nzPlaceHolder="请选择状态" [(ngModel)]="StatusValue" name="StatusValue">
+                            <ng-container *ngFor="let item of authenticationStatusList">
+                                <nz-option [nzLabel]="item.displayName" [nzValue]="item.value"></nz-option>
+                            </ng-container>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+                <ng-template #combineTpl let-control>
+                    <ng-container *ngIf="control.hasError('required')">The {{ control.name }} field is required.
+                    </ng-container>
+                    <ng-container *ngIf="control.hasError('email')">The {{ control.name }} field is not valid
+                    </ng-container>
+                </ng-template>
+            </ng-container>
+        </nz-modal>
+    </form>
+</div>

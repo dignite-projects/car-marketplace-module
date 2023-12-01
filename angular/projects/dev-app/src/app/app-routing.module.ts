@@ -30,10 +30,15 @@ const routes: Routes = [
     loadChildren: () =>
       import('@dignite/car-marketplace').then(m => m.CarMarketplaceModule.forLazy()),
   },
+  {
+    path: 'administrator',
+    loadChildren: () =>
+      import('@dignite/car-marketplace').then(m => m.AdminModule.forLazy()),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {})],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

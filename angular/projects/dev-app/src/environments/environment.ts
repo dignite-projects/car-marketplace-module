@@ -17,12 +17,16 @@ export const environment = {
     scope: 'offline_access CarMarketplace',
     requireHttps: true
   },
-  apis: {
+  apis: { 
     default: {
       url: 'https://localhost:44352',
       rootNamespace: 'Dignite.CarMarketplace',
     },
     CarMarketplace: {
+      url: 'https://localhost:44310',
+      rootNamespace: 'Dignite.CarMarketplace',
+    },
+    FileExplorer: {
       url: 'https://localhost:44310',
       rootNamespace: 'Dignite.CarMarketplace',
     },
