@@ -8,7 +8,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace Dignite.CarMarketplace.DealerPlatform.Cars;
 
-[Area(CarMarketplaceRemoteServiceConsts.ModuleName)]
+[Area(CarMarketplaceRemoteServiceConsts.DealerPlatformModuleName)]
 [RemoteService(Name = CarMarketplaceRemoteServiceConsts.RemoteServiceName)]
 [Route("api/car-marketplace-dealer-platform/used-car")]
 public class UsedCarController : CarMarketplaceController, IUsedCarAppService

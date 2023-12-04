@@ -13,16 +13,24 @@ namespace Dignite.CarMarketplace.Dealers
 
         protected IDealerRepository DealerRepository { get; }
 
-        public async Task<Dealer> CreateAsync(string name, string address, string contactPerson, string contactNumber, double? latitude, double? longitude, Guid userId)
+        public async Task<Dealer> CreateAsync(string name, string shortName, string address, string contactPerson, string contactNumber, double? latitude, double? longitude, Guid userId)
         {
             var entity = await DealerRepository.FindByAdministratorAsync(userId, false);
             if (entity != null)
             {
                 throw new DealerAlreadyExistException(userId);
             }
+
+            entity = await DealerRepository.FindByShortNameAsync(shortName);
+            if (entity != null)
+            {
+                throw new DealerShortNameAlreadyExistException(shortName);
+            }
+
+
             entity = new Dealer(
                 GuidGenerator.Create(),
-                name, address, contactPerson, contactNumber, latitude, longitude, CurrentTenant.Id);
+                name, shortName, address, contactPerson, contactNumber, latitude, longitude, CurrentTenant.Id);
             entity.AddAdministrator(userId);
             return await DealerRepository.InsertAsync(entity);            
         }

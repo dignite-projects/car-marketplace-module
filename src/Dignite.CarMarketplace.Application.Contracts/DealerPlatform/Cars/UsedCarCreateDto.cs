@@ -6,5 +6,6 @@ namespace Dignite.CarMarketplace.DealerPlatform.Cars
 {
     public class UsedCarCreateDto: UsedCarCreateOrUpdateDtoBase
     {
+        public UsedCarCreateDto():base() { }
     }
 }

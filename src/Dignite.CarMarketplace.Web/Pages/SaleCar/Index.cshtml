@@ -1,0 +1,121 @@
+﻿@page
+@using Dignite.CarMarketplace.Web.Pages.SaleCar
+@model IndexModel
+@{
+}
+
+@section scripts {
+    <abp-script-bundle name="car-marketplace-public-proxy">
+        <abp-script src="/client-proxies/car-marketplace-public-proxy.js" />
+    </abp-script-bundle>
+    <abp-script-bundle name="@typeof(IndexModel).FullName">
+        <abp-script src="/Pages/SaleCar/index.js" />
+    </abp-script-bundle>
+}
+
+<h1 class="text-primary display-4 fw-bold pt-md-5 mt-5 mb-5">
+    找对人，卖个好价钱
+</h1>
+<div class="row mb-5 pb-5">
+    <div class="col-md-4">
+        <div class="rich-text">
+
+            <p>免费上门检测，专业服务顾问指导您卖车，最快一天即可成交，成交后当天就能拿到车款。</p>
+            <p>我们期待着与您合作，并为您提供最优化的解决方案。</p>
+        </div>
+    </div>
+    <div class="col-md-7 offset-md-1">
+
+        @if (Model.IsCompleted)
+        {
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">系统提示：</h4>
+                <p> ✓ 您的卖车信息已提交，车商将会与您联系。</p>
+                <hr />
+                <p class="mb-0">
+                    @DateTime.Now<br/>
+                    远通集团二手车市场
+                </p>
+            </div>
+        }
+        <form method="post" id="sale-car-form">
+            <div class="row gy-3 gx-5">
+                <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                        <select asp-for="SaleCar.BrandId" class="form-select" id="brandSelect">
+                            <option value="">--选择品牌--</option>
+                            @foreach(var brand in Model.AllBrands)
+                            {
+                            <option value="@brand.Id" selected="@(brand.Id==Model.SaleCar.BrandId)">@brand.FirstLetter @brand.Name</option>
+                            }
+                        </select>
+                        <span asp-validation-for="SaleCar.BrandId" class="text-danger"></span>
+                        <label asp-for="SaleCar.BrandId">品牌</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                        <select asp-for="SaleCar.ModelId" class="form-select" id="modelSelect">
+                            <option value="">--选择车型--</option>
+                        </select>
+                        <span asp-validation-for="SaleCar.ModelId" class="text-danger"></span>
+                        <label asp-for="SaleCar.ModelId">车型</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                        <input type="date" asp-for="SaleCar.RegistrationDate" class="form-control" />
+                        <span asp-validation-for="SaleCar.RegistrationDate" class="text-danger"></span>
+                        <label asp-for="SaleCar.RegistrationDate">上牌日期</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                        <input asp-for="SaleCar.TotalMileage" class="form-control" />
+                        <span asp-validation-for="SaleCar.TotalMileage" class="text-danger"></span>
+                        <label asp-for="SaleCar.TotalMileage">总里程</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                        <div class="form-floating mb-3">
+                            <input asp-for="SaleCar.ContactPerson" class="form-control" />
+                            <span asp-validation-for="SaleCar.ContactPerson" class="text-danger"></span>
+                            <label asp-for="SaleCar.ContactPerson">您怎么称呼</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                        <input asp-for="SaleCar.ContactNumber" class="form-control" />
+                        <span asp-validation-for="SaleCar.ContactNumber" class="text-danger"></span>
+                        <label asp-for="SaleCar.ContactNumber">您的手机号</label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-floating">
+                        <input asp-for="SaleCar.Address" class="form-control" />
+                        <span asp-validation-for="SaleCar.Address" class="text-danger"></span>
+                        <label asp-for="SaleCar.Address">可验车的地址</label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-floating">
+                        <textarea asp-for="SaleCar.Description" class="form-control" style="height: 200px"></textarea>
+                        <span asp-validation-for="SaleCar.Description" class="text-danger"></span>
+                        <label asp-for="SaleCar.Description">随便说说车的情况</label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="d-flex justify-content-between mt-3">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="IsAgreesCheck" checked="">
+                            <label class="form-check-label" for="IsAgreesCheck">我同意数据隐私条款</label>
+                        </div>
+                        <button type="submit" id="Submit" class="btn btn-lg btn-primary px-5">提交</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

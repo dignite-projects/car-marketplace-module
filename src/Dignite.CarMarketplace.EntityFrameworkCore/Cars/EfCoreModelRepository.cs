@@ -29,4 +29,5 @@ public class EfCoreModelRepository : EfCoreRepository<ICarMarketplaceDbContext, 
     {
         return (await GetQueryableAsync()).IncludeDetails();
     }
+
 }

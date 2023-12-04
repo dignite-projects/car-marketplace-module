@@ -25,6 +25,12 @@ public class EfCoreDealerRepository : EfCoreRepository<ICarMarketplaceDbContext,
             .FirstOrDefaultAsync(d => d.Administrators.Any(a => a.UserId == userId));
     }
 
+    public async Task<Dealer> FindByShortNameAsync(string shortName, bool includeDetails = false)
+    {
+        return await(await GetDbSetAsync())
+            .IncludeDetails(includeDetails)
+            .FirstOrDefaultAsync(d => d.ShortName == shortName);
+    }
 
     public async Task<int> GetCountAsync(string filter = null, AuthenticationStatus? authenticationStatus = null, CancellationToken cancellationToken = default)
     {

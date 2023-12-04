@@ -1,14 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.DependencyInjection;
-using Dignite.CarMarketplace.Localization;
+﻿using Dignite.CarMarketplace.Localization;
 using Dignite.CarMarketplace.Web.Menus;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.Localization;
+using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.Modularity;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
-using Dignite.CarMarketplace.Permissions;
 
 namespace Dignite.CarMarketplace.Web;
 
@@ -50,9 +53,39 @@ public class CarMarketplaceWebModule : AbpModule
             options.AddMaps<CarMarketplaceWebModule>(validate: true);
         });
 
+        Configure<RouteOptions>(options =>
+        {
+            options.ConstraintMap.Add("dealerNameConstraint", typeof(DealerNameConstraint));
+        });
+
+        Configure<CarMarketplaceUrlOptions>(options =>
+        {
+            var bundlingOptions = context.Services.GetRequiredService<IOptions<AbpBundlingOptions>>().Value;
+            if (bundlingOptions.Mode != BundlingMode.None)
+            {
+                options.IgnoredPaths.Add(bundlingOptions.BundleFolderName);
+            }
+
+            options.IgnoredPaths.AddRange(new[]
+            {
+                    "error", "ApplicationConfigurationScript", "ServiceProxyScript", "Languages/Switch",
+                    "ApplicationLocalizationScript"
+                });
+        });
+
         Configure<RazorPagesOptions>(options =>
         {
-                //Configure authorization.
-            });
+            var urlOptions = context.Services
+                .GetRequiredServiceLazy<IOptions<CarMarketplaceUrlOptions>>()
+                .Value.Value;
+
+            var routePrefix = urlOptions.RoutePrefix;
+
+            options.Conventions.AddPageRoute("/Dealers/Home", routePrefix + "{dealerShortName:dealerNameConstraint}");
+            options.Conventions.AddPageRoute("/Dealers/UsedCars", routePrefix + "{dealerShortName}/UsedCars");
+            options.Conventions.AddPageRoute("/UsedCars/Detail", routePrefix + "UsedCars/{id:Guid}");
+
+            options.Conventions.AuthorizePage("/Dealers/Register");
+        });
     }
 }

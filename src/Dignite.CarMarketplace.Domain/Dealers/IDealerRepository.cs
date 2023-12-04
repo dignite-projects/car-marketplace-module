@@ -26,5 +26,6 @@ namespace Dignite.CarMarketplace.Dealers
 
         Task<Dealer> FindByAdministratorAsync(Guid userId, bool includeDetails = true);
 
+        Task<Dealer> FindByShortNameAsync(string shortName, bool includeDetails = false);
     }
 }

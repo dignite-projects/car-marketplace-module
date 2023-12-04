@@ -12,6 +12,10 @@ namespace Dignite.CarMarketplace.DealerPlatform.Dealers
         public string Name { get; set; }
 
         [Required]
+        [DynamicStringLength(typeof(DealerConsts), nameof(DealerConsts.MaxShortNameLength))]
+        public string ShortName { get; set; }
+
+        [Required]
         [DynamicStringLength(typeof(DealerConsts), nameof(DealerConsts.MaxAddressLength))]
         public string Address { get; set; }
 
@@ -20,7 +24,6 @@ namespace Dignite.CarMarketplace.DealerPlatform.Dealers
         public string ContactPerson { get; set; }
 
         [Required]
-        [EmailAddress]
         [DynamicStringLength(typeof(DealerConsts), nameof(DealerConsts.MaxContactNumberLength))]
         public string ContactNumber { get; set; }
 

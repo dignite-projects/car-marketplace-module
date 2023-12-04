@@ -45,8 +45,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dignite.CarMarketplace.Host
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dignite.CarMarketplace.Installer", "src\Dignite.CarMarketplace.Installer\Dignite.CarMarketplace.Installer.csproj", "{BE39FD00-745B-4049-8161-FC129817CBE4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Car.Crawler", "..\car-crawler\Car.Crawler.csproj", "{49B1978E-516C-4F3F-8B1F-E9D1202A1F19}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -125,10 +123,6 @@ Global
 		{BE39FD00-745B-4049-8161-FC129817CBE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE39FD00-745B-4049-8161-FC129817CBE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE39FD00-745B-4049-8161-FC129817CBE4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{49B1978E-516C-4F3F-8B1F-E9D1202A1F19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{49B1978E-516C-4F3F-8B1F-E9D1202A1F19}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{49B1978E-516C-4F3F-8B1F-E9D1202A1F19}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{49B1978E-516C-4F3F-8B1F-E9D1202A1F19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

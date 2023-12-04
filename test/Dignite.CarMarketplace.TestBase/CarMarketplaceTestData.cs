@@ -13,6 +13,8 @@ public class CarMarketplaceTestData : ISingletonDependency
 
     public string DealerName = "NewDealerName";
 
+    public string DealerShortName = "NewDealerShortName";
+
     public string BmwBrandName = "Bmw";
     public Guid BmwBrandId { get; } = Guid.NewGuid();
 

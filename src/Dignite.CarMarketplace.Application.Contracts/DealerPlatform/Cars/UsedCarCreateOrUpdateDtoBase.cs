@@ -1,5 +1,6 @@
 ﻿using Dignite.CarMarketplace.Cars;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Volo.Abp.Validation;
 
@@ -7,6 +8,11 @@ namespace Dignite.CarMarketplace.DealerPlatform.Cars
 {
     public abstract class UsedCarCreateOrUpdateDtoBase
     {
+        protected UsedCarCreateOrUpdateDtoBase()
+        {
+            Tags = new List<string>();
+        }
+
         /// <summary>
         /// 车款Id
         /// </summary>
@@ -67,5 +73,7 @@ namespace Dignite.CarMarketplace.DealerPlatform.Cars
         /// 价格
         /// </summary>
         public float Price { get; set; }
+
+        public List<string> Tags { get; set; }
     }
 }

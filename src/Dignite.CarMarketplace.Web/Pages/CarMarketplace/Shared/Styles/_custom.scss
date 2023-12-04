@@ -1,0 +1,34 @@
+/*  */
+.cmpl-card {
+    overflow: hidden;
+    border: none
+}
+
+.cmpl-card img.card-img-top {
+    transition: all .5s ease 0s
+}
+
+.cmpl-card:hover img.card-img-top {
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    transform: scale(1.05)
+}
+
+.cmpl-card:hover a.underline-animate.fw-semibold {
+    background-size: 100% 2px
+}
+
+.cmpl-card .card-body > .card-title {
+    padding-top: .5rem
+}
+
+.full-screen-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    top: calc(-1 * var(--body-padding-top));
+    left: 0rem;
+    width: 100%;
+    height: 100vh;
+}

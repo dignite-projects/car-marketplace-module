@@ -4,14 +4,14 @@
     "MyAccount": "My account",
     "SamplePageMessage": "A sample page for the CarMarketplace module",
     "LeftFront": "左前45度图",
-    "RightRear": "左前45度图",
-    "Side": "左前45度图",
-    "DirectlyFront": "左前45度图",
-    "DirectlyBehind": "左前45度图",
-    "WingSection": "左前45度图",
-    "FrontRow": "左前45度图",
-    "BehindRow": "左前45度图",
-    "Trunk": "左前45度图",
-    "EngineRoom": "左前45度图"
+    "RightRear": "右后45度图",
+    "Side": "侧面",
+    "DirectlyFront": "正前",
+    "DirectlyBehind": "正后",
+    "WingSection": "中控台",
+    "FrontRow": "前排",
+    "BehindRow": "后排",
+    "Trunk": "后备箱",
+    "EngineRoom": "发动机舱"
   }
 }

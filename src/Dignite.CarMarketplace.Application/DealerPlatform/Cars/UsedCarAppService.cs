@@ -3,9 +3,11 @@ using Dignite.CarMarketplace.Dealers;
 using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Users;
+using Volo.CmsKit.Tags;
 
 namespace Dignite.CarMarketplace.DealerPlatform.Cars;
 
@@ -14,12 +16,21 @@ public class UsedCarAppService : CarMarketplaceAppService, IUsedCarAppService
     private readonly IUsedCarRepository _usedCarRepository;
     private readonly ITrimRepository _trimRepository;
     private readonly IDealerRepository _dealerRepository;
+    private readonly EntityTagManager _entityTagManager;
+    private readonly ITagAppService _tagAppService;
 
-    public UsedCarAppService(IUsedCarRepository usedCarRepository, ITrimRepository trimRepository, IDealerRepository dealerRepository)
+    public UsedCarAppService(
+        IUsedCarRepository usedCarRepository, 
+        ITrimRepository trimRepository, 
+        IDealerRepository dealerRepository, 
+        EntityTagManager entityTagManager,
+        ITagAppService tagAppService)
     {
         _usedCarRepository = usedCarRepository;
         _trimRepository = trimRepository;
         _dealerRepository = dealerRepository;
+        _entityTagManager = entityTagManager;
+        _tagAppService = tagAppService;
     }
 
     [Authorize]
@@ -44,6 +55,10 @@ public class UsedCarAppService : CarMarketplaceAppService, IUsedCarAppService
             );
         usedCar.SetStatus(input.Status);
         usedCar.SetConfig(trim);
+
+        //
+        await _entityTagManager.SetEntityTagsAsync(UsedCarConsts.EntityType, usedCar.Id.ToString(), input.Tags);
+
         return ObjectMapper.Map<UsedCar, UsedCarDto>(
             await _usedCarRepository.InsertAsync(usedCar)
             );
@@ -64,9 +79,17 @@ public class UsedCarAppService : CarMarketplaceAppService, IUsedCarAppService
         var usedCar = await _usedCarRepository.GetAsync(id);
         var dealer = await _dealerRepository.GetAsync(usedCar.DealerId);
         await AuthorizationService.CheckAsync(dealer, CommonOperations.UsedCarManage);
-        return ObjectMapper.Map<UsedCar, UsedCarDto>(
+
+
+        var dto = ObjectMapper.Map<UsedCar, UsedCarDto>(
             usedCar
             );
+
+        dto.Tags = (await _tagAppService.GetAllRelatedTagsAsync(UsedCarConsts.EntityType,dto.Id.ToString()))
+            .Select(t=>t.Name)
+            .ToList();
+
+        return dto;
     }
 
     [Authorize]

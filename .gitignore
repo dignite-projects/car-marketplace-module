@@ -257,3 +257,6 @@ paket-files/
 # Use abp install-libs to restore.
 **/wwwroot/libs/**
 **/wwwroot/host/**
+
+# Crawler
+Dignite.CarMarketplaceWithCrawler.sln

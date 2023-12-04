@@ -20,7 +20,9 @@ namespace Dignite.CarMarketplace
                  */
             });
 
-
+            GlobalFeatureManager.Instance.Modules.CmsKit(cmsKit => {
+                cmsKit.Tags.Enable();
+            });
             GlobalFeatureManager.Instance.Modules.DigniteCmsKit().EnableAll();
         }
     }

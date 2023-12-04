@@ -12,5 +12,11 @@ namespace Dignite.CarMarketplace.Cars
             Guid modelId,
             CancellationToken cancellationToken = default
         );
+
+        Task<Trim> GetByMaxNumberAsync();
+
+        Task<bool> AnyAsync(int number);
+
+        Task<int[]> GetNumberArrayAsync();
     }
 }

@@ -124,14 +124,10 @@ namespace Dignite.CarMarketplace.Cars
 
         public void SetConfig(Trim trim)
         {
-            var transmissionType = trim.GetProperty<string>("transtype");
-            //TransmissionType = transmissionType=="MT"?"手动档":"自动档";
-            //PowerType = trim.GetProperty<string>("dynamic");
-            //ModelLevel = trim.GetProperty<string>("type_name");
-
-            TransmissionType = "自动档";
-            PowerType = "纯电动";
-            ModelLevel = "豪华车";
+            var transmissionType = trim.GetProperty<string>("m_transtype").Trim();
+            TransmissionType = transmissionType=="MT"?"手动档":"自动档";
+            PowerType = trim.GetProperty<string>("m_dynamic").Trim();
+            ModelLevel = trim.GetProperty<string>("type_name").Trim();
         }
 
         public void SetStatus(CarStatus status)

@@ -1,0 +1,773 @@
+{
+  "modules": {
+    "car-marketplace-dealer-platform": {
+      "rootPath": "car-marketplace-dealer-platform",
+      "remoteServiceName": "CarMarketplace",
+      "controllers": {
+        "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerController": {
+          "controllerName": "Dealer",
+          "controllerGroupName": "Dealer",
+          "isRemoteService": true,
+          "isIntegrationService": false,
+          "apiVersion": null,
+          "type": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerController",
+          "interfaces": [
+            {
+              "type": "Dignite.CarMarketplace.DealerPlatform.Dealers.IDealerAppService",
+              "name": "IDealerAppService",
+              "methods": [
+                {
+                  "name": "CreateAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "input",
+                      "typeAsString": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerCreateDto, Dignite.CarMarketplace.Application.Contracts",
+                      "type": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerCreateDto",
+                      "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerCreateDto",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerDto",
+                    "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerDto"
+                  }
+                },
+                {
+                  "name": "UpdateAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "id",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    },
+                    {
+                      "name": "input",
+                      "typeAsString": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerUpdateDto, Dignite.CarMarketplace.Application.Contracts",
+                      "type": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerUpdateDto",
+                      "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerUpdateDto",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerDto",
+                    "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerDto"
+                  }
+                },
+                {
+                  "name": "FindByCurrentUserAsync",
+                  "parametersOnMethod": [],
+                  "returnValue": {
+                    "type": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerDto",
+                    "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerDto"
+                  }
+                },
+                {
+                  "name": "GetAdministratorsAsync",
+                  "parametersOnMethod": [],
+                  "returnValue": {
+                    "type": "Volo.Abp.Application.Dtos.ListResultDto<Volo.CmsKit.Users.CmsUserDto>",
+                    "typeSimple": "Volo.Abp.Application.Dtos.ListResultDto<Volo.CmsKit.Users.CmsUserDto>"
+                  }
+                },
+                {
+                  "name": "AddAdministratorAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "userId",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "System.Void",
+                    "typeSimple": "System.Void"
+                  }
+                },
+                {
+                  "name": "RemoveAdministratorAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "userId",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "System.Void",
+                    "typeSimple": "System.Void"
+                  }
+                }
+              ]
+            }
+          ],
+          "actions": {
+            "AddAdministratorAsyncByUserId": {
+              "uniqueName": "AddAdministratorAsyncByUserId",
+              "name": "AddAdministratorAsync",
+              "httpMethod": "POST",
+              "url": "api/car-marketplace-dealer-platform/dealer/add-administrator",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "userId",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "userId",
+                  "name": "userId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": false,
+              "implementFrom": "Dignite.CarMarketplace.DealerPlatform.Dealers.IDealerAppService"
+            },
+            "CreateAsyncByInput": {
+              "uniqueName": "CreateAsyncByInput",
+              "name": "CreateAsync",
+              "httpMethod": "POST",
+              "url": "api/car-marketplace-dealer-platform/dealer",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerCreateDto, Dignite.CarMarketplace.Application.Contracts",
+                  "type": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerCreateDto",
+                  "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerCreateDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerCreateDto",
+                  "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerCreateDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerDto",
+                "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerDto"
+              },
+              "allowAnonymous": false,
+              "implementFrom": "Dignite.CarMarketplace.DealerPlatform.Dealers.IDealerAppService"
+            },
+            "FindByCurrentUserAsync": {
+              "uniqueName": "FindByCurrentUserAsync",
+              "name": "FindByCurrentUserAsync",
+              "httpMethod": "GET",
+              "url": "api/car-marketplace-dealer-platform/dealer/find-by-current-user",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerDto",
+                "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerDto"
+              },
+              "allowAnonymous": false,
+              "implementFrom": "Dignite.CarMarketplace.DealerPlatform.Dealers.IDealerAppService"
+            },
+            "GetAdministratorsAsync": {
+              "uniqueName": "GetAdministratorsAsync",
+              "name": "GetAdministratorsAsync",
+              "httpMethod": "GET",
+              "url": "api/car-marketplace-dealer-platform/dealer/administrators",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "Volo.Abp.Application.Dtos.ListResultDto<Volo.CmsKit.Users.CmsUserDto>",
+                "typeSimple": "Volo.Abp.Application.Dtos.ListResultDto<Volo.CmsKit.Users.CmsUserDto>"
+              },
+              "allowAnonymous": false,
+              "implementFrom": "Dignite.CarMarketplace.DealerPlatform.Dealers.IDealerAppService"
+            },
+            "RemoveAdministratorAsyncByUserId": {
+              "uniqueName": "RemoveAdministratorAsyncByUserId",
+              "name": "RemoveAdministratorAsync",
+              "httpMethod": "PUT",
+              "url": "api/car-marketplace-dealer-platform/dealer/remove-administrator",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "userId",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "userId",
+                  "name": "userId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": false,
+              "implementFrom": "Dignite.CarMarketplace.DealerPlatform.Dealers.IDealerAppService"
+            },
+            "UpdateAsyncByIdAndInput": {
+              "uniqueName": "UpdateAsyncByIdAndInput",
+              "name": "UpdateAsync",
+              "httpMethod": "PUT",
+              "url": "api/car-marketplace-dealer-platform/dealer/{id}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "input",
+                  "typeAsString": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerUpdateDto, Dignite.CarMarketplace.Application.Contracts",
+                  "type": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerUpdateDto",
+                  "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerUpdateDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [
+                    "GuidRouteConstraint"
+                  ],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerUpdateDto",
+                  "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerUpdateDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerDto",
+                "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Dealers.DealerDto"
+              },
+              "allowAnonymous": false,
+              "implementFrom": "Dignite.CarMarketplace.DealerPlatform.Dealers.IDealerAppService"
+            }
+          }
+        },
+        "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarController": {
+          "controllerName": "UsedCar",
+          "controllerGroupName": "UsedCar",
+          "isRemoteService": true,
+          "isIntegrationService": false,
+          "apiVersion": null,
+          "type": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarController",
+          "interfaces": [
+            {
+              "type": "Dignite.CarMarketplace.DealerPlatform.Cars.IUsedCarAppService",
+              "name": "IUsedCarAppService",
+              "methods": [
+                {
+                  "name": "SetStatusAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "id",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    },
+                    {
+                      "name": "status",
+                      "typeAsString": "Dignite.CarMarketplace.Cars.CarStatus, Dignite.CarMarketplace.Domain.Shared",
+                      "type": "Dignite.CarMarketplace.Cars.CarStatus",
+                      "typeSimple": "Dignite.CarMarketplace.Cars.CarStatus",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "System.Void",
+                    "typeSimple": "System.Void"
+                  }
+                },
+                {
+                  "name": "GetAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "id",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarDto",
+                    "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarDto"
+                  }
+                },
+                {
+                  "name": "GetListAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "input",
+                      "typeAsString": "Dignite.CarMarketplace.DealerPlatform.Cars.GetUsedCarsInput, Dignite.CarMarketplace.Application.Contracts",
+                      "type": "Dignite.CarMarketplace.DealerPlatform.Cars.GetUsedCarsInput",
+                      "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Cars.GetUsedCarsInput",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "Volo.Abp.Application.Dtos.PagedResultDto<Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarDto>",
+                    "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarDto>"
+                  }
+                },
+                {
+                  "name": "CreateAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "input",
+                      "typeAsString": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarCreateDto, Dignite.CarMarketplace.Application.Contracts",
+                      "type": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarCreateDto",
+                      "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarCreateDto",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarDto",
+                    "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarDto"
+                  }
+                },
+                {
+                  "name": "UpdateAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "id",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    },
+                    {
+                      "name": "input",
+                      "typeAsString": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarUpdateDto, Dignite.CarMarketplace.Application.Contracts",
+                      "type": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarUpdateDto",
+                      "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarUpdateDto",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarDto",
+                    "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarDto"
+                  }
+                },
+                {
+                  "name": "DeleteAsync",
+                  "parametersOnMethod": [
+                    {
+                      "name": "id",
+                      "typeAsString": "System.Guid, System.Private.CoreLib",
+                      "type": "System.Guid",
+                      "typeSimple": "string",
+                      "isOptional": false,
+                      "defaultValue": null
+                    }
+                  ],
+                  "returnValue": {
+                    "type": "System.Void",
+                    "typeSimple": "System.Void"
+                  }
+                }
+              ]
+            }
+          ],
+          "actions": {
+            "CreateAsyncByInput": {
+              "uniqueName": "CreateAsyncByInput",
+              "name": "CreateAsync",
+              "httpMethod": "POST",
+              "url": "api/car-marketplace-dealer-platform/used-car",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarCreateDto, Dignite.CarMarketplace.Application.Contracts",
+                  "type": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarCreateDto",
+                  "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarCreateDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarCreateDto",
+                  "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarCreateDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarDto",
+                "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarDto"
+              },
+              "allowAnonymous": false,
+              "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarDto,Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarCreateDto>"
+            },
+            "DeleteAsyncById": {
+              "uniqueName": "DeleteAsyncById",
+              "name": "DeleteAsync",
+              "httpMethod": "DELETE",
+              "url": "api/car-marketplace-dealer-platform/used-car",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": false,
+              "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>"
+            },
+            "GetAsyncById": {
+              "uniqueName": "GetAsyncById",
+              "name": "GetAsync",
+              "httpMethod": "GET",
+              "url": "api/car-marketplace-dealer-platform/used-car/{id}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [
+                    "GuidRouteConstraint"
+                  ],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarDto",
+                "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarDto"
+              },
+              "allowAnonymous": false,
+              "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarDto,Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarDto,System.Guid,Dignite.CarMarketplace.DealerPlatform.Cars.GetUsedCarsInput>"
+            },
+            "GetListAsyncByInput": {
+              "uniqueName": "GetListAsyncByInput",
+              "name": "GetListAsync",
+              "httpMethod": "GET",
+              "url": "api/car-marketplace-dealer-platform/used-car",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Dignite.CarMarketplace.DealerPlatform.Cars.GetUsedCarsInput, Dignite.CarMarketplace.Application.Contracts",
+                  "type": "Dignite.CarMarketplace.DealerPlatform.Cars.GetUsedCarsInput",
+                  "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Cars.GetUsedCarsInput",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "Filter",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "Status",
+                  "jsonName": null,
+                  "type": "Dignite.CarMarketplace.Cars.CarStatus?",
+                  "typeSimple": "Dignite.CarMarketplace.Cars.CarStatus?",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "Sorting",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "SkipCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "MaxResultCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                }
+              ],
+              "returnValue": {
+                "type": "Volo.Abp.Application.Dtos.PagedResultDto<Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarDto>",
+                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarDto>"
+              },
+              "allowAnonymous": false,
+              "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarDto,Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarDto,System.Guid,Dignite.CarMarketplace.DealerPlatform.Cars.GetUsedCarsInput>"
+            },
+            "SetStatusAsyncByIdAndStatus": {
+              "uniqueName": "SetStatusAsyncByIdAndStatus",
+              "name": "SetStatusAsync",
+              "httpMethod": "PUT",
+              "url": "api/car-marketplace-dealer-platform/used-car/{id}/set-status",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "status",
+                  "typeAsString": "Dignite.CarMarketplace.Cars.CarStatus, Dignite.CarMarketplace.Domain.Shared",
+                  "type": "Dignite.CarMarketplace.Cars.CarStatus",
+                  "typeSimple": "Dignite.CarMarketplace.Cars.CarStatus",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [
+                    "GuidRouteConstraint"
+                  ],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "status",
+                  "name": "status",
+                  "jsonName": null,
+                  "type": "Dignite.CarMarketplace.Cars.CarStatus",
+                  "typeSimple": "Dignite.CarMarketplace.Cars.CarStatus",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": false,
+              "implementFrom": "Dignite.CarMarketplace.DealerPlatform.Cars.IUsedCarAppService"
+            },
+            "UpdateAsyncByIdAndInput": {
+              "uniqueName": "UpdateAsyncByIdAndInput",
+              "name": "UpdateAsync",
+              "httpMethod": "PUT",
+              "url": "api/car-marketplace-dealer-platform/used-car/{id}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "input",
+                  "typeAsString": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarUpdateDto, Dignite.CarMarketplace.Application.Contracts",
+                  "type": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarUpdateDto",
+                  "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarUpdateDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [
+                    "GuidRouteConstraint"
+                  ],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarUpdateDto",
+                  "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarUpdateDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarDto",
+                "typeSimple": "Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarDto"
+              },
+              "allowAnonymous": false,
+              "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarDto,System.Guid,Dignite.CarMarketplace.DealerPlatform.Cars.UsedCarUpdateDto>"
+            }
+          }
+        }
+      }
+    }
+  },
+  "types": {}
+}

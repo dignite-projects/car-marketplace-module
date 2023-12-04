@@ -14,6 +14,6 @@ public interface IDealerAppService: IApplicationService
     Task<DealerDto> FindByCurrentUserAsync();
     Task<ListResultDto<CmsUserDto>> GetAdministratorsAsync();
 
-    Task AddAdministrator(Guid userId);
+    Task AddAdministratorAsync(Guid userId);
     Task RemoveAdministratorAsync(Guid userId);
 }

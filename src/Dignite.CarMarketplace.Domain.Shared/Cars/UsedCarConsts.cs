@@ -32,5 +32,8 @@
         /// Maximum length of the car 车型级别 property.
         /// </summary>
         public static int MaxModelLevelLength { get; set; } = 16;
+
+
+        public const string EntityType = "UsedCar";
     }
 }

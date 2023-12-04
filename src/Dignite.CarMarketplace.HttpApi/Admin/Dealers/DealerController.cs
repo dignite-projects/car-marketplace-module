@@ -9,7 +9,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace Dignite.CarMarketplace.Admin.Dealers;
 
-[Area(CarMarketplaceRemoteServiceConsts.ModuleName)]
+[Area(CarMarketplaceRemoteServiceConsts.AdminModuleName)]
 [RemoteService(Name = CarMarketplaceRemoteServiceConsts.RemoteServiceName)]
 [Route("api/car-marketplace-admin/dealer")]
 public class DealerController : CarMarketplaceController, IDealerAppService

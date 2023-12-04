@@ -46,8 +46,8 @@ public class CarMarketplaceApplicationModule : AbpModule
 
         Configure<AbpBlobStoringOptions>(options =>
         {
-            var stringLocalizerFactory = context.Services.GetRequiredService<IStringLocalizerFactory>();
-            var stringLocalizer = stringLocalizerFactory.Create(typeof(CarMarketplaceResource));
+            var stringLocalizerFactory = context.Services.GetRequiredServiceLazy<IStringLocalizerFactory>();
+            var stringLocalizer = stringLocalizerFactory.Value.Create(typeof(CarMarketplaceResource));
 
             options.Containers
                 .Configure<CarPicsBlobContainer>(container =>

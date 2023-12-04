@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "Pages/CarMarketplace/Shared/Styles/blog.css",
+    "inputFile": "Pages/CarMarketplace/Shared/Styles/blog.scss"
+  },
+  {
+    "outputFile": "Pages/CarMarketplace/Shared/Styles/CarMarketplace.css",
+    "inputFile": "Pages/CarMarketplace/Shared/Styles/CarMarketplace.scss"
+  }
+]

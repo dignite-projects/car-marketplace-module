@@ -8,7 +8,7 @@ using Volo.CmsKit.Users;
 
 namespace Dignite.CarMarketplace.DealerPlatform.Dealers;
 
-[Area(CarMarketplaceRemoteServiceConsts.ModuleName)]
+[Area(CarMarketplaceRemoteServiceConsts.DealerPlatformModuleName)]
 [RemoteService(Name = CarMarketplaceRemoteServiceConsts.RemoteServiceName)]
 [Route("api/car-marketplace-dealer-platform/dealer")]
 public class DealerController : CarMarketplaceController, IDealerAppService
@@ -23,9 +23,9 @@ public class DealerController : CarMarketplaceController, IDealerAppService
     [HttpPost]
     [Route("add-administrator")]
     [Authorize]
-    public async Task AddAdministrator(Guid userId)
+    public async Task AddAdministratorAsync(Guid userId)
     {
-        await _dealerAppService.AddAdministrator(userId);
+        await _dealerAppService.AddAdministratorAsync(userId);
     }
 
     [HttpPost]

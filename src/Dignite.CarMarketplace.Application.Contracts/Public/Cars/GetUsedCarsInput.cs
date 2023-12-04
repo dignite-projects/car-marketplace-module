@@ -43,5 +43,7 @@ namespace Dignite.CarMarketplace.Public.Cars
         /// 车型级别(Suv\MPV\豪华车等等)
         /// </summary>
         public string? ModelLevel { get; set; }
+
+        public string? TagName { get; set;}
     }
 }

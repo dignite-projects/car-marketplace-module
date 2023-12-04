@@ -6,7 +6,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace Dignite.CarMarketplace.Public.Cars;
 
-[Area(CarMarketplaceRemoteServiceConsts.ModuleName)]
+[Area(CarMarketplaceRemoteServiceConsts.PublicModuleName)]
 [RemoteService(Name = CarMarketplaceRemoteServiceConsts.RemoteServiceName)]
 [Route("api/car-marketplace-public/brand")]
 public class BrandController : CarMarketplaceController, IBrandAppService

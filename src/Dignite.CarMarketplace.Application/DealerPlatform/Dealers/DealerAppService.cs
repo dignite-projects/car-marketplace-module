@@ -24,7 +24,7 @@ namespace Dignite.CarMarketplace.DealerPlatform.Dealers
         }
 
         [Authorize]
-        public async Task AddAdministrator(Guid userId)
+        public async Task AddAdministratorAsync(Guid userId)
         {
             var userDealer = await _dealerRepository.FindByAdministratorAsync(userId);
             if (userDealer == null)
@@ -42,7 +42,7 @@ namespace Dignite.CarMarketplace.DealerPlatform.Dealers
         [Authorize]
         public async Task<DealerDto> CreateAsync(DealerCreateDto input)
         {
-            var entity = await _dealerManager.CreateAsync(input.Name,input.Address,input.ContactPerson,input.ContactNumber,input.Latitude,input.Longitude,CurrentUser.GetId());
+            var entity = await _dealerManager.CreateAsync(input.Name,input.ShortName, input.Address,input.ContactPerson,input.ContactNumber,input.Latitude,input.Longitude,CurrentUser.GetId());
             return ObjectMapper.Map<Dealer, DealerDto>(entity);
         }
 
@@ -84,7 +84,7 @@ namespace Dignite.CarMarketplace.DealerPlatform.Dealers
         public async Task<DealerDto> UpdateAsync(Guid id, DealerUpdateDto input)
         {
             var entity = await _dealerRepository.FindByAdministratorAsync(CurrentUser.GetId(), false);
-            entity.UpdateInternal(input.Name,input.Address,input.ContactPerson,input.ContactNumber,input.Latitude,input.Longitude);
+            entity.UpdateInternal(input.Name,input.ShortName, input.Address,input.ContactPerson,input.ContactNumber,input.Latitude,input.Longitude);
             entity.SetAuthenticationStatus(AuthenticationStatus.Waiting);
             await _dealerRepository.UpdateAsync(entity);
             return ObjectMapper.Map<Dealer, DealerDto>(entity);

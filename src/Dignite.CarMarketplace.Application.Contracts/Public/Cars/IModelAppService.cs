@@ -7,6 +7,6 @@ namespace Dignite.CarMarketplace.Public.Cars
 {
     public interface IModelAppService : IApplicationService
     {
-        Task<ListResultDto<ModelDto>> GetListAsync(GetModelsInput input);
+        Task<ListResultDto<ModelCompanyDto>> GetListAsync(GetModelsInput input);
     }
 }

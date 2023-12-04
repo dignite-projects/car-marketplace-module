@@ -1,5 +1,9 @@
 ﻿using Dignite.CarMarketplace.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Volo.Abp.Domain.Repositories.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
 
@@ -12,4 +16,10 @@ public class EfCoreBrandRepository : EfCoreRepository<ICarMarketplaceDbContext, 
     {
     }
 
+    public override async Task<List<Brand>> GetListAsync(bool includeDetails = false, CancellationToken cancellationToken = default)
+    {
+        return (await base.GetListAsync(includeDetails, cancellationToken))
+            .OrderBy(b=>b.FirstLetter)
+            .ToList();
+    }
 }

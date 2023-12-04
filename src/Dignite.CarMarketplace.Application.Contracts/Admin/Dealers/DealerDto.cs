@@ -10,6 +10,7 @@ public class DealerDto : FullAuditedEntityDto<Guid>, IMultiTenant
 {
     public Guid? TenantId { get; set; }
     public string Name { get; set; }
+    public string ShortName { get; set; }
     public string Address { get; set; }
     public string ContactPerson { get; set; }
     public string ContactNumber { get; set; }

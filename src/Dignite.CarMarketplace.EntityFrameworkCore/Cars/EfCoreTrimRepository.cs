@@ -18,6 +18,24 @@ public class EfCoreTrimRepository : EfCoreRepository<ICarMarketplaceDbContext, T
     {
     }
 
+    public async Task<bool> AnyAsync(int number)
+    {
+        return await (await GetDbSetAsync()).AnyAsync(m => m.Number == number);
+    }
+
+    public async Task<int[]> GetNumberArrayAsync()
+    {
+        return await (await GetDbSetAsync())
+            .Select(m => m.Number)
+            .ToArrayAsync();
+    }
+
+    public async Task<Trim> GetByMaxNumberAsync()
+    {
+        return await (await GetDbSetAsync())
+            .OrderByDescending(m=>m.Number)
+            .FirstOrDefaultAsync();
+    }
 
     public async Task<List<Trim>> GetListByModelAsync(Guid modelId, CancellationToken cancellationToken = default)
     {

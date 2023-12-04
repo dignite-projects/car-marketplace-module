@@ -28,6 +28,7 @@ public static class CarMarketplaceDbContextModelCreatingExtensions
 
             //Properties
             b.Property(q => q.Name).IsRequired().HasMaxLength(DealerConsts.MaxNameLength);
+            b.Property(q => q.ShortName).IsRequired().HasMaxLength(DealerConsts.MaxShortNameLength);
             b.Property(q => q.Address).IsRequired().HasMaxLength(DealerConsts.MaxAddressLength);
             b.Property(q => q.ContactPerson).HasMaxLength(DealerConsts.MaxContactPersonLength);
             b.Property(q => q.ContactNumber).HasMaxLength(DealerConsts.MaxContactNumberLength);

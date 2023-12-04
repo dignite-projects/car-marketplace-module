@@ -4,7 +4,7 @@ using Volo.Abp;
 
 namespace Dignite.CarMarketplace.Public.Cars
 {
-    [Area(CarMarketplaceRemoteServiceConsts.ModuleName)]
+    [Area(CarMarketplaceRemoteServiceConsts.PublicModuleName)]
     [RemoteService(Name = CarMarketplaceRemoteServiceConsts.RemoteServiceName)]
     [Route("api/car-marketplace-public/sale-car")]
     public class SaleCarController : CarMarketplaceController, ISaleCarAppService

@@ -24,6 +24,7 @@ namespace Dignite.CarMarketplace.Cars
             string transmissionType = null,
             string powerType = null,
             string modelLevel = null,
+            Guid[] ids = null,
             CancellationToken cancellationToken = default);
 
         Task<List<UsedCar>> GetListAsync(
@@ -42,6 +43,7 @@ namespace Dignite.CarMarketplace.Cars
             string transmissionType = null,
             string powerType = null,
             string modelLevel = null,
+            Guid[] ids = null,
             int maxResultCount = int.MaxValue,
             int skipCount = 0,
             string sorting = null,

@@ -49,7 +49,7 @@ public class CarMarketplaceDataSeedContributor : IDataSeedContributor, ITransien
     }
     private async Task SeedDealersAsync()
     {
-        var dealer = new Dealer(_guidGenerator.Create(), _testData.DealerName, "address", "contactPerson", "contactNumber", 1, 2, _currentTenant.Id);
+        var dealer = new Dealer(_guidGenerator.Create(), _testData.DealerName, _testData.DealerShortName, "address", "contactPerson", "contactNumber", 1, 2, _currentTenant.Id);
         dealer.AddAdministrator(_testData.User1Id);
         await _dealerRepository.InsertAsync(dealer,autoSave: true);
     }

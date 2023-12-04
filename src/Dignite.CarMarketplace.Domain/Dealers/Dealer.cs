@@ -17,10 +17,11 @@ namespace Dignite.CarMarketplace.Dealers
         {
         }
 
-        public Dealer(Guid id, string name, string address, string contactPerson, string contactNumber, double? latitude, double? longitude, Guid? tenantId)
+        public Dealer(Guid id, string name, string shortName, string address, string contactPerson, string contactNumber, double? latitude, double? longitude, Guid? tenantId)
             : base(id)
         {
             Name = name;
+            ShortName = shortName;
             Address = address;
             ContactPerson = contactPerson;
             ContactNumber = contactNumber;
@@ -31,6 +32,7 @@ namespace Dignite.CarMarketplace.Dealers
         }
 
         public string Name { get; set; }
+        public string ShortName { get; set; }
         public string Address { get; set; }
         public string ContactPerson { get; set; }
         public string ContactNumber { get; set; }
@@ -81,9 +83,10 @@ namespace Dignite.CarMarketplace.Dealers
             return Administrators.Any(r => r.UserId == userId);
         }
 
-        public virtual void UpdateInternal(string name, string address, string contactPerson, string contactNumber, double? latitude, double? longitude)
+        public virtual void UpdateInternal(string name, string shortName, string address, string contactPerson, string contactNumber, double? latitude, double? longitude)
         {
             Name = name;
+            ShortName = shortName;
             Address = address;
             ContactPerson = contactPerson;
             ContactNumber = contactNumber;

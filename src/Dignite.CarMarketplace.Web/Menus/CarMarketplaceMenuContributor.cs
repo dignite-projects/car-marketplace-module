@@ -16,7 +16,9 @@ public class CarMarketplaceMenuContributor : IMenuContributor
     private Task ConfigureMainMenuAsync(MenuConfigurationContext context)
     {
         //Add main menu items.
-        context.Menu.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.Prefix, displayName: "CarMarketplace", "~/CarMarketplace", icon: "fa fa-globe"));
+        context.Menu.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.UsedCars, displayName: "UsedCars", "~/UsedCars"));
+        context.Menu.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.SaleCar, displayName: "SaleCar", "~/SaleCar"));
+        context.Menu.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.Dealers, displayName: "Dealers", "~/Dealers"));
 
         return Task.CompletedTask;
     }

@@ -1,6 +1,7 @@
 ﻿using Dignite.CarMarketplace.Cars;
 using Dignite.CarMarketplace.Public.Dealers;
 using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Volo.Abp.Application.Dtos;
 
@@ -87,5 +88,9 @@ namespace Dignite.CarMarketplace.Public.Cars
         /// 车型级别(Suv\MPV\豪华车等等)
         /// </summary>
         public string ModelLevel { get; set; }
+
+
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public List<string> Tags { get; set; }
     }
 }

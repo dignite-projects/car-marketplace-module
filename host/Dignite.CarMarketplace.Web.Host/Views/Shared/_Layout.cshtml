@@ -1,0 +1,17 @@
+﻿@using Volo.Abp.AspNetCore.Mvc.UI.Theming
+@inject IThemeManager ThemeManager
+@{
+    Layout = ThemeManager.CurrentTheme.GetPublicLayout();
+}
+@section styles {
+    <!-- Other styles -->
+    @await RenderSectionAsync("styles", false)
+}
+@section scripts {
+    <!-- Other js -->
+    @await RenderSectionAsync("scripts", false)
+}
+@section content_toolbar {
+    @await RenderSectionAsync("content_toolbar", false)
+}
+@RenderBody()

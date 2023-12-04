@@ -1,5 +1,6 @@
 ﻿using Dignite.CarMarketplace.Cars;
 using System;
+using System.Collections.Generic;
 using Volo.Abp.Application.Dtos;
 
 namespace Dignite.CarMarketplace.DealerPlatform.Cars
@@ -86,5 +87,8 @@ namespace Dignite.CarMarketplace.DealerPlatform.Cars
         /// 车型级别(Suv\MPV\豪华车等等)
         /// </summary>
         public string ModelLevel { get; set; }
+
+
+        public List<string> Tags { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace Dignite.CarMarketplace.Public.Cars;
 
-[Area(CarMarketplaceRemoteServiceConsts.ModuleName)]
+[Area(CarMarketplaceRemoteServiceConsts.PublicModuleName)]
 [RemoteService(Name = CarMarketplaceRemoteServiceConsts.RemoteServiceName)]
 [Route("api/car-marketplace-public/model")]
 public class ModelController : CarMarketplaceController, IModelAppService
@@ -20,7 +20,7 @@ public class ModelController : CarMarketplaceController, IModelAppService
 
 
     [HttpGet]
-    public async Task<ListResultDto<ModelDto>> GetListAsync(GetModelsInput input)
+    public async Task<ListResultDto<ModelCompanyDto>> GetListAsync(GetModelsInput input)
     {
         return await _modelAppService.GetListAsync(input);   
     }

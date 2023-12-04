@@ -8,6 +8,7 @@ namespace Dignite.CarMarketplace.DealerPlatform.Dealers;
 public class DealerDto : CreationAuditedEntityDto<Guid>
 {
     public string Name { get; set; }
+    public string ShortName { get; set; }   
     public string Address { get; set; }
     public string ContactPerson { get; set; }
     public string ContactNumber { get; set; }
