@@ -37,9 +37,9 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
 /**穿梭框 */
 import { NzTransferModule } from 'ng-zorro-antd/transfer';
 //拖拽
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 //手风琴
-import {CdkAccordionModule} from '@angular/cdk/accordion';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
 //列表
 import { NzListModule } from 'ng-zorro-antd/list';
 /**空状态 */
@@ -57,34 +57,37 @@ import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 /**图片 */
 import { NzImageModule } from 'ng-zorro-antd/image';
-export const Zorro=[
+/**标签 */
+import { NzTagModule } from 'ng-zorro-antd/tag';
+export const Zorro = [
+  NzTagModule,
   NzImageModule,
   NzUploadModule,
   NzDescriptionsModule,
-    NzPageHeaderModule,
-    NzButtonModule,
-    NzIconModule,
-    NzSpaceModule,
-    NzModalModule,
-    NzFormModule,
-    NzInputModule,
-    NzTableModule,
-    NzSelectModule,
-    NzCheckboxModule,
-    NzPaginationModule,
-    NzDropDownModule,
-    NzInputNumberModule,
-    NzRadioModule,
-    NzSwitchModule,
-    NzDatePickerModule,
-    NzMessageModule,
-    NzTransferModule,
-    DragDropModule,
-    CdkAccordionModule,
-    NzListModule,
-    NzEmptyModule,
-    NzLayoutModule,
-    NzBreadCrumbModule,
-    NzMenuModule,
-    NzToolTipModule
-  ]
+  NzPageHeaderModule,
+  NzButtonModule,
+  NzIconModule,
+  NzSpaceModule,
+  NzModalModule,
+  NzFormModule,
+  NzInputModule,
+  NzTableModule,
+  NzSelectModule,
+  NzCheckboxModule,
+  NzPaginationModule,
+  NzDropDownModule,
+  NzInputNumberModule,
+  NzRadioModule,
+  NzSwitchModule,
+  NzDatePickerModule,
+  NzMessageModule,
+  NzTransferModule,
+  DragDropModule,
+  CdkAccordionModule,
+  NzListModule,
+  NzEmptyModule,
+  NzLayoutModule,
+  NzBreadCrumbModule,
+  NzMenuModule,
+  NzToolTipModule
+]

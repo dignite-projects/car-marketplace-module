@@ -15,7 +15,7 @@
                 <nz-table #basicTable [nzData]="saleCarList" [nzFrontPagination]="false">
                     <thead>
                         <tr>
-                            <th>描述</th>
+                            <!-- <th>描述</th> -->
                             <th>品牌分组</th>
                             <th>车型</th>
                             <th>总公里(万)	</th>
@@ -29,8 +29,8 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let data of saleCarList">
-                            <td><a routerLink="/administrator/view" [queryParams]="{saleCarId:data.id}">{{
-                                    data.description }}</a></td>
+                            <!-- <td><a routerLink="/administrator/view" [queryParams]="{saleCarId:data.id}">{{
+                                    data.description }}</a></td> -->
                             <td>{{ data.model.group }}</td>
                             <td>{{ data.model.name }}</td>
                             <td>{{ data.totalMileage }}</td>
@@ -39,6 +39,7 @@
                             <td>{{ data.address }}</td>
                             <td>{{ data.registrationDate|dateT:'yy-mm-dd' }}</td>
                             <td>{{ data.creationTime|dateT:'yy-mm-dd hh:mm:ss' }}</td>
+                            <td><a routerLink="/administrator/view" [queryParams]="{saleCarId:data.id}">详情</a></td>
                             <!-- <td>
                                 <button nz-button nzType="primary" nz-dropdown nzTrigger="click"
                                     [nzDropdownMenu]="menu">

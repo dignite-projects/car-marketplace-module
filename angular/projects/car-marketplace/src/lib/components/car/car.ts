@@ -6,13 +6,13 @@ export class CarConfig {
     /**车辆描述情况 */
     "description": string
     /**二手车状态  */
-    "status": number 
+    "status": number =1
     /**初次上牌日期 */
     "registrationDate": string
     /**总公里(万) */
     "totalMileage": number
     /**过户次数 */
-    "transfersCount": number
+    "transfersCount": number=1
     /**交强险过期日期 */
     "compulsoryInsuranceExpirationDate": string 
     /**商业险过期日期 */
@@ -21,6 +21,8 @@ export class CarConfig {
     "color": string
     /**价格 */
     "price": number
+    /**标签 */
+    "tags":string[]=[]
 
     constructor(data?: CarConfig) {
 

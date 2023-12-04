@@ -96,3 +96,23 @@ $borderBottomColor: #00000020;
 ::ng-deep .ant-modal-mask {
     background-color: #0000001c;
 }
+.imageflex{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+}
+::ng-deep .imageflex .ant-row{
+    display: block;
+    width: 25%;
+}
+.siteflex{
+    display: flex;align-items: center;justify-content: space-between;
+}
+
+::ng-deep.siteflex .ant-form-item{
+    width: 32%;
+}
+::ng-deep.siteflex.w50 .ant-form-item{
+    width: 48%;
+}

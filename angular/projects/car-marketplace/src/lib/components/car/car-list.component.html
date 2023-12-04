@@ -81,9 +81,9 @@
                     <thead>
                         <tr>
                             <th>名称</th>
-                            <th>品牌</th>
+                            <!-- <th>品牌</th>
                             <th>车型</th>
-                            <th>车款</th>
+                            <th>车款</th> -->
                             <!-- <th>modelLevel</th>
                             <th>powerType</th>
                             <th>transmissionType</th> -->
@@ -100,9 +100,9 @@
                         <tr *ngFor="let data of UsedCarList">
                             <td><a routerLink="/car-marketplace/car/details" [queryParams]="{usedCarId:data.id}">{{
                                     data.name }}</a></td>
-                            <td>{{ data.brand?.name}}</td>
+                            <!-- <td>{{ data.brand?.name}}</td>
                             <td>{{ data.model?.name }}</td>
-                            <td>{{ data.trim?.name }}</td>
+                            <td>{{ data.trim?.name }}</td> -->
                             <!-- <td>{{ data.modelLevel }}</td>
                             <td>{{ data.powerType }}</td>
                             <td>{{ data.transmissionType }}</td> -->

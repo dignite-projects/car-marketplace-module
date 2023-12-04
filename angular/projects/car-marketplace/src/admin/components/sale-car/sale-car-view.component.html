@@ -13,7 +13,7 @@
         
         <div class="site_content">
             <nz-descriptions nzBordered>
-                <nz-descriptions-item nzTitle="描述" [nzSpan]="3">{{saleCarDetail.description}}</nz-descriptions-item>
+               
                 <nz-descriptions-item nzTitle="品牌分组" [nzSpan]="1">{{saleCarDetail.model.group}}</nz-descriptions-item>
                 <nz-descriptions-item nzTitle="车型" [nzSpan]="1">{{saleCarDetail.model.name}}</nz-descriptions-item>
                 <nz-descriptions-item nzTitle="总公里(万)">{{saleCarDetail.totalMileage}}</nz-descriptions-item>
@@ -25,7 +25,7 @@
                 <nz-descriptions-item nzTitle="创建时间	" [nzSpan]="3">
                     {{saleCarDetail.creationTime|dateT:'yy-mm-dd hh:mm:ss'}}
                 </nz-descriptions-item>
-
+                <nz-descriptions-item nzTitle="描述" [nzSpan]="3">{{saleCarDetail.description}}</nz-descriptions-item>
             </nz-descriptions>
 
 
