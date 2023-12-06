@@ -17,6 +17,16 @@ namespace Dignite.CarMarketplace.Public.Cars;
 [ExposeServices(typeof(IUsedCarAppService), typeof(UsedCarClientProxy))]
 public partial class UsedCarClientProxy : ClientProxyBase<IUsedCarAppService>, IUsedCarAppService
 {
+    public virtual async Task<List<String>> GetAllModelColorsAsync()
+    {
+        return await RequestAsync<List<String>>(nameof(GetAllModelColorsAsync));
+    }
+
+    public virtual async Task<List<String>> GetAllModelLevelsAsync()
+    {
+        return await RequestAsync<List<String>>(nameof(GetAllModelLevelsAsync));
+    }
+
     public virtual async Task<UsedCarDto> GetAsync(Guid id)
     {
         return await RequestAsync<UsedCarDto>(nameof(GetAsync), new ClientProxyRequestTypeValue

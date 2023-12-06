@@ -15,12 +15,15 @@ public class CarMarketplaceApplicationAutoMapperProfile : Profile
         CreateMap<Model, Admin.Cars.ModelDto>();
         CreateMap<Dealer, DealerPlatform.Dealers.DealerDto>();
         CreateMap<Dealer, Public.Dealers.DealerDto>();
-        CreateMap<UsedCar, DealerPlatform.Cars.UsedCarDto>().Ignore(x=>x.Tags);
-        CreateMap<UsedCar, Public.Cars.UsedCarDto>().Ignore(x=>x.Tags);
+        CreateMap<UsedCar, DealerPlatform.Cars.UsedCarDto>()
+            .Ignore(x=>x.Tags);
+        CreateMap<UsedCar, Public.Cars.UsedCarDto>()
+            .Ignore(x=>x.Tags);
         CreateMap<SaleCar, Public.Cars.SaleCarDto>();
         CreateMap<Brand, Public.Cars.BrandDto>();
         CreateMap<Model, Public.Cars.ModelDto>();
-        CreateMap<Trim, Public.Cars.TrimDto>().MapExtraProperties();
+        CreateMap<Trim, Public.Cars.TrimDto>()
+            .MapExtraProperties(Volo.Abp.ObjectExtending.MappingPropertyDefinitionChecks.None);
         CreateMap<ConfigurationItem, Public.Cars.ConfigurationItemDto>();
     }
 }

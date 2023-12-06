@@ -103,6 +103,7 @@ public class UsedCarAppService : CarMarketplaceAppService, IUsedCarAppService
         if (count > 0)
         {
             var result = await _usedCarRepository.GetListAsync(
+                false,
                 input.Status,
                 input.Filter,
                 dealerId: dealer.Id,

@@ -34,5 +34,6 @@ namespace Dignite.CarMarketplace.Cars
         /// 对应原始数据源的数字编号
         /// </summary>
         public int Number { get; protected set; }
+
     }
 }

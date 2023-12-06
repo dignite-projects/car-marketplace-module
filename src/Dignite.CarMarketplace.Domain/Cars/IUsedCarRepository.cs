@@ -8,6 +8,9 @@ namespace Dignite.CarMarketplace.Cars
 {
     public interface IUsedCarRepository : IBasicRepository<UsedCar, Guid>
     {
+        Task<List<string>> GetAllModelColorsAsync();
+        Task<List<string>> GetAllModelLevelsAsync();
+
         Task<int> GetCountAsync(
             CarStatus? status = null,
             string filter = null,
@@ -28,6 +31,7 @@ namespace Dignite.CarMarketplace.Cars
             CancellationToken cancellationToken = default);
 
         Task<List<UsedCar>> GetListAsync(
+            bool includeDetails=false,
             CarStatus? status = null,
             string filter = null,
             Guid? brandId = null,

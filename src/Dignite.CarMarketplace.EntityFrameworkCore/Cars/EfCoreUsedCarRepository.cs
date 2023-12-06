@@ -18,6 +18,24 @@ public class EfCoreUsedCarRepository : EfCoreRepository<ICarMarketplaceDbContext
     {
     }
 
+    public async Task<List<string>> GetAllModelColorsAsync()
+    {
+        return await (await GetDbSetAsync())
+            .Where(uc => uc.Status == CarStatus.Listing)
+            .Select(uc => uc.Color)
+            .Distinct()
+            .ToListAsync();
+    }
+
+    public async Task<List<string>> GetAllModelLevelsAsync()
+    {
+        return await (await GetDbSetAsync())
+            .Where(uc=>uc.Status== CarStatus.Listing)
+            .Select(uc=>uc.ModelLevel)
+            .Distinct()
+            .ToListAsync();
+    }
+
     public async Task<int> GetCountAsync(
         CarStatus? status = null, string filter = null, Guid? brandId = null, Guid? modelId = null, 
         Guid? dealerId = null, string color = null, DateTime? minRegistrationDate = null, DateTime? maxRegistrationDate = null, 
@@ -29,13 +47,14 @@ public class EfCoreUsedCarRepository : EfCoreRepository<ICarMarketplaceDbContext
         {
             return 0;
         }
-        return await(await GetQueryableAsync(status, filter, brandId, modelId, dealerId, color,
+        return await(await GetQueryableAsync(false,status, filter, brandId, modelId, dealerId, color,
          minRegistrationDate, maxRegistrationDate, minTotalMileage, maxTotalMileage,
         minPrice, maxPrice, transmissionType, powerType, modelLevel, ids))
         .CountAsync(GetCancellationToken(cancellationToken));
     }
 
     public async Task<List<UsedCar>> GetListAsync(
+        bool includeDetails = false,
         CarStatus? status = null, string filter = null, Guid? brandId = null, Guid? modelId = null, 
         Guid? dealerId = null, string color = null, DateTime? minRegistrationDate = null, DateTime? maxRegistrationDate = null, 
         float? minTotalMileage = null, float? maxTotalMileage = null, float? minPrice = null, float? maxPrice = null, 
@@ -46,7 +65,7 @@ public class EfCoreUsedCarRepository : EfCoreRepository<ICarMarketplaceDbContext
         {
             return new List<UsedCar>();
         }
-        return await(await GetQueryableAsync(status ,filter ,  brandId , modelId ,  dealerId , color ,
+        return await(await GetQueryableAsync(includeDetails, status ,filter ,  brandId , modelId ,  dealerId , color ,
          minRegistrationDate ,  maxRegistrationDate ,  minTotalMileage ,  maxTotalMileage ,
           minPrice ,  maxPrice , transmissionType , powerType , modelLevel , ids))
             .OrderBy(sorting.IsNullOrEmpty() ? $"{nameof(UsedCar.CreationTime)} desc" : sorting)
@@ -58,11 +77,17 @@ public class EfCoreUsedCarRepository : EfCoreRepository<ICarMarketplaceDbContext
         return (await GetQueryableAsync()).IncludeDetails();
     }
     protected virtual async Task<IQueryable<UsedCar>> GetQueryableAsync(
+        bool includeDetails = false,
          CarStatus? status = null, string filter = null, Guid? brandId = null, Guid? modelId = null, Guid? dealerId = null, string color = null, 
          DateTime? minRegistrationDate = null, DateTime? maxRegistrationDate = null, float? minTotalMileage = null, float? maxTotalMileage = null, 
          float? minPrice = null, float? maxPrice = null, string transmissionType = null, string powerType = null, string modelLevel = null, Guid[] ids = null)
     {
-        return (await GetDbSetAsync())
+        var queryable =
+         includeDetails
+            ? await WithDetailsAsync()
+            : await GetDbSetAsync();
+
+        return queryable
             .WhereIf(status.HasValue, e => e.Status == status.Value)
             .WhereIf(!filter.IsNullOrEmpty(), e => e.Name.Contains(filter))
             .WhereIf(brandId.HasValue, e => e.BrandId == brandId.Value)

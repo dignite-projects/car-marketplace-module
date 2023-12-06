@@ -273,8 +273,8 @@
                     }
                   ],
                   "returnValue": {
-                    "type": "Volo.Abp.Application.Dtos.ListResultDto<Dignite.CarMarketplace.Public.Cars.ModelDto>",
-                    "typeSimple": "Volo.Abp.Application.Dtos.ListResultDto<Dignite.CarMarketplace.Public.Cars.ModelDto>"
+                    "type": "Volo.Abp.Application.Dtos.ListResultDto<Dignite.CarMarketplace.Public.Cars.ModelCompanyDto>",
+                    "typeSimple": "Volo.Abp.Application.Dtos.ListResultDto<Dignite.CarMarketplace.Public.Cars.ModelCompanyDto>"
                   }
                 }
               ]
@@ -312,8 +312,8 @@
                 }
               ],
               "returnValue": {
-                "type": "Volo.Abp.Application.Dtos.ListResultDto<Dignite.CarMarketplace.Public.Cars.ModelDto>",
-                "typeSimple": "Volo.Abp.Application.Dtos.ListResultDto<Dignite.CarMarketplace.Public.Cars.ModelDto>"
+                "type": "Volo.Abp.Application.Dtos.ListResultDto<Dignite.CarMarketplace.Public.Cars.ModelCompanyDto>",
+                "typeSimple": "Volo.Abp.Application.Dtos.ListResultDto<Dignite.CarMarketplace.Public.Cars.ModelCompanyDto>"
               },
               "allowAnonymous": null,
               "implementFrom": "Dignite.CarMarketplace.Public.Cars.IModelAppService"
@@ -531,6 +531,22 @@
               "name": "IUsedCarAppService",
               "methods": [
                 {
+                  "name": "GetAllModelColorsAsync",
+                  "parametersOnMethod": [],
+                  "returnValue": {
+                    "type": "System.Collections.Generic.List<System.String>",
+                    "typeSimple": "[string]"
+                  }
+                },
+                {
+                  "name": "GetAllModelLevelsAsync",
+                  "parametersOnMethod": [],
+                  "returnValue": {
+                    "type": "System.Collections.Generic.List<System.String>",
+                    "typeSimple": "[string]"
+                  }
+                },
+                {
                   "name": "GetAsync",
                   "parametersOnMethod": [
                     {
@@ -568,6 +584,36 @@
             }
           ],
           "actions": {
+            "GetAllModelColorsAsync": {
+              "uniqueName": "GetAllModelColorsAsync",
+              "name": "GetAllModelColorsAsync",
+              "httpMethod": "GET",
+              "url": "api/car-marketplace-public/usedcar/all-model-colors",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.Collections.Generic.List<System.String>",
+                "typeSimple": "[string]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Dignite.CarMarketplace.Public.Cars.IUsedCarAppService"
+            },
+            "GetAllModelLevelsAsync": {
+              "uniqueName": "GetAllModelLevelsAsync",
+              "name": "GetAllModelLevelsAsync",
+              "httpMethod": "GET",
+              "url": "api/car-marketplace-public/usedcar/all-model-levels",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.Collections.Generic.List<System.String>",
+                "typeSimple": "[string]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Dignite.CarMarketplace.Public.Cars.IUsedCarAppService"
+            },
             "GetAsyncById": {
               "uniqueName": "GetAsyncById",
               "name": "GetAsync",
@@ -781,6 +827,18 @@
                 {
                   "nameOnMethod": "input",
                   "name": "ModelLevel",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "TagName",
                   "jsonName": null,
                   "type": "System.String",
                   "typeSimple": "string",

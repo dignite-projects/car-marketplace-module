@@ -39,7 +39,10 @@ namespace Dignite.CarMarketplace.Public.Cars
         /// <summary>
         /// 商家Id
         /// </summary>
-        public Guid DealerId { get; protected set; }
+        public Guid DealerId { get; set; }
+
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public DealerDto Dealer { get; set; }
 
         /// <summary>
         /// 注册日期\初次上牌日期

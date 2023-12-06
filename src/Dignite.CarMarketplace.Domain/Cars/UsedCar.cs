@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dignite.CarMarketplace.Dealers;
+using System;
 using Volo.Abp.Data;
 using Volo.Abp.Domain.Entities.Auditing;
 using Volo.Abp.MultiTenancy;
@@ -66,6 +67,8 @@ namespace Dignite.CarMarketplace.Cars
         /// </summary>
         public Guid DealerId { get; protected set; }
 
+        public Dealer Dealer { get; protected set; }
+
         /// <summary>
         /// 注册日期\初次上牌日期
         /// </summary>
@@ -119,6 +122,10 @@ namespace Dignite.CarMarketplace.Cars
         /// 车型级别(Suv\MPV\豪华车等等)
         /// </summary>
         public string ModelLevel { get; protected set; }
+
+        public int ViewCount { get; protected set; }
+
+        public int FavoriteCount { get; protected set; }
 
         public virtual Guid? TenantId { get; protected set; }
 

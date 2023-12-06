@@ -25,6 +25,16 @@ namespace Dignite.CarMarketplace.Public.Cars
             _entityTagManager = entityTagManager;
         }
 
+        public async Task<List<string>> GetAllModelColorsAsync()
+        {
+            return await _usedCarRepository.GetAllModelColorsAsync();
+        }
+
+        public async Task<List<string>> GetAllModelLevelsAsync()
+        {
+            return await _usedCarRepository.GetAllModelLevelsAsync();
+        }
+
         public async Task<UsedCarDto> GetAsync(Guid id)
         {
             var dto = ObjectMapper.Map<UsedCar, UsedCarDto>(
@@ -48,14 +58,17 @@ namespace Dignite.CarMarketplace.Public.Cars
                     .ToArray();
             }
 
-            var count = await _usedCarRepository.GetCountAsync(CarStatus.Listing,input.Filter,
+            var count = await _usedCarRepository.GetCountAsync(
+                CarStatus.Listing,input.Filter,
                 input.BrandId,input.ModelId,input.DealerId,input.Color,
                 input.MinRegistrationDate,input.MaxRegistrationDate,
                 input.MinTotalMileage,input.MaxTotalMileage,
                 input.MinPrice,input.MaxPrice,
                 input.TransmissionType,input.PowerType,input.ModelLevel, ids);
 
-            var result = await _usedCarRepository.GetListAsync(CarStatus.Listing, input.Filter,
+            var result = await _usedCarRepository.GetListAsync(
+                input.DealerId.HasValue?false:true,
+                CarStatus.Listing, input.Filter,
                 input.BrandId, input.ModelId, input.DealerId, input.Color,
                 input.MinRegistrationDate, input.MaxRegistrationDate,
                 input.MinTotalMileage, input.MaxTotalMileage,

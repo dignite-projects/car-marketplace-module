@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Volo.Abp;
 using Volo.Abp.Application.Dtos;
@@ -16,6 +17,20 @@ public class UsedCarController : CarMarketplaceController, IUsedCarAppService
     public UsedCarController(IUsedCarAppService usedCarAppService)
     {
         _usedCarAppService = usedCarAppService;
+    }
+
+    [HttpGet]
+    [Route("all-model-colors")]
+    public async Task<List<string>> GetAllModelColorsAsync()
+    {
+        return  await _usedCarAppService.GetAllModelColorsAsync();
+    }
+
+    [HttpGet]
+    [Route("all-model-levels")]
+    public async Task<List<string>> GetAllModelLevelsAsync()
+    {
+        return await _usedCarAppService.GetAllModelLevelsAsync();
     }
 
     [HttpGet]

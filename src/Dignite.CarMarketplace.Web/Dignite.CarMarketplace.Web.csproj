@@ -32,12 +32,10 @@
     <EmbeddedResource Include="Pages\**\*.js" />
     <EmbeddedResource Include="Components\**\*.js" />
     <EmbeddedResource Include="Components\**\*.css" />
-    <EmbeddedResource Include="wwwroot\**\*.*" />
     <Content Remove="Pages\**\*.css" />
     <Content Remove="Pages\**\*.js" />
     <Content Remove="Components\**\*.js" />
     <Content Remove="Components\**\*.css" />
-    <Content Remove="wwwroot\**\*.*" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,14 +44,12 @@
 
   <ItemGroup>
     <None Remove="Pages\SaleCar\Index.js" />
+    <None Remove="Pages\UsedCars\detail.js" />
+    <None Remove="Pages\UsedCars\index.js" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\client-proxies\" />
   </ItemGroup>
 
 </Project>

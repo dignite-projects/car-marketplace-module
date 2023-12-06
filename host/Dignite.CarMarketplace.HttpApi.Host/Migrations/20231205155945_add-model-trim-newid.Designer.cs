@@ -4,6 +4,7 @@ using Dignite.CarMarketplace.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 
@@ -12,9 +13,11 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Dignite.CarMarketplace.Migrations
 {
     [DbContext(typeof(CarMarketplaceHttpApiHostMigrationsDbContext))]
-    partial class CarMarketplaceHttpApiHostMigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231205155945_add-model-trim-newid")]
+    partial class addmodeltrimnewid
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,6 +51,9 @@ namespace Dignite.CarMarketplace.Migrations
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)");
 
+                    b.Property<Guid?>("NewId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("Number")
                         .HasColumnType("int");
 
@@ -75,6 +81,9 @@ namespace Dignite.CarMarketplace.Migrations
                         .IsRequired()
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)");
+
+                    b.Property<Guid?>("NewId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -107,6 +116,9 @@ namespace Dignite.CarMarketplace.Migrations
                         .IsRequired()
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)");
+
+                    b.Property<Guid?>("NewId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Number")
                         .HasColumnType("int");
@@ -204,6 +216,9 @@ namespace Dignite.CarMarketplace.Migrations
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
+
+                    b.Property<Guid?>("NewId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Number")
                         .HasColumnType("int");
