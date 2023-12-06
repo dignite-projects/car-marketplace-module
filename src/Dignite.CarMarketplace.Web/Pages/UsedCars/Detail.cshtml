@@ -62,7 +62,7 @@
         </h5>
         <div class="d-flex justify-content-between mb-4">
             <div class="d-flex flex-column text-center">
-                <button type="button" name="btnReserve" data-id="@Model.UsedCar.Id" class="btn rounded-pill btn-outline-primary">
+                <button type="button" name="btnReserve" data-id="@Model.UsedCar.Id" class="btn rounded-pill btn-outline-primary" data-bs-toggle="modal" data-bs-target="#UsedCarConsultationModal">
                     <i class="fa fa-coffee" aria-hidden="true"></i> 预约看车
                 </button>
                 @*
@@ -175,4 +175,29 @@
             }
         </div>
     </div>    
+</div>
+
+
+<!-- Consultation Modal -->
+<div class="modal fade" id="UsedCarConsultationModal" tabindex="-1" aria-labelledby="UsedCarConsultationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="UsedCarConsultationModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" id="consultation-form">
+                    <abp-input asp-for="UsedCarConsultationCreateInput.ContactPerson" name="ContactPerson" auto-focus="true" />
+                    <abp-input asp-for="UsedCarConsultationCreateInput.ContactNumber" name="ContactNumber" />
+                    <abp-input asp-for="UsedCarConsultationCreateInput.ReservationTime" name="ReservationTime" />
+                    <abp-input asp-for="UsedCarConsultationCreateInput.UsedCarId" name="UsedCarId" type="hidden"></abp-input>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" name="btnClose">关闭</button>
+                <button type="submit" class="btn btn-primary" form="consultation-form" name="btnSubmit">提交</button>
+            </div>
+        </div>
+    </div>
 </div>

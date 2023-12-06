@@ -12,6 +12,7 @@
     "FrontRow": "前排",
     "BehindRow": "后排",
     "Trunk": "后备箱",
-    "EngineRoom": "发动机舱"
+    "EngineRoom": "发动机舱",
+    "ContactPerson":"联系人"
   }
 }

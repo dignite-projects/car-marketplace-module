@@ -14,4 +14,24 @@
             '提示'
         );
     });
+
+    $('#UsedCarConsultationModal button[name="btnSubmit"]').click(function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+        var $form = $('#consultation-form');
+        if ($form.valid()) {
+            let formData = {};
+            let formValue = $form.serializeArray();
+            $.each(formValue, function (index, item) {
+                formData[item.name] = item.value;
+            });
+            dignite.carMarketplace.public.usedCars.usedCarConsultation
+                .create(formData)
+                .then(function (result) {
+                    $form[0].reset();
+                    $('#UsedCarConsultationModal button[name="btnClose"]').click();
+                    abp.message.success('您的预约看车已成功提交!', '提示');              
+                });
+        }
+    });
 })();

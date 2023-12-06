@@ -1,6 +1,7 @@
 using Dignite.CarMarketplace.BlobStoring;
 using Dignite.CarMarketplace.Public.Cars;
 using Dignite.CarMarketplace.Public.Dealers;
+using Dignite.CarMarketplace.Public.UsedCars;
 using Dignite.FileExplorer.Files;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -37,6 +38,7 @@ namespace Dignite.CarMarketplace.Web.Pages.UsedCars
         public IReadOnlyList<ConfigurationItemDto> ConfigurationItems { get; set; }
         public string[] ConfigurationGroups { get; set; }
         public TrimDto Trim { get; set; }
+        public UsedCarConsultationCreateDto UsedCarConsultationCreateInput { get; set; }
 
         public FileContainerConfigurationDto CarPicContainerConfiguration { get; set; }
 
@@ -47,6 +49,7 @@ namespace Dignite.CarMarketplace.Web.Pages.UsedCars
             Trim = await _rimAppService.GetAsync(UsedCar.TrimId);
             ConfigurationItems = await GetTrimConfigurationItems(Trim);
             ConfigurationGroups = ConfigurationItems.Select(m => m.Group).Distinct().ToArray();
+            UsedCarConsultationCreateInput = new UsedCarConsultationCreateDto(Id);
 
             return Page();
         }

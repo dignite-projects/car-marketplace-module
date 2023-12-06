@@ -11,6 +11,19 @@ namespace Dignite.CarMarketplace.UsedCars
     /// </summary>
     public class UsedCarConsultation:CreationAuditedEntity<Guid>
     {
+        protected UsedCarConsultation()
+        {
+        }
+
+        public UsedCarConsultation(Guid id, Guid usedCarId, string contactPerson, string contactNumber, DateTime reservationTime)
+            :base(id)
+        {
+            UsedCarId = usedCarId;
+            ContactPerson = contactPerson;
+            ContactNumber = contactNumber;
+            ReservationTime = reservationTime;
+        }
+
         public Guid UsedCarId { get; set; }
         public UsedCar UsedCar { get; set; }
 

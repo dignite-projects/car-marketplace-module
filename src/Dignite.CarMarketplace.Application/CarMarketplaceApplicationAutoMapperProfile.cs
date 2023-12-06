@@ -29,5 +29,6 @@ public class CarMarketplaceApplicationAutoMapperProfile : Profile
         CreateMap<Trim, Public.Cars.TrimDto>()
             .MapExtraProperties(Volo.Abp.ObjectExtending.MappingPropertyDefinitionChecks.None);
         CreateMap<ConfigurationItem, Public.Cars.ConfigurationItemDto>();
+        CreateMap<UsedCarConsultation, Public.UsedCars.UsedCarConsultationDto>();
     }
 }
