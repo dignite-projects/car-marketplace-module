@@ -8,10 +8,11 @@ import { CarListComponent } from './components/car/car-list.component';
 import { DateTPipe } from './pipe/date-t.pipe';
 import { CreateComponent } from './components/car/create.component';
 import { DetailsComponent } from './components/car/details.component';
+import { ListComponent } from './components/consultation/list.component';
 
 @NgModule({
-  declarations: [CarMarketplaceComponent, DateTPipe, CarListComponent, CreateComponent, DetailsComponent],
-  imports: [CoreModule, ThemeSharedModule, CarMarketplaceRoutingModule,Zorro],
+  declarations: [CarMarketplaceComponent, DateTPipe, CarListComponent, CreateComponent, DetailsComponent, ListComponent],
+  imports: [CoreModule, ThemeSharedModule, CarMarketplaceRoutingModule, Zorro],
   exports: [CarMarketplaceComponent],
 })
 export class CarMarketplaceModule {

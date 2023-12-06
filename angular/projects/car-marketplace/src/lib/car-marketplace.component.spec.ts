@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { CarMarketplaceComponent } from './components/car-marketplace.component';
-import { CarMarketplaceService } from '@dignite/car-marketplace';
+// import { CarMarketplaceComponent } from './components/car-marketplace.component';
+import { CarMarketplaceComponent, CarMarketplaceService } from '@dignite/car-marketplace';
 import { of } from 'rxjs';
 
 describe('CarMarketplaceComponent', () => {

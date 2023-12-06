@@ -24,6 +24,7 @@ const routes: Routes = [
     path: 'view',
     component: SaleCarViewComponent,
   },
+
 ];
 
 @NgModule({

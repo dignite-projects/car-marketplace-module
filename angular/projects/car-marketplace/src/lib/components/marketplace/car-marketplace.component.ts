@@ -73,7 +73,8 @@ export class CarMarketplaceComponent {
             name: data.name,
             address: data.address,
             contactPerson: data.contactPerson,
-            contactNumber: data.contactNumber
+            contactNumber: data.contactNumber,
+            shortName: data.shortName
           }).subscribe(res=>{
             setTimeout(() => {
               this.closeModal();

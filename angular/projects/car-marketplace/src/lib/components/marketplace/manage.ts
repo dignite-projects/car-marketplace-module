@@ -5,6 +5,7 @@ export class ManageConfig {
     address:string
     latitude:any
     longitude:any
+    shortName:string
 
     constructor(data?: ManageConfig) {
         

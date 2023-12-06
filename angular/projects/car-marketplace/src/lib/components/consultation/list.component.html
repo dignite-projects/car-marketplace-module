@@ -1,0 +1,75 @@
+<div page>
+    <div class="site-page-header-ghost-wrapper">
+        <nz-page-header [nzGhost]="false">
+            <nz-page-header-title>预约看车</nz-page-header-title>
+            <nz-page-header-extra *ngIf="false">
+                <nz-space>
+                    <button *nzSpaceItem nz-button nzType="primary" routerLink="/car-marketplace/car/create"
+                        [queryParams]="{}">新建</button>
+                </nz-space>
+            </nz-page-header-extra>
+        </nz-page-header>
+    </div>
+    <div class="site_box" content>
+        <div class="site_content">
+            <div class="site_search">
+                <form nz-form #searchForm="ngForm">
+                    <nz-form-item search>
+                        <nz-form-control>
+                            <div class="search-box flex align-center justify-between">
+                                <div class=" search-box-content">
+                                    <div class="search-box-item">
+                                        <input type="text" autocomplete="off" field nz-input placeholder="请输入预约人名称"
+                                            [(ngModel)]="search.filter" name="Filter">
+                                    </div>
+                                </div>
+                                <button nz-button nzType="primary" (click.stop)="searchSite()"><span nz-icon
+                                        nzType="search" nzTheme="outline"></span></button>
+                            </div>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                </form>
+            </div>
+
+            <div class="site_table" tablefield #tablebox>
+                <nz-table #basicTable [nzData]="UsedCarList" [nzFrontPagination]="false">
+                    <thead>
+                        <tr>
+                            <th>二手车名称</th>
+                            <th>预约时间</th>
+                            <th>预约人</th>
+                            <th>联系方式</th>
+                            <th>总公里（万）</th>
+                            <th>过户次数</th>
+                            <th>价格</th>
+                            <th>颜色</th>
+                            <!-- <th>状态</th> -->
+                            <th>创建时间</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of UsedCarList">
+                            <td>{{
+                                    data.usedCar.name }}</td>
+                            <td>{{ data.reservationTime|dateT:'yy-mm-dd' }}</td>
+                            <td>{{ data.contactPerson }}</td>
+                            <td>{{ data.contactNumber }}</td>
+                            <td>{{ data.usedCar.transfersCount }}</td>
+                            <td>{{ data.usedCar.transfersCount }}</td>
+                            <td>{{ data.usedCar.price }}</td>
+                            <td>{{ data.usedCar.color }}</td>
+                            <td>{{ data.creationTime|dateT:'yy-mm-dd hh:mm:ss' }}</td>
+                        </tr>
+                    </tbody>
+                </nz-table>
+                <div class="pagination">
+                    <nz-pagination style="float: right;" [nzPageIndex]="skipCount+1" [nzPageSize]="maxResultCount"
+                        [nzTotal]="pageTotal" (nzPageIndexChange)="nzPageIndexChange($event)"></nz-pagination>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

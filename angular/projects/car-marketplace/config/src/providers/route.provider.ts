@@ -27,18 +27,25 @@ export function configureRoutes(routesService: RoutesService) {
         layout: eLayoutType.application,
         order: 4,
       }, {
+        path: '/car-marketplace/consultation',
+        name: eCarMarketplaceRouteNames.Consultation,
+        iconClass: 'file-done',
+        layout: eLayoutType.application,
+        order: 5,
+      }, {
         path: '/administrator',
         name: eCarMarketplaceRouteNames.Administrator,
         iconClass: 'dollar',
         layout: eLayoutType.application,
-        order: 5,
+        order: 6,
       }, {
         path: '/administrator/saleCar',
         name: eCarMarketplaceRouteNames.SaleCar,
         iconClass: 'console-sql',
         layout: eLayoutType.application,
-        order: 5,
+        order: 7,
       }
+      
     ]);
   };
 }

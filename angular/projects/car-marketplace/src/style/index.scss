@@ -26,7 +26,9 @@ span[btn] {
 span[btn]:active {
     transform: translate(1px, 1px);
 }
-::ng-deep nz-date-picker[field],z-input-number[field]{
+
+::ng-deep nz-date-picker[field],
+z-input-number[field] {
     width: 100%;
 }
 
@@ -74,23 +76,25 @@ a[control] {
     // margin-bottom: 0;
 }
 
-.selecttable{
+.selecttable {
     width: 100%;
     text-align: center;
 
-    tr,th{
-        td{
+    tr,
+    th {
+        td {
             padding: 5px;
             // button{
             //     margin: 0 auto;
-                
+
             // }
         }
     }
 
 }
+
 /*页头设置*/
-.ant-page-header{
+.ant-page-header {
     padding: 10px 15px !important;
     border-radius: 6px;
 }
@@ -105,4 +109,3 @@ a[control] {
 ::ng-deep .ant-form-item[search] {
     margin-bottom: 0;
 }
-

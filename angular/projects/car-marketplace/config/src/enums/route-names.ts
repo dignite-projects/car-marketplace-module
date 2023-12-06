@@ -3,4 +3,5 @@ export const enum eCarMarketplaceRouteNames {
   Administrator = '车商管理',
   Car = '二手车',
   SaleCar = '卖车信息',
+  Consultation="预约看车"
 }

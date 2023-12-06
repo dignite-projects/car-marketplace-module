@@ -12,19 +12,28 @@
     <div class="car-marketplace-box" content>
         <div class="car_marketplace_content">
             <nz-descriptions nzBordered>
-                <nz-descriptions-item nzTitle="名称">{{carMarketplace.name}}</nz-descriptions-item>
-                <nz-descriptions-item nzTitle="联系人" [nzSpan]="2">{{carMarketplace.contactPerson}}</nz-descriptions-item>
-                <nz-descriptions-item nzTitle="联系邮箱" >{{carMarketplace.contactNumber}}</nz-descriptions-item>
-                <nz-descriptions-item nzTitle="状态" [nzSpan]="2">
+                <nz-descriptions-item nzTitle="名称">{{ carMarketplace.name }}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="简称" [nzSpan]="2">{{
+                    carMarketplace.shortName
+                    }}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="联系人">{{
+                    carMarketplace.contactPerson
+                    }}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="联系邮箱" [nzSpan]="2">{{
+                    carMarketplace.contactNumber
+                    }}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="状态">
                     <ng-container *ngFor="let item of authenticationStatusList">
-                        <ng-container *ngIf=" carMarketplace.authenticationStatus===item.value">{{
-                            item.displayName}}</ng-container>
+                        <ng-container *ngIf="carMarketplace.authenticationStatus === item.value">{{
+                            item.displayName
+                            }}</ng-container>
                     </ng-container>
                 </nz-descriptions-item>
-                <nz-descriptions-item nzTitle="创建时间" [nzSpan]="3">{{carMarketplace.creationTime|date}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="创建时间" [nzSpan]="2">{{
+                    carMarketplace.creationTime | date
+                    }}</nz-descriptions-item>
                 <nz-descriptions-item nzTitle="地址" [nzSpan]="3">
-                    {{carMarketplace.address
-                    }}
+                    {{ carMarketplace.address }}
                 </nz-descriptions-item>
                 <!-- <nz-descriptions-item nzTitle="经纬度" [nzSpan]="3">
                 </nz-descriptions-item> -->
@@ -39,7 +48,14 @@
                     <nz-form-label [nzSpan]="24" nzFor="name" nzRequired>名称</nz-form-label>
                     <nz-form-control [nzErrorTip]="combineTpl">
                         <input type="text" field nz-input nzStatus="error" autocomplete="off" nzRequired
-                            placeholder="请输入名称" [(ngModel)]="manageConfig.name" name="name" required>
+                            placeholder="请输入名称" [(ngModel)]="manageConfig.name" name="name" required />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="24" nzFor="shortName" nzRequired>简称</nz-form-label>
+                    <nz-form-control [nzErrorTip]="combineTpl">
+                        <input type="text" field nz-input nzStatus="error" autocomplete="off" nzRequired
+                            placeholder="请输入简称" [(ngModel)]="manageConfig.shortName" name="shortName" required />
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item>
@@ -47,36 +63,32 @@
                     <nz-form-control [nzErrorTip]="combineTpl">
                         <input type="text" field nz-input nzStatus="error" autocomplete="off" nzRequired
                             placeholder="请输入联系人" [(ngModel)]="manageConfig.contactPerson" name="contactPerson"
-                            required>
+                            required />
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item>
                     <nz-form-label [nzSpan]="24" nzFor="contactNumber" nzRequired>联系邮箱</nz-form-label>
                     <nz-form-control [nzErrorTip]="combineTpl">
                         <input type="email" field nz-input nzStatus="error" autocomplete="off" nzRequired
-                            placeholder="请输入联系邮箱" email  [(ngModel)]="manageConfig.contactNumber" name="contactNumber"
-                            required>
+                            placeholder="请输入联系邮箱" email [(ngModel)]="manageConfig.contactNumber" name="contactNumber"
+                            required />
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item>
                     <nz-form-label [nzSpan]="24" nzFor="address" nzRequired>地址</nz-form-label>
                     <nz-form-control [nzErrorTip]="combineTpl">
                         <input type="email" field nz-input nzStatus="error" autocomplete="off" nzRequired
-                            placeholder="请输入地址" [(ngModel)]="manageConfig.address" name="address"
-                            required>
+                            placeholder="请输入地址" [(ngModel)]="manageConfig.address" name="address" required />
                     </nz-form-control>
                 </nz-form-item>
-    
+
                 <ng-template #combineTpl let-control>
-                    <ng-container *ngIf="control.hasError('required')">The {{control.name}} field is
-                        required.
-                        </ng-container>
-                        <ng-container *ngIf="control.hasError('email')">The {{control.name}} field is not valid
-                            </ng-container>
+                    <ng-container *ngIf="control.hasError('required')">The {{ control.name }} field is required.
+                    </ng-container>
+                    <ng-container *ngIf="control.hasError('email')">The {{ control.name }} field is not valid
+                    </ng-container>
                 </ng-template>
             </ng-container>
         </nz-modal>
     </form>
-
-
 </div>
