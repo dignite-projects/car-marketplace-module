@@ -4,6 +4,7 @@ using Dignite.CarMarketplace.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 
@@ -12,9 +13,11 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Dignite.CarMarketplace.Migrations
 {
     [DbContext(typeof(CarMarketplaceHttpApiHostMigrationsDbContext))]
-    partial class CarMarketplaceHttpApiHostMigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231206084252_add-UsedCarConsultation")]
+    partial class addUsedCarConsultation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -454,43 +457,6 @@ namespace Dignite.CarMarketplace.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("cmpDealerAdministrators", (string)null);
-                });
-
-            modelBuilder.Entity("Dignite.CarMarketplace.UsedCars.UsedCarConsultation", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ContactNumber")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
-
-                    b.Property<string>("ContactPerson")
-                        .IsRequired()
-                        .HasMaxLength(16)
-                        .HasColumnType("nvarchar(16)");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("CreationTime");
-
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("CreatorId");
-
-                    b.Property<DateTime>("ReservationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("UsedCarId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UsedCarId");
-
-                    b.ToTable("cmpUsedCarConsultations", (string)null);
                 });
 
             modelBuilder.Entity("Dignite.CmsKit.Favourites.Favourite", b =>
@@ -949,17 +915,6 @@ namespace Dignite.CarMarketplace.Migrations
                         .HasForeignKey("DealerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Dignite.CarMarketplace.UsedCars.UsedCarConsultation", b =>
-                {
-                    b.HasOne("Dignite.CarMarketplace.Cars.UsedCar", "UsedCar")
-                        .WithMany()
-                        .HasForeignKey("UsedCarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UsedCar");
                 });
 
             modelBuilder.Entity("Dignite.CarMarketplace.Dealers.Dealer", b =>

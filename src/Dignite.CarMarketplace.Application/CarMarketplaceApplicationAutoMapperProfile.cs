@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Dignite.CarMarketplace.Cars;
 using Dignite.CarMarketplace.Dealers;
+using Dignite.CarMarketplace.UsedCars;
 using Volo.Abp.AutoMapper;
 
 namespace Dignite.CarMarketplace;
@@ -13,10 +14,13 @@ public class CarMarketplaceApplicationAutoMapperProfile : Profile
         CreateMap<SaleCar, Admin.Cars.SaleCarDto>();
         CreateMap<Brand, Admin.Cars.BrandDto>();
         CreateMap<Model, Admin.Cars.ModelDto>();
+
         CreateMap<Dealer, DealerPlatform.Dealers.DealerDto>();
-        CreateMap<Dealer, Public.Dealers.DealerDto>();
         CreateMap<UsedCar, DealerPlatform.Cars.UsedCarDto>()
             .Ignore(x=>x.Tags);
+        CreateMap<UsedCarConsultation, DealerPlatform.UsedCars.UsedCarConsultationDto>();
+
+        CreateMap<Dealer, Public.Dealers.DealerDto>();
         CreateMap<UsedCar, Public.Cars.UsedCarDto>()
             .Ignore(x=>x.Tags);
         CreateMap<SaleCar, Public.Cars.SaleCarDto>();

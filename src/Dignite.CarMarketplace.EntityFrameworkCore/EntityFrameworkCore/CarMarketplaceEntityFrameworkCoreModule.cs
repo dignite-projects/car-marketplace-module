@@ -1,5 +1,6 @@
 ﻿using Dignite.CarMarketplace.Cars;
 using Dignite.CarMarketplace.Dealers;
+using Dignite.CarMarketplace.UsedCars;
 using Dignite.CmsKit.EntityFrameworkCore;
 using Dignite.FileExplorer.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +30,7 @@ public class CarMarketplaceEntityFrameworkCoreModule : AbpModule
             options.AddRepository<Dealer, EfCoreDealerRepository>();
             options.AddRepository<UsedCar, EfCoreUsedCarRepository>();
             options.AddRepository<SaleCar, EfCoreSaleCarRepository>();
+            options.AddRepository<UsedCarConsultation, EfCoreUsedCarConsultationRepository>();
         });
     }
 }

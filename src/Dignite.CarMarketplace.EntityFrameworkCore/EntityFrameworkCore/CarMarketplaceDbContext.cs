@@ -1,5 +1,6 @@
 ﻿using Dignite.CarMarketplace.Cars;
 using Dignite.CarMarketplace.Dealers;
+using Dignite.CarMarketplace.UsedCars;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
@@ -17,6 +18,7 @@ public class CarMarketplaceDbContext : AbpDbContext<CarMarketplaceDbContext>, IC
     public DbSet<ConfigurationItem> ConfigurationItem { get; set; }
     public DbSet<UsedCar> UsedCar { get; set; }
     public DbSet<SaleCar> SaleCar { get; set; }
+    public DbSet<UsedCarConsultation> UsedCarConsultations { get; set; }    
 
     public CarMarketplaceDbContext(DbContextOptions<CarMarketplaceDbContext> options)
         : base(options)

@@ -2,6 +2,7 @@
 using System.Linq;
 using Dignite.CarMarketplace.Cars;
 using Dignite.CarMarketplace.Dealers;
+using Dignite.CarMarketplace.UsedCars;
 using Microsoft.EntityFrameworkCore;
 
 namespace Dignite.CarMarketplace
@@ -56,6 +57,16 @@ namespace Dignite.CarMarketplace
 
             return queryable
                 .Include(s => s.Model);
+        }
+        public static IQueryable<UsedCarConsultation> IncludeDetails(this IQueryable<UsedCarConsultation> queryable, bool include = true)
+        {
+            if (!include)
+            {
+                return queryable;
+            }
+
+            return queryable
+                .Include(s => s.UsedCar);
         }
     }
 }

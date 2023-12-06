@@ -1,5 +1,6 @@
 ﻿using Dignite.CarMarketplace.Cars;
 using Dignite.CarMarketplace.Dealers;
+using Dignite.CarMarketplace.UsedCars;
 using Dignite.CmsKit.EntityFrameworkCore;
 using Dignite.FileExplorer.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -141,6 +142,17 @@ public static class CarMarketplaceDbContextModelCreatingExtensions
             //Properties
             b.Property(q => q.Name).IsRequired().HasMaxLength(ConfigurationItemConsts.MaxNameLength);
             b.Property(q => q.Group).IsRequired().HasMaxLength(ConfigurationItemConsts.MaxGroupLength);
+        });
+
+        builder.Entity<UsedCarConsultation>(b =>
+        {
+            b.ToTable(CarMarketplaceDbProperties.DbTablePrefix + "UsedCarConsultations", CarMarketplaceDbProperties.DbSchema);
+
+            b.ConfigureByConvention();
+
+            //Properties
+            b.Property(q => q.ContactPerson).IsRequired().HasMaxLength(UsedCarConsultationConsts.MaxContactPersonLength);
+            b.Property(q => q.ContactNumber).IsRequired().HasMaxLength(UsedCarConsultationConsts.MaxContactNumberLength);
         });
     }
 }
