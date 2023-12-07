@@ -1,0 +1,38 @@
+﻿@page
+@using Dignite.CarMarketplace.BlobStoring
+@model Dignite.CarMarketplace.Web.Pages.Dealers.IndexModel
+
+@section styles {
+    <abp-style src="/Pages/CarMarketplace/Shared/Styles/CarMarketplace.css" />
+}
+
+
+<form method="get">
+    <div class="input-group input-group-lg my-4">
+        <span class="input-group-text rounded-start-pill ps-4 bg-transparent" id="basic-addon1"><i class="fa fa-search"></i></span>
+        <input asp-for="GetDealersInput.Filter" type="text" class="form-control border-start-0 rounded-end-pill ps-0" placeholder="搜索车商" name="filter">
+    </div>
+</form>
+<div class="row mb-5">
+    @foreach (var item in Model.Dealers)
+    {
+        <div class="col-md-3">
+            <div class="card cmpl-card bg-light shadow-sm">
+                <a href="@Url.Page("Home",new{shortName=item.ShortName})">
+                    <img src="@($"/api/file-explorer/files/{BlobContainerConsts.DealerCoverContainerName}/{item.Id}")" onerror="this.src='/Pages/CarMarketplace/Shared/dealer-error.jpg';" class="card-img-top" alt="@(item.Name+"封面图")">
+                </a>
+                <div class="card-body ps-0 pe-0">
+                    <small class="text-muted">
+                        专业二手车商
+                    </small>
+                    <h5 class="card-title">
+                        <a class="underline-animate" href="@Url.Page("Home",new{shortName=item.ShortName})">@item.Name</a>
+                    </h5>
+                    <p>@item.Address</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<abp-paginator model="Model.PagerModel" show-info="true" />

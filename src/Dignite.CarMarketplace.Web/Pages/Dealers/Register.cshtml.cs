@@ -22,7 +22,7 @@ namespace Dignite.CarMarketplace.Web.Pages.Dealers
         {
             CurrentDealer = await _dealerAppService.FindByCurrentUserAsync();
 
-            if (CurrentDealer.AuthenticationStatus == CarMarketplace.Dealers.AuthenticationStatus.Approved)
+            if (CurrentDealer!=null && CurrentDealer.AuthenticationStatus == CarMarketplace.Dealers.AuthenticationStatus.Approved)
             {
                 return Redirect("/dealer-platform");
             }

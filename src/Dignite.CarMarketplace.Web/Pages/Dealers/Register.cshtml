@@ -6,13 +6,6 @@
 
 @if (Model.CurrentDealer != null)
 {
-    if (Model.CurrentDealer.AuthenticationStatus == Dignite.CarMarketplace.Dealers.AuthenticationStatus.Approved)
-    {
-        <div class="alert alert-primary" role="alert">
-            <h4 class="alert-heading">系统提示：</h4>
-            <p> ✓ 您目前已是二手车商。</p>
-        </div>
-    }
     if (Model.CurrentDealer.AuthenticationStatus == Dignite.CarMarketplace.Dealers.AuthenticationStatus.Waiting)
     {
         <div class="alert alert-primary" role="alert">

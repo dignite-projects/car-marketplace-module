@@ -6,5 +6,6 @@
         /// 车型图片
         /// </summary>
         public const string CarPicsContainerName = "CarPics";
+        public const string DealerCoverContainerName = "DealerCover";
     }
 }

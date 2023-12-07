@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using Dignite.CarMarketplace.Localization;
+using System.Threading.Tasks;
 using Volo.Abp.UI.Navigation;
 
 namespace Dignite.CarMarketplace.Web.Menus;
@@ -15,9 +16,11 @@ public class CarMarketplaceMenuContributor : IMenuContributor
 
     private Task ConfigureMainMenuAsync(MenuConfigurationContext context)
     {
+        var l = context.GetLocalizer<CarMarketplaceResource>();
+
         //Add main menu items.
-        context.Menu.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.UsedCars, displayName: "UsedCars", "~/UsedCars"));
-        context.Menu.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.SaleCar, displayName: "SaleCar", "~/SaleCar"));
+        context.Menu.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.UsedCars, displayName: l["Menu:UsedCar"], "~/UsedCars"));
+        context.Menu.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.SaleCar, displayName: l["Menu:SaleCar"], "~/SaleCar"));
         context.Menu.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.Dealers, displayName: "Dealers", "~/Dealers"));
 
         return Task.CompletedTask;

@@ -78,6 +78,26 @@ public class CarMarketplaceApplicationModule : AbpModule
                         new FileCell("Trunk",L("Trunk")),                       //后备箱
                         new FileCell("EngineRoom",L("EngineRoom"))              //发动机舱
                     });
+                    //TODO:这里没有配置权限，对车型图片是有风险的
+                });
+
+            options.Containers
+                .Configure<DealerCoverBlobContainer>(container =>
+                {
+                    container.AddFileSizeLimitHandler(handler =>
+                    {
+                        handler.MaxFileSize = 10240;
+                    });
+                    container.AddFileTypeCheckHandler(handler =>
+                    {
+                        handler.AllowedFileTypeNames = new string[] { ".jpg", ".jpeg", ".png" };
+                    });
+                    container.AddImageResizeHandler(handler =>
+                    {
+                        handler.ImageWidth = 300;
+                        handler.ImageHeight = 200;
+                    });
+                    container.SetBlobNameGenerator<DealerCoverBlobNameGenerator>();
                 });
         });
     }

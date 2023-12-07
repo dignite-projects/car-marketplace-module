@@ -81,8 +81,8 @@ public class CarMarketplaceWebModule : AbpModule
 
             var routePrefix = urlOptions.RoutePrefix;
 
-            options.Conventions.AddPageRoute("/Dealers/Home", routePrefix + "{dealerShortName:dealerNameConstraint}");
-            options.Conventions.AddPageRoute("/Dealers/UsedCars", routePrefix + "{dealerShortName}/UsedCars");
+            options.Conventions.AddPageRoute("/Dealers/Home", routePrefix + "{shortName:dealerNameConstraint}");
+            options.Conventions.AddPageRoute("/Dealers/UsedCars", routePrefix + "{shortName}/UsedCars");
             options.Conventions.AddPageRoute("/UsedCars/Detail", routePrefix + "UsedCars/{id:Guid}");
 
             options.Conventions.AuthorizePage("/Dealers/Register");
