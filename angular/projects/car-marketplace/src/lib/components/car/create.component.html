@@ -50,7 +50,7 @@
                         </nz-form-control>
                     </nz-form-item>
                     <nz-form-item>
-                        <nz-form-label [nzSpan]="24" nzFor="trimId" nzRequired>车款分类</nz-form-label>
+                        <nz-form-label [nzSpan]="24" nzFor="trimId" nzRequired>车款</nz-form-label>
                         <nz-form-control [nzErrorTip]="combineTpl">
                             <nz-select nzShowSearch [nzPlaceHolder]="modelID ? '请选择车款' : '请先选择车型'"
                                 [(ngModel)]="CarCreateGroup.trimId" (ngModelChange)="trimChange($event)" name="trimId"
@@ -102,7 +102,11 @@
 
                         </nz-form-control>
                     </nz-form-item>
-                <div class="">
+                <!-- <div class="">
+                    
+                </div> -->
+
+                <div class="siteflex w25">
                     <nz-form-item>
                         <nz-form-label [nzSpan]="24" nzFor="color" nzRequired>车辆颜色</nz-form-label>
                         <nz-form-control [nzErrorTip]="combineTpl">
@@ -123,9 +127,6 @@
                                 placeholder="请填写名称" required>
                         </nz-form-control>
                     </nz-form-item>
-                </div>
-
-                <div class="siteflex w50">
                     <nz-form-item>
                         <nz-form-label [nzSpan]="24" nzFor="totalMileage" nzRequired>总公里(万)</nz-form-label>
                         <nz-form-control [nzErrorTip]="combineTpl">
