@@ -118,7 +118,7 @@
                     </nz-form-control>
                 </nz-form-item>
                 <ng-template #combineTpl let-control>
-                    <ng-container *ngIf="control.hasError('required')">The {{ control.name }} field is required.
+                    <ng-container *ngIf="control.hasError('required')">请填写 {{ control.name }}  字段.
                     </ng-container>
                     <ng-container *ngIf="control.hasError('email')">The {{ control.name }} field is not valid
                     </ng-container>

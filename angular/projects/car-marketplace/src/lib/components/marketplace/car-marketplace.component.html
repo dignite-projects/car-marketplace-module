@@ -77,10 +77,10 @@
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item>
-                    <nz-form-label [nzSpan]="24" nzFor="contactNumber" nzRequired>联系邮箱</nz-form-label>
+                    <nz-form-label [nzSpan]="24" nzFor="contactNumber" nzRequired>联系方式</nz-form-label>
                     <nz-form-control [nzErrorTip]="combineTpl">
-                        <input type="email" field nz-input nzStatus="error" autocomplete="off" nzRequired
-                            placeholder="请输入联系邮箱" email [(ngModel)]="manageConfig.contactNumber" name="contactNumber"
+                        <input type="tel" field nz-input nzStatus="error" autocomplete="off" nzRequired
+                            placeholder="请输入联系方式"  [(ngModel)]="manageConfig.contactNumber" name="contactNumber"
                             required />
                     </nz-form-control>
                 </nz-form-item>
@@ -130,7 +130,7 @@
                 
 
                 <ng-template #combineTpl let-control>
-                    <ng-container *ngIf="control.hasError('required')">The {{ control.name }} field is required.
+                    <ng-container *ngIf="control.hasError('required')">请填写 {{ control.name }}  字段.
                     </ng-container>
                     <ng-container *ngIf="control.hasError('email')">The {{ control.name }} field is not valid
                     </ng-container>
