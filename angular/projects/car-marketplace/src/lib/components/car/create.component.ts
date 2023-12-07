@@ -380,7 +380,6 @@ export class CreateComponent {
     this.fileCells.map(elc => {
       if (elc.name === item.name) {
         elc.fileList = filesdispose
-
       }
     })
     // console.log('上传图片改变', files, item, filesdispose, this.fileCells);
@@ -397,14 +396,7 @@ export class CreateComponent {
     console.log(item, finame, '删除图片');
     // item=[]
     // let deleteimg = []
-    this.fileCells.map(async (el) => {
-      if (el.name === item.name) {
-        if (finame == 'fileListView') {
-          this.deleteimg.push(...el[finame])
-        }
-        el[finame] = []
-      }
-    })
+  
   }
   /***/
   /* 读取文件信息 */
