@@ -85,7 +85,6 @@ namespace Dignite.CarMarketplace.DealerPlatform.Dealers
         {
             var entity = await _dealerRepository.FindByAdministratorAsync(CurrentUser.GetId(), false);
             entity.UpdateInternal(input.Name,input.ShortName, input.Address,input.ContactPerson,input.ContactNumber,input.Latitude,input.Longitude);
-            entity.SetAuthenticationStatus(AuthenticationStatus.Waiting);
             await _dealerRepository.UpdateAsync(entity);
             return ObjectMapper.Map<Dealer, DealerDto>(entity);
         }

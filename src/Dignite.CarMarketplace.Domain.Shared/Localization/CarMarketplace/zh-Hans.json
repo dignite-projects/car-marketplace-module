@@ -15,6 +15,7 @@
     "EngineRoom": "发动机舱",
     "Menu:UsedCar": "买二手车",
     "Menu:SaleCar": "卖二手车",
+    "Menu:Dealers": "二手车商",
     "ContactPerson": "联系人",
     "ContactNumber": "联系电话",
     "ReservationTime": "预约电话",
@@ -22,6 +23,9 @@
     "RegistrationDate": "上牌日期",
     "TotalMileage": "行驶里程",
     "BrandId": "品牌",
-    "ModelId": "车型"
+    "ModelId": "车型",
+    "Name": "名称",
+    "ShortName": "短名称",
+    "Address": "地址"
   }
 }

@@ -10,4 +10,5 @@ public interface IDealerAppService
         Guid,
         GetDealersInput>
 {
+    Task<DealerDto> FindByShortNameAsync(string shortName);
 }

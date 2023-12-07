@@ -19,7 +19,14 @@ public class DealerController : CarMarketplaceController, IDealerAppService
     }
 
     [HttpGet]
-    [Route("{id}")]
+    [Route("find/{shortName}")]
+    public async Task<DealerDto> FindByShortNameAsync(string shortName)
+    {
+        return await _dealerAppService.FindByShortNameAsync(shortName);
+    }
+
+    [HttpGet]
+    [Route("{id:Guid}")]
     public async Task<DealerDto> GetAsync(Guid id)
     {
         return await _dealerAppService.GetAsync(id);

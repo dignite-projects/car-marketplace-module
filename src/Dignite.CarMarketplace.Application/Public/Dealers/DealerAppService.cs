@@ -15,6 +15,12 @@ namespace Dignite.CarMarketplace.Public.Dealers
             _dealerRepository = dealerRepository;
         }
 
+        public async Task<DealerDto> FindByShortNameAsync(string shortName)
+        {
+            var entity = await _dealerRepository.FindByShortNameAsync(shortName, false);
+            return ObjectMapper.Map<Dealer, DealerDto>(entity);
+        }
+
         public async Task<DealerDto> GetAsync(Guid id)
         {
             var entity = await _dealerRepository.GetAsync(id, false);

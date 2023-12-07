@@ -16,10 +16,10 @@
 <div class="row mb-5">
     @foreach (var item in Model.Dealers)
     {
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="card cmpl-card bg-light shadow-sm">
                 <a href="@Url.Page("Home",new{shortName=item.ShortName})">
-                    <img src="@($"/api/file-explorer/files/{BlobContainerConsts.DealerCoverContainerName}/{item.Id}")" onerror="this.src='/Pages/CarMarketplace/Shared/dealer-error.jpg';" class="card-img-top" alt="@(item.Name+"封面图")">
+                    <img src="@($"/api/file-explorer/files/{BlobContainerConsts.DealerCoverContainerName}/{item.Id.ToString("N")}")" onerror="this.src='/Pages/CarMarketplace/Shared/dealer-error.jpg';" class="card-img-top" alt="@(item.Name+"封面图")">
                 </a>
                 <div class="card-body ps-0 pe-0">
                     <small class="text-muted">

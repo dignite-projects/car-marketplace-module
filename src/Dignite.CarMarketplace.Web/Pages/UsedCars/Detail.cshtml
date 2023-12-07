@@ -112,7 +112,7 @@
         </div>
         <hr>
         <div>
-            <h5 class="mb-3"><a href="#" class="underline-animate">@Model.UsedCar.Dealer.Name</a></h5>
+            <h5 class="mb-3"><a href="@Url.Page("/Dealers/Home",new{shortName=Model.UsedCar.Dealer.ShortName})" class="underline-animate">@Model.UsedCar.Dealer.Name</a></h5>
             <p>
                 联 系 人：@Model.UsedCar.Dealer.ContactPerson
             </p>

@@ -12,9 +12,6 @@
     "FrontRow": "前排",
     "BehindRow": "后排",
     "Trunk": "后备箱",
-    "EngineRoom": "发动机舱",
-    "Name": "名称",
-    "ShortName": "知名称",
-    "Address": "地址"
+    "EngineRoom": "发动机舱"
   }
 }

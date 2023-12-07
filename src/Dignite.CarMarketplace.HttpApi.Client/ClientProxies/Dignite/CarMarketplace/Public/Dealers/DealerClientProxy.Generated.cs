@@ -17,6 +17,14 @@ namespace Dignite.CarMarketplace.Public.Dealers;
 [ExposeServices(typeof(IDealerAppService), typeof(DealerClientProxy))]
 public partial class DealerClientProxy : ClientProxyBase<IDealerAppService>, IDealerAppService
 {
+    public virtual async Task<DealerDto> FindByShortNameAsync(string shortName)
+    {
+        return await RequestAsync<DealerDto>(nameof(FindByShortNameAsync), new ClientProxyRequestTypeValue
+        {
+            { typeof(string), shortName }
+        });
+    }
+
     public virtual async Task<DealerDto> GetAsync(Guid id)
     {
         return await RequestAsync<DealerDto>(nameof(GetAsync), new ClientProxyRequestTypeValue
