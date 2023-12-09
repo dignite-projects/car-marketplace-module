@@ -188,9 +188,21 @@
             </div>
             <div class="modal-body">
                 <form method="post" id="consultation-form">
-                    <abp-input asp-for="UsedCarConsultationCreateInput.ContactPerson" name="ContactPerson" auto-focus="true" />
-                    <abp-input asp-for="UsedCarConsultationCreateInput.ContactNumber" name="ContactNumber" />
-                    <abp-input asp-for="UsedCarConsultationCreateInput.ReservationTime" name="ReservationTime" />
+                    <div class="form-floating mb-3">
+                        <input asp-for="UsedCarConsultationCreateInput.ContactPerson" name="ContactPerson" class="form-control" />
+                        <span asp-validation-for="UsedCarConsultationCreateInput.ContactPerson" class="text-danger"></span>
+                        <label asp-for="UsedCarConsultationCreateInput.ContactPerson">联系人</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="UsedCarConsultationCreateInput.ContactNumber" name="ContactNumber" class="form-control" />
+                        <span asp-validation-for="UsedCarConsultationCreateInput.ContactNumber" class="text-danger"></span>
+                        <label asp-for="UsedCarConsultationCreateInput.ContactNumber">联系电话</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="UsedCarConsultationCreateInput.ReservationTime" name="ReservationTime" class="form-control" />
+                        <span asp-validation-for="UsedCarConsultationCreateInput.ReservationTime" class="text-danger"></span>
+                        <label asp-for="UsedCarConsultationCreateInput.ReservationTime">预约时间</label>
+                    </div>
                     <abp-input asp-for="UsedCarConsultationCreateInput.UsedCarId" name="UsedCarId" type="hidden"></abp-input>
                 </form>
             </div>
