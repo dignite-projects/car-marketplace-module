@@ -130,8 +130,8 @@
                     <nz-form-item>
                         <nz-form-label [nzSpan]="24" nzFor="totalMileage" nzRequired>总公里(万)</nz-form-label>
                         <nz-form-control [nzErrorTip]="combineTpl">
-                            <nz-input-number field [(ngModel)]="CarCreateGroup.totalMileage" [nzMin]="1"
-                                name="totalMileage" nzPlaceHolder="请填写总公里" required [nzStep]="1"></nz-input-number>
+                            <nz-input-number field [(ngModel)]="CarCreateGroup.totalMileage" [nzMin]="0"
+                                name="totalMileage" nzPlaceHolder="请填写总公里" required></nz-input-number>
                         </nz-form-control>
                     </nz-form-item>
                     <nz-form-item>
@@ -158,7 +158,7 @@
                         </nz-form-control>
                     </nz-form-item>
                     <nz-form-item>
-                        <nz-form-label [nzSpan]="24" nzFor="commercialInsuranceExpirationDate">交强险过期日期</nz-form-label>
+                        <nz-form-label [nzSpan]="24" nzFor="commercialInsuranceExpirationDate">商业险过期日期</nz-form-label>
                         <nz-form-control [nzErrorTip]="combineTpl">
                             <nz-date-picker field [(ngModel)]="CarCreateGroup.commercialInsuranceExpirationDate"
                                 name="commercialInsuranceExpirationDate"></nz-date-picker>
