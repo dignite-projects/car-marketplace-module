@@ -1,6 +1,8 @@
 ﻿@page
+@using Dignite.CarMarketplace.Web.Pages
 @using Volo.Abp.Data
 @using Dignite.CarMarketplace.BlobStoring
+@inject CarMarketplacePageHelper CarMarketplacePageHelper
 @model Dignite.CarMarketplace.Web.Pages.UsedCars.DetailModel
 
 @section scripts {
@@ -58,7 +60,7 @@
             @Model.UsedCar.Name
         </h1>
         <h5 class="mb-4 fs-5 mb-3">
-            ￥<span class="fw-bold text-danger fs-3">@Model.UsedCar.Price.ToString("#0.00")</span> 元
+            ￥<span class="fw-bold text-danger fs-3">@CarMarketplacePageHelper.GetPriceFormatText(Model.UsedCar.Price)</span>
         </h5>
         <div class="d-flex justify-content-between mb-4">
             <div class="d-flex flex-column text-center">
@@ -80,7 +82,7 @@
         <hr>
         <div class="row">
             <div class="col-4 mb-3">
-                <small class="text-muted">表显里程</small> <p class="mb-1">@(Model.UsedCar.TotalMileage)公里</p>
+                <small class="text-muted">表显里程</small> <p class="mb-1">@CarMarketplacePageHelper.GetMileageFormatText(Model.UsedCar.TotalMileage)</p>
             </div>
             <div class="col-4 mb-3">
                 <small class="text-muted">上牌时间</small>

@@ -1,6 +1,8 @@
 ﻿@page
 @using Dignite.CarMarketplace.BlobStoring
+@using Dignite.CarMarketplace.Web.Pages
 @using IndexModel = Dignite.CarMarketplace.Web.Pages.UsedCars.IndexModel
+@inject CarMarketplacePageHelper CarMarketplacePageHelper
 @model Dignite.CarMarketplace.Web.Pages.UsedCars.IndexModel
 @{
     ViewBag.FluidLayout = true;
@@ -164,7 +166,7 @@
                         <img src="@($"/api/file-explorer/files/{BlobContainerConsts.CarPicsContainerName}/{item.Id}/LeftFront")" class="card-img-top" alt="@(item.Name+"左前45度图片")">
                     </a>
                     <div class="card-body position-relative d-flex flex-column">
-                        <span class="badge rounded-pill bg-primary fw-normal fs-6 position-absolute top-0 start-50 translate-middle">￥@item.Price.ToString("#0.00") 元</span>
+                        <span class="badge rounded-pill bg-primary fw-normal fs-6 position-absolute top-0 start-50 translate-middle">￥@CarMarketplacePageHelper.GetPriceFormatText(item.Price)</span>
                         <h6 class="card-title mt-2">
                             <a class="underline-animate" href="@Url.Page("Detail",new{Id=item.Id})">@item.Name</a>
                         </h6>
@@ -175,7 +177,7 @@
                             </div>
                             <div class="col-6">
                                 <small class="text-muted">表显里程</small>
-                                <p class="mb-1">@item.TotalMileage 公里</p>
+                                <p class="mb-1">@CarMarketplacePageHelper.GetMileageFormatText(item.TotalMileage)</p>
                             </div>
                         </div>
                     </div>
