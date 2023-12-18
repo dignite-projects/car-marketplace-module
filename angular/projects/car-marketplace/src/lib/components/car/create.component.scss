@@ -3,6 +3,7 @@ $borderBottomColor: #00000020;
 
 .site_box {
     padding-top: 6px;
+
     .site_content {
         flex: 4;
         height: 100%;
@@ -19,6 +20,7 @@ $borderBottomColor: #00000020;
     width: 100%;
     display: flex;
     align-items: flex-start;
+
     .upload_body {
         width: 120px;
         height: 120px;
@@ -96,26 +98,42 @@ $borderBottomColor: #00000020;
 ::ng-deep .ant-modal-mask {
     background-color: #0000001c;
 }
-.imageflex{
+
+.imageflex {
     display: flex;
     align-items: center;
     width: 100%;
     flex-wrap: wrap;
 }
-::ng-deep .imageflex .ant-row{
+
+::ng-deep .imageflex .ant-row {
     display: block;
     width: 25%;
 }
-.siteflex{
-    display: flex;align-items: center;justify-content: space-between;
+
+.siteflex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-::ng-deep.siteflex .ant-form-item{
+::ng-deep.siteflex .ant-form-item {
     width: 32%;
 }
-::ng-deep.siteflex.w50 .ant-form-item{
+
+::ng-deep.siteflex.w50 .ant-form-item {
     width: 48%;
 }
-::ng-deep.siteflex.w25 .ant-form-item{
+
+::ng-deep.siteflex.w25 .ant-form-item {
     width: 24%;
+}
+
+.editable-tag {
+    background: rgb(255, 255, 255);
+    border-style: dashed;
+}
+
+::ng-deep.anticon {
+    display: inline-flex;
 }

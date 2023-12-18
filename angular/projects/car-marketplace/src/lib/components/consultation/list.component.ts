@@ -55,8 +55,6 @@ export class ListComponent {
       maxResultCount: this.maxResultCount
     }).subscribe(async (res) => {
 
-      // this.BrandChange(this.brandID)
-      // this.ModelChange(this.modelID)
 
       this.UsedCarList = res.items
       this.pageTotal = res.totalCount

@@ -24,7 +24,7 @@ export class SaleCarViewComponent {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.route.queryParams.subscribe(async (params) => {
-      console.log(params, '跳转页面接收数据');
+     // console.log(params, '跳转页面接收数据');
       if (params.saleCarId) {
         this.saleCarId = params.saleCarId
         this.getsaleCar()

@@ -47,7 +47,7 @@
                 <nz-descriptions-item nzTitle="transmissionType" [nzSpan]="1">{{
                     UsedCarDetail.transmissionType
                     }}</nz-descriptions-item>
-                <nz-descriptions-item nzTitle="总公里(万)">{{
+                <nz-descriptions-item nzTitle="总里程(公里数)">{{
                     UsedCarDetail.totalMileage
                     }}</nz-descriptions-item>
                 <nz-descriptions-item nzTitle="过户次数">{{
@@ -55,13 +55,16 @@
                     }}</nz-descriptions-item>
                 <nz-descriptions-item nzTitle="价格">{{ UsedCarDetail.price }}</nz-descriptions-item>
                 <nz-descriptions-item nzTitle="颜色">{{ UsedCarDetail.color }}</nz-descriptions-item>
-                <nz-descriptions-item nzTitle="状态" [nzSpan]="2">
+                <nz-descriptions-item nzTitle="状态">
                     <ng-container *ngFor="let item of carStatusList">
                         <ng-container *ngIf="item.value === UsedCarDetail.status">
                             {{ item.displayName }}
                         </ng-container>
                     </ng-container>
                 </nz-descriptions-item>
+                <nz-descriptions-item nzTitle="标签">{{
+                    UsedCarDetail.tags
+                    }}</nz-descriptions-item>
                 <nz-descriptions-item nzTitle="创建时间	" [nzSpan]="3">
                     {{ UsedCarDetail.creationTime | dateT : 'yy-mm-dd hh:mm:ss' }}
                 </nz-descriptions-item>

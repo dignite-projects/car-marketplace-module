@@ -74,7 +74,7 @@ export class DetailsComponent {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.route.queryParams.subscribe(async (params) => {
-      console.log(params, '跳转页面接收数据');
+     // console.log(params, '跳转页面接收数据');
       if (params.usedCarId) {
         this.usedCarId = params.usedCarId
         this.brandList = await this.getBrandList()
@@ -92,12 +92,11 @@ export class DetailsComponent {
   getUsedCarDetail() {
     return new Promise((resolve, rejects) => {
       this._UsedCarService.get(this.usedCarId).subscribe((res: any) => {
-        console.log(res, '获取二手车详情', this.fileCells);
+       // console.log(res, '获取二手车详情', this.fileCells);
         this.brandID = res.brandId
         this.BrandChange(this.brandID)
         this.modelID = res.modelId
         this.ModelChange(this.modelID)
-        // this.CarCreateGroup = new CarConfig({ ...res })
         this.UsedCarDetail = res
         resolve(res)
       })
@@ -108,14 +107,14 @@ export class DetailsComponent {
   getBrandList() {
     return new Promise((resolve, rejects) => {
       this.BrandService.getList().subscribe(res => {
-        console.log(res.items, '获取品牌列表');
+       // console.log(res.items, '获取品牌列表');
         resolve(new Array(...res.items))
       })
     })
   }
   /**品牌列表改变 */
   async BrandChange(event) {
-    console.log('品牌列表改变', event);
+   // console.log('品牌列表改变', event);
     this.modelList = await this.getModelList(event)
   }
   /**获取车型列表 */
@@ -124,7 +123,7 @@ export class DetailsComponent {
       this.ModelService.getList({
         brandId: brandId
       }).subscribe(res => {
-        console.log(res.items, '获取车型列表');
+       // console.log(res.items, '获取车型列表');
         resolve(new Array(...res.items))
       })
     })
@@ -139,7 +138,7 @@ export class DetailsComponent {
       this.TrimService.getList({
         modelId: ModelId
       }).subscribe(res => {
-        console.log(res.items, '获取车款列表');
+       // console.log(res.items, '获取车款列表');
         resolve(new Array(...res.items))
       })
     })
@@ -161,7 +160,6 @@ export class DetailsComponent {
       imagemess.map(el => {
         el.src = el.url
       })
-      // console.log('获取图片信息',new Array(...imagemess));
       await res.fileCells.map(async (el: any) => {
         el.fileList = []
         el.fileListView = imagemess.filter(elV => elV.cellName === el.name)
@@ -169,7 +167,7 @@ export class DetailsComponent {
       this.fileCells = res.fileCells
       this.allowedFileTypeNames = allowedFileTypeNames.toString()
       this.maxBlobSize = res.maxBlobSize
-      console.log('获取图片容器', imagemess, this.fileCells );
+     // console.log('获取图片容器', imagemess, this.fileCells );
     })
   }
   previewImage: string | undefined = '';

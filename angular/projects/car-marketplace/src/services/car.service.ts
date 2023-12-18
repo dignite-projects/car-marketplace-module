@@ -17,7 +17,7 @@ export class CarService {
         StatusOptions.map((el:any) => {
           el.displayName=carStatusName[el.key]
         })
-        console.log('StatusOptions',StatusOptions);
+       // console.log('StatusOptions',StatusOptions);
         
         resolve(new Array(...StatusOptions))
       })

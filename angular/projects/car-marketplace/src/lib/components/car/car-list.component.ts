@@ -69,12 +69,8 @@ export class CarListComponent {
       skipCount: this.skipCount * this.maxResultCount,
       maxResultCount: this.maxResultCount
     }).subscribe(async(res) => {
-     
-      // this.BrandChange(this.brandID)
-      // this.ModelChange(this.modelID)
-
       let brandList:any[any] = await this.getBrandList()
-      console.log(res, '获取二手车列表',brandList);
+     // console.log(res, '获取二手车列表',brandList);
       res.items.map(async(el:any)=>{
         el.brand=brandList.find(elb=>elb.id==el.brandId)
         let modelList:any[any] = await this.getModelList(el.brandId)
@@ -82,8 +78,6 @@ export class CarListComponent {
         let trimList:any[any] = await this.gettrimList(el.modelId)
         el.trim=trimList.find(elb=>elb.id==el.trimId)
       })
-
-
       this.UsedCarList = res.items
       this.pageTotal = res.totalCount
     })
@@ -95,17 +89,15 @@ export class CarListComponent {
   getBrandList() {
     return new Promise((resolve, rejects) => {
       this.BrandService.getList().subscribe((res:any) => {
-        console.log(res.items, '获取品牌列表');
+       // console.log(res.items, '获取品牌列表');
         resolve(new Array(...res.items))
       })
     })
   }
   /**品牌列表改变 */
   async BrandChange(event) {
-    console.log('品牌列表改变', event);
+   // console.log('品牌列表改变', event);
     this.modelList = await this.getModelList(event)
-    // this.modelID=''
-    // this.search.trimId=''
   }
   /**获取车型列表 */
   getModelList(brandId) {
@@ -113,7 +105,6 @@ export class CarListComponent {
       this.ModelService.getList({
         brandId: brandId
       }).subscribe(res => {
-        // console.log(res.items, '获取车型列表');
         resolve(new Array(...res.items))
       })
     })
@@ -121,7 +112,6 @@ export class CarListComponent {
   /**车型列表选择改变 */
   async ModelChange(event) {
     this.trimList = await this.gettrimList(event)
-    // this.search.trimId=''
   }
   /**获取车款列表 */
   gettrimList(ModelId) {
@@ -129,7 +119,6 @@ export class CarListComponent {
       this.TrimService.getList({
         modelId: ModelId
       }).subscribe(res => {
-        // console.log(res.items, '获取车款列表');
         resolve(new Array(...res.items))
       })
     })
@@ -142,13 +131,11 @@ export class CarListComponent {
 
   /**编辑 */
   EditUsedCar(data) {
-    // const FieldGroupActive_id = this.FieldGroupActive_id
     const params: NavigationExtras = {
       queryParams: {
         usedCarId: data.id
       }, // 传递的参数
     };
-    // this.router.navigate(['/dynamic-forms/fields/create'], params)
     this.router.navigate(['/car-marketplace/car/create'], params)
   }
   /**删除二手车 */
@@ -158,7 +145,6 @@ export class CarListComponent {
       nzContent: `<b style="color: red;">${data.name}</b>`,
       nzOkText: '确认',
       nzOkType: 'primary',
-      // nzOkDanger: true,
       nzOnOk: () => {
         const messageid = this.message.loading('删除中', { nzDuration: 0 }).messageId;
         this._UsedCarService.delete(data.id).subscribe(res => {

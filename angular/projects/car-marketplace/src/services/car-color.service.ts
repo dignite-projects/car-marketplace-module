@@ -10,12 +10,6 @@ import { CarColor, CarColorOptions } from 'projects/car-marketplace/config/src/e
 export class CarColorService {
 
   constructor() { 
-    // for(let item in CarColor){
-      console.log(CarColorOptions,'1222222');
-      
-      
-    // }
-    
   }
   CarColor:any[]=[]
   ngOnInit(): void {

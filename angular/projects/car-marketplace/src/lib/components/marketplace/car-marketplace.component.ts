@@ -52,14 +52,13 @@ export class CarMarketplaceComponent {
   /**获取车商信息 */
   getCarMarketplace() {
     this.DealerServiceplatform.findByCurrentUser().subscribe(async (res) => {
-      // console.log('获取车商信息', res)
       this.carMarketplace = res
       this.fileListView_show=[]
       /**问题 */
       setTimeout(async()=>{
         this.fileListView_show= await this.getImage(res.id)
       },200)
-      console.log('获取车商信息', res, this.fileListView)
+     // console.log('获取车商信息', res, this.fileListView)
     })
   }
 
@@ -81,7 +80,6 @@ export class CarMarketplaceComponent {
         await this.requestImage(
           {
             containerName: 'DealerCover',
-            // cellName: 'cover',
             entityId: this.carMarketplace.id,
           }, formData
         )
@@ -91,7 +89,7 @@ export class CarMarketplaceComponent {
   }
   /**点击确定回调-新建站点 */
   handleOk(): void {
-    console.log('Button ok clicked!', this.manageConfig, this.fileList);
+   // console.log('Button ok clicked!', this.manageConfig, this.fileList);
 
     let data = this.manageConfig
     this.modal.confirm({
@@ -99,7 +97,6 @@ export class CarMarketplaceComponent {
       nzContent: `<b style="color: red;">${data.name}</b>`,
       nzOkText: '确认',
       nzOkType: 'primary',
-      // nzOkDanger: true,
       nzOnOk: () => {
         const messageid = this.message.loading('提交中', { nzDuration: 0 }).messageId;
 
@@ -132,8 +129,7 @@ export class CarMarketplaceComponent {
   }
   /**点击遮罩层或右上角叉或取消按钮的回调-新建字段集合模态框 */
   handleCancel(): void {
-    console.log('Button cancel clicked!');
-    // this.isNewGroup = false;
+   // console.log('Button cancel clicked!');
     this.closeModal();
   }
   /**关闭模态框 */
@@ -183,7 +179,7 @@ export class CarMarketplaceComponent {
       this.http
         .request(req)
         .pipe(filter(e => e instanceof HttpResponse)).subscribe((back) => {
-          console.log(back, '上传图片返回');
+         // console.log(back, '上传图片返回');
           resolve(back)
         })
 
@@ -194,7 +190,7 @@ export class CarMarketplaceComponent {
   UploadFlieChange(files) {
     let filesdispose = this.readFile(files.target.files)
     this.fileList = filesdispose
-    console.log('上传图片改变', files, filesdispose);
+   // console.log('上传图片改变', files, filesdispose);
   }
   previewImage: string | undefined = '';
   previewVisible = false;
@@ -212,18 +208,8 @@ export class CarMarketplaceComponent {
       this.fileListView = []
       this.deleteimg.push(item)
     }
-    console.log(item, finame, '删除图片', this.deleteimg);
-    
-    // // item=[]
-    // // let deleteimg = []
-    // this.fileCells.map(async (el) => {
-    //   if (el.name === item.name) {
-    //     if (finame == 'fileListView') {
-    //       this.deleteimg.push(...el[finame])
-    //     }
-    //     el[finame] = []
-    //   }
-    // })
+   // console.log(item, finame, '删除图片', this.deleteimg);
+ 
   }
    /***删除指定照片 */
    requestDeleteimg() {

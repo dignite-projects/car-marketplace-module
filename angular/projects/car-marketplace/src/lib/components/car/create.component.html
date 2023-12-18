@@ -84,6 +84,14 @@
                                 <nz-tag nzMode="checkable" [nzChecked]="CarCreateGroup.tags.includes(item.key)"
                                     (nzCheckedChange)="checkChange($event,item.key)">{{item.key}}</nz-tag>
                             </ng-container>
+                            <nz-tag *ngIf="!taInputVisible" class="editable-tag" nzNoAnimation (click)="showInput()">
+                                <span nz-icon nzType="plus"></span>
+                                新建标签
+                            </nz-tag>
+                            <input #inputElement nz-input nzSize="small" *ngIf="taInputVisible" type="text"
+                                [(ngModel)]="tagInputValue" name="Addtag" style="width: 78px;" (blur)="handleInputConfirm()"
+                                (keydown.enter)="handleInputConfirm()" />
+    
 
                         </nz-form-control>
                     </nz-form-item>
@@ -128,10 +136,10 @@
                         </nz-form-control>
                     </nz-form-item>
                     <nz-form-item>
-                        <nz-form-label [nzSpan]="24" nzFor="totalMileage" nzRequired>总公里(万)</nz-form-label>
+                        <nz-form-label [nzSpan]="24" nzFor="totalMileage" nzRequired>总里程(公里数)</nz-form-label>
                         <nz-form-control [nzErrorTip]="combineTpl">
                             <nz-input-number field [(ngModel)]="CarCreateGroup.totalMileage" [nzMin]="0"
-                                name="totalMileage" nzPlaceHolder="请填写总公里" required></nz-input-number>
+                                name="totalMileage" nzPlaceHolder="总里程" required></nz-input-number>
                         </nz-form-control>
                     </nz-form-item>
                     <nz-form-item>

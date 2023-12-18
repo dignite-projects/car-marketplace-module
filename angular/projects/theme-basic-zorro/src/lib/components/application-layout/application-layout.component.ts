@@ -19,7 +19,7 @@ export class ApplicationLayoutComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.service.subscribeWindowSize();
-    console.log(this.service.smallScreen);
+   // console.log(this.service.smallScreen);
     
   }
 

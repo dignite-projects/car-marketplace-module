@@ -52,15 +52,7 @@ export class SaleCarComponent {
       })
       
     })
-    // this._UsedCarService.getList({
-    //   ...this.search,
-    //   sorting: '',
-    //   skipCount: this.skipCount * this.maxResultCount,
-    //   maxResultCount: this.maxResultCount
-    // }).subscribe(res => {
-    //   console.log(res, '获取二手车列表');
-     
-    // })
+  
   }
 
 

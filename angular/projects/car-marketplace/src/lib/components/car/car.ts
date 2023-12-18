@@ -9,7 +9,7 @@ export class CarConfig {
     "status": number =1
     /**初次上牌日期 */
     "registrationDate": string
-    /**总公里(万) */
+    /**总里程(公里数) */
     "totalMileage": number
     /**过户次数 */
     "transfersCount": number=1

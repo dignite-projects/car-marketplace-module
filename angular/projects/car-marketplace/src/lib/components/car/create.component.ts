@@ -1,6 +1,6 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 /* eslint-disable @angular-eslint/use-lifecycle-interface */
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CarConfig } from './car';
 // import { BrandService, ModelService, TrimService } from 'projects/car-marketplace/proxy/public/cars';
 import { async } from '@angular/core/testing';
@@ -60,7 +60,7 @@ export class CreateComponent {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.route.queryParams.subscribe(async (params) => {
-      console.log(params, '跳转页面接收数据');
+     // console.log(params, '跳转页面接收数据');
 
       this.brandList = await this.getBrandList()
       this.carStatusList = await this.CarService.getcarStatusName()
@@ -112,13 +112,18 @@ export class CreateComponent {
   getUsedCarDetail() {
     return new Promise((resolve, rejects) => {
       this._UsedCarService.get(this.usedCarId).subscribe(async(res: any) => {
-        console.log(res, '获取二手车详情', this.fileCells);
+       // console.log(res, '获取二手车详情', this.fileCells);
         this.brandID = res.brandId
-        // this.BrandChange(this.brandID)
         this.modelList = await this.getModelList(res.brandId)
-        // this.ModelChange(this.modelID)
         this.modelID = res.modelId
         this.trimList = await this.gettrimList(res.modelId)
+        res.tags.map(elt=>{
+          if(this.TagsList.findIndex(el=>el.key===elt)==-1){
+            this.TagsList.push({
+              key:elt
+            })
+          }
+        })
         this.CarCreateGroup = new CarConfig({ ...res })
         resolve(res)
       })
@@ -129,7 +134,7 @@ export class CreateComponent {
   getBrandList() {
     return new Promise((resolve, rejects) => {
       this.BrandService.getList().subscribe(res => {
-        console.log(res.items, '获取品牌列表');
+       // console.log(res.items, '获取品牌列表');
         resolve(new Array(...res.items))
       })
     })
@@ -137,7 +142,7 @@ export class CreateComponent {
   /**品牌列表改变 */
   async BrandChange(event) {
     this.modelList = await this.getModelList(event)
-    console.log('品牌列表改变', event, this.modelList);
+   // console.log('品牌列表改变', event, this.modelList);
     this.CarCreateGroup.name = ''
     this.modelID = ''
     this.CarCreateGroup.trimId = ''
@@ -148,9 +153,8 @@ export class CreateComponent {
       this.ModelService.getList({
         brandId: brandId
       }).subscribe(async (res) => {
-        console.log(res.items,'获取车型列表',);
+       // console.log(res.items,'获取车型列表',);
         this._modelList_copy = res.items
-        // let list: any = await this.getgropuValue(res.items, 'group')
         resolve(new Array(...res.items))
       })
     })
@@ -172,13 +176,12 @@ export class CreateComponent {
         })
       })
       resolve(list)
-      // return list
     })
   }
   /**车型列表选择改变 */
   async ModelChange(event) {
     this.trimList = await this.gettrimList(event)
-    console.log('车型列表选择改变', event, this.trimList);
+   // console.log('车型列表选择改变', event, this.trimList);
     this.CarCreateGroup.name = ''
     this.CarCreateGroup.trimId = ''
   }
@@ -190,7 +193,6 @@ export class CreateComponent {
       }).subscribe(async (res) => {
         this._trimList_copy = res.items
         let list: any = await this.getgropuValue(res.items, 'year')
-        // console.log(res.items, '获取车款列表',trimList);
         resolve(new Array(...list))
       })
     })
@@ -199,8 +201,7 @@ export class CreateComponent {
   trimChange(event) {
     let findbrand = this.brandList.find((el) => el.id === this.brandID)
     let findtrim = this._trimList_copy.find((el) => el.id === event)
-    console.log('车款列表选择', event, findbrand, findtrim);
-    // this.setUsedCarName()
+   // console.log('车款列表选择', event, findbrand, findtrim);
     this.CarCreateGroup.name = `${findbrand.name} ${findtrim.year}${findtrim.name}`
   }
 
@@ -214,12 +215,11 @@ export class CreateComponent {
         })
 
         let imagemess = await this.getImage(this.usedCarId)
-        console.log('获取图片容器', imagemess, this.usedCarId);
+       // console.log('获取图片容器', imagemess, this.usedCarId);
 
         imagemess.map(el => {
           el.src = el.url
         })
-        // console.log('获取图片信息',new Array(...imagemess));
         await res.fileCells.map(async (el: any) => {
           el.fileList = []
           el.fileListView = imagemess.filter(elV => elV.cellName === el.name)
@@ -246,36 +246,61 @@ export class CreateComponent {
     })
   }
 
+ 
   /** 标签*/
-
   checkChange(e: boolean, key: string): void {
-    console.log(e, '标签', key);
-    if (e) {
-      this.CarCreateGroup.tags.push(key)
-    } else {
-      this.CarCreateGroup.tags.splice(this.CarCreateGroup.tags.includes(key), 1)
-    }
+    e ? this.CarCreateGroup.tags.push(key) : this.CarCreateGroup.tags.splice(this.CarCreateGroup.tags.indexOf(key), 1)
   }
+
+  taInputVisible = false;
+  tagInputValue = '';
+  @ViewChild('inputElement', { static: false }) inputElement?: ElementRef;
+
+
+
+  handleClose(removedTag: {}): void {
+  }
+
+  sliceTagName(tag: string): string {
+    const isLongTag = tag.length > 20;
+    return isLongTag ? `${tag.slice(0, 20)}...` : tag;
+  }
+
+  showInput(): void {
+
+    this.taInputVisible = true;
+    setTimeout(() => {
+      this.inputElement?.nativeElement.focus();
+    }, 10);
+  }
+
+  handleInputConfirm(): void {
+    if (this.tagInputValue && this.TagsList.findIndex(el => el.key === this.tagInputValue) === -1) {
+      this.TagsList = [...this.TagsList, {
+        key: this.tagInputValue
+      }];
+    }
+    this.tagInputValue = '';
+    this.taInputVisible = false;
+  }
+
 
 
   /**提交 */
   submitCreate() {
-    console.log('提交表单', this.brandID, this.CarCreateGroup, this.fileCells, '需要删除的图片', this.deleteimg);
+   // console.log('提交表单', this.brandID, this.CarCreateGroup, this.fileCells, '需要删除的图片', this.deleteimg);
 // return
     if (this.isEdit) {
       this.modal.confirm({
         nzTitle: '确定要更新这个二手车信息吗',
-        // nzContent: `<b style="color: red;">${data.name}</b>`,
         nzOkText: '确认',
         nzOkType: 'primary',
-        // nzOkDanger: true,
         nzOnOk: () => {
           const messageid = this.message.loading('更新中', { nzDuration: 0 }).messageId;
           this._UsedCarService.update(this.usedCarId, {
             ...this.CarCreateGroup
           }).subscribe(res => {
             setTimeout(async () => {
-              // await this.requestDeleteimg()
               await this.requestDeleteimg()
 
               await this.reqfengzhaung()
@@ -294,10 +319,8 @@ export class CreateComponent {
     }
     this.modal.confirm({
       nzTitle: '确定要提交这个二手车吗',
-      // nzContent: `<b style="color: red;">${data.name}</b>`,
       nzOkText: '确认',
       nzOkType: 'primary',
-      // nzOkDanger: true,
       nzOnOk: () => {
         const messageid = this.message.loading('提交中', { nzDuration: 0 }).messageId;
         this._UsedCarService.create({
@@ -364,7 +387,7 @@ export class CreateComponent {
       this.http
         .request(req)
         .pipe(filter(e => e instanceof HttpResponse)).subscribe((back) => {
-          console.log(back, '上传图片返回');
+         // console.log(back, '上传图片返回');
           resolve(back)
         })
 
@@ -382,7 +405,6 @@ export class CreateComponent {
         elc.fileList = filesdispose
       }
     })
-    // console.log('上传图片改变', files, item, filesdispose, this.fileCells);
   }
   previewImage: string | undefined = '';
   previewVisible = false;
@@ -393,17 +415,21 @@ export class CreateComponent {
 
   /**删除图片*/
   deleteImage(item, finame) {
-    console.log(item, finame, '删除图片');
-    // item=[]
-    // let deleteimg = []
-  
+   // console.log(item, finame, '删除图片');
+    this.fileCells.map(async (el) => {
+      if (el.name === item.name) {
+        if (finame == 'fileListView') {
+          this.deleteimg.push(...el[finame])
+        }
+        el[finame] = []
+      }
+    })
   }
   /***/
   /* 读取文件信息 */
   readFile(files: any) {
     let _that = this
     let filesArray = []
-    // return files
     Array.from(files).forEach((item: any, index: any) => {
       item.src = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(item));
       filesArray.push(item)

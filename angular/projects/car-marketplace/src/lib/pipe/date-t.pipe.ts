@@ -6,16 +6,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class DateTPipe implements PipeTransform {
 
   transform(date: Date,type:string, ...args: unknown[]): unknown {
-    // console.log(date,args,'222222222222');
     
     if (!date) {
 			return ''
 		}
 		date = new Date(date)
-		// if (offset) {
-		// 	let offset = date.getTimezoneOffset();
-		// 	date = new Date(date.getTime() - offset * 60 * 1000);
-		// }
+		
 		let year = date.getFullYear()
 		let month = date.getMonth() + 1
 		let day = date.getDate()
