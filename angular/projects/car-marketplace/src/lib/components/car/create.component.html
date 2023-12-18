@@ -80,19 +80,28 @@
                     <nz-form-item>
                         <nz-form-label [nzSpan]="24" nzFor="trimId" nzRequired>标签</nz-form-label>
                         <nz-form-control [nzErrorTip]="combineTpl">
-                            <ng-container *ngFor="let item of TagsList">
-                                <nz-tag nzMode="checkable" [nzChecked]="CarCreateGroup.tags.includes(item.key)"
-                                    (nzCheckedChange)="checkChange($event,item.key)">{{item.key}}</nz-tag>
-                            </ng-container>
-                            <nz-tag *ngIf="!taInputVisible" class="editable-tag" nzNoAnimation (click)="showInput()">
-                                <span nz-icon nzType="plus"></span>
-                                新建标签
-                            </nz-tag>
-                            <input #inputElement nz-input nzSize="small" *ngIf="taInputVisible" type="text"
-                                [(ngModel)]="tagInputValue" name="Addtag" style="width: 78px;" (blur)="handleInputConfirm()"
-                                (keydown.enter)="handleInputConfirm()" />
-    
-
+                            <div class="margin-lr-xs">
+                                <ng-container *ngFor="let item of CarCreateGroup.tags">
+                                    <nz-tag nzMode="closeable" [nzChecked]="true" [nzColor]="'blue'"
+                                        (nzOnClose)="checkClose(item)">{{item}}</nz-tag>
+                                </ng-container>
+                            </div>
+                            <div class="margin-lr-xs" style="margin: 10px 20px !important;">
+                                <div style="margin: 10px auto;">预设：</div>
+                                <div >
+                                    <ng-container *ngFor="let item of TagsList; let i=index">
+                                        <nz-tag (click.stop)="checkChange(item)" (nzOnClose)="storageClose(item)" [nzMode]="!TagsListyushe.includes(item)?'closeable':''" >{{item}}</nz-tag>
+                                    </ng-container>
+                                    <nz-tag *ngIf="!taInputVisible" class="editable-tag" nzNoAnimation
+                                        (click.stop)="showInput()" >
+                                        <span nz-icon nzType="plus"></span>
+                                        新建标签
+                                    </nz-tag>
+                                    <input #inputElement nz-input nzSize="small" *ngIf="taInputVisible" type="text"
+                                        [(ngModel)]="tagInputValue" name="Addtag" style="width: 78px;"
+                                        (blur)="handleInputConfirm()" (keydown.enter)="handleInputConfirm()" />
+                                </div>
+                            </div>
                         </nz-form-control>
                     </nz-form-item>
                     <nz-form-item>

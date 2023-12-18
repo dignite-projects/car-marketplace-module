@@ -22,6 +22,7 @@ import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
 import { CarColorService } from 'projects/car-marketplace/src/services/car-color.service';
 import { CarColorOptions } from 'projects/car-marketplace/config/src/enums/car-color';
 import { TagsOptions } from 'projects/car-marketplace/config/src/enums/tags';
+import { TagsService } from 'projects/car-marketplace/src/services/tags.service';
 
 
 
@@ -50,7 +51,8 @@ export class CreateComponent {
     private sanitizer: DomSanitizer,
     private http: HttpClient,
     private msg: NzMessageService,
-    private _CarColorService: CarColorService
+    private _CarColorService: CarColorService,
+    private _TagsService: TagsService
   ) {
 
   }
@@ -60,7 +62,7 @@ export class CreateComponent {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.route.queryParams.subscribe(async (params) => {
-     // console.log(params, '跳转页面接收数据');
+      // console.log(params, '跳转页面接收数据');
 
       this.brandList = await this.getBrandList()
       this.carStatusList = await this.CarService.getcarStatusName()
@@ -83,8 +85,8 @@ export class CreateComponent {
   /**颜色列表 */
   CarColorList: any[] = CarColorOptions
   /** Tags列表 */
-  TagsList: any[] = TagsOptions
-
+  TagsList: any[] = this._TagsService.getTagList()
+  TagsListyushe: any[] = this._TagsService.TagsList
   /**车型ID */
   modelID: string = ''
   /**车型列表 */
@@ -111,19 +113,14 @@ export class CreateComponent {
   /**获取二手车详情 */
   getUsedCarDetail() {
     return new Promise((resolve, rejects) => {
-      this._UsedCarService.get(this.usedCarId).subscribe(async(res: any) => {
-       // console.log(res, '获取二手车详情', this.fileCells);
+      this._UsedCarService.get(this.usedCarId).subscribe(async (res: any) => {
+        // console.log(res, '获取二手车详情', this.fileCells);
         this.brandID = res.brandId
         this.modelList = await this.getModelList(res.brandId)
         this.modelID = res.modelId
         this.trimList = await this.gettrimList(res.modelId)
-        res.tags.map(elt=>{
-          if(this.TagsList.findIndex(el=>el.key===elt)==-1){
-            this.TagsList.push({
-              key:elt
-            })
-          }
-        })
+        let getTagList = this._TagsService.getTagList()
+        this.TagsList = getTagList.filter(item => res.tags.indexOf(item) === -1)
         this.CarCreateGroup = new CarConfig({ ...res })
         resolve(res)
       })
@@ -134,7 +131,7 @@ export class CreateComponent {
   getBrandList() {
     return new Promise((resolve, rejects) => {
       this.BrandService.getList().subscribe(res => {
-       // console.log(res.items, '获取品牌列表');
+        // console.log(res.items, '获取品牌列表');
         resolve(new Array(...res.items))
       })
     })
@@ -142,7 +139,7 @@ export class CreateComponent {
   /**品牌列表改变 */
   async BrandChange(event) {
     this.modelList = await this.getModelList(event)
-   // console.log('品牌列表改变', event, this.modelList);
+    // console.log('品牌列表改变', event, this.modelList);
     this.CarCreateGroup.name = ''
     this.modelID = ''
     this.CarCreateGroup.trimId = ''
@@ -153,7 +150,7 @@ export class CreateComponent {
       this.ModelService.getList({
         brandId: brandId
       }).subscribe(async (res) => {
-       // console.log(res.items,'获取车型列表',);
+        // console.log(res.items,'获取车型列表',);
         this._modelList_copy = res.items
         resolve(new Array(...res.items))
       })
@@ -181,7 +178,7 @@ export class CreateComponent {
   /**车型列表选择改变 */
   async ModelChange(event) {
     this.trimList = await this.gettrimList(event)
-   // console.log('车型列表选择改变', event, this.trimList);
+    // console.log('车型列表选择改变', event, this.trimList);
     this.CarCreateGroup.name = ''
     this.CarCreateGroup.trimId = ''
   }
@@ -201,7 +198,7 @@ export class CreateComponent {
   trimChange(event) {
     let findbrand = this.brandList.find((el) => el.id === this.brandID)
     let findtrim = this._trimList_copy.find((el) => el.id === event)
-   // console.log('车款列表选择', event, findbrand, findtrim);
+    // console.log('车款列表选择', event, findbrand, findtrim);
     this.CarCreateGroup.name = `${findbrand.name} ${findtrim.year}${findtrim.name}`
   }
 
@@ -215,7 +212,7 @@ export class CreateComponent {
         })
 
         let imagemess = await this.getImage(this.usedCarId)
-       // console.log('获取图片容器', imagemess, this.usedCarId);
+        // console.log('获取图片容器', imagemess, this.usedCarId);
 
         imagemess.map(el => {
           el.src = el.url
@@ -246,28 +243,48 @@ export class CreateComponent {
     })
   }
 
- 
-  /** 标签*/
-  checkChange(e: boolean, key: string): void {
-    e ? this.CarCreateGroup.tags.push(key) : this.CarCreateGroup.tags.splice(this.CarCreateGroup.tags.indexOf(key), 1)
+
+
+  /** 标签选择*/
+  checkChange(key: string): void {
+    console.log('标签选择', key);
+    if (this.isdelete) return
+    if (this.CarCreateGroup.tags.indexOf(key) === -1) {
+      this.CarCreateGroup.tags.push(key)
+      this.TagsList.splice(this.TagsList.indexOf(key), 1)
+    }
+
+  }
+  /**标签删除 */
+  checkClose(key: string): void {
+    console.log('标签删除');
+    this.CarCreateGroup.tags.splice(this.CarCreateGroup.tags.indexOf(key), 1)
+    let getTagList = this._TagsService.getTagList()
+    if (getTagList.indexOf(key) == -1) {
+      this._TagsService.pushstorageTags(key)
+    }
+    this.TagsList = this._TagsService.getTagList().filter(item => this.CarCreateGroup.tags.indexOf(item) === -1)
+  }
+  /**删除缓存的tag */
+  storageClose(item) {
+    console.log('删除缓存的tag', item);
+    this.isdelete = true
+    this._TagsService.deleteTag(item).then(() => {
+      this.isdelete = false
+      this.TagsList = this._TagsService.getTagList()
+    })
   }
 
+  // tags = ['Unremovable', 'Tag 2', 'Tag 3'];
   taInputVisible = false;
   tagInputValue = '';
+  isdelete: boolean = false
   @ViewChild('inputElement', { static: false }) inputElement?: ElementRef;
 
 
 
-  handleClose(removedTag: {}): void {
-  }
-
-  sliceTagName(tag: string): string {
-    const isLongTag = tag.length > 20;
-    return isLongTag ? `${tag.slice(0, 20)}...` : tag;
-  }
-
+  /**显示输入框 */
   showInput(): void {
-
     this.taInputVisible = true;
     setTimeout(() => {
       this.inputElement?.nativeElement.focus();
@@ -275,10 +292,9 @@ export class CreateComponent {
   }
 
   handleInputConfirm(): void {
-    if (this.tagInputValue && this.TagsList.findIndex(el => el.key === this.tagInputValue) === -1) {
-      this.TagsList = [...this.TagsList, {
-        key: this.tagInputValue
-      }];
+    if (this.tagInputValue && this.TagsList.indexOf(this.tagInputValue) === -1) {
+      this.CarCreateGroup.tags.push(this.tagInputValue)
+      this._TagsService.pushstorageTags(this.tagInputValue)
     }
     this.tagInputValue = '';
     this.taInputVisible = false;
@@ -288,8 +304,8 @@ export class CreateComponent {
 
   /**提交 */
   submitCreate() {
-   // console.log('提交表单', this.brandID, this.CarCreateGroup, this.fileCells, '需要删除的图片', this.deleteimg);
-// return
+    // console.log('提交表单', this.brandID, this.CarCreateGroup, this.fileCells, '需要删除的图片', this.deleteimg);
+    // return
     if (this.isEdit) {
       this.modal.confirm({
         nzTitle: '确定要更新这个二手车信息吗',
@@ -387,7 +403,7 @@ export class CreateComponent {
       this.http
         .request(req)
         .pipe(filter(e => e instanceof HttpResponse)).subscribe((back) => {
-         // console.log(back, '上传图片返回');
+          // console.log(back, '上传图片返回');
           resolve(back)
         })
 
@@ -415,7 +431,7 @@ export class CreateComponent {
 
   /**删除图片*/
   deleteImage(item, finame) {
-   // console.log(item, finame, '删除图片');
+    // console.log(item, finame, '删除图片');
     this.fileCells.map(async (el) => {
       if (el.name === item.name) {
         if (finame == 'fileListView') {

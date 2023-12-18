@@ -136,4 +136,12 @@ $borderBottomColor: #00000020;
 
 ::ng-deep.anticon {
     display: inline-flex;
+    
+}
+::ng-deep.ant-tag {
+    margin: 5px !important;
+}
+.margin-lr-xs{
+    margin-left: 10px !important;
+    margin-right: 10px !important;
 }
