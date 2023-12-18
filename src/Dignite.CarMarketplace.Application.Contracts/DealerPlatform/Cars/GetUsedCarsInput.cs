@@ -8,7 +8,6 @@ namespace Dignite.CarMarketplace.DealerPlatform.Cars
     {
         public string? Filter { get; set; }
 
-
         public CarStatus? Status { get; set; }
     }
 }

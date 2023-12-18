@@ -7,6 +7,10 @@ namespace Dignite.CarMarketplace.DealerPlatform.Cars
 {
     public class UsedCarDto: CreationAuditedEntityDto<Guid>
     {
+        /// <summary>
+        /// 车源编号
+        /// </summary>
+        public int UsedCarId { get; set; }
 
         /// <summary>
         /// 汽车品牌Id

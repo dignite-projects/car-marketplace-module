@@ -10,6 +10,11 @@ namespace Dignite.CarMarketplace.Public.Cars
     public class UsedCarDto: CreationAuditedEntityDto<Guid>
     {
         /// <summary>
+        /// 车源编号
+        /// </summary>
+        public int UsedCarId { get; set; }
+
+        /// <summary>
         /// 汽车品牌Id
         /// </summary>
         public Guid BrandId { get; set; }

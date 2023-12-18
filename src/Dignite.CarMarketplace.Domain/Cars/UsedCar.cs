@@ -15,9 +15,12 @@ namespace Dignite.CarMarketplace.Cars
         {
         }
 
-        public UsedCar(Guid id,  Trim trim, string name, string description, Guid dealerId, DateTime registrationDate, float totalMileage, int transfersCount, DateTime? compulsoryInsuranceExpirationDate, DateTime? commercialInsuranceExpirationDate, string color, float price, Guid? tenantId)
+        public UsedCar(Guid id, int usedCarId,  Trim trim, string name, string description, Guid dealerId, DateTime registrationDate, 
+            float totalMileage, int transfersCount, DateTime? compulsoryInsuranceExpirationDate, DateTime? commercialInsuranceExpirationDate, 
+            string color, float price, Guid? tenantId)
             :base(id)
         {
+            UsedCarId = usedCarId;
             BrandId = trim.Model.BrandId;
             ModelId = trim.ModelId;
             TrimId = trim.Id;
@@ -34,6 +37,10 @@ namespace Dignite.CarMarketplace.Cars
             TenantId = tenantId;
         }
 
+        /// <summary>
+        /// 车源编号
+        /// </summary>
+        public int UsedCarId { get; set; }
 
         /// <summary>
         /// 汽车品牌Id

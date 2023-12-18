@@ -1,4 +1,5 @@
 ﻿using Dignite.CarMarketplace.Cars;
+using Dignite.CarMarketplace.DealerPlatform.UsedCars;
 using Dignite.CarMarketplace.Dealers;
 using Microsoft.AspNetCore.Authorization;
 using System;
@@ -41,6 +42,7 @@ public class UsedCarAppService : CarMarketplaceAppService, IUsedCarAppService
         var trim = await _trimRepository.GetAsync(input.TrimId);
         var usedCar = new UsedCar(
             GuidGenerator.Create(),
+            UsedCarIdHelper.GenerateId(),
             trim,
             input.Name,input.Description,
             dealer.Id,
@@ -150,6 +152,10 @@ public class UsedCarAppService : CarMarketplaceAppService, IUsedCarAppService
             input.CompulsoryInsuranceExpirationDate,
             input.Color,
             input.Price);
+
+        //
+        await _entityTagManager.SetEntityTagsAsync(UsedCarConsts.EntityType, usedCar.Id.ToString(), input.Tags);
+
         return ObjectMapper.Map<UsedCar, UsedCarDto>(
             await _usedCarRepository.UpdateAsync(usedCar)
             );
