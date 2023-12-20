@@ -10,8 +10,8 @@
 <div class="card border-0 mt-5">
     <div class="row">
         <div class="col-5 col-md-2">
-            <img src="@($"/api/file-explorer/files/{BlobContainerConsts.DealerCoverContainerName}/{Model.Dealer.Id.ToString("N")}")" 
-                onerror="this.src='/Pages/CarMarketplace/Shared/dealer-error.jpg';"
+            <img src="@($"/api/file-explorer/files/{BlobContainerConsts.DealerCoverContainerName}/{Model.Dealer.Id.ToString("N")}?Width=200&Height=133")"
+                 onerror="this.src='/Pages/CarMarketplace/Shared/dealer-error.jpg';"
                  class="img-fluid rounded" alt="@(Model.Dealer.Name+"封面图")">
         </div>
         <div class="col-7 col-md-10">

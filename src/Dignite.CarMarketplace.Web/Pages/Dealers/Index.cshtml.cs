@@ -30,6 +30,7 @@ namespace Dignite.CarMarketplace.Web.Pages.Dealers
 
         public virtual async Task<ActionResult> OnGetAsync()
         {
+            GetDealersInput.DefaultMaxResultCount = 9;
             GetDealersInput.SkipCount = (CurrentPage - 1) * GetDealersInput.MaxResultCount;
             var pagedResult = await _dealerAppService.GetListAsync(GetDealersInput);
             Dealers = pagedResult.Items;
