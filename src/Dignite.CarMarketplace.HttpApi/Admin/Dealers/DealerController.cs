@@ -49,9 +49,9 @@ public class DealerController : CarMarketplaceController, IDealerAppService
     [HttpGet]
     [Route("as-excel-file")]
     [Authorize(CarMarketplacePermissions.Dealers.Management)]
-    public Task<IRemoteStreamContent> GetListAsExcelFileAsync(DealerExcelDownloadInput input)
+    public async Task<IRemoteStreamContent> GetListAsExcelFileAsync(DealerExcelDownloadInput input)
     {
-        throw new NotImplementedException();
+        return await _dealerAppService.GetListAsExcelFileAsync(input);
     }
 
     [HttpGet]
