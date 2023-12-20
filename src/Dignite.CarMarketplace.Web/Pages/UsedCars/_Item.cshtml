@@ -1,0 +1,29 @@
+﻿@using Dignite.CarMarketplace.BlobStoring
+@using Dignite.CarMarketplace.Web.Pages
+@inject CarMarketplacePageHelper CarMarketplacePageHelper
+@model Dignite.CarMarketplace.Public.Cars.UsedCarDto
+
+
+<div class="col">
+    <div class="card cmpl-card used-car-card bg-light shadow-sm">
+        <a href="@Url.Page("/UsedCars/Detail",new{Id=Model.Id})">
+            <img src="@($"/api/file-explorer/files/{BlobContainerConsts.CarPicsContainerName}/{Model.Id}/LeftFront?Width=400&Height=300")" class="card-img-top" alt="@(Model.Name+"左前45度图片")">
+        </a>
+        <div class="card-body position-relative d-flex flex-column">
+            <span class="badge rounded-pill bg-primary fw-normal fs-6 position-absolute top-0 start-50 translate-middle">￥@CarMarketplacePageHelper.GetPriceFormatText(Model.Price)</span>
+            <h6 class="card-title mt-2">
+                <a class="underline-animate" href="@Url.Page("/UsedCars/Detail",new{Id=Model.Id})">@Model.Name</a>
+            </h6>
+            <div class="row">
+                <div class="col-6">
+                    <small class="text-muted">上牌时间</small>
+                    <p class="mb-1">@Model.RegistrationDate.ToString("yyyy/MM")</p>
+                </div>
+                <div class="col-6">
+                    <small class="text-muted">表显里程</small>
+                    <p class="mb-1">@CarMarketplacePageHelper.GetMileageFormatText(Model.TotalMileage)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
