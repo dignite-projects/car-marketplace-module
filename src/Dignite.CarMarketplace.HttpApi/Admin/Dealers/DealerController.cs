@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp;
 using Volo.Abp.Application.Dtos;
+using Volo.Abp.Content;
 
 namespace Dignite.CarMarketplace.Admin.Dealers;
 
@@ -45,6 +46,13 @@ public class DealerController : CarMarketplaceController, IDealerAppService
         return await _dealerAppService.GetAsync(id);
     }
 
+    [HttpGet]
+    [Route("as-excel-file")]
+    [Authorize(CarMarketplacePermissions.Dealers.Management)]
+    public Task<IRemoteStreamContent> GetListAsExcelFileAsync(DealerExcelDownloadInput input)
+    {
+        throw new NotImplementedException();
+    }
 
     [HttpGet]
     [Authorize(CarMarketplacePermissions.Dealers.Management)]

@@ -37,7 +37,7 @@ public class EfCoreUsedCarRepository : EfCoreRepository<ICarMarketplaceDbContext
     }
 
     public async Task<int> GetCountAsync(
-        CarStatus? status = null, string filter = null, Guid? brandId = null, Guid? modelId = null, 
+        CarStatus? status = null, string filter = null, int? usedCarId = null, Guid? brandId = null, Guid? modelId = null, 
         Guid? dealerId = null, string color = null, DateTime? minRegistrationDate = null, DateTime? maxRegistrationDate = null, 
         float? minTotalMileage = null, float? maxTotalMileage = null, float? minPrice = null, float? maxPrice = null,
         string transmissionType = null, string powerType = null, string modelLevel = null, Guid[] ids = null,
@@ -47,7 +47,7 @@ public class EfCoreUsedCarRepository : EfCoreRepository<ICarMarketplaceDbContext
         {
             return 0;
         }
-        return await(await GetQueryableAsync(false,status, filter, brandId, modelId, dealerId, color,
+        return await(await GetQueryableAsync(false,status, filter, usedCarId, brandId, modelId, dealerId, color,
          minRegistrationDate, maxRegistrationDate, minTotalMileage, maxTotalMileage,
         minPrice, maxPrice, transmissionType, powerType, modelLevel, ids))
         .CountAsync(GetCancellationToken(cancellationToken));
@@ -55,7 +55,7 @@ public class EfCoreUsedCarRepository : EfCoreRepository<ICarMarketplaceDbContext
 
     public async Task<List<UsedCar>> GetListAsync(
         bool includeDetails = false,
-        CarStatus? status = null, string filter = null, Guid? brandId = null, Guid? modelId = null, 
+        CarStatus? status = null, string filter = null, int? usedCarId = null, Guid? brandId = null, Guid? modelId = null, 
         Guid? dealerId = null, string color = null, DateTime? minRegistrationDate = null, DateTime? maxRegistrationDate = null, 
         float? minTotalMileage = null, float? maxTotalMileage = null, float? minPrice = null, float? maxPrice = null, 
         string transmissionType = null, string powerType = null, string modelLevel = null, Guid[] ids = null,
@@ -65,7 +65,7 @@ public class EfCoreUsedCarRepository : EfCoreRepository<ICarMarketplaceDbContext
         {
             return new List<UsedCar>();
         }
-        return await(await GetQueryableAsync(includeDetails, status ,filter ,  brandId , modelId ,  dealerId , color ,
+        return await(await GetQueryableAsync(includeDetails, status ,filter, usedCarId, brandId , modelId ,  dealerId , color ,
          minRegistrationDate ,  maxRegistrationDate ,  minTotalMileage ,  maxTotalMileage ,
           minPrice ,  maxPrice , transmissionType , powerType , modelLevel , ids))
             .OrderBy(sorting.IsNullOrEmpty() ? $"{nameof(UsedCar.CreationTime)} desc" : sorting)
@@ -78,7 +78,7 @@ public class EfCoreUsedCarRepository : EfCoreRepository<ICarMarketplaceDbContext
     }
     protected virtual async Task<IQueryable<UsedCar>> GetQueryableAsync(
         bool includeDetails = false,
-         CarStatus? status = null, string filter = null, Guid? brandId = null, Guid? modelId = null, Guid? dealerId = null, string color = null, 
+         CarStatus? status = null, string filter = null, int? usedCarId = null, Guid? brandId = null, Guid? modelId = null, Guid? dealerId = null, string color = null, 
          DateTime? minRegistrationDate = null, DateTime? maxRegistrationDate = null, float? minTotalMileage = null, float? maxTotalMileage = null, 
          float? minPrice = null, float? maxPrice = null, string transmissionType = null, string powerType = null, string modelLevel = null, Guid[] ids = null)
     {
@@ -90,6 +90,7 @@ public class EfCoreUsedCarRepository : EfCoreRepository<ICarMarketplaceDbContext
         return queryable
             .WhereIf(status.HasValue, e => e.Status == status.Value)
             .WhereIf(!filter.IsNullOrEmpty(), e => e.Name.Contains(filter))
+            .WhereIf(usedCarId.HasValue, e => e.UsedCarId == usedCarId.Value)
             .WhereIf(brandId.HasValue, e => e.BrandId == brandId.Value)
             .WhereIf(modelId.HasValue, e => e.ModelId == modelId.Value)
             .WhereIf(dealerId.HasValue, e => e.DealerId == dealerId.Value)

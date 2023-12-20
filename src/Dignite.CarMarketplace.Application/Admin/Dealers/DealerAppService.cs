@@ -1,10 +1,14 @@
 ﻿using Dignite.CarMarketplace.Dealers;
 using Dignite.CarMarketplace.Permissions;
 using Microsoft.AspNetCore.Authorization;
+using MiniExcelLibs;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
+using Volo.Abp.Authorization;
+using Volo.Abp.Content;
 
 namespace Dignite.CarMarketplace.Admin.Dealers
 {
@@ -36,6 +40,18 @@ namespace Dignite.CarMarketplace.Admin.Dealers
         {
             var entity = await _dealerRepository.GetAsync(id);
             return ObjectMapper.Map<Dealer, DealerDto>(entity);
+        }
+
+        [Authorize(CarMarketplacePermissions.Dealers.Management)]
+        public async Task<IRemoteStreamContent> GetListAsExcelFileAsync(DealerExcelDownloadInput input)
+        {
+            var items = await _dealerRepository.GetListAsync(authenticationStatus: input.AuthenticationStatus);
+
+            var memoryStream = new MemoryStream();
+            await memoryStream.SaveAsAsync(ObjectMapper.Map<List<Dealer>, List<DealerExcelDto>>(items));
+            memoryStream.Seek(0, SeekOrigin.Begin);
+
+            return new RemoteStreamContent(memoryStream, "经销商列表.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         }
 
         [Authorize(CarMarketplacePermissions.Dealers.Management)]
