@@ -1,0 +1,35 @@
+<div page>
+    <div class="site-page-header-ghost-wrapper">
+        <nz-page-header [nzGhost]="false" nzBackIcon>
+            <nz-page-header-title>详情</nz-page-header-title>
+            <nz-page-header-extra *ngIf="false">
+                <nz-space>
+                    <button *nzSpaceItem nz-button nzType="primary">新建</button>
+                </nz-space>
+            </nz-page-header-extra>
+        </nz-page-header>
+    </div>
+    <div class="site_box" content>
+        
+        <div class="site_content">
+            <nz-descriptions nzBordered>
+                <nz-descriptions-item nzTitle="品牌分组" [nzSpan]="1">{{saleCarDetail.model?.group}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="车型" [nzSpan]="1">{{saleCarDetail.model?.name}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="总里程(公里数)">{{saleCarDetail.totalMileage}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="联系人">{{saleCarDetail.contactPerson}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="联系电话">{{saleCarDetail.contactNumber}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="地址">{{saleCarDetail.address}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="初次上牌日期"
+                    [nzSpan]="3">{{saleCarDetail.registrationDate|dateT:'yy-mm-dd'}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="创建时间	" [nzSpan]="3">
+                    {{saleCarDetail.creationTime|dateT:'yy-mm-dd hh:mm:ss'}}
+                </nz-descriptions-item>
+                <nz-descriptions-item nzTitle="描述" [nzSpan]="3">{{saleCarDetail.description}}</nz-descriptions-item>
+            </nz-descriptions>
+
+
+
+
+        </div>
+    </div>
+</div>
