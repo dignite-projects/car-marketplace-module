@@ -20,7 +20,7 @@ public class CarMarketplaceMenuContributor : IMenuContributor
 
         //Add main menu items.
         context.Menu.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.UsedCars, displayName: l["Menu:UsedCar"], "~/UsedCars"));
-        context.Menu.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.SaleCar, displayName: l["Menu:SaleCar"], "~/SaleCar"));
+        context.Menu.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.SaleUsedCar, displayName: l["Menu:SaleUsedCar"], "~/SaleUsedCar"));
         context.Menu.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.Dealers, displayName: l["Menu:Dealers"], "~/Dealers"));
 
         return Task.CompletedTask;

@@ -1,5 +1,6 @@
 using Dignite.Abp.AspNetCore.Mvc.UI.Theme.Pure;
 using Dignite.CarMarketplace.Localization;
+using Dignite.CarMarketplace.Menus;
 using Dignite.CarMarketplace.MultiTenancy;
 using Dignite.CarMarketplace.Web;
 using Microsoft.AspNetCore.Builder;
@@ -18,6 +19,7 @@ using Volo.Abp.AspNetCore.Authentication.OpenIdConnect;
 using Volo.Abp.AspNetCore.Mvc.Client;
 using Volo.Abp.AspNetCore.Mvc.Localization;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
+using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Toolbars;
 using Volo.Abp.AspNetCore.Mvc.UI.Theming;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Autofac;
@@ -82,6 +84,13 @@ public class CarMarketplaceWebHostModule : AbpModule
         Configure<AbpThemingOptions>(options =>
         {
             options.DefaultThemeName = PureTheme.Name;
+        });
+
+
+
+        Configure<AbpToolbarOptions>(options =>
+        {
+            options.Contributors.Add(new YuantongToolbarContributor());
         });
     }
 

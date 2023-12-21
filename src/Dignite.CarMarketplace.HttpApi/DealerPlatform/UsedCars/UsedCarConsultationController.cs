@@ -13,11 +13,11 @@ namespace Dignite.CarMarketplace.DealerPlatform.UsedCars
     [Area(CarMarketplaceRemoteServiceConsts.DealerPlatformModuleName)]
     [RemoteService(Name = CarMarketplaceRemoteServiceConsts.RemoteServiceName)]
     [Route("api/car-marketplace-dealer-platform/used-car-consultation")]
-    public class UsedCarConsultationController : CarMarketplaceController, IUsedCarConsultationAppService
+    public class UsedCarConsultationController : CarMarketplaceController, IBuyUsedCarAppService
     {
-        private readonly IUsedCarConsultationAppService _usedCarConsultationAppService;
+        private readonly IBuyUsedCarAppService _usedCarConsultationAppService;
 
-        public UsedCarConsultationController(IUsedCarConsultationAppService usedCarConsultationAppService)
+        public UsedCarConsultationController(IBuyUsedCarAppService usedCarConsultationAppService)
         {
             _usedCarConsultationAppService = usedCarConsultationAppService;
         }
@@ -25,14 +25,14 @@ namespace Dignite.CarMarketplace.DealerPlatform.UsedCars
         [HttpGet]
         [Route("{id}")]
         [Authorize]
-        public async Task<UsedCarConsultationDto> GetAsync(Guid id)
+        public async Task<BuyUsedCarDto> GetAsync(Guid id)
         {
             return await _usedCarConsultationAppService.GetAsync(id);
         }
 
         [HttpGet]
         [Authorize]
-        public async Task<PagedResultDto<UsedCarConsultationDto>> GetListAsync(GetUsedCarConsultationsInput input)
+        public async Task<PagedResultDto<BuyUsedCarDto>> GetListAsync(GetBuyUsedCarsInput input)
         {
             return await _usedCarConsultationAppService.GetListAsync(input);
         }

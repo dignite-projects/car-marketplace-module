@@ -15,19 +15,19 @@ namespace Dignite.CarMarketplace.Web.Pages.UsedCars
     {
         private readonly IUsedCarAppService _usedCarAppService;
         private readonly IFileDescriptorAppService _fileDescriptorAppService;
-        private readonly IConfigurationItemAppService _configurationItemAppService;
-        private readonly ITrimAppService _rimAppService;
+        private readonly ITrimConfigItemAppService _trimConfigItemAppService;
+        private readonly ITrimAppService _trimAppService;
 
         public DetailModel(
             IUsedCarAppService usedCarAppService, 
             IFileDescriptorAppService fileDescriptorAppService, 
-            IConfigurationItemAppService configurationItemAppService, 
-            ITrimAppService rimAppService)
+            ITrimConfigItemAppService trimConfigItemAppService, 
+            ITrimAppService trimAppService)
         {
             _usedCarAppService = usedCarAppService;
             _fileDescriptorAppService = fileDescriptorAppService;
-            _configurationItemAppService = configurationItemAppService;
-            _rimAppService = rimAppService;
+            _trimConfigItemAppService = trimConfigItemAppService;
+            _trimAppService = trimAppService;
         }
 
         [BindProperty(SupportsGet = true)]
@@ -35,10 +35,10 @@ namespace Dignite.CarMarketplace.Web.Pages.UsedCars
 
         public UsedCarDto UsedCar { get; set; }
         public DealerDto Dealer { get; set; }
-        public IReadOnlyList<ConfigurationItemDto> ConfigurationItems { get; set; }
-        public string[] ConfigurationGroups { get; set; }
+        public IReadOnlyList<TrimConfigItemDto> ConfigItems { get; set; }
+        public string[] ConfigGroups { get; set; }
         public TrimDto Trim { get; set; }
-        public UsedCarConsultationCreateDto UsedCarConsultationCreateInput { get; set; }
+        public BuyUsedCarCreateDto BuyUsedCarCreateInput { get; set; }
 
         public FileContainerConfigurationDto CarPicContainerConfiguration { get; set; }
 
@@ -46,18 +46,18 @@ namespace Dignite.CarMarketplace.Web.Pages.UsedCars
         {
             CarPicContainerConfiguration = await _fileDescriptorAppService.GetFileContainerConfigurationAsync(BlobContainerConsts.CarPicsContainerName);
             UsedCar = await _usedCarAppService.GetAsync(Id);
-            Trim = await _rimAppService.GetAsync(UsedCar.TrimId);
-            ConfigurationItems = await GetTrimConfigurationItems(Trim);
-            ConfigurationGroups = ConfigurationItems.Select(m => m.Group).Distinct().ToArray();
-            UsedCarConsultationCreateInput = new UsedCarConsultationCreateDto(Id);
+            Trim = await _trimAppService.GetAsync(UsedCar.TrimId);
+            ConfigItems = await GetTrimConfigurationItems(Trim);
+            ConfigGroups = ConfigItems.Select(m => m.Group).Distinct().ToArray();
+            BuyUsedCarCreateInput = new BuyUsedCarCreateDto(Id);
 
             return Page();
         }
 
-        private async Task<IReadOnlyList<ConfigurationItemDto>> GetTrimConfigurationItems(TrimDto trim)
+        private async Task<IReadOnlyList<TrimConfigItemDto>> GetTrimConfigurationItems(TrimDto trim)
         {
-            var trimConfigurationItems=new List<ConfigurationItemDto>();
-            var allConfigurationItems = (await _configurationItemAppService.GetListAsync()).Items;
+            var trimConfigurationItems=new List<TrimConfigItemDto>();
+            var allConfigurationItems = (await _trimConfigItemAppService.GetListAsync()).Items;
             foreach (var exp in trim.ExtraProperties)
             {
                 trimConfigurationItems.Add(allConfigurationItems.Single(ci => ci.Name == exp.Key));

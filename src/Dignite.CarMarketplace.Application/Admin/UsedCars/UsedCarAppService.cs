@@ -1,5 +1,6 @@
 ﻿using Dignite.CarMarketplace.Cars;
 using Dignite.CarMarketplace.Permissions;
+using Dignite.CarMarketplace.UsedCars;
 using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;

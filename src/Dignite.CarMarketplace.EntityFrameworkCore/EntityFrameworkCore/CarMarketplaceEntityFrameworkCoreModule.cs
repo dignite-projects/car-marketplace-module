@@ -24,13 +24,13 @@ public class CarMarketplaceEntityFrameworkCoreModule : AbpModule
         context.Services.AddAbpDbContext<CarMarketplaceDbContext>(options =>
         {
             options.AddRepository<Brand, EfCoreBrandRepository>();
-            options.AddRepository<ConfigurationItem, EfCoreConfigurationItemRepository>();
+            options.AddRepository<TrimConfigItem, EfCoreTrimConfigItemRepository>();
             options.AddRepository<Model, EfCoreModelRepository>();
             options.AddRepository<Trim, EfCoreTrimRepository>();
             options.AddRepository<Dealer, EfCoreDealerRepository>();
             options.AddRepository<UsedCar, EfCoreUsedCarRepository>();
-            options.AddRepository<SaleCar, EfCoreSaleCarRepository>();
-            options.AddRepository<UsedCarConsultation, EfCoreUsedCarConsultationRepository>();
+            options.AddRepository<SaleUsedCar, EfCoreSaleCarRepository>();
+            options.AddRepository<BuyUsedCar, EfCoreBuyUsedCarRepository>();
         });
     }
 }

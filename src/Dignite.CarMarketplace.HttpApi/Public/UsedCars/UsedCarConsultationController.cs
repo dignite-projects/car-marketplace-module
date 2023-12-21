@@ -7,17 +7,17 @@ namespace Dignite.CarMarketplace.Public.UsedCars
     [Area(CarMarketplaceRemoteServiceConsts.DealerPlatformModuleName)]
     [RemoteService(Name = CarMarketplaceRemoteServiceConsts.RemoteServiceName)]
     [Route("api/car-marketplace-dealer-platform/used-car-consultation")]
-    public class UsedCarConsultationController : CarMarketplaceController, IUsedCarConsultationAppService
+    public class UsedCarConsultationController : CarMarketplaceController, IBuyUsedCarAppService
     {
-        private readonly IUsedCarConsultationAppService _usedCarConsultationAppService;
+        private readonly IBuyUsedCarAppService _usedCarConsultationAppService;
 
-        public UsedCarConsultationController(IUsedCarConsultationAppService usedCarConsultationAppService)
+        public UsedCarConsultationController(IBuyUsedCarAppService usedCarConsultationAppService)
         {
             _usedCarConsultationAppService = usedCarConsultationAppService;
         }
 
         [HttpPost]
-        public async Task<UsedCarConsultationDto> CreateAsync(UsedCarConsultationCreateDto input)
+        public async Task<BuyUsedCarDto> CreateAsync(BuyUsedCarCreateDto input)
         {
             return await _usedCarConsultationAppService.CreateAsync(input);
         }

@@ -1,4 +1,4 @@
-﻿using Dignite.CarMarketplace.Cars;
+﻿using Dignite.CarMarketplace.UsedCars;
 using Dignite.CmsKit;
 using Dignite.FileExplorer;
 using Volo.Abp.Domain;

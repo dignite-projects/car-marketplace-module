@@ -1,4 +1,5 @@
 ﻿using Dignite.CarMarketplace.Public.Cars;
+using Dignite.CarMarketplace.Public.UsedCars;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;

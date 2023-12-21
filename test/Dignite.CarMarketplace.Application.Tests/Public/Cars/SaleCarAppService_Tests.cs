@@ -1,4 +1,5 @@
-﻿using Shouldly;
+﻿using Dignite.CarMarketplace.Public.UsedCars;
+using Shouldly;
 using System;
 using System.Threading.Tasks;
 using Xunit;
@@ -7,12 +8,12 @@ namespace Dignite.CarMarketplace.Public.Cars;
 
 public class SaleCarAppService_Tests : CarMarketplaceApplicationTestBase
 {
-    private readonly ISaleCarAppService _saleCarAppService;
+    private readonly ISaleUsedCarAppService _saleCarAppService;
     private readonly CarMarketplaceTestData _testData;
 
     public SaleCarAppService_Tests()
     {
-        _saleCarAppService = GetRequiredService<ISaleCarAppService>();
+        _saleCarAppService = GetRequiredService<ISaleUsedCarAppService>();
         _testData = GetRequiredService<CarMarketplaceTestData>();
     }
 

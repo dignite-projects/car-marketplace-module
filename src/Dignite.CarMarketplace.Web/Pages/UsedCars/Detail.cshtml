@@ -148,19 +148,19 @@
     <div class="row g-5">
         <div class="col-12 col-md-2 d-none d-md-block">
             <div id="car-config" class="list-group sticky-top" style="top:80px;">
-                @for (var i=0;i < Model.ConfigurationGroups.Length;i++)
+                @for (var i=0;i < Model.ConfigGroups.Length;i++)
                 {
-                    var group = Model.ConfigurationGroups[i];
+                    var group = Model.ConfigGroups[i];
                     <a class="list-group-item list-group-item-action @(i==0?"active":"")" href="#a@(group.ToMd5())">@group</a>
                 }
             </div>
         </div>
         <div class="col-12 col-md-10">
-            @foreach(var group in Model.ConfigurationGroups)
+            @foreach(var group in Model.ConfigGroups)
             {
                 <h5 id="a@(group.ToMd5())" class="mb-3">@group</h5>
                 <div class="row mb-5">
-                    @foreach(var item in Model.ConfigurationItems.Where(ci=>ci.Group==group))
+                    @foreach(var item in Model.ConfigItems.Where(ci=>ci.Group==group))
                     {
                         <div class="col-12 col-md-6 col-lg-4 mb-3">
                             <div class="row">
@@ -181,31 +181,31 @@
 
 
 <!-- Consultation Modal -->
-<div class="modal fade" id="UsedCarConsultationModal" tabindex="-1" aria-labelledby="UsedCarConsultationModalLabel" aria-hidden="true">
+<div class="modal fade" id="BuyUsedCarModal" tabindex="-1" aria-labelledby="BuyUsedCarModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="UsedCarConsultationModalLabel">预约看车</h1>
+                <h1 class="modal-title fs-5" id="BuyUsedCarModalLabel">预约看车</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form method="post" id="consultation-form">
                     <div class="form-floating mb-3">
-                        <input asp-for="UsedCarConsultationCreateInput.ContactPerson" name="ContactPerson" class="form-control" />
-                        <span asp-validation-for="UsedCarConsultationCreateInput.ContactPerson" class="text-danger"></span>
-                        <label asp-for="UsedCarConsultationCreateInput.ContactPerson">联系人</label>
+                        <input asp-for="BuyUsedCarCreateInput.ContactPerson" name="ContactPerson" class="form-control" />
+                        <span asp-validation-for="BuyUsedCarCreateInput.ContactPerson" class="text-danger"></span>
+                        <label asp-for="BuyUsedCarCreateInput.ContactPerson">联系人</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input asp-for="UsedCarConsultationCreateInput.ContactNumber" name="ContactNumber" class="form-control" />
-                        <span asp-validation-for="UsedCarConsultationCreateInput.ContactNumber" class="text-danger"></span>
-                        <label asp-for="UsedCarConsultationCreateInput.ContactNumber">联系电话</label>
+                        <input asp-for="BuyUsedCarCreateInput.ContactNumber" name="ContactNumber" class="form-control" />
+                        <span asp-validation-for="BuyUsedCarCreateInput.ContactNumber" class="text-danger"></span>
+                        <label asp-for="BuyUsedCarCreateInput.ContactNumber">联系电话</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input asp-for="UsedCarConsultationCreateInput.ReservationTime" name="ReservationTime" class="form-control" />
-                        <span asp-validation-for="UsedCarConsultationCreateInput.ReservationTime" class="text-danger"></span>
-                        <label asp-for="UsedCarConsultationCreateInput.ReservationTime">预约时间</label>
+                        <input asp-for="BuyUsedCarCreateInput.ReservationTime" name="ReservationTime" class="form-control" />
+                        <span asp-validation-for="BuyUsedCarCreateInput.ReservationTime" class="text-danger"></span>
+                        <label asp-for="BuyUsedCarCreateInput.ReservationTime">预约时间</label>
                     </div>
-                    <abp-input asp-for="UsedCarConsultationCreateInput.UsedCarId" name="UsedCarId" type="hidden"></abp-input>
+                    <abp-input asp-for="BuyUsedCarCreateInput.UsedCarId" name="UsedCarId" type="hidden"></abp-input>
                 </form>
             </div>
             <div class="modal-footer">

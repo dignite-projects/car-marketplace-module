@@ -1,5 +1,6 @@
 ﻿using Dignite.CarMarketplace.Cars;
 using Dignite.CarMarketplace.Dealers;
+using Dignite.CarMarketplace.UsedCars;
 using System;
 using System.Threading.Tasks;
 using Volo.Abp.Data;
@@ -19,11 +20,11 @@ public class CarMarketplaceDataSeedContributor : IDataSeedContributor, ITransien
     private readonly ICmsUserRepository _cmsUserRepository;
     private readonly IBrandRepository _brandRepository;
     private readonly IModelRepository _modelRepository;
-    private readonly ISaleCarRepository _saleCarRepository;
+    private readonly ISaleUsedCarRepository _saleCarRepository;
     private readonly CarMarketplaceTestData _testData;
 
     public CarMarketplaceDataSeedContributor(IGuidGenerator guidGenerator, ICurrentTenant currentTenant, IDealerRepository dealerRepository, ICmsUserRepository cmsUserRepository, IBrandRepository brandRepository, IModelRepository modelRepository,
-        ISaleCarRepository saleCarRepository,
+        ISaleUsedCarRepository saleCarRepository,
         CarMarketplaceTestData testData)
     {
         _guidGenerator = guidGenerator;
@@ -82,7 +83,7 @@ public class CarMarketplaceDataSeedContributor : IDataSeedContributor, ITransien
     private async Task SendSaleCarAsync()
     {
         await _saleCarRepository.InsertAsync(
-            new SaleCar(_testData.SaleCarlId,_testData.BmwModelId,null,DateTime.Now.AddYears(-3),3,"北京大兴","李先生","13900011112",null),
+            new SaleUsedCar(_testData.SaleCarlId,_testData.BmwModelId,null,DateTime.Now.AddYears(-3),3,"北京大兴","李先生","13900011112",null),
         autoSave: true
             );
     }

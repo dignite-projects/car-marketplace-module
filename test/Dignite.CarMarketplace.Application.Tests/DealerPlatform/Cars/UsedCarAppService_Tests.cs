@@ -1,4 +1,5 @@
-﻿using Shouldly;
+﻿using Dignite.CarMarketplace.DealerPlatform.UsedCars;
+using Shouldly;
 using System.Threading.Tasks;
 using Xunit;
 

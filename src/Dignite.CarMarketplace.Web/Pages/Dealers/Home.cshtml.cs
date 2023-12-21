@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Dignite.CarMarketplace.Public.Dealers;
-using Dignite.CarMarketplace.Public.Cars;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Pagination;
+using Dignite.CarMarketplace.Public.UsedCars;
 
 namespace Dignite.CarMarketplace.Web.Pages.Dealers
 {
@@ -35,7 +35,7 @@ namespace Dignite.CarMarketplace.Web.Pages.Dealers
         public virtual async Task<ActionResult> OnGetAsync()
         {
             Dealer = await _dealerAppService.FindByShortNameAsync(ShortName);
-
+            GetUsedCarsInput.MaxMaxResultCount = 12;
 
             GetUsedCarsInput.SkipCount = (CurrentPage - 1) * GetUsedCarsInput.MaxResultCount;
             GetUsedCarsInput.DealerId = Dealer.Id;

@@ -15,7 +15,7 @@
         );
     });
 
-    $('#UsedCarConsultationModal button[name="btnSubmit"]').click(function (e) {
+    $('#BuyUsedCarModal button[name="btnSubmit"]').click(function (e) {
         e.stopPropagation();
         e.preventDefault();
         var $form = $('#consultation-form');
@@ -25,11 +25,11 @@
             $.each(formValue, function (index, item) {
                 formData[item.name] = item.value;
             });
-            dignite.carMarketplace.public.usedCars.usedCarConsultation
+            dignite.carMarketplace.public.usedCars.buyUsedCar
                 .create(formData)
                 .then(function (result) {
                     $form[0].reset();
-                    $('#UsedCarConsultationModal button[name="btnClose"]').click();
+                    $('#BuyUsedCarModal button[name="btnClose"]').click();
                     abp.message.success('您的预约看车已成功提交!', '提示');              
                 });
         }
