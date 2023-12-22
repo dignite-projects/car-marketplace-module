@@ -30,16 +30,6 @@ export class UsedCarListComponent {
     this.carStatusList = await this._CarService.getcarStatusName()
     this.getUsedCarList()
   }
-  /**品牌ID */
-  brandID: string = ''
-  /**品牌列表 */
-  brandList: any[any] = []
-  /**车型ID */
-  modelID: string = ''
-  /**车型列表 */
-  modelList: any[any] = []
-  /**车款列表 */
-  trimList: any[any] = []
   /**二手车状态列表 */
   carStatusList: any[any] = []
   /**二手车列表 */
@@ -68,46 +58,6 @@ export class UsedCarListComponent {
     })
   }
 
-
-
-  /**获取品牌列表 */
-  getBrandList() {
-    return new Promise((resolve, rejects) => {
-      this._BrandService.getList().subscribe((res: any) => {
-        // console.log(res.items, '获取品牌列表');
-        resolve(new Array(...res.items))
-      })
-    })
-  }
-  /**品牌列表改变 */
-  async BrandChange(event) {
-    // console.log('品牌列表改变', event);
-    this.modelList = await this.getModelList(event)
-  }
-  /**获取车型列表 */
-  getModelList(brandId) {
-    return new Promise((resolve, rejects) => {
-      this._ModelService.getList({
-        brandId: brandId
-      }).subscribe(res => {
-        resolve(new Array(...res.items))
-      })
-    })
-  }
-  /**车型列表选择改变 */
-  async ModelChange(event) {
-    this.trimList = await this.gettrimList(event)
-  }
-  /**获取车款列表 */
-  gettrimList(ModelId) {
-    return new Promise((resolve, rejects) => {
-      this._TrimService.getList({
-        modelId: ModelId
-      }).subscribe(res => {
-        resolve(new Array(...res.items))
-      })
-    })
-  }
 
 
   /**编辑 */

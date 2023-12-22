@@ -2,13 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { CarMarketplaceComponent, CarListComponent, CreateComponent, DetailsComponent, ListComponent } from './components';
+import { AuthGuard, PermissionGuard } from '@abp/ng.core';
+import { IsDealerPlatformService } from './services';
 
 
 
 const routes: Routes = [
-  {
+ {
+  path:'',
+  canActivate: [IsDealerPlatformService],
+  children:[ {
     path: '',
-    children:[{
+    children: [{
       path: 'info',
       component: CarMarketplaceComponent,
     }, {
@@ -17,8 +22,8 @@ const routes: Routes = [
     }]
   },
   {
-    path:'userd-car',
-    children:[
+    path: 'userd-car',
+    children: [
       {
         path: '',
         component: CarListComponent,
@@ -36,11 +41,12 @@ const routes: Routes = [
         component: CreateComponent,
       },
     ]
-  },
+  },]
+ }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes),CommonModule],
+  imports: [RouterModule.forChild(routes), CommonModule],
   exports: [RouterModule],
 })
 export class DealerPlatformLibRoutingModule { }

@@ -42,8 +42,6 @@ export class RoutesComponent {
   trackByFn: TrackByFunction<TreeNode<ABP.Route>> = (_, item) => item.name;
 
   constructor(public readonly routesService: RoutesService, protected renderer: Renderer2) {
-    // this.routeList=this.setLevels(routesService.visible$ , 0)
-
     this.routesService.visible$.subscribe(res => {
       this.routeList = this.setLevels(res, 1)
     })
