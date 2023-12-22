@@ -1,5 +1,6 @@
 using Dignite.CarMarketplace.BlobStoring;
 using Dignite.CarMarketplace.DealerPlatform.Dealers;
+using Dignite.CarMarketplace.Dealers;
 using Dignite.FileExplorer.Files;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -34,7 +35,7 @@ namespace Dignite.CarMarketplace.Web.Pages.Dealers
         {
             CurrentDealer = await _dealerAppService.FindByCurrentUserAsync();
 
-            if (CurrentDealer!=null && CurrentDealer.AuthenticationStatus == CarMarketplace.Dealers.AuthenticationStatus.Approved)
+            if (CurrentDealer!=null && CurrentDealer.AuthenticationStatus == AuthenticationStatus.Approved)
             {
                 return Redirect("/dealer-platform");
             }

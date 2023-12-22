@@ -10,8 +10,11 @@ using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.Modularity;
+using Volo.Abp.Ui.LayoutHooks;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
+using Volo.Abp.AspNetCore.Mvc.UI.Theming;
+using Dignite.CarMarketplace.Web.Pages.CarMarketplace.Shared.Components.HtmlHead;
 
 namespace Dignite.CarMarketplace.Web;
 
@@ -85,6 +88,14 @@ public class CarMarketplaceWebModule : AbpModule
             options.Conventions.AddPageRoute("/UsedCars/Detail", routePrefix + "UsedCars/{id:Guid}");
 
             options.Conventions.AuthorizePage("/Dealers/Register");
+        });
+        Configure<AbpLayoutHookOptions>(options =>
+        {
+            options.Add(
+                LayoutHooks.Head.First, //The hook name
+                typeof(HtmlHeadViewComponent), //The component to add
+                layout: StandardLayouts.Public
+            );
         });
     }
 }

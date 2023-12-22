@@ -5,6 +5,11 @@
 @inject CarMarketplacePageHelper CarMarketplacePageHelper
 @model Dignite.CarMarketplace.Web.Pages.UsedCars.DetailModel
 
+@{
+    PageLayout.Content.Title = Model.UsedCar.Name;
+    ViewBag.PageDescription = Model.UsedCar.Description;
+}
+
 @section scripts {
     <abp-script src="/Pages/UsedCars/detail.js" />
 }

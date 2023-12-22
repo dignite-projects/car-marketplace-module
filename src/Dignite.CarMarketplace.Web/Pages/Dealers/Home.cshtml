@@ -3,7 +3,10 @@
 @using Dignite.CarMarketplace.Web.Pages
 @inject CarMarketplacePageHelper CarMarketplacePageHelper
 @model Dignite.CarMarketplace.Web.Pages.Dealers.HomeModel
-
+@{
+    PageLayout.Content.Title = Model.Dealer.Name;
+    ViewBag.PageDescription = $"{Model.Dealer.Name} 联系人{Model.Dealer.ContactPerson}，联系电话{Model.Dealer.ContactNumber}，看车地址{Model.Dealer.Address}";
+}
 @section styles {
     <abp-style src="/Pages/CarMarketplace/Shared/Styles/CarMarketplace.css" />
 }
