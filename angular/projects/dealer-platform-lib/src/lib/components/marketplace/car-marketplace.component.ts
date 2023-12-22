@@ -29,8 +29,6 @@ export class CarMarketplaceComponent {
     private environment: EnvironmentService,
   ) { }
 
-
-
   async ngOnInit(): Promise<void> {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
@@ -54,13 +52,13 @@ export class CarMarketplaceComponent {
   getCarMarketplace() {
 
     this.DealerServiceplatform.findByCurrentUser().subscribe(async (res) => {
+      // console.log('获取车商信息', res, this.fileListView)
       this.carMarketplace = res
       this.fileListView_show = []
       /**问题 */
       setTimeout(async () => {
-        this.fileListView_show = await this.getImage(res.id)
+        this.fileListView_show = await this.getImage(res?.id)
       }, 200)
-      // console.log('获取车商信息', res, this.fileListView)
     })
   }
 

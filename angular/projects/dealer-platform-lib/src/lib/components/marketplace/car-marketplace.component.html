@@ -12,28 +12,28 @@
     <div class="car-marketplace-box" content>
         <div class="car_marketplace_content">
             <nz-descriptions nzBordered>
-                <nz-descriptions-item nzTitle="名称">{{ carMarketplace.name }}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="名称">{{ carMarketplace?.name }}</nz-descriptions-item>
                 <nz-descriptions-item nzTitle="简称" [nzSpan]="2">{{
-                    carMarketplace.shortName
+                    carMarketplace?.shortName
                     }}</nz-descriptions-item>
                 <nz-descriptions-item nzTitle="联系人">{{
-                    carMarketplace.contactPerson
+                    carMarketplace?.contactPerson
                     }}</nz-descriptions-item>
                 <nz-descriptions-item nzTitle="联系方式" [nzSpan]="2">{{
-                    carMarketplace.contactNumber
+                    carMarketplace?.contactNumber
                     }}</nz-descriptions-item>
                 <nz-descriptions-item nzTitle="状态">
                     <ng-container *ngFor="let item of authenticationStatusList">
-                        <ng-container *ngIf="carMarketplace.authenticationStatus === item.value">{{
+                        <ng-container *ngIf="carMarketplace?.authenticationStatus === item.value">{{
                             item.displayName
                             }}</ng-container>
                     </ng-container>
                 </nz-descriptions-item>
                 <nz-descriptions-item nzTitle="创建时间" [nzSpan]="2">{{
-                    carMarketplace.creationTime | date
+                    carMarketplace?.creationTime | date
                     }}</nz-descriptions-item>
                 <nz-descriptions-item nzTitle="地址" [nzSpan]="3">
-                    {{ carMarketplace.address }}
+                    {{ carMarketplace?.address }}
                 </nz-descriptions-item>
                 <nz-descriptions-item nzTitle="封面" [nzSpan]="3">
                     <div class="upload_box">

@@ -9,7 +9,7 @@ import { Location } from '@angular/common';
 import { filter } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
-import { CarService,TagsService } from '../../services';
+import { CarService, TagsService } from '../../services';
 import { UsedCarService } from '../../proxy/dealer-platform/cars';
 import { FileDescriptorService } from '../../proxy/dignite/file-explorer/files';
 import { BrandService, ModelService, TrimService } from '../../proxy/public/cars';
@@ -45,7 +45,7 @@ export class CreateComponent {
     private environment: EnvironmentService,
     private router: Router
   ) {
-   
+
   }
 
 
@@ -54,9 +54,9 @@ export class CreateComponent {
     //Add 'implements OnInit' to the class.
     // 
     // this.usedCarId=
-    let usedCarId=this.route.snapshot.params.id
-    this.TagsList=await this._TagsService.getTagList()
-    this.TagsListyushe= await this._TagsService.TagsList
+    let usedCarId = this.route.snapshot.params.id
+    this.TagsList = await this._TagsService.getTagList()
+    this.TagsListyushe = await this._TagsService.TagsList
     this.brandList = await this.getBrandList()
     this.carStatusList = await this._CarService.getcarStatusName()
     this.getImageConfiguration()
@@ -66,7 +66,7 @@ export class CreateComponent {
       this.UsedCarDetail = await this.getUsedCarDetail()
     }
 
-    
+
   }
   /**是否是编辑状态 */
   isEdit: boolean = false
@@ -79,7 +79,7 @@ export class CreateComponent {
   /**颜色列表 */
   CarColorList: any[] = CarColorOptions
   /** Tags列表 */
-  TagsList: any[] =[]
+  TagsList: any[] = []
   TagsListyushe: any[] = []
   /**车型ID */
   modelID: string = ''
@@ -204,13 +204,8 @@ export class CreateComponent {
         res.allowedFileTypeNames.map(el => {
           allowedFileTypeNames.push('image/' + el.slice(1))
         })
-
         let imagemess = await this.getImage(this.usedCarId)
-        // console.log('获取图片容器', imagemess, this.usedCarId);
-
-        imagemess.map(el => {
-          el.src = el.url
-        })
+        imagemess.map(el => el.src = el.url)
         await res.fileCells.map(async (el: any) => {
           el.fileList = []
           el.fileListView = imagemess.filter(elV => elV.cellName === el.name)
@@ -226,6 +221,7 @@ export class CreateComponent {
   /**获取图片信息 */
   getImage(usedCarId: any): any {
     return new Promise((resolve, reject) => {
+      if (!usedCarId) resolve([])
       this._FileDescriptorService.getList({
         containerName: 'CarPics',
         entityId: `${usedCarId}`,
@@ -294,37 +290,37 @@ export class CreateComponent {
     this.taInputVisible = false;
   }
 
- /**验证图片是否提交 */
- VerifyImageIAO() {
-  try {
-    this.fileCells.forEach((el => {
-      if (el.fileList.length + el.fileListView.length == 0) {
-        throw el
-      }
-    }))
-    return 
-  } catch (error) {
-    return error
+  /**验证图片是否提交 */
+  VerifyImageIAO() {
+    try {
+      this.fileCells.forEach((el => {
+        if (el.fileList.length + el.fileListView.length == 0) {
+          throw el
+        }
+      }))
+      return
+    } catch (error) {
+      return error
+    }
   }
-}
-VerifyImageIAOboolisnull() {
-  try {
-    this.fileCells.forEach((el => {
-      if (el.fileList.length + el.fileListView.length == 0) {
-        throw false
-      }
-    }))
-    return true
-  } catch (error) {
-    return error
+  VerifyImageIAOboolisnull() {
+    try {
+      this.fileCells.forEach((el => {
+        if (el.fileList.length + el.fileListView.length == 0) {
+          throw false
+        }
+      }))
+      return true
+    } catch (error) {
+      return error
+    }
   }
-}
 
   /**提交 */
   submitCreate() {
     // console.log('提交表单', this.brandID, this.CarCreateGroup, this.fileCells, '需要删除的图片', this.deleteimg);
-    let Verifyback=this.VerifyImageIAO()
-    if(Verifyback) return this.message.info(`请上传'${Verifyback.displayName}'图片`);
+    let Verifyback = this.VerifyImageIAO()
+    if (Verifyback) return this.message.info(`请上传'${Verifyback.displayName}'图片`);
 
     // return
     if (this.isEdit) {
@@ -333,13 +329,12 @@ VerifyImageIAOboolisnull() {
         nzOkText: '确认',
         nzOkType: 'primary',
         nzOnOk: () => {
-          const messageid = this.message.loading('更新中', { nzDuration: 0 }).messageId;
+          const messageid = this.message.loading('正在更新中', { nzDuration: 0 }).messageId;
           this._UsedCarService.update(this.usedCarId, {
             ...this.CarCreateGroup
           }).subscribe(res => {
             setTimeout(async () => {
               await this.requestDeleteimg()
-
               await this.reqfengzhaung()
               this.message.remove(messageid);
               this.message.info('已完成');
@@ -359,7 +354,7 @@ VerifyImageIAOboolisnull() {
       nzOkText: '确认',
       nzOkType: 'primary',
       nzOnOk: () => {
-        const messageid = this.message.loading('提交中', { nzDuration: 0 }).messageId;
+        const messageid = this.message.loading('正在提交中', { nzDuration: 0 }).messageId;
         this._UsedCarService.create({
           ...this.CarCreateGroup
         }).subscribe(res => {
@@ -385,20 +380,26 @@ VerifyImageIAOboolisnull() {
   /**上传图片的封装方法 */
   reqfengzhaung() {
     return new Promise<void>((resolve, reject) => {
-      this.fileCells.map(async (cell) => {
+      let req_fileCells=this.fileCells.filter((el)=>el.fileList.length>0)
+      let count = 0
+      req_fileCells.map(async (cell, index1) => {
         cell.fileList.map(async (file) => {
           let formData = new FormData();
           formData.append('file', file, file.name);
-          await this.requestImage(
+          this.requestImage(
             {
               containerName: 'CarPics',
               cellName: cell.name,
               entityId: this.usedCarId,
             }, formData
-          )
+          ).then(() => {
+            count++
+            if (req_fileCells.length === count) {
+              resolve()
+            }
+          })
         })
       })
-      resolve()
     })
   }
   /***删除指定照片 */

@@ -20,7 +20,8 @@ import { DateTPipe } from './pipe';
     UsedCarDetailsComponent
   ],
   imports:[CoreModule, ThemeSharedModule, AdminLibRoutingModule,Zorro],
-  exports: [AdminLibComponent]
+  exports: [AdminLibComponent],
+  providers: [ ],
 })
 export class AdminLibModule {
   static forChild(): ModuleWithProviders<AdminLibModule> {

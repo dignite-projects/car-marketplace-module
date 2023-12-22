@@ -7,6 +7,7 @@ const routes: Routes = [
         path: '',
         children: [{
             path: 'manage',
+            
             component: ManageComponent,
         },]
     },

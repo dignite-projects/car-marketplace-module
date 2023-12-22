@@ -10,6 +10,10 @@ export const DEALER_PLATFORM_LIB_ROUTE_PROVIDERS = [
     multi: true,
   },
 ];
+function testauth(){
+  console.log(1111111,'testauth');
+  return false
+}
 
 export function configureRoutes(routesService: RoutesService) {
   return () => {
@@ -20,6 +24,7 @@ export function configureRoutes(routesService: RoutesService) {
         iconClass: 'fa fa-window-maximize',
         layout: eLayoutType.application, 
         order: 3,
+        // invisible :testauth(),//在该路由中是否可见
         // requiredPolicy: 'CarMarketplace.Dealer'
       }, {
         path: '/dealer-platform/userd-car',

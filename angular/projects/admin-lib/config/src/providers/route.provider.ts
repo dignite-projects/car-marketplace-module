@@ -20,14 +20,14 @@ export function configureRoutes(routesService: RoutesService) {
         iconClass: 'fa fa-gears',
         layout: eLayoutType.application, 
         order: 6,
-        // requiredPolicy:'CarMarketplace.Dealer.Management'
+        requiredPolicy:'CarMarketplace.Dealer.Management'
       }, {
         path: '/admin/sale-car',
         name: eCarAdminRouteNames.SaleCar, 
         iconClass: 'fa fa-btc ',
         layout: eLayoutType.application,
         order: 7,
-        // requiredPolicy: 'CarMarketplace.SaleCar.Management'
+        requiredPolicy: 'CarMarketplace.SaleCar.Management'
       },
       {
         path: '/admin/used-car',
@@ -35,7 +35,7 @@ export function configureRoutes(routesService: RoutesService) {
         iconClass: 'fa fa-taxi',
         layout: eLayoutType.application,
         order: 7,
-        // requiredPolicy: 'CarMarketplace.UsedCar.Management'
+        requiredPolicy: 'CarMarketplace.UsedCar.Management'
       }
 
     ]);
