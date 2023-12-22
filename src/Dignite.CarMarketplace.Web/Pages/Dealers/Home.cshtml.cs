@@ -34,8 +34,8 @@ namespace Dignite.CarMarketplace.Web.Pages.Dealers
 
         public virtual async Task<ActionResult> OnGetAsync()
         {
+            GetUsedCarsInput.MaxResultCount = 9;
             Dealer = await _dealerAppService.FindByShortNameAsync(ShortName);
-            GetUsedCarsInput.MaxMaxResultCount = 12;
 
             GetUsedCarsInput.SkipCount = (CurrentPage - 1) * GetUsedCarsInput.MaxResultCount;
             GetUsedCarsInput.DealerId = Dealer.Id;
