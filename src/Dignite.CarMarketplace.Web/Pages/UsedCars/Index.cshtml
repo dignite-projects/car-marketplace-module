@@ -157,34 +157,43 @@
             </div>
         </div>
     </div>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-5 mb-5">
-        @foreach (var item in Model.UsedCars)
-        {
-            <div class="col">
-                <div class="card cmpl-card used-car-card bg-light shadow-sm">
-                    <a href="@Url.Page("Detail",new{Id=item.Id})">
-                        <img src="@($"/api/file-explorer/files/{BlobContainerConsts.CarPicsContainerName}/{item.Id}/LeftFront")" class="card-img-top" alt="@(item.Name+"左前45度图片")">
-                    </a>
-                    <div class="card-body position-relative d-flex flex-column">
-                        <span class="badge rounded-pill bg-primary fw-normal fs-6 position-absolute top-0 start-50 translate-middle">￥@CarMarketplacePageHelper.GetPriceFormatText(item.Price)</span>
-                        <h6 class="card-title mt-2">
-                            <a class="underline-animate" href="@Url.Page("Detail",new{Id=item.Id})">@item.Name</a>
-                        </h6>
-                        <div class="row">
-                            <div class="col-6">
-                                <small class="text-muted">上牌时间</small>
-                                <p class="mb-1">@item.RegistrationDate.ToString("yyyy/MM")</p>
-                            </div>
-                            <div class="col-6">
-                                <small class="text-muted">表显里程</small>
-                                <p class="mb-1">@CarMarketplacePageHelper.GetMileageFormatText(item.TotalMileage)</p>
+    @if (Model.UsedCars.Count > 0)
+    {
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-5 mb-5">
+            @foreach (var item in Model.UsedCars)
+            {
+                <div class="col">
+                    <div class="card cmpl-card used-car-card bg-light shadow-sm">
+                        <a href="@Url.Page("Detail",new{Id=item.Id})">
+                            <img src="@($"/api/file-explorer/files/{BlobContainerConsts.CarPicsContainerName}/{item.Id}/LeftFront")" class="card-img-top" alt="@(item.Name+"左前45度图片")">
+                        </a>
+                        <div class="card-body position-relative d-flex flex-column">
+                            <span class="badge rounded-pill bg-primary fw-normal fs-6 position-absolute top-0 start-50 translate-middle">￥@CarMarketplacePageHelper.GetPriceFormatText(item.Price)</span>
+                            <h6 class="card-title mt-2">
+                                <a class="underline-animate" href="@Url.Page("Detail",new{Id=item.Id})">@item.Name</a>
+                            </h6>
+                            <div class="row">
+                                <div class="col-6">
+                                    <small class="text-muted">上牌时间</small>
+                                    <p class="mb-1">@item.RegistrationDate.ToString("yyyy/MM")</p>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted">表显里程</small>
+                                    <p class="mb-1">@CarMarketplacePageHelper.GetMileageFormatText(item.TotalMileage)</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>            
-        }
-    </div>
+                </div>            
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-secondary mt-5 mb-5" role="alert">
+            系统没有找到符合条件的二手车数据！
+        </div>
+    }
 
     <abp-paginator model="Model.PagerModel" show-info="true" />
 </div>
