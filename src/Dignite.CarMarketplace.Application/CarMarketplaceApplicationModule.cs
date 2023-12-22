@@ -63,7 +63,7 @@ public class CarMarketplaceApplicationModule : AbpModule
                     container.AddImageResizeHandler(handler =>
                     {
                         handler.ImageWidth = 600;
-                        handler.ImageHeight = 400;
+                        handler.ImageHeight = 600;
                     });
                     container.SetFileGridConfiguration(fg => fg.FileCells = new List<FileCell>
                     {
