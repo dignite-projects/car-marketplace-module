@@ -74,7 +74,7 @@ namespace Dignite.CarMarketplace.Cars
         /// </summary>
         public Guid DealerId { get; protected set; }
 
-        public Dealer Dealer { get; protected set; }
+        public Dealer Dealer { get; set; }
 
         /// <summary>
         /// 注册日期\初次上牌日期

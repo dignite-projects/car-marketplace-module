@@ -15,6 +15,18 @@
       "es2018",
       "dom"
     ],
+    "paths": {
+      "@dignite/admin-lib": [
+        "dist/admin-li"
+      ],
+      "@dignite/admin-lib/config": [
+        "dist/admin-lib/config"
+      ],
+      "admin-lib": [
+        "dist/admin-lib"
+      ],
+      "theme-basic": ["dist/theme-basic"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false

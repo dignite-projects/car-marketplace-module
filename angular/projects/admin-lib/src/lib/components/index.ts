@@ -1,0 +1,5 @@
+export * from './manage/manage.component'
+export * from './sale-car/sale-car.component'
+export * from './sale-car/sale-car-view.component'
+export * from './used-car/used-car-list.component'
+export * from './used-car/used-car-details.component'

@@ -12,19 +12,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'dig-current-user',
   templateUrl: './current-user.component.html',
-  styles:[`
-    .nav-link{
-      display: flex;
-      align-items: center;
-      span[nz-icon]{
-        font-size: 12px;
-      }
-    }
-    .menu-item{
-      // height:30px;
-      line-height: 30px;
-    }
-  `]
+  styleUrls: ['./current-user.component.scss']
 })
 export class CurrentUserComponent {
   currentUser$: Observable<CurrentUserDto> = this.configState.getOne$('currentUser');
@@ -41,8 +29,8 @@ export class CurrentUserComponent {
     public readonly userMenu: UserMenuService,
     private authService: AuthService,
     private configState: ConfigStateService,
-    private sessionState: SessionStateService,
-  ) {}
+    private sessionState: SessionStateService
+  ) { }
 
   navigateToLogin() {
     this.authService.navigateToLogin();

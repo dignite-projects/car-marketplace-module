@@ -20,4 +20,4 @@ import { NgxValidateCoreModule } from '@ngx-validate/core';
   ],
   providers: [],
 })
-export class SharedModule {}
+export class SharedModule { }

@@ -1,11 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Dignite.CarMarketplace.Dealers;
+using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.ObjectExtending;
+using Volo.Abp.Threading;
 using Volo.Abp.Validation;
 
 namespace Dignite.CarMarketplace.DealerPlatform.Dealers
 {
-    public abstract class DealerCreateOrUpdateDtoBase : ExtensibleObject
+    public abstract class DealerCreateOrUpdateDtoBase
     {
         [Required]
         [DynamicStringLength(typeof(DealerConsts), nameof(DealerConsts.MaxNameLength))]

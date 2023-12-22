@@ -58,7 +58,7 @@ public class CarMarketplaceApplicationModule : AbpModule
                     });
                     container.AddFileTypeCheckHandler(handler =>
                     {
-                        handler.AllowedFileTypeNames = new string[] { ".jpg", ".jpeg", ".png" };
+                        handler.AllowedFileTypeNames = new string[] { ".jpg", ".jpeg", ".png", ".webp" };
                     });
                     container.AddImageResizeHandler(handler =>
                     {
@@ -90,12 +90,12 @@ public class CarMarketplaceApplicationModule : AbpModule
                     });
                     container.AddFileTypeCheckHandler(handler =>
                     {
-                        handler.AllowedFileTypeNames = new string[] { ".jpg", ".jpeg", ".png" };
+                        handler.AllowedFileTypeNames = new string[] { ".jpg", ".jpeg", ".png",".webp" };
                     });
                     container.AddImageResizeHandler(handler =>
                     {
-                        handler.ImageWidth = 300;
-                        handler.ImageHeight = 200;
+                        handler.ImageWidth = 420;
+                        handler.ImageHeight = 280;
                     });
                     container.SetBlobNameGenerator<DealerCoverBlobNameGenerator>();
                 });

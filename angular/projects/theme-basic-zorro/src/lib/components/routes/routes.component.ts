@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'dig-routes',
+  selector: 'dig-routes', 
   templateUrl: 'routes.component.html',
   styles: [`
       .wrapper {
@@ -27,7 +27,6 @@ import {
         align-items: center;
       }
       ::ng-deep .activestyle{
-        // background:#f22;
         background-color: #1890ff !important ;
       }
   `]

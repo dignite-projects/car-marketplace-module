@@ -78,9 +78,9 @@ public class UsedCarAppService : CarMarketplaceAppService, IUsedCarAppService
     [Authorize]
     public async Task<UsedCarDto> GetAsync(Guid id)
     {
-        var usedCar = await _usedCarRepository.GetAsync(id);
+        var usedCar = await _usedCarRepository.GetAsync(id,false);
         var dealer = await _dealerRepository.GetAsync(usedCar.DealerId);
-        await AuthorizationService.CheckAsync(dealer, CommonOperations.UsedCarManage);
+        await AuthorizationService.CheckAsync(usedCar.Dealer, CommonOperations.UsedCarManage);
 
 
         var dto = ObjectMapper.Map<UsedCar, UsedCarDto>(

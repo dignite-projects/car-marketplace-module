@@ -1,0 +1,147 @@
+<div page>
+    <div class="site-page-header-ghost-wrapper">
+        <nz-page-header [nzGhost]="false">
+            <nz-page-header-title>车商信息</nz-page-header-title>
+            <nz-page-header-extra>
+                <nz-space>
+                    <button *nzSpaceItem nz-button nzType="primary" (click.stop)="showModal()">编辑</button>
+                </nz-space>
+            </nz-page-header-extra>
+        </nz-page-header>
+    </div>
+    <div class="car-marketplace-box" content>
+        <div class="car_marketplace_content">
+            <nz-descriptions nzBordered>
+                <nz-descriptions-item nzTitle="名称">{{ carMarketplace.name }}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="简称" [nzSpan]="2">{{
+                    carMarketplace.shortName
+                    }}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="联系人">{{
+                    carMarketplace.contactPerson
+                    }}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="联系方式" [nzSpan]="2">{{
+                    carMarketplace.contactNumber
+                    }}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="状态">
+                    <ng-container *ngFor="let item of authenticationStatusList">
+                        <ng-container *ngIf="carMarketplace.authenticationStatus === item.value">{{
+                            item.displayName
+                            }}</ng-container>
+                    </ng-container>
+                </nz-descriptions-item>
+                <nz-descriptions-item nzTitle="创建时间" [nzSpan]="2">{{
+                    carMarketplace.creationTime | date
+                    }}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="地址" [nzSpan]="3">
+                    {{ carMarketplace.address }}
+                </nz-descriptions-item>
+                <nz-descriptions-item nzTitle="封面" [nzSpan]="3">
+                    <div class="upload_box">
+                        <div class="upload_body upload_view"
+                            *ngFor="let elf of fileListView_show; let fi=index">
+                            <img [src]="elf.url" class="upload_view_img" alt="">
+                            <div class="hover_operate">
+                                <span class="btn1icon" nz-icon nzType="eye"
+                                    (click.stop)="handlePreview(elf)" nzTheme="outline"></span>
+                            </div>
+                        </div>
+                    </div>
+                </nz-descriptions-item>
+            </nz-descriptions>
+        </div>
+    </div>
+    <form nz-form #newFroupForm="ngForm" autocomplete="off">
+        <nz-modal [(nzVisible)]="isNewGroup" [nzTitle]="modalTitle" [nzOkDisabled]="!newFroupForm.valid"
+            (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzClassName="newFroupForm">
+            <ng-container *nzModalContent class="nzModalContent">
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="24" nzFor="name" nzRequired>名称</nz-form-label>
+                    <nz-form-control [nzErrorTip]="combineTpl">
+                        <input type="text" field nz-input nzStatus="error" autocomplete="off" nzRequired
+                            placeholder="请输入名称" [(ngModel)]="manageConfig.name" name="name" required />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="24" nzFor="shortName" nzRequired>简称</nz-form-label>
+                    <nz-form-control [nzErrorTip]="combineTpl">
+                        <input type="text" field nz-input nzStatus="error" autocomplete="off" nzRequired
+                            placeholder="请输入简称" [(ngModel)]="manageConfig.shortName" name="shortName" required />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="24" nzFor="contactPerson" nzRequired>联系人</nz-form-label>
+                    <nz-form-control [nzErrorTip]="combineTpl">
+                        <input type="text" field nz-input nzStatus="error" autocomplete="off" nzRequired
+                            placeholder="请输入联系人" [(ngModel)]="manageConfig.contactPerson" name="contactPerson"
+                            required />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="24" nzFor="contactNumber" nzRequired>联系方式</nz-form-label>
+                    <nz-form-control [nzErrorTip]="combineTpl">
+                        <input type="tel" field nz-input nzStatus="error" autocomplete="off" nzRequired
+                            placeholder="请输入联系方式"  [(ngModel)]="manageConfig.contactNumber" name="contactNumber"
+                            required />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="24" nzFor="address" nzRequired>地址</nz-form-label>
+                    <nz-form-control [nzErrorTip]="combineTpl">
+                        <input type="email" field nz-input nzStatus="error" autocomplete="off" nzRequired
+                            placeholder="请输入地址" [(ngModel)]="manageConfig.address" name="address" required />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="24" nzFor="image" >封面图</nz-form-label>
+                    <nz-form-control [nzErrorTip]="combineTpl">
+                        <div class="upload_box">
+                            <div class="upload_body upload_view"
+                                *ngFor="let elf of fileList; let fi=index">
+                                <img [src]="elf.src" class="upload_view_img" alt="">
+                                <div class="hover_operate">
+                                    <span class="btn1icon" nz-icon nzType="eye"
+                                        (click.stop)="handlePreview(elf)" nzTheme="outline"></span>
+                                    <span class="btn1icon" (click.stop)="deleteImage(elf,'fileList')"
+                                        nz-icon nzType="delete" nzTheme="outline"></span>
+                                </div>
+                            </div>
+                            <div class="upload_body upload_view"
+                                *ngFor="let elf of fileListView; let fi=index">
+                                <img [src]="elf.src||elf.url" class="upload_view_img" alt="">
+                                <div class="hover_operate">
+                                    <span class="btn1icon" nz-icon nzType="eye"
+                                        (click.stop)="handlePreview(elf)" nzTheme="outline"></span>
+                                    <span class="btn1icon" (click.stop)="deleteImage(elf,'fileListView')"
+                                        nz-icon nzType="delete" nzTheme="outline"></span>
+                                </div>
+                            </div>
+                            <div class="upload_body upload_btn"
+                                *ngIf="fileList?.length+fileListView?.length<1">
+                                <div class="upload_btn_icon">
+                                    <span nz-icon nzType="plus" nzTheme="outline"></span>
+                                    <div>Upload</div>
+                                </div>
+                                <input type="file" [accept]="allowedFileTypeNames"
+                                    (change)="UploadFlieChange($event)" class="upload_input" id="">
+                            </div>
+                        </div>
+                    </nz-form-control>
+                </nz-form-item>
+                
+
+                <ng-template #combineTpl let-control>
+                    <ng-container *ngIf="control.hasError('required')">请填写 {{ control.name }}  字段.
+                    </ng-container>
+                    <ng-container *ngIf="control.hasError('email')">The {{ control.name }} field is not valid
+                    </ng-container>
+                </ng-template>
+            </ng-container>
+        </nz-modal>
+    </form>
+</div>
+<nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent"
+(nzOnCancel)="previewVisible = false" [nzFooter]="null">
+<ng-template #modalContent>
+    <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
+</ng-template>
+</nz-modal>

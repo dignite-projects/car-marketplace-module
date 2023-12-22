@@ -26,14 +26,19 @@ const routes: Routes = [
       import('@abp/ng.setting-management').then(m => m.SettingManagementModule.forLazy()),
   },
   {
-    path: 'car-marketplace',
+    path: 'setting-management',
     loadChildren: () =>
-      import('@dignite/car-marketplace').then(m => m.CarMarketplaceModule.forLazy()),
+      import('@abp/ng.setting-management').then(m => m.SettingManagementModule.forLazy()),
   },
   {
-    path: 'administrator',
+    path: 'admin',
     loadChildren: () =>
-      import('@dignite/car-marketplace').then(m => m.AdminModule.forLazy()),
+      import('@dignite/admin-lib').then(m => m.AdminLibModule.forLazy()),
+  },
+  {
+    path: 'dealer-platform',
+    loadChildren: () =>
+      import('@dignite/dealer-platform-lib').then(m => m.DealerPlatformLibModule.forLazy()),
   },
 ];
 

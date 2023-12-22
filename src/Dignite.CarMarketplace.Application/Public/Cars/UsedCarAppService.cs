@@ -59,7 +59,7 @@ namespace Dignite.CarMarketplace.Public.Cars
             }
 
             var count = await _usedCarRepository.GetCountAsync(
-                CarStatus.Listing,input.Filter,
+                CarStatus.Listing,input.Filter,null,
                 input.BrandId,input.ModelId,input.DealerId,input.Color,
                 input.MinRegistrationDate,input.MaxRegistrationDate,
                 input.MinTotalMileage,input.MaxTotalMileage,
@@ -68,7 +68,7 @@ namespace Dignite.CarMarketplace.Public.Cars
 
             var result = await _usedCarRepository.GetListAsync(
                 input.DealerId.HasValue?false:true,
-                CarStatus.Listing, input.Filter,
+                CarStatus.Listing, input.Filter,null,
                 input.BrandId, input.ModelId, input.DealerId, input.Color,
                 input.MinRegistrationDate, input.MaxRegistrationDate,
                 input.MinTotalMileage, input.MaxTotalMileage,

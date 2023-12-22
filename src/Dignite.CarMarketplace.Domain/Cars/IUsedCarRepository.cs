@@ -14,6 +14,7 @@ namespace Dignite.CarMarketplace.Cars
         Task<int> GetCountAsync(
             CarStatus? status = null,
             string filter = null,
+            int? usedCarId = null,
             Guid? brandId = null,
             Guid? modelId = null,
             Guid? dealerId = null,
@@ -34,6 +35,7 @@ namespace Dignite.CarMarketplace.Cars
             bool includeDetails=false,
             CarStatus? status = null,
             string filter = null,
+            int? usedCarId = null,
             Guid? brandId = null,
             Guid? modelId = null,
             Guid? dealerId = null,

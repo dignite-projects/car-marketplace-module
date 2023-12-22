@@ -14,6 +14,9 @@ public class CarMarketplaceApplicationAutoMapperProfile : Profile
         CreateMap<SaleCar, Admin.Cars.SaleCarDto>();
         CreateMap<Brand, Admin.Cars.BrandDto>();
         CreateMap<Model, Admin.Cars.ModelDto>();
+        CreateMap<UsedCar, Admin.UsedCars.UsedCarDto>()
+            .Ignore(x => x.Tags);
+        CreateMap<Dealer, Admin.Dealers.DealerExcelDto>();
 
         CreateMap<Dealer, DealerPlatform.Dealers.DealerDto>();
         CreateMap<UsedCar, DealerPlatform.Cars.UsedCarDto>()
