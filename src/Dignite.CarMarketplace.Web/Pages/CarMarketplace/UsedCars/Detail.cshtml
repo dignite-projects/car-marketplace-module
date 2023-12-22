@@ -11,7 +11,7 @@
 }
 
 @section scripts {
-    <abp-script src="/Pages/UsedCars/detail.js" />
+    <abp-script src="/Pages/CarMarketplace/UsedCars/detail.js" />
 }
 @section styles {
     <abp-style src="/Pages/CarMarketplace/Shared/Styles/CarMarketplace.css" />
@@ -69,7 +69,7 @@
         </h5>
         <div class="d-flex justify-content-between mb-4">
             <div class="d-flex flex-column text-center">
-                <button type="button" name="btnReserve" data-id="@Model.UsedCar.Id" class="btn rounded-pill btn-outline-primary" data-bs-toggle="modal" data-bs-target="#UsedCarConsultationModal">
+                <button type="button" name="btnReserve" data-id="@Model.UsedCar.Id" class="btn rounded-pill btn-outline-primary" data-bs-toggle="modal" data-bs-target="#BuyUsedCarModal">
                     <i class="fa fa-coffee" aria-hidden="true"></i> 预约看车
                 </button>
                 @*
@@ -119,7 +119,11 @@
         </div>
         <hr>
         <div>
-            <h5 class="mb-3"><a href="@Url.Page("/Dealers/Home",new{shortName=Model.UsedCar.Dealer.ShortName})" class="underline-animate">@Model.UsedCar.Dealer.Name</a></h5>
+            <h5 class="mb-3">
+                <a class="underline-animate" asp-page="../Dealers/Home" asp-route-shortName="@Model.UsedCar.Dealer.ShortName">
+                @Model.UsedCar.Dealer.Name
+                </a>
+            </h5>
             <p>
                 联 系 人：@Model.UsedCar.Dealer.ContactPerson
             </p>

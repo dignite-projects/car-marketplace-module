@@ -5,7 +5,7 @@ namespace Dignite.CarMarketplace.Web
 {
     public class CarMarketplaceUrlOptions
     {
-        private string _routePrefix = "CarMarketplace";
+        private string _routePrefix = "car-marketplace";
 
         /// <summary>
         /// Default value: "CarMarketplace";

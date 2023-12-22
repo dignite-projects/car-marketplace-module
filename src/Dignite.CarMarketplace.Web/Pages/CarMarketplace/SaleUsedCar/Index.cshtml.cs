@@ -44,7 +44,7 @@ namespace Dignite.CarMarketplace.Web.Pages.SaleUsedCar
 
             var saleCar = await _saleCarAppService.CreateAsync(SaleCar);
 
-            return RedirectToPage("/SaleUsedCar/Index", new {IsCompleted=true });
+            return RedirectToPage("Index", new {IsCompleted=true });
         }
     }
 

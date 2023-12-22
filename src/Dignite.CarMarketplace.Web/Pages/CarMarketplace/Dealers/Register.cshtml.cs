@@ -37,6 +37,7 @@ namespace Dignite.CarMarketplace.Web.Pages.Dealers
 
             if (CurrentDealer!=null && CurrentDealer.AuthenticationStatus == AuthenticationStatus.Approved)
             {
+                //跳转到二手车商平台，该平台使用angular开发
                 return Redirect("/dealer-platform");
             }
             else
@@ -66,7 +67,7 @@ namespace Dignite.CarMarketplace.Web.Pages.Dealers
                     });
             }
 
-            return RedirectToPage("/Dealers/Register");
+            return RedirectToPage("Register");
         }
     }
 }
