@@ -157,12 +157,23 @@
             </div>
         </div>
     </div>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-5 mb-5">
+
+    @if (Model.UsedCars.Count > 0)
+    {
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-5 mb-5">
         @foreach (var item in Model.UsedCars)
         {
             @Html.Partial("_Item",item)
         }
     </div>
+    }
+    else
+    {
+        <div class="alert alert-secondary mt-5 mb-5" role="alert">
+            系统没有找到符合条件的二手车数据！
+        </div>
+    }
+
 
     <abp-paginator model="Model.PagerModel" show-info="true" />
 </div>
