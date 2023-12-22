@@ -43,6 +43,7 @@ namespace Dignite.CarMarketplace.Web.Pages.UsedCars
 
         public virtual async Task<ActionResult> OnGetAsync()
         {
+            GetUsedCarsInput.MaxMaxResultCount = 50;
             AllBrands = (await _brandAppService.GetListAsync()).Items;
             AllModelLevels = await _usedCarAppService.GetAllModelLevelsAsync();
             AllModelColors = await _usedCarAppService.GetAllModelColorsAsync();
