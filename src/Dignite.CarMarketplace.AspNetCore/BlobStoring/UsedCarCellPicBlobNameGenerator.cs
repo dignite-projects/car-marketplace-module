@@ -1,10 +1,9 @@
 ﻿using Dignite.Abp.BlobStoring;
 using Microsoft.AspNetCore.Http;
-using System;
 using System.Threading.Tasks;
 using Volo.Abp.DependencyInjection;
 
-namespace Dignite.CarMarketplace.BlobStoring;
+namespace Dignite.CarMarketplace.AspNetCore.BlobStoring;
 
 public class UsedCarCellPicBlobNameGenerator : IBlobNameGenerator, ITransientDependency
 {
