@@ -7,7 +7,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace Dignite.CarMarketplace.Public.UsedCars
 {
-    public class UsedCarDto : CreationAuditedEntityDto<Guid>
+    public class UsedCarDto : AuditedEntityDto<Guid>
     {
         /// <summary>
         /// 车源编号

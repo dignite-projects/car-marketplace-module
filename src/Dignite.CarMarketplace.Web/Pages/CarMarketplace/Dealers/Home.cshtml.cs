@@ -41,6 +41,10 @@ namespace Dignite.CarMarketplace.Web.Pages.Dealers
             GetUsedCarsInput.DealerId = Dealer.Id;
             var pagedResult = await _usedCarAppService.GetListAsync(GetUsedCarsInput);
             UsedCars = pagedResult.Items;
+            foreach (var item in UsedCars)
+            {
+                item.Dealer = Dealer;
+            }
             PagerModel = new PagerModel(pagedResult.TotalCount, 10, CurrentPage, GetUsedCarsInput.MaxResultCount, Request.Path);
 
             return Page();

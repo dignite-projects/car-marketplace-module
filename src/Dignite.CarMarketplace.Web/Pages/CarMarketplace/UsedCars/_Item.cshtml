@@ -11,7 +11,10 @@
         </a>
         <div class="card-body position-relative d-flex flex-column">
             <span class="badge rounded-pill bg-primary fw-normal fs-6 position-absolute top-0 start-50 translate-middle">￥@CarMarketplacePageHelper.GetPriceFormatText(Model.Price)</span>
-            <h6 class="card-title mt-2">
+            <small class="text-muted">
+                @Model.Dealer.Name
+            </small>
+            <h6 class="card-title">
                 <a class="underline-animate" href="@Url.Page("Detail",new{Id=Model.Id})">@Model.Name</a>
             </h6>
             <div class="row">
