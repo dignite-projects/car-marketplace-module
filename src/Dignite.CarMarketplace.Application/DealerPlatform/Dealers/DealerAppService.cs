@@ -81,6 +81,12 @@ namespace Dignite.CarMarketplace.DealerPlatform.Dealers
         }
 
         [Authorize]
+        public async Task<bool> ShortNameExistsAsync(string shortName)
+        {
+            return await _dealerRepository.ShortNameExistsAsync(shortName);
+        }
+
+        [Authorize]
         public async Task<DealerDto> UpdateAsync(Guid id, DealerUpdateDto input)
         {
             var entity = await _dealerRepository.FindByAdministratorAsync(CurrentUser.GetId(), false);

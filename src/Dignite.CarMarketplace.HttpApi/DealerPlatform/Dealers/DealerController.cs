@@ -60,6 +60,14 @@ public class DealerController : CarMarketplaceController, IDealerAppService
     }
 
     [HttpPut]
+    [Route("short-name-exists")]
+    [Authorize]
+    public async Task<bool> ShortNameExistsAsync(string shortName)
+    {
+        return await _dealerAppService.ShortNameExistsAsync(shortName);
+    }
+
+    [HttpPut]
     [Route("{id:Guid}")]
     [Authorize]
     public async Task<DealerDto> UpdateAsync(Guid id,DealerUpdateDto input)

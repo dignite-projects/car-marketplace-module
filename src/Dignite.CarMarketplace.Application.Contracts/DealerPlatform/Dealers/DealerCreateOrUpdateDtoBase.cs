@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Dignite.CarMarketplace.Dealers;
+using JetBrains.Annotations;
 using System.ComponentModel.DataAnnotations;
-using Dignite.CarMarketplace.Dealers;
-using Microsoft.Extensions.DependencyInjection;
-using Volo.Abp.ObjectExtending;
-using Volo.Abp.Threading;
+using System.Threading.Tasks;
 using Volo.Abp.Validation;
 
 namespace Dignite.CarMarketplace.DealerPlatform.Dealers

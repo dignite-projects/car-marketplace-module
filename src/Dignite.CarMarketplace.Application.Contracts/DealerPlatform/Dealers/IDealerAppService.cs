@@ -16,4 +16,6 @@ public interface IDealerAppService: IApplicationService
 
     Task AddAdministratorAsync(Guid userId);
     Task RemoveAdministratorAsync(Guid userId);
+
+    Task<bool> ShortNameExistsAsync(string shortName);
 }
