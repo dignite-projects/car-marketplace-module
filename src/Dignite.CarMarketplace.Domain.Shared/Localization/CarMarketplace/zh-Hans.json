@@ -1,6 +1,7 @@
 {
   "culture": "zh-Hans",
   "texts": {
+    "CarMarketplace": "二手车首页",
     "MyAccount": "我的账户",
     "SamplePageMessage": "CarMarketplace模块的示例页面",
     "LeftFront": "左前45度图",

@@ -6,7 +6,7 @@
 
 <div class="col">
     <div class="card cmpl-card used-car-card bg-light shadow-sm">
-        <a href="@Url.Page("Detail",new{Id=Model.Id})">
+        <a href="@Url.Page("/CarMarketplace/UsedCars/Detail",new{Id=Model.Id})">
             <img src="@($"/api/file-explorer/files/{BlobContainerConsts.CarPicsContainerName}/{Model.Id}/LeftFront?Width=400&Height=300")" class="card-img-top" alt="@(Model.Name+"左前45度图片")">
         </a>
         <div class="card-body position-relative d-flex flex-column">
@@ -15,7 +15,7 @@
                 @Model.Dealer.Name
             </small>
             <h6 class="card-title">
-                <a class="underline-animate" href="@Url.Page("Detail",new{Id=Model.Id})">@Model.Name</a>
+                <a class="underline-animate" href="@Url.Page("/CarMarketplace/UsedCars/Detail",new{Id=Model.Id})">@Model.Name</a>
             </h6>
             <div class="row">
                 <div class="col-6">

@@ -25,10 +25,17 @@ public class CarMarketplaceMenuContributor : IMenuContributor
 
         var l = context.GetLocalizer<CarMarketplaceResource>();
 
-        //Add main menu items.
-        context.Menu.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.UsedCars, displayName: l["Menu:UsedCar"], routePrefix+"used-car"));
-        context.Menu.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.SaleUsedCar, displayName: l["Menu:SaleUsedCar"], routePrefix+"sale-used-car"));
-        context.Menu.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.Dealers, displayName: l["Menu:Dealers"], routePrefix + "dealer"));
+
+        // 二手车市场
+        var carMarketplaceMenuItem = new ApplicationMenuItem(
+                CarMarketplaceMenus.Prefix,
+                l["CarMarketplace"]
+            );
+        carMarketplaceMenuItem.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.Prefix, displayName: l["CarMarketplace"], routePrefix));
+        carMarketplaceMenuItem.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.UsedCars, displayName: l["Menu:UsedCar"], routePrefix + "used-car"));
+        carMarketplaceMenuItem.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.SaleUsedCar, displayName: l["Menu:SaleUsedCar"], routePrefix + "sale-used-car"));
+        carMarketplaceMenuItem.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.Dealers, displayName: l["Menu:Dealers"], routePrefix + "dealer"));
+        context.Menu.AddItem(carMarketplaceMenuItem);
 
         return Task.CompletedTask;
     }

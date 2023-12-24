@@ -1,0 +1,24 @@
+﻿@using Dignite.CarMarketplace.Public.UsedCars;
+@inject IUsedCarAppService _usedCarAppService;
+@{
+    IReadOnlyList<UsedCarDto> UsedCars = (await _usedCarAppService.GetListAsync(new GetUsedCarsInput
+            {
+                SkipCount = 0,
+                MaxResultCount = 8
+            })).Items;
+}
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="fw-bold">
+            好车推荐
+        </h3>
+        <a class="chevron-right-animate" asp-page="./UsedCars/Index">查看更多</a>
+    </div>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-5">
+        @foreach (var item in UsedCars)
+        {            
+            <partial name="_Item.cshtml" model="item" />
+        }
+    </div>
+</div>

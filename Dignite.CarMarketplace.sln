@@ -45,7 +45,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dignite.CarMarketplace.Host
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dignite.CarMarketplace.Installer", "src\Dignite.CarMarketplace.Installer\Dignite.CarMarketplace.Installer.csproj", "{BE39FD00-745B-4049-8161-FC129817CBE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dignite.CarMarketplace.AspNetCore", "src\Dignite.CarMarketplace.AspNetCore\Dignite.CarMarketplace.AspNetCore.csproj", "{819A2CD4-6F5B-40F4-8444-8B5EB7AA2017}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dignite.CarMarketplace.AspNetCore", "src\Dignite.CarMarketplace.AspNetCore\Dignite.CarMarketplace.AspNetCore.csproj", "{819A2CD4-6F5B-40F4-8444-8B5EB7AA2017}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

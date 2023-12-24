@@ -1,0 +1,14 @@
+﻿@page
+@model Dignite.CarMarketplace.Web.Pages.CarMarketplace.IndexModel
+@{
+    ViewBag.FluidLayout = true;
+}
+@section styles {
+    <abp-style src="/Pages/CarMarketplace/Shared/Styles/CarMarketplace.css" />
+}
+<div class="mt-5 mb-5">
+    <partial name="_HomeSearchSection.cshtml">
+</div>
+<partial name="./UsedCars/_Popular.cshtml">
+<partial name="_HomeSaleUsedCar.cshtml">
+<partial name="./Dealers/_Popular.cshtml">
