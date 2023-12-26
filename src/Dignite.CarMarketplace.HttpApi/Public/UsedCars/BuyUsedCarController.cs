@@ -6,12 +6,12 @@ namespace Dignite.CarMarketplace.Public.UsedCars
 {
     [Area(CarMarketplaceRemoteServiceConsts.DealerPlatformModuleName)]
     [RemoteService(Name = CarMarketplaceRemoteServiceConsts.RemoteServiceName)]
-    [Route("api/car-marketplace-dealer-platform/used-car-consultation")]
-    public class UsedCarConsultationController : CarMarketplaceController, IBuyUsedCarAppService
+    [Route("api/car-marketplace-public/buy-used-car")]
+    public class BuyUsedCarController : CarMarketplaceController, IBuyUsedCarAppService
     {
         private readonly IBuyUsedCarAppService _usedCarConsultationAppService;
 
-        public UsedCarConsultationController(IBuyUsedCarAppService usedCarConsultationAppService)
+        public BuyUsedCarController(IBuyUsedCarAppService usedCarConsultationAppService)
         {
             _usedCarConsultationAppService = usedCarConsultationAppService;
         }
