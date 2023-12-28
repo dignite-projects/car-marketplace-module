@@ -29,7 +29,7 @@ public class CarMarketplaceEntityFrameworkCoreModule : AbpModule
             options.AddRepository<Trim, EfCoreTrimRepository>();
             options.AddRepository<Dealer, EfCoreDealerRepository>();
             options.AddRepository<UsedCar, EfCoreUsedCarRepository>();
-            options.AddRepository<SaleUsedCar, EfCoreSaleCarRepository>();
+            options.AddRepository<SaleUsedCar, EfCoreSaleUsedCarRepository>();
             options.AddRepository<BuyUsedCar, EfCoreBuyUsedCarRepository>();
         });
     }

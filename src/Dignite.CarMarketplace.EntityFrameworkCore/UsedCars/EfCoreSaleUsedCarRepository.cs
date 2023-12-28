@@ -7,9 +7,9 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace Dignite.CarMarketplace.UsedCars;
 
-public class EfCoreSaleCarRepository : EfCoreRepository<ICarMarketplaceDbContext, SaleUsedCar, Guid>, ISaleUsedCarRepository
+public class EfCoreSaleUsedCarRepository : EfCoreRepository<ICarMarketplaceDbContext, SaleUsedCar, Guid>, ISaleUsedCarRepository
 {
-    public EfCoreSaleCarRepository(IDbContextProvider<ICarMarketplaceDbContext> dbContextProvider)
+    public EfCoreSaleUsedCarRepository(IDbContextProvider<ICarMarketplaceDbContext> dbContextProvider)
         : base(dbContextProvider)
     {
     }
