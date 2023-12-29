@@ -121,17 +121,13 @@ export class UsedCarDetailComponent {
   getBrandList() {
     return new Promise((resolve, rejects) => {
       this._BrandService.getList().subscribe(res => {
-        // console.log(res.items, '获取品牌列表');
         resolve(new Array(...res.items))
       })
     })
   }
   /**品牌改变 */
   async brandChange(event) {
-    // console.log('品牌改变', this.brandId);
     this.modelList = await this.getModelList(this.brandId)
-    // this.usedCarForm.patchValue({ trimId: '' });
-    // this.trimList = []
   }
 
   /**获取车型列表 */
@@ -140,7 +136,6 @@ export class UsedCarDetailComponent {
       this._ModelService.getList({
         brandId: brandId
       }).subscribe(async (res) => {
-        // console.log(res.items, '获取车型列表');
         resolve(new Array(...res.items))
       })
     })
@@ -157,7 +152,6 @@ export class UsedCarDetailComponent {
       this._TrimService.getList({
         modelId: ModelId
       }).subscribe(async (res) => {
-        // console.log(res.items, '获取车款列表');
         resolve(new Array(...res.items))
       })
     })
@@ -169,10 +163,6 @@ export class UsedCarDetailComponent {
   getImageConfiguration() {
     return new Promise<void>((resolve, reject) => {
       this._FileDescriptorService.getFileContainerConfiguration('CarPics').subscribe(async (res) => {
-        // let allowedFileTypeNames = []
-        // res.allowedFileTypeNames.map(el => {
-        //   allowedFileTypeNames.push('image/' + el.slice(1))
-        // })
         let imagemess = await this.getImage(this.usedCarId)
         imagemess.map(el => el.src = el.url)
         let fileCellsConfig = {}
@@ -181,11 +171,6 @@ export class UsedCarDetailComponent {
           fileCellsConfig[el.name] = [el.name, Validators.required]
         })
         this.fileCells = res.fileCells
-        // let fileCellsgroup = this.fb.group({ ...fileCellsConfig })
-        // this.usedCarForm.addControl('fileCellsarr', fileCellsgroup);
-        console.log(this.fileCells,'获取图片容器');
-        // this.allowedFileTypeNames = allowedFileTypeNames.toString()
-        // this.maxBlobSize = res.maxBlobSize
         resolve()
       })
     })
