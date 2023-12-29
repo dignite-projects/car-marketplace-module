@@ -1,0 +1,302 @@
+<dignite-page-header [title]="'车商信息'">
+  <button type="button" class="btn btn-primary btn-sm" (click)="EditOpen()">编辑</button>
+</dignite-page-header>
+<div class="card">
+  <div class="card-body">
+    <div class="container">
+      <div class="row">
+        <ng-container
+          *ngTemplateOutlet="
+            TextStyleLayout;
+            context: {
+              $implicit: {
+                key: '名称',
+                value: dealerInfo?.name,
+                col: 4
+              }
+            }
+          "
+        ></ng-container>
+        <ng-container
+          *ngTemplateOutlet="
+            TextStyleLayout;
+            context: {
+              $implicit: {
+                key: '简称',
+                value: dealerInfo?.shortName,
+                col: 6
+              }
+            }
+          "
+        ></ng-container>
+      </div>
+      <div class="row">
+        <ng-container
+          *ngTemplateOutlet="
+            TextStyleLayout;
+            context: {
+              $implicit: {
+                key: '联系人',
+                value: dealerInfo?.contactPerson
+              }
+            }
+          "
+        ></ng-container>
+        <ng-container
+          *ngTemplateOutlet="
+            TextStyleLayout;
+            context: {
+              $implicit: {
+                key: '联系方式',
+                value: dealerInfo?.contactNumber
+              }
+            }
+          "
+        ></ng-container>
+        <ng-container
+          *ngTemplateOutlet="
+            TextStyleLayout;
+            context: {
+              $implicit: {
+                key: '状态',
+                value: dealerInfo?.authenticationStatus | getDealerStatusToName
+              }
+            }
+          "
+        ></ng-container>
+      </div>
+      <div class="row">
+        <ng-container
+          *ngTemplateOutlet="
+            TextStyleLayout;
+            context: {
+              $implicit: {
+                key: '创建时间',
+                value: dealerInfo?.creationTime | dateT : 'yy-mm-dd hh:mm:ss'
+              }
+            }
+          "
+        ></ng-container>
+      </div>
+      <div class="row">
+        <ng-container
+          *ngTemplateOutlet="
+            TextStyleLayout;
+            context: {
+              $implicit: {
+                key: '地址',
+                value: dealerInfo?.address
+              }
+            }
+          "
+        ></ng-container>
+      </div>
+      <div class="row">
+        <ng-container
+          *ngTemplateOutlet="
+            ImageStyleLayout;
+            context: {
+              $implicit: {
+                key: '封面',
+                images: fileListView_show,
+                col: 10
+              }
+            }
+          "
+        ></ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #TextStyleLayout let-data>
+  <div [class]="'col' + (data.col ? '-' + data.col : '')">
+    <div class="row py-md-2">
+      <div class="col-auto text-black-50">{{ data?.key }}:</div>
+      <div class="col text-dark">{{ data?.value }}</div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #ImageStyleLayout let-data>
+  <div [class]="'col' + (data.col ? '-' + data.col : '')">
+    <div class="row py-md-3">
+      <div class="col-auto">{{ data?.key }}:</div>
+      <div class="col">
+        <ng-container *ngFor="let item of data.images">
+          <dignite-image
+            [class]="'rounded m-sm-1'"
+            
+            [src]="item.src"
+            width="240"
+            height="160"
+          >
+          </dignite-image>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<dignite-modal [(visible)]="isModalVisible">
+  <ng-template #digniteHeader>
+    <h3 class="modal-title">{{ (dealerInfo?.id ? 'AbpIdentity::Edit' : '') | abpLocalization }}</h3>
+  </ng-template>
+  <ng-template #digniteBody>
+    <form [formGroup]="dealerForm" #newFroupForm="ngForm" autocomplete="off">
+      <ng-container
+        *ngTemplateOutlet="
+          textFrom;
+          context: {
+            $implicit: {
+              label: '名称',
+              formControlName: 'name',
+              mb: 2,
+              required: true,
+              placeholder: ''
+            }
+          }
+        "
+      ></ng-container>
+      <ng-container
+        *ngTemplateOutlet="
+          textFrom;
+          context: {
+            $implicit: {
+              label: '简称',
+              formControlName: 'shortName',
+              mb: 2,
+              required: true,
+              placeholder: ''
+            }
+          }
+        "
+      ></ng-container>
+      <ng-container
+        *ngTemplateOutlet="
+          textFrom;
+          context: {
+            $implicit: {
+              label: '联系人',
+              formControlName: 'contactPerson',
+              mb: 2,
+              required: true,
+              placeholder: ''
+            }
+          }
+        "
+      ></ng-container>
+      <ng-container
+        *ngTemplateOutlet="
+          textFrom;
+          context: {
+            $implicit: {
+              label: '联系方式',
+              formControlName: 'contactNumber',
+              mb: 2,
+              required: true,
+              placeholder: ''
+            }
+          }
+        "
+      ></ng-container>
+      <ng-container
+        *ngTemplateOutlet="
+          textFrom;
+          context: {
+            $implicit: {
+              label: '地址',
+              formControlName: 'address',
+              mb: 2,
+              required: true,
+              placeholder: ''
+            }
+          }
+        "
+      ></ng-container>
+      <ng-container
+        *ngTemplateOutlet="
+          fileFrom;
+          context: {
+            $implicit: {
+              label: '封面',
+              formControlName: 'address',
+              mb: 2,
+              required: true,
+              placeholder: ''
+            }
+          }
+        "
+      ></ng-container>
+    </form>
+
+    <ng-template #textFrom let-data [formGroup]="dealerForm">
+      <div [class]="'mb' + (data.mb ? '-' + data.mb : '')">
+        <label class="form-label" [for]="data.label"
+          >{{ data.label }}<ng-container *ngIf="data.required">*</ng-container></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          [id]="data.label"
+          [formControlName]="data.formControlName"
+          [placeholder]="data.placeholder || '请输入' + data.label"
+        />
+      </div>
+    </ng-template>
+    <ng-template #fileFrom let-data [formGroup]="dealerForm">
+      <div [class]="'mb' + (data.mb ? '-' + data.mb : '')">
+        <label class="form-label" [for]="data.label"
+          >{{ data.label }}<ng-container *ngIf="data.required">*</ng-container></label
+        >
+        <div>
+          <ng-container *ngFor="let item of fileListView">
+            <dignite-image
+              [class]="'rounded m-sm-1'"
+              
+              [isdelete]="true"
+              (deleteClick)="deleteImage(item)"
+              [src]="item.src"
+              width="240"
+              height="160"
+              [alt]=""
+              [title]=""
+            >
+            </dignite-image>
+          </ng-container>
+          <div
+            class="uploadImage uploadImage-size m-sm-1 rounded"
+            *ngIf="fileListView.length === 0"
+          >
+            <div class="upload_btn_icon">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+              <div>上传</div>
+            </div>
+            <input
+              type="file"
+              [accept]="allowedFileTypeNames"
+              (change)="UploadFlieChange($event)"
+              class="upload_input"
+              id=""
+            />
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ng-template>
+  <ng-template #digniteFooter>
+    <button type="button" class="btn btn-secondary" (click)="ModalClose()">Close</button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      [disabled]="!(!dealerForm?.invalid && fileListView.length > 0)"
+      (click)="ModalConfirm()"
+    >
+      <i class="fa fa-spinner spinner-btn" *ngIf="isloading" aria-hidden="true"></i>
+      Save
+    </button>
+  </ng-template>
+</dignite-modal>
+
+<ng-template #successTpl>车商信息提交成功</ng-template>
+<ng-template #errTpl>封面上传失败，请重新上传</ng-template>
+<dignite-toasts aria-live="polite" aria-atomic="true"></dignite-toasts>

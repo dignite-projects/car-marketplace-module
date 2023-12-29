@@ -1,4 +1,4 @@
-import type { DealerDto, GetDealersInput } from './models';
+import type { DealerDto, DealerExcelDownloadInput, GetDealersInput } from './models';
 import { RestService, Rest } from '@abp/ng.core';
 import type { PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
@@ -41,6 +41,16 @@ export class DealerService {
       method: 'GET',
       url: '/api/car-marketplace-admin/dealer',
       params: { filter: input.filter, authenticationStatus: input.authenticationStatus, sorting: input.sorting, skipCount: input.skipCount, maxResultCount: input.maxResultCount },
+    },
+    { apiName: this.apiName,...config });
+  
+
+  getListAsExcelFile = (input: DealerExcelDownloadInput, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, Blob>({
+      method: 'GET',
+      responseType: 'blob',
+      url: '/api/car-marketplace-admin/dealer/as-excel-file',
+      params: { authenticationStatus: input.authenticationStatus },
     },
     { apiName: this.apiName,...config });
 

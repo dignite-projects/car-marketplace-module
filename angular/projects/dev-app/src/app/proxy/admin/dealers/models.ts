@@ -13,6 +13,10 @@ export interface DealerDto extends FullAuditedEntityDto<string> {
   authenticationStatus: AuthenticationStatus;
 }
 
+export interface DealerExcelDownloadInput {
+  authenticationStatus?: AuthenticationStatus;
+}
+
 export interface GetDealersInput extends PagedAndSortedResultRequestDto {
   filter?: string;
   authenticationStatus?: AuthenticationStatus;

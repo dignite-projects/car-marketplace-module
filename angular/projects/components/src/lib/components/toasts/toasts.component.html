@@ -1,0 +1,10 @@
+<ng-container *ngFor="let toast of _toastService.toasts">
+  <ngb-toast
+      [class]="toast.classname"
+      [autohide]="true"
+      [delay]="toast.delay || 5000"
+      (hidden)="_toastService.remove(toast)"
+    >
+      <ng-template [ngTemplateOutlet]="toast.template"></ng-template>
+    </ngb-toast>
+</ng-container>

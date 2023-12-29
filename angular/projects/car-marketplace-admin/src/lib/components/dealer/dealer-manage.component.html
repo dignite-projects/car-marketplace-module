@@ -1,0 +1,78 @@
+<dignite-page [title]="'车商管理'">
+    <ng-template #pageHeader>
+        <button type="button" class="btn btn-primary btn-sm" (click)="exportAsExcelFile()">导出</button>
+    </ng-template>
+    <ng-template #pageBody>
+        <div class="input-group">
+            <input type="text" class="form-control" [(ngModel)]="search.filter" name="filter" placeholder="请输入名称">
+            <select class="form-select" [(ngModel)]="search.authenticationStatus" name="authenticationStatus">
+                <option selected value="">全部状态</option>
+                <ng-container *ngFor="let item of authenticationStatusList">
+                    <option [value]="item.value">{{item.value|getDealerStatusName}}</option>
+                </ng-container>
+            </select>
+            <button class="btn  btn-outline-primary" type="button" (click)="searchSite()">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <dignite-table [data]="dealerList" [columns]="columns" [pages]="page" [loading]="loadingIndicator"
+            (pageChange)="setPage($event)">
+            <ng-template #nameCol let-row="row" let-value="value">
+                <a routerLink="/dealer-platform/used-car/details/{{row?.id }}"> {{value }}</a>
+            </ng-template>
+            <ng-template #statusCol let-row="row" let-value="value">
+                {{ value|getDealerStatusName }}
+            </ng-template>
+            <ng-template #creationTimeCol let-row="row" let-value="value">
+                <div> {{ value|dDate:'yy-mm-dd hh:mm:ss' }}</div>
+            </ng-template>
+            <ng-template #operateCol let-row="row" let-value="value">
+                <div ngbDropdown class="d-inline-block">
+                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                        操作
+                    </button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <ng-container *ngIf="row.authenticationStatus === 0">
+                            <button ngbDropdownItem class="btn btn-outline-primary no-round" (click)="authenticateCarMarketplace(row, 'yes')">批准</button>
+                            <button ngbDropdownItem class="btn btn-outline-primary no-round"
+                                (click)="authenticateCarMarketplace(row, 'no')">不批准</button>
+                        </ng-container>
+                        <button  *ngIf="row.authenticationStatus !== 0" ngbDropdownItem class="btn btn-outline-primary no-round"
+                            (click)="changeStatus(row)">状态</button>
+
+                        <button ngbDropdownItem class="btn btn-outline-primary no-round"
+                            (click)="SiteDelete(row)">删除</button>
+                    </div>
+                </div>
+            </ng-template>
+        </dignite-table>
+
+        <dignite-modal [(visible)]="isModalVisible">
+            <ng-template #digniteHeader>
+                <h3 class="modal-title">编辑</h3>
+            </ng-template>
+            <ng-template #digniteBody>
+                <div class="row mb-2">
+                    <div class="col">
+                        <label class="form-label">状态*</label>
+                        <select class="form-select" [(ngModel)]="StatusValue"
+                            name="StatusValue">
+                            <option selected value="">---</option>
+                            <ng-container *ngFor="let item of authenticationStatusList">
+                                <option [value]="item.value">{{item.value|getDealerStatusName}}</option>
+                            </ng-container>
+                        </select>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template #digniteFooter>
+                <button type="button" class="btn btn-secondary" (click)="ModalClose()">Close</button>
+                <button type="button" class="btn btn-primary" (click)="ModalConfirm()">
+                    <i class="fa fa-spinner spinner-btn " *ngIf="isloading" aria-hidden="true"></i>
+                    Save</button>
+            </ng-template>
+        </dignite-modal>
+
+    </ng-template>
+</dignite-page>

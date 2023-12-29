@@ -1,16 +1,16 @@
-import { NZ_I18N } from 'ng-zorro-antd/i18n';
-import { zh_CN } from 'ng-zorro-antd/i18n';
-import { registerLocaleData } from '@angular/common';
-import zh from '@angular/common/locales/zh';
+
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { AccountConfigModule } from '@abp/ng.account/config';
 import { CoreModule } from '@abp/ng.core';
-import { registerLocale } from '@abp/ng.core/locale'; 
+import { registerLocale } from '@abp/ng.core/locale';
 import { IdentityConfigModule } from '@abp/ng.identity/config';
 import { SettingManagementConfigModule } from '@abp/ng.setting-management/config';
 import { TenantManagementConfigModule } from '@abp/ng.tenant-management/config';
-// import { ThemeBasicModule } from '@abp/ng.theme.basic';
-import { ThemeBasicModule } from 'projects/theme-basic-zorro/src/public-api';
+import { ThemeLeptonXModule } from '@abp/ng.theme.lepton-x';
+import { SideMenuLayoutModule } from '@abp/ng.theme.lepton-x/layouts';
+import { AccountLayoutModule } from '@abp/ng.theme.lepton-x/account';
 import { ThemeSharedModule } from '@abp/ng.theme.shared';
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,35 +20,37 @@ import { AppComponent } from './app.component';
 import { APP_ROUTE_PROVIDER } from './route.provider';
 import { FeatureManagementModule } from '@abp/ng.feature-management';
 import { AbpOAuthModule } from '@abp/ng.oauth';
-import {AdminLibConfigModule} from '@dignite/admin-lib/config'; 
-import {DealerPlatformLibConfigModule} from '@dignite/dealer-platform-lib/config'; 
+import { CarMarketplaceAdminConfigModule } from '@dignite/car-marketplace-admin/config';
+import { CarMarketplaceDealerPlatformConfigModule } from 'projects/car-marketplace-dealer-platform/config/src/car-marketplace-dealer-platform-config.module';
 
-registerLocaleData(zh); 
 
-@NgModule({  
-  imports: [
+@NgModule({
+  imports: [ 
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    CoreModule.forRoot({ 
-      environment, 
+    CoreModule.forRoot({
+      environment,
       registerLocaleFn: registerLocale(),
       sendNullsAsQueryParam: false,
       skipGetAppConfiguration: false,
     }),
-    AbpOAuthModule.forRoot(), 
+    AbpOAuthModule.forRoot(),
     ThemeSharedModule.forRoot(),
     AccountConfigModule.forRoot(),
     IdentityConfigModule.forRoot(),
     TenantManagementConfigModule.forRoot(),
-    SettingManagementConfigModule.forRoot(),  
-    ThemeBasicModule.forRoot(),
+    SettingManagementConfigModule.forRoot(),
+    ThemeLeptonXModule.forRoot(),
+    SideMenuLayoutModule.forRoot(),
+    AccountLayoutModule.forRoot(),
     FeatureManagementModule.forRoot(),
-    AdminLibConfigModule.forRoot(),//系统管理员端
-    DealerPlatformLibConfigModule.forRoot(),//车商端
+    CarMarketplaceAdminConfigModule.forRoot(),//系统管理导航配置
+    CarMarketplaceDealerPlatformConfigModule.forRoot()//车商管理平台导航配置
   ],
   providers: [APP_ROUTE_PROVIDER],
   declarations: [AppComponent],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

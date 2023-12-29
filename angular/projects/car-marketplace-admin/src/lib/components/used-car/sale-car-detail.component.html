@@ -1,0 +1,48 @@
+<dignite-page [title]="'卖车信息'" [isback]="true">
+    <ng-template #pageBody>
+        <div class="container " overflow>
+            <div class="row">
+                <ng-container *ngTemplateOutlet="TextStyleLayout; context: {$implicit: {
+                    key:'品牌分组',value:saleCarInfo?.model?.group}}"></ng-container>
+                <ng-container *ngTemplateOutlet="TextStyleLayout; context: {$implicit: {
+                key:'车型',value:saleCarInfo?.model?.name}}"></ng-container>
+                <ng-container *ngTemplateOutlet="TextStyleLayout; context: {$implicit: {
+                    key:'总里程(公里数)',value:saleCarInfo?.totalMileage}}"></ng-container>
+            </div>
+            <div class="row">
+                <ng-container *ngTemplateOutlet="TextStyleLayout; context: {$implicit: {
+                    key:'联系人',value:saleCarInfo?.contactPerson}}"></ng-container>
+                <ng-container *ngTemplateOutlet="TextStyleLayout; context: {$implicit: {
+                        key:'联系电话',value:saleCarInfo?.contactNumber}}"></ng-container>
+
+                <ng-container *ngTemplateOutlet="TextStyleLayout; context: {$implicit: {
+                            key:'地址',value:saleCarInfo?.address}}"></ng-container>
+
+            </div>
+            <div class="row">
+                <ng-container *ngTemplateOutlet="TextStyleLayout; context: {$implicit: {
+                key:'初次上牌日期',value:saleCarInfo?.registrationDate | dDate:'yy-mm-dd',col:4}}"></ng-container>
+                <ng-container *ngTemplateOutlet="TextStyleLayout; context: {$implicit: {
+                key:'创建时间',value:saleCarInfo?.creationTime | dDate:'yy-mm-dd hh:mm:ss'}}"></ng-container>
+
+            </div>
+            <div class="row">
+                <ng-container *ngTemplateOutlet="TextStyleLayout; context: {$implicit: {
+                    key:'描述',value:saleCarInfo?.description}}"></ng-container>
+            </div>
+        </div>
+
+        <ng-template #TextStyleLayout let-data>
+            <div [class]="'col' + (data.col ? '-' + data.col : '')">
+                <div class="row py-md-2">
+                    <div class="col-auto text-black-50">{{ data?.key }}:</div>
+                    <div class="col text-dark">{{ data?.value }}</div>
+                </div>
+            </div>
+        </ng-template>
+
+
+
+
+    </ng-template>
+</dignite-page>

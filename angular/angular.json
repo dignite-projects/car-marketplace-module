@@ -38,6 +38,56 @@
             ],
             "styles": [
               {
+                "input": "node_modules/@volo/ngx-lepton-x.lite/assets/css/bootstrap-dim.css",
+                "inject": false,
+                "bundleName": "bootstrap-dim"
+              },
+              {
+                "input": "node_modules/@volo/ngx-lepton-x.lite/assets/css/ng-bundle.css",
+                "inject": false,
+                "bundleName": "ng-bundle"
+              },
+              {
+                "input": "node_modules/@volo/ngx-lepton-x.lite/assets/css/side-menu/layout-bundle.css",
+                "inject": false,
+                "bundleName": "layout-bundle"
+              },
+              {
+                "input": "node_modules/@abp/ng.theme.lepton-x/assets/css/abp-bundle.css",
+                "inject": false,
+                "bundleName": "abp-bundle"
+              },
+              {
+                "input": "node_modules/@volo/ngx-lepton-x.lite/assets/css/bootstrap-dim.rtl.css",
+                "inject": false,
+                "bundleName": "bootstrap-dim.rtl"
+              },
+              {
+                "input": "node_modules/@volo/ngx-lepton-x.lite/assets/css/font-bundle.rtl.css",
+                "inject": false,
+                "bundleName": "font-bundle.rtl"
+              },
+              {
+                "input": "node_modules/@volo/ngx-lepton-x.lite/assets/css/font-bundle.css",
+                "inject": false,
+                "bundleName": "font-bundle"
+              },
+              {
+                "input": "node_modules/@volo/ngx-lepton-x.lite/assets/css/ng-bundle.rtl.css",
+                "inject": false,
+                "bundleName": "ng-bundle.rtl"
+              },
+              {
+                "input": "node_modules/@volo/ngx-lepton-x.lite/assets/css/side-menu/layout-bundle.rtl.css",
+                "inject": false,
+                "bundleName": "layout-bundle.rtl"
+              },
+              {
+                "input": "node_modules/@abp/ng.theme.lepton-x/assets/css/abp-bundle.rtl.css",
+                "inject": false,
+                "bundleName": "abp-bundle.rtl"
+              },
+              {
                 "input": "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
                 "inject": true,
                 "bundleName": "fontawesome-all.min"
@@ -62,18 +112,9 @@
                 "inject": true,
                 "bundleName": "ngx-datatable-material"
               },
-              {
-                "input": "node_modules/bootstrap/dist/css/bootstrap.rtl.min.css",
-                "inject": false,
-                "bundleName": "bootstrap-rtl.min"
-              },
-              {
-                "input": "node_modules/bootstrap/dist/css/bootstrap.min.css",
-                "inject": true,
-                "bundleName": "bootstrap-ltr.min"
-              },
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
-              "projects/dev-app/src/theme.less",
+              "projects/components/src/lib/styles/base.scss",
               "projects/dev-app/src/styles.scss"
             ],
             "scripts": []
@@ -158,11 +199,11 @@
         }
       }
     },
-    "theme-basic-zorro": {
+    "car-marketplace-admin": {
       "projectType": "library",
-      "root": "projects/theme-basic-zorro",
-      "sourceRoot": "projects/theme-basic-zorro/src",
-      "prefix": "dig",
+      "root": "projects/car-marketplace-admin",
+      "sourceRoot": "projects/car-marketplace-admin/src",
+      "prefix": "lib",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
@@ -172,14 +213,14 @@
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/theme-basic-zorro/ng-package.json"
+            "project": "projects/car-marketplace-admin/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/theme-basic-zorro/tsconfig.lib.prod.json"
+              "tsConfig": "projects/car-marketplace-admin/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/theme-basic-zorro/tsconfig.lib.json"
+              "tsConfig": "projects/car-marketplace-admin/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -187,37 +228,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "tsConfig": "projects/theme-basic-zorro/tsconfig.spec.json",
-            "polyfills": ["zone.js", "zone.js/testing"]
-          }
-        }
-      }
-    },
-    "admin-lib": {
-      "projectType": "library",
-      "root": "projects/admin-lib",
-      "sourceRoot": "projects/admin-lib/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "projects/admin-lib/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/admin-lib/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/admin-lib/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "tsConfig": "projects/admin-lib/tsconfig.spec.json",
+            "tsConfig": "projects/car-marketplace-admin/tsconfig.spec.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -226,23 +237,28 @@
         }
       }
     },
-    "dealer-platform-lib": {
+    "car-marketplace-dealer-platform": {
       "projectType": "library",
-      "root": "projects/dealer-platform-lib",
-      "sourceRoot": "projects/dealer-platform-lib/src",
+      "root": "projects/car-marketplace-dealer-platform",
+      "sourceRoot": "projects/car-marketplace-dealer-platform/src",
       "prefix": "lib",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/dealer-platform-lib/ng-package.json"
+            "project": "projects/car-marketplace-dealer-platform/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/dealer-platform-lib/tsconfig.lib.prod.json"
+              "tsConfig": "projects/car-marketplace-dealer-platform/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/dealer-platform-lib/tsconfig.lib.json"
+              "tsConfig": "projects/car-marketplace-dealer-platform/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -250,7 +266,45 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "tsConfig": "projects/dealer-platform-lib/tsconfig.spec.json",
+            "tsConfig": "projects/car-marketplace-dealer-platform/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "components": {
+      "projectType": "library",
+      "root": "projects/components",
+      "sourceRoot": "projects/components/src",
+      "prefix": "lib",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/components/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/components/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/components/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/components/tsconfig.spec.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing"

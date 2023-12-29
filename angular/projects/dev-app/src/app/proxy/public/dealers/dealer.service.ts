@@ -10,6 +10,14 @@ export class DealerService {
   apiName = 'CarMarketplace';
   
 
+  findByShortName = (shortName: string, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, DealerDto>({
+      method: 'GET',
+      url: `/api/car-marketplace-public/dealer/find/${shortName}`,
+    },
+    { apiName: this.apiName,...config });
+  
+
   get = (id: string, config?: Partial<Rest.Config>) =>
     this.restService.request<any, DealerDto>({
       method: 'GET',

@@ -1,0 +1,44 @@
+<dignite-page [title]="'二手车'">
+  
+    <ng-template #pageBody>
+        <div class="input-group">
+            <input type="text" class="form-control" [(ngModel)]="search.usedCarId" name="usedCarId" placeholder="请输入车源">
+            <!-- <select class="form-select" [(ngModel)]="search.status" name="status">
+                <option selected value="">全部状态</option>
+                <ng-container *ngFor="let item of usedCarStatusList">
+                    <option [value]="item.value">{{item.value|getUsedCarStatusToName}}</option>
+                </ng-container>
+            </select> -->
+            <button class="btn  btn-outline-primary" type="button" (click)="searchSite()">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+        </div>
+        <dignite-table [data]="UsedCarList" [columns]="columns" [pages]="page" [loading]="loadingIndicator"
+            (pageChange)="setPage($event)">
+            <ng-template #nameCol let-row="row" let-value="value">
+                <a routerLink="/admin/used-car/details/{{row?.id }}"> {{value }}</a>
+            </ng-template>
+            <ng-template #statusCol let-row="row" let-value="value">
+                {{ value|getUsedCarStatusToName }}
+            </ng-template>
+            <ng-template #creationTimeCol let-row="row" let-value="value">
+                <div> {{ value|dDate:'yy-mm-dd hh:mm:ss' }}</div>
+            </ng-template>
+            <ng-template #operateCol let-row="row" let-value="value">
+                <div ngbDropdown class="d-inline-block">
+                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                        操作
+                    </button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <!-- <button ngbDropdownItem class="btn btn-outline-primary no-round"
+                            (click.stop)="EditUsedCar(row?.id)">编辑</button> -->
+                        <button ngbDropdownItem class="btn btn-outline-primary no-round"
+                            (click)="SiteDelete(row)">删除</button>
+                    </div>
+                </div>
+            </ng-template>
+        </dignite-table>
+
+
+    </ng-template>
+</dignite-page>

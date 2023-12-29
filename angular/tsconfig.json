@@ -2,32 +2,34 @@
   "extends": "./tsconfig.prod.json",
   "compilerOptions": {
     "paths": {
-      "@dignite/admin-lib": [
-        // "dist/admin-lib"
-        "./projects/admin-lib/src/public-api.ts"
+      "@dignite/car-marketplace-admin": [
+        // "dist/car-marketplace-admin"
+        "./projects/car-marketplace-admin/src/public-api.ts"
       ],
-      "@dignite/admin-lib/config": [
-        // "dist/admin-lib/config"
-        "./projects/admin-lib/config/src/public-api.ts"
+      "@dignite/car-marketplace-admin/config": [
+        // "dist/car-marketplace-admin"
+        "./projects/car-marketplace-admin/config/src/public-api.ts"
       ],
-      "@dignite/dealer-platform-lib":[
-        // "dist/dealer-platform-lib"
-        "./projects/dealer-platform-lib/src/public-api.ts"
+      "@dignite/car-marketplace-dealer-platform": [
+        // "dist/car-marketplace-dealer-platform"
+        "./projects/car-marketplace-dealer-platform/src/public-api.ts"
       ],
-      "@dignite/dealer-platform-lib/config":[
+      "@dignite/car-marketplace-dealer-platform/config":[
         // "dist/dealer-platform-lib/config"
-        "./projects/dealer-platform-lib/config/src/public-api.ts"
+        "./projects/car-marketplace-dealer-platform/config/src/public-api.ts"
       ],
-      "admin-lib/config": [
-        "dist/admin-lib/config"
+      "car-marketplace-admin": [
+        "dist/car-marketplace-admin"
       ],
-      "admin-lib": [
-        "dist/admin-lib"
+      "car-marketplace-dealer-platform": [
+        "dist/car-marketplace-dealer-platform"
       ],
-      "dealer-platform-lib": [
-        "dist/dealer-platform-lib"
+      "components": [
+        "dist/components"
       ],
-      "theme-basic": ["dist/theme-basic"]
+      "@dignite/components": [
+        "./projects/components/src/public-api.ts"
+      ],
     }
   }
 }
