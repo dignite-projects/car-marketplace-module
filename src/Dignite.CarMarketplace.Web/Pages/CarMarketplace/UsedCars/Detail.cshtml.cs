@@ -13,16 +13,16 @@ namespace Dignite.CarMarketplace.Web.Pages.UsedCars
 {
     public class DetailModel : CarMarketplacePageModel
     {
-        private readonly IUsedCarAppService _usedCarAppService;
+        private readonly IUsedCarPublicAppService _usedCarAppService;
         private readonly IFileDescriptorAppService _fileDescriptorAppService;
-        private readonly ITrimConfigItemAppService _trimConfigItemAppService;
-        private readonly ITrimAppService _trimAppService;
+        private readonly ITrimConfigItemPublicAppService _trimConfigItemAppService;
+        private readonly ITrimPublicAppService _trimAppService;
 
         public DetailModel(
-            IUsedCarAppService usedCarAppService, 
+            IUsedCarPublicAppService usedCarAppService, 
             IFileDescriptorAppService fileDescriptorAppService, 
-            ITrimConfigItemAppService trimConfigItemAppService, 
-            ITrimAppService trimAppService)
+            ITrimConfigItemPublicAppService trimConfigItemAppService, 
+            ITrimPublicAppService trimAppService)
         {
             _usedCarAppService = usedCarAppService;
             _fileDescriptorAppService = fileDescriptorAppService;

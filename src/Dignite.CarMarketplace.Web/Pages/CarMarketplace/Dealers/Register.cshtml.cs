@@ -13,10 +13,10 @@ namespace Dignite.CarMarketplace.Web.Pages.Dealers
 {
     public class RegisterModel : CarMarketplacePageModel
     {
-        private readonly IDealerAppService _dealerAppService;
+        private readonly IDealerPlatformAppService _dealerAppService;
         private readonly IFileDescriptorAppService _fileDescriptorAppService;
 
-        public RegisterModel(IDealerAppService dealerAppService, IFileDescriptorAppService fileDescriptorAppService)
+        public RegisterModel(IDealerPlatformAppService dealerAppService, IFileDescriptorAppService fileDescriptorAppService)
         {
             _dealerAppService = dealerAppService;
             _fileDescriptorAppService = fileDescriptorAppService;

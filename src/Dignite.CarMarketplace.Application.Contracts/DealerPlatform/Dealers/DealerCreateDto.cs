@@ -9,7 +9,7 @@ namespace Dignite.CarMarketplace.DealerPlatform.Dealers
     {
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            var dealerAppService = validationContext.GetRequiredService<IDealerAppService>();
+            var dealerAppService = validationContext.GetRequiredService<IDealerPlatformAppService>();
             var shortNameExists = AsyncHelper.RunSync(() => dealerAppService.ShortNameExistsAsync(ShortName));
             if (shortNameExists)
             {

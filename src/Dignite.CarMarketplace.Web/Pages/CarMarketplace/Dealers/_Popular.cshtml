@@ -1,7 +1,7 @@
 ﻿@using Dignite.CarMarketplace.BlobStoring
 @using Dignite.CarMarketplace.Public.Dealers;
 
-@inject IDealerAppService _dealerAppService;
+@inject IDealerPublicAppService _dealerAppService;
 
 @{
     IReadOnlyList<DealerDto> Dealers = (await _dealerAppService.GetListAsync(

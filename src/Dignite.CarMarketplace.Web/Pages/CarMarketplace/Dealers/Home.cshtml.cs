@@ -9,10 +9,10 @@ namespace Dignite.CarMarketplace.Web.Pages.Dealers
 {
     public class HomeModel : CarMarketplacePageModel
     {
-        private readonly IDealerAppService _dealerAppService;
-        private readonly IUsedCarAppService _usedCarAppService;
+        private readonly IDealerPublicAppService _dealerAppService;
+        private readonly IUsedCarPublicAppService _usedCarAppService;
 
-        public HomeModel(IDealerAppService dealerAppService, IUsedCarAppService usedCarAppService)
+        public HomeModel(IDealerPublicAppService dealerAppService, IUsedCarPublicAppService usedCarAppService)
         {
             _dealerAppService = dealerAppService;
             _usedCarAppService = usedCarAppService;

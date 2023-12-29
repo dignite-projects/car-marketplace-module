@@ -8,9 +8,9 @@ namespace Dignite.CarMarketplace.Web.Pages.Dealers
 {
     public class IndexModel : CarMarketplacePageModel
     {
-        private readonly IDealerAppService _dealerAppService;
+        private readonly IDealerPublicAppService _dealerAppService;
 
-        public IndexModel(IDealerAppService dealerAppService)
+        public IndexModel(IDealerPublicAppService dealerAppService)
         {
             _dealerAppService = dealerAppService;
         }

@@ -1,5 +1,5 @@
 ﻿@using Dignite.CarMarketplace.Public.UsedCars;
-@inject IUsedCarAppService _usedCarAppService;
+@inject IUsedCarPublicAppService _usedCarAppService;
 @{
     IReadOnlyList<UsedCarDto> UsedCars = (await _usedCarAppService.GetListAsync(new GetUsedCarsInput
             {

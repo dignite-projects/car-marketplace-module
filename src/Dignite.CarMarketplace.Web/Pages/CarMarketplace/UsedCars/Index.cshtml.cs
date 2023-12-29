@@ -9,11 +9,11 @@ namespace Dignite.CarMarketplace.Web.Pages.UsedCars
 {
     public class IndexModel : CarMarketplacePageModel
     {
-        private readonly IBrandAppService _brandAppService;
-        private readonly IModelAppService _modelAppService;
-        private readonly IUsedCarAppService _usedCarAppService;
+        private readonly IBrandPublicAppService _brandAppService;
+        private readonly IModelPublicAppService _modelAppService;
+        private readonly IUsedCarPublicAppService _usedCarAppService;
 
-        public IndexModel(IBrandAppService brandAppService, IModelAppService modelAppService, IUsedCarAppService usedCarAppService)
+        public IndexModel(IBrandPublicAppService brandAppService, IModelPublicAppService modelAppService, IUsedCarPublicAppService usedCarAppService)
         {
             _brandAppService = brandAppService;
             _modelAppService = modelAppService;

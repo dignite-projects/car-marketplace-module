@@ -7,11 +7,11 @@ namespace Dignite.CarMarketplace.DealerPlatform.Cars;
 
 public class UsedCarAppService_Tests : CarMarketplaceApplicationTestBase
 {
-    private readonly IUsedCarAppService _usedCarAppService;
+    private readonly IUsedCarDealerPlatformAppService _usedCarAppService;
 
     public UsedCarAppService_Tests()
     {
-        _usedCarAppService = GetRequiredService<IUsedCarAppService>();
+        _usedCarAppService = GetRequiredService<IUsedCarDealerPlatformAppService>();
     }
 
     [Fact]

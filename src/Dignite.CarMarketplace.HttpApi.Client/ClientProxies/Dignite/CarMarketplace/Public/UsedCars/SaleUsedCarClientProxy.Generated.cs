@@ -14,8 +14,8 @@ using Volo.Abp.Http.Modeling;
 namespace Dignite.CarMarketplace.Public.UsedCars;
 
 [Dependency(ReplaceServices = true)]
-[ExposeServices(typeof(ISaleUsedCarAppService), typeof(SaleUsedCarClientProxy))]
-public partial class SaleUsedCarClientProxy : ClientProxyBase<ISaleUsedCarAppService>, ISaleUsedCarAppService
+[ExposeServices(typeof(ISaleUsedCarPublicAppService), typeof(SaleUsedCarClientProxy))]
+public partial class SaleUsedCarClientProxy : ClientProxyBase<ISaleUsedCarPublicAppService>, ISaleUsedCarPublicAppService
 {
     public virtual async Task<SaleCarDto> CreateAsync(SaleCarCreateDto input)
     {

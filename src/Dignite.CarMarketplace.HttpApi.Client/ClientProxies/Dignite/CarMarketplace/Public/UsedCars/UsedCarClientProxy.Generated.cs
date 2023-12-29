@@ -14,8 +14,8 @@ using Volo.Abp.Http.Modeling;
 namespace Dignite.CarMarketplace.Public.UsedCars;
 
 [Dependency(ReplaceServices = true)]
-[ExposeServices(typeof(IUsedCarAppService), typeof(UsedCarClientProxy))]
-public partial class UsedCarClientProxy : ClientProxyBase<IUsedCarAppService>, IUsedCarAppService
+[ExposeServices(typeof(IUsedCarPublicAppService), typeof(UsedCarClientProxy))]
+public partial class UsedCarClientProxy : ClientProxyBase<IUsedCarPublicAppService>, IUsedCarPublicAppService
 {
     public virtual async Task<List<String>> GetAllModelColorsAsync()
     {

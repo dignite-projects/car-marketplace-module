@@ -14,8 +14,8 @@ using Volo.Abp.Http.Modeling;
 namespace Dignite.CarMarketplace.Public.Cars;
 
 [Dependency(ReplaceServices = true)]
-[ExposeServices(typeof(ITrimConfigItemAppService), typeof(TrimConfigItemClientProxy))]
-public partial class TrimConfigItemClientProxy : ClientProxyBase<ITrimConfigItemAppService>, ITrimConfigItemAppService
+[ExposeServices(typeof(ITrimConfigItemPublicAppService), typeof(TrimConfigItemClientProxy))]
+public partial class TrimConfigItemClientProxy : ClientProxyBase<ITrimConfigItemPublicAppService>, ITrimConfigItemPublicAppService
 {
     public virtual async Task<ListResultDto<TrimConfigItemDto>> GetListAsync()
     {
