@@ -9,12 +9,12 @@ using Volo.Abp.Users;
 
 namespace Dignite.CarMarketplace.DealerPlatform.UsedCars
 {
-    public class BuyUsedDealerPlatformCarAppService : CarMarketplaceAppService, IBuyUsedCarDealerPlatformAppService
+    public class BuyUsedCarDealerPlatformAppService : CarMarketplaceAppService, IBuyUsedCarDealerPlatformAppService
     {
         private readonly IBuyUsedCarRepository _usedCarConsultationRepository;
         private readonly IDealerRepository _dealerRepository;
 
-        public BuyUsedDealerPlatformCarAppService(IBuyUsedCarRepository usedCarConsultationRepository, IDealerRepository dealerRepository)
+        public BuyUsedCarDealerPlatformAppService(IBuyUsedCarRepository usedCarConsultationRepository, IDealerRepository dealerRepository)
         {
             _usedCarConsultationRepository = usedCarConsultationRepository;
             _dealerRepository = dealerRepository;
