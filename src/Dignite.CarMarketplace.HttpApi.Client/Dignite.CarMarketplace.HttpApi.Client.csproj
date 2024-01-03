@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="..\..\common.props" />
 
@@ -11,7 +11,7 @@
   <ItemGroup>
     <PackageReference Include="Dignite.CmsKit.HttpApi.Client" Version="1.8.3" />
 	<PackageReference Include="Dignite.FileExplorer.HttpApi.Client" Version="1.8.3" />
-    <PackageReference Include="Volo.Abp.Http.Client" Version="7.4.2" />
+    <PackageReference Include="Volo.Abp.Http.Client" Version="7.4.5" />
     <ProjectReference Include="..\Dignite.CarMarketplace.Application.Contracts\Dignite.CarMarketplace.Application.Contracts.csproj" />
   </ItemGroup>
 
