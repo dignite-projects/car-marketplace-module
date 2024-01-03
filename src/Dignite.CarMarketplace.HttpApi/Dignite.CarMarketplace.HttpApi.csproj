@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dignite.CmsKit.HttpApi" Version="1.8.3" />
-    <PackageReference Include="Dignite.FileExplorer.HttpApi" Version="1.8.3" />
+    <PackageReference Include="Dignite.CmsKit.HttpApi" Version="1.9.0" />
+    <PackageReference Include="Dignite.FileExplorer.HttpApi" Version="1.9.0" />
     <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="7.4.5" />
     <ProjectReference Include="..\Dignite.CarMarketplace.Application.Contracts\Dignite.CarMarketplace.Application.Contracts.csproj" />
   </ItemGroup>

@@ -10,8 +10,8 @@
 
   <ItemGroup>
 	<PackageReference Include="MiniExcel" Version="1.26.2" />
-    <PackageReference Include="Dignite.CmsKit.Application" Version="1.8.3" />
-	<PackageReference Include="Dignite.FileExplorer.Application" Version="1.8.3" />
+    <PackageReference Include="Dignite.CmsKit.Application" Version="1.9.0" />
+	<PackageReference Include="Dignite.FileExplorer.Application" Version="1.9.0" />
     <PackageReference Include="Volo.Abp.AutoMapper" Version="7.4.5" />
     <PackageReference Include="Volo.Abp.Ddd.Application" Version="7.4.5" />
     <ProjectReference Include="..\Dignite.CarMarketplace.Application.Contracts\Dignite.CarMarketplace.Application.Contracts.csproj" />

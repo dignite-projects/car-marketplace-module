@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dignite.FileExplorer.Domain" Version="1.8.3" />
+    <PackageReference Include="Dignite.FileExplorer.Domain" Version="1.9.0" />
     <PackageReference Include="Volo.Abp.Ddd.Domain" Version="7.4.5" />
 	<PackageReference Include="Volo.Abp.Users.Domain" Version="7.4.5" />
     <ProjectReference Include="..\Dignite.CarMarketplace.Domain.Shared\Dignite.CarMarketplace.Domain.Shared.csproj" />
@@ -17,13 +17,13 @@
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
     <PackageReference Include="Dignite.CmsKit.Domain">
-      <Version>1.8.3</Version>
+      <Version>1.9.0</Version>
     </PackageReference>
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
     <PackageReference Include="Dignite.CmsKit.Domain">
-      <Version>1.8.3</Version>
+      <Version>1.9.0</Version>
     </PackageReference>
   </ItemGroup>
 
