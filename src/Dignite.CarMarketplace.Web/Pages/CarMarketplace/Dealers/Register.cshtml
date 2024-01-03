@@ -1,0 +1,92 @@
+﻿@page
+@using Dignite.CarMarketplace.Web.Pages.Dealers
+@model RegisterModel
+@{
+    PageLayout.Content.Title = "注册成为二手车商家";
+}
+
+<div class="row">
+    <div class="col-6 offset-3">
+        @if (Model.CurrentDealer != null)
+        {
+            if (Model.CurrentDealer.AuthenticationStatus == Dignite.CarMarketplace.Dealers.AuthenticationStatus.Waiting)
+            {
+                <div class="alert alert-primary" role="alert">
+                    <h4 class="alert-heading">系统提示：</h4>
+                    <p>
+                        ✓
+                        您已注册成为二手车商，请等待管理员审核。
+                    </p>
+                </div>
+            }
+            if (Model.CurrentDealer.AuthenticationStatus == Dignite.CarMarketplace.Dealers.AuthenticationStatus.Cancelled)
+            {
+                <div class="alert alert-primary" role="alert">
+                    <h4 class="alert-heading">系统提示：</h4>
+                    <p>
+                        ✗
+                        您的二手车商资质已被撤消。
+                    </p>
+                </div>
+            }
+            if (Model.CurrentDealer.AuthenticationStatus == Dignite.CarMarketplace.Dealers.AuthenticationStatus.Disapproved)
+            {
+                <div class="alert alert-primary" role="alert">
+                    <h4 class="alert-heading">系统提示：</h4>
+                    <p>
+                        ✗
+                        您的二手车商资质不符合平台要求，未被批准。
+                    </p>
+                </div>
+            }
+        }
+        else
+        {
+            <h1 class="text-primary display-4 fw-bold pt-md-5 mt-5 mb-5">
+                注册车商信息
+            </h1>
+
+            <form method="post" class="mb-5" id="register-form" enctype="multipart/form-data">
+                <div class="form-floating mb-3">
+                    <input asp-for="DealerCreateInput.Name" class="form-control" />
+                    <span asp-validation-for="DealerCreateInput.Name" class="text-danger"></span>
+                    <label asp-for="DealerCreateInput.Name">车商全名</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="DealerCreateInput.ShortName" class="form-control" />
+                    <span asp-validation-for="DealerCreateInput.ShortName" class="text-danger"></span>
+                    <label asp-for="DealerCreateInput.ShortName">车商短名</label>
+                    <div class="form-text mb-4">
+                        推荐使用车商短名称的拼音。
+                    </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="file" asp-for="CoverPic" class="form-control" />
+                    <span asp-validation-for="CoverPic" class="text-danger"></span>
+                    <label for="CoverPic">车商门店照</label>
+                    <div class="form-text mb-4">
+                        要求门店照片清晰，最小宽度和高度为600*400像素
+                    </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="DealerCreateInput.Address" class="form-control" />
+                    <span asp-validation-for="DealerCreateInput.Address" class="text-danger"></span>
+                    <label asp-for="DealerCreateInput.Address">车商地址</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="DealerCreateInput.ContactPerson" class="form-control" />
+                    <span asp-validation-for="DealerCreateInput.ContactPerson" class="text-danger"></span>
+                    <label asp-for="DealerCreateInput.ContactPerson">联系人</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="DealerCreateInput.ContactNumber" class="form-control" />
+                    <span asp-validation-for="DealerCreateInput.ContactNumber" class="text-danger"></span>
+                    <label asp-for="DealerCreateInput.ContactNumber">联系电话</label>
+                </div>
+
+                <abp-button id="RegisterFormSubmitButton" button-type="Primary" type="submit" form="register-form" text="注册车商" icon="check" />
+
+            </form>
+        }
+    </div>
+</div>

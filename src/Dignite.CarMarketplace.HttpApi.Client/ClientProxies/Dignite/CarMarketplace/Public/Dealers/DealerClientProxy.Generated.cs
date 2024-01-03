@@ -14,8 +14,8 @@ using Volo.Abp.Http.Modeling;
 namespace Dignite.CarMarketplace.Public.Dealers;
 
 [Dependency(ReplaceServices = true)]
-[ExposeServices(typeof(IDealerAppService), typeof(DealerClientProxy))]
-public partial class DealerClientProxy : ClientProxyBase<IDealerAppService>, IDealerAppService
+[ExposeServices(typeof(IDealerPublicAppService), typeof(DealerClientProxy))]
+public partial class DealerClientProxy : ClientProxyBase<IDealerPublicAppService>, IDealerPublicAppService
 {
     public virtual async Task<DealerDto> FindByShortNameAsync(string shortName)
     {

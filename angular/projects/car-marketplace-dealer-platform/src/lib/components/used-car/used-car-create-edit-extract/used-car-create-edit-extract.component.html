@@ -1,0 +1,215 @@
+<dignite-page [title]="title" [isback]="isback">
+    <ng-template #pageHeader>
+        <!-- [disabled]="!usedCarForm?.valid" -->
+        <button type="button" class="btn btn-primary btn-sm"  (click)="onsubmitCreateEdit()">
+            提交
+        </button>
+    </ng-template>
+    <ng-template #pageBody>
+        <div overflow>
+            <form [formGroup]="usedCarForm" #newFroupForm="ngForm" autocomplete="off">
+                <div class="container">
+                    <div class="row mb-2">
+                        <div class="col">
+                            <label class="form-label">品牌*</label>
+                            <select class="form-select" (change)="brandChange($event)" [(ngModel)]="brandId"
+                                [ngModelOptions]="{ standalone: true }">
+                                <option value="">--</option>
+                                <ng-container *ngFor="let item of brandList; let i = index">
+                                    <optgroup [label]="item.name">
+                                        <ng-container *ngFor="let mo of item.models; let i = index">
+                                            <option [value]="mo.id">{{ mo.name }}</option>
+                                        </ng-container>
+                                    </optgroup>
+                                </ng-container>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="modelList" class="form-label">车型*</label>
+                            <select class="form-select" (change)="modelChange($event)" [(ngModel)]="modelId"
+                                [ngModelOptions]="{ standalone: true }">
+                                <option value="">--</option>
+                                <ng-container *ngFor="let item of modelList; let i = index">
+                                    <optgroup [label]="item.name">
+                                        <ng-container *ngFor="let mo of item.models; let i = index">
+                                            <option [value]="mo.id">{{ mo.name }}</option>
+                                        </ng-container>
+                                    </optgroup>
+                                </ng-container>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="exampleDataList" class="form-label">车款*</label>
+                            <select class="form-select" formControlName="trimId" (change)="trimChange($event)">
+                                <option value="">--</option>
+                                <ng-container *ngFor="let item of trimList; let i = index">
+                                    <optgroup [label]="item.name">
+                                        <ng-container *ngFor="let mo of item.models; let i = index">
+                                            <option [value]="mo.id">{{ mo.name }}</option>
+                                        </ng-container>
+                                    </optgroup>
+                                </ng-container>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-2">
+                            <label class="form-label">二手车名称*</label>
+                            <input type="text" class="form-control" formControlName="name" placeholder="请输入二手车名称" />
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">标签*</label>
+                            <div class="d-flex align-items-center flex-wrap">
+                                <ng-container *ngFor="let item of usedCarForm?.value?.tags">
+                                    <dignite-tabs class="tag-item text-primary border-primary">{{ item }}
+                                        <i class="fa fa-close ms-1" role="button" style="font-size: smaller"
+                                            aria-hidden="true" (click.stop)="checkClose(item)"></i></dignite-tabs>
+                                </ng-container>
+                            </div>
+                            <div class="m-2">
+                                <label>预设：</label>
+                                <div class="d-flex align-items-center flex-wrap">
+                                    <ng-container *ngFor="let item of TagsList">
+                                        <dignite-tabs class="tag-item" (click.stop)="tabCheckChange(item)">{{ item }}
+                                            <i class="fa fa-close ms-1" role="button" style="font-size: smaller"
+                                                aria-hidden="true" (click.stop)="storageClose(item)"></i></dignite-tabs>
+                                    </ng-container>
+                                    <dignite-tabs class="tag-item" *ngIf="!taInputVisible"
+                                        (click)="taInputVisible = !taInputVisible">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                        新建标签
+                                    </dignite-tabs>
+                                    <input #inputElement class="form-control-sm" *ngIf="taInputVisible" type="text"
+                                        placeholder="请输入标签名称" [(ngModel)]="tagInputValue"
+                                        [ngModelOptions]="{ standalone: true }" name="Addtag" style="width: 78px"
+                                        (blur)="handleInputConfirm()" (keydown.enter)="handleInputConfirm()" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">车辆状态*</label>
+                            <div class="input-group">
+                                <ng-container *ngFor="let item of usedCarStatusList">
+                                    <div class="form-check me-md-2">
+                                        <input class="form-check-input" type="radio"
+                                            [id]="'flexCheckChecked' + item.value" [value]="item.value" name="status"
+                                            [checked]="item.value == usedCarForm?.value?.status"
+                                            formControlName="status" />
+                                        <label class="form-check-label" [for]="'flexCheckChecked' + item.value">{{
+                                            item.value |
+                                            getUsedCarStatusToName }}
+                                        </label>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="col">
+                            <label class="form-label">车辆颜色*</label>
+                            <select class="form-select" formControlName="color">
+                                <option value="">--</option>
+                                <ng-container *ngFor="let item of CarColorList; let i = index">
+                                    <option [value]="item.key">{{ item.key }}</option>
+                                </ng-container>
+                            </select>
+                        </div>
+
+                        <div class="col">
+                            <label class="form-label">价格*</label>
+                            <input type="number" class="form-control" [min]="0" formControlName="price"
+                                placeholder="请输入价格" />
+                        </div>
+                        <div class="col">
+                            <label class="form-label">总里程(公里)*</label>
+                            <input type="number" class="form-control" [min]="0" formControlName="totalMileage"
+                                placeholder="请输入总里程" />
+                        </div>
+                        <div class="col">
+                            <label class="form-label">过户次数*</label>
+                            <input type="number" class="form-control" [min]="0" formControlName="transfersCount"
+                                placeholder="请输入过户次数" />
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="col">
+                            <label class="form-label">初次上牌日期*</label>
+                            <div class="input-group">
+                                <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                    formControlName="registrationDate" ngbDatepicker
+                                    #dregistrationDate="ngbDatepicker" />
+                                <button class="btn btn-outline-secondary bi bi-calendar3"
+                                    (click)="dregistrationDate.toggle()" type="button"></button>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label class="form-label">交强险过期日期*</label>
+                            <div class="input-group">
+                                <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                    formControlName="compulsoryInsuranceExpirationDate" ngbDatepicker
+                                    #dcompulsoryInsuranceExpirationDate="ngbDatepicker" />
+                                <button class="btn btn-outline-secondary bi bi-calendar3"
+                                    (click)="dcompulsoryInsuranceExpirationDate.toggle()" type="button"></button>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label class="form-label">商业险过期日期*</label>
+                            <div class="input-group">
+                                <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                    formControlName="commercialInsuranceExpirationDate" ngbDatepicker
+                                    #dcommercialInsuranceExpirationDate="ngbDatepicker" />
+                                <button class="btn btn-outline-secondary bi bi-calendar3"
+                                    (click)="dcommercialInsuranceExpirationDate.toggle()" type="button"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col">
+                            <label class="form-label">车辆描述情况</label>
+                            <textarea class="form-control" formControlName="description"
+                                aria-label="With textarea" placeholder="请编辑车辆描述情况"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mb-2" *ngIf="usedCarForm.value.fileCellsarr" formGroupName="fileCellsarr">
+                        <ng-container *ngFor="let item of fileCells">
+                            <div class="col-2-5 mb-2">
+                                <label class="form-label">{{ item.displayName }}*</label>
+                                <ng-container *ngFor="let file of item.fileList">
+                                    <dignite-image [class]="'rounded m-sm-1'" [isdelete]="true"
+                                        (deleteClick)="deleteImage(item)" [src]="file.src" [alt]="item.displayName">
+                                    </dignite-image>
+                                </ng-container>
+
+                                <div class="uploadImage dignite_upload_input m-sm-1 rounded"
+                                    *ngIf="item.fileList.length == 0">
+                                    <div class="upload_btn_icon">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                        <div>上传</div>
+                                    </div>
+                                    <input type="file"  [formControlName]="item.name" [accept]="allowedFileTypeNames"
+                                        (change)="UploadFlieChange($event, item)" class="upload_input" id="" />
+                                </div>
+                            </div>
+                        </ng-container>
+                    
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        <!-- <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent"
+        (nzOnCancel)="previewVisible = false" [nzFooter]="null">
+        <ng-template #modalContent>
+            <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
+        </ng-template>
+    </nz-modal> -->
+
+
+
+
+
+    </ng-template>
+</dignite-page>

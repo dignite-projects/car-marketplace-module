@@ -1,27 +1,19 @@
 ﻿@page
 @using Dignite.CarMarketplace.Pages
 @model IndexModel
-@using Microsoft.AspNetCore.Mvc.Localization
-@using Dignite.CarMarketplace.Localization
-@using Volo.Abp.Users
-@inject IHtmlLocalizer<CarMarketplaceResource> L
-@inject ICurrentUser CurrentUser
 
 <abp-card>
     <abp-card-header>Welcome</abp-card-header>
     <abp-card-body>
-        @if (!CurrentUser.IsAuthenticated)
-        {
-            <form method="POST">
-                <input type="submit" asp-page-handler="Login" value="LOGIN" class="btn btn-primary" />
-            </form>
-        }
-        else
-        {
-            <strong>Claims</strong><br />
-            @Html.Raw(CurrentUser.GetAllClaims().Select(c => $"{c.Type}={c.Value}").OrderBy(x => x).JoinAsString(" <br /> "))
-        }
-        <hr />
-        <p class="text-end"><a href="https://abp.io?ref=tmpl" target="_blank">abp.io</a></p>
+        <p>
+            这是一套基于Abp开发的二手车平台，包含管理员端、二手车商管理端和网站端。
+        </p>
+        <h3>运行环境</h3>
+        <ul>
+            <li>Redis</li>
+            <li>Dotnet sdk 7.0</li>
+            <li>Abp 7.4.2</li>
+        </ul>
+        <a asp-page="/CarMarketplace/UsedCars/Index" class="btn btn-primary" role="button">二手车模块首页</a>
     </abp-card-body>
 </abp-card>

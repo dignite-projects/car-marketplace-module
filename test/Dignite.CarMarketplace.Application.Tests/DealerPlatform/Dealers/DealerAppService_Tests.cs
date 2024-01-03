@@ -6,11 +6,11 @@ namespace Dignite.CarMarketplace.DealerPlatform.Dealers;
 
 public class DealerAppService_Tests : CarMarketplaceApplicationTestBase
 {
-    private readonly IDealerAppService _dealerAppService;
+    private readonly IDealerPlatformAppService _dealerAppService;
 
     public DealerAppService_Tests()
     {
-        _dealerAppService = GetRequiredService<IDealerAppService>();
+        _dealerAppService = GetRequiredService<IDealerPlatformAppService>();
     }
 
     [Fact]

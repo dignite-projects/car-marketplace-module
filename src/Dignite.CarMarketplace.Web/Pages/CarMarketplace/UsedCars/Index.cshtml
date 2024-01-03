@@ -1,0 +1,169 @@
+﻿@page
+@using Dignite.CarMarketplace.BlobStoring
+@using Dignite.CarMarketplace.Web.Pages
+@using IndexModel = Dignite.CarMarketplace.Web.Pages.UsedCars.IndexModel
+@inject CarMarketplacePageHelper CarMarketplacePageHelper
+@model Dignite.CarMarketplace.Web.Pages.UsedCars.IndexModel
+@{
+    ViewBag.FluidLayout = true;
+    PageLayout.Content.Title = "买二手车";
+}
+
+@section scripts {
+    <abp-script-bundle name="@typeof(IndexModel).FullName">
+        <abp-script src="/Pages/CarMarketplace/UsedCars/index.js" />
+    </abp-script-bundle>
+}
+@section styles {
+    <abp-style src="/Pages/CarMarketplace/Shared/Styles/CarMarketplace.css" />
+}
+
+<div class="px-3 px-md-5">
+    <form method="get">
+        <div class="input-group input-group-lg my-4">
+            <span class="input-group-text rounded-start-pill ps-4 bg-transparent" id="basic-addon1"><i class="fa fa-search"></i></span>
+            <input asp-for="GetUsedCarsInput.Filter" type="text" class="form-control border-start-0 ps-0" placeholder="搜索二手车" name="filter">
+            <div class="input-group-text rounded-end-pill d-none d-md-block" id="basic-addon2">
+                @foreach(var tag in Model.PopularTags)
+                {
+                    <a href="@Url.Page("Index",new{tagName=tag.Value})" class="btn btn-light rounded-pill @(Model.GetUsedCarsInput.TagName==tag.Value?"active":"")" role="button">@tag.Key</a>
+                }
+            </div>
+            <div class="input-group-text rounded-end-pill d-block d-md-none" id="basic-addon2">
+                <select id="PopularTagSelect" class="form-select">
+                    @foreach (var tag in Model.PopularTags)
+                    {
+                        <option value="@tag.Value" selected="@(tag.Value==Model.GetUsedCarsInput.TagName)">@tag.Key</option>                    
+                    }
+                </select>
+            </div>
+        </div>
+    </form>
+    <div class="row pb-3">
+        <div class="col-md-8">
+            <form method="get" id="get-used-cars-form">
+                <div class="d-flex flex-row justify-content-around justify-content-md-start">
+                    <div class="p-2 ps-0">
+                        <div class="form-floating">
+                            <select asp-for="GetUsedCarsInput.BrandId" name="brandId" class="form-select">
+                                <option value="">--所有--</option>
+                                @foreach (var brand in Model.AllBrands)
+                                {
+                                    <option value="@brand.Id" selected="@(brand.Id==Model.GetUsedCarsInput.BrandId)">@brand.FirstLetter @brand.Name</option>
+                                }
+                            </select>
+                            <label asp-for="GetUsedCarsInput.BrandId">品牌</label>
+                        </div>
+                    </div>
+                    <div class="p-2">
+                        <div class="form-floating">
+                            <select asp-for="GetUsedCarsInput.ModelId" name="modelId" class="form-select">
+                                <option value="">--所有--</option>
+                                @if (Model.AllModels!=null)
+                                {
+                                    @foreach (var company in Model.AllModels)
+                                    {
+                                        <optgroup label="@company.Name"></optgroup>
+                                        foreach (var cm in company.Models)
+                                        {
+                                            <option value="@cm.Id" selected="@(cm.Id==Model.GetUsedCarsInput.ModelId)">@cm.Name</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                            <label asp-for="GetUsedCarsInput.ModelId">车型</label>
+                        </div>
+                    </div>
+                    <div class="p-2">
+                        <div class="form-floating">
+                            <select asp-for="GetUsedCarsInput.ModelLevel" name="modelLevel" class="form-select">
+                                <option value="">--所有--</option>
+                                @foreach (var level in Model.AllModelLevels)
+                                {
+                                    <option value="@level" selected="@(level==Model.GetUsedCarsInput.ModelLevel)">@level</option>
+                                }
+                            </select>
+                            <label asp-for="GetUsedCarsInput.ModelLevel">车型级别</label>
+                        </div>
+                    </div>
+                    <div class="p-2">
+                        <div class="form-floating">
+                            <select class="form-select" id="PriceRangesSelect">
+                                <option>--所有--</option>
+                                @foreach (var range in Model.PriceRanges)
+                                {
+                                    var min = float.Parse(range.Value.Split('-')[0]);
+                                    var max = float.Parse(range.Value.Split('-')[1]);
+                                    var selected = Model.GetUsedCarsInput.MinPrice.HasValue ? 
+                                    ((Model.GetUsedCarsInput.MinPrice.Value >= min && Model.GetUsedCarsInput.MaxPrice.Value <= max)?true:false) 
+                                    : false;
+                                    <option value="@range.Value" selected="@selected" >@range.Key</option>
+                                }
+                            </select>
+                            <label for="PriceRangesSelect">价格区间</label>
+                            <input asp-for="GetUsedCarsInput.MinPrice" name="minPrice" type="hidden" />
+                            <input asp-for="GetUsedCarsInput.MaxPrice" name="maxPrice" type="hidden" />
+                        </div>
+                    </div>
+                    <div class="p-2">
+                        <div class="form-floating">
+                            <select class="form-select" id="MileageRangesSelect">
+                                <option>--所有--</option>
+                                @foreach (var range in Model.MileageRanges)
+                                {
+                                    var min = float.Parse(range.Value.Split('-')[0]);
+                                    var max = float.Parse(range.Value.Split('-')[1]);
+                                    var selected = Model.GetUsedCarsInput.MinTotalMileage.HasValue ?
+                                    ((Model.GetUsedCarsInput.MinTotalMileage.Value >= min && Model.GetUsedCarsInput.MaxTotalMileage.Value <= max) ? true : false)
+                                    : false;
+                                    <option value="@range.Value" selected="@selected">@range.Key</option>
+                                }
+                            </select>
+                            <label for="MileageRangesSelect">行驶里程</label>
+                            <input asp-for="GetUsedCarsInput.MinTotalMileage" name="minTotalMileage" type="hidden" />
+                            <input asp-for="GetUsedCarsInput.MaxTotalMileage" name="maxTotalMileage" type="hidden" />
+                        </div>
+                    </div>
+                    <div class="p-2">
+                        <div class="form-floating">
+                            <select asp-for="GetUsedCarsInput.Color" name="color"  class="form-select">
+                                <option value="">--所有--</option>
+                                @foreach (var color in Model.AllModelColors)
+                                {
+                                    <option value="@color" selected="@(color==Model.GetUsedCarsInput.Color)">@color</option>
+                                }
+                            </select>
+                            <label asp-for="GetUsedCarsInput.Color">车型颜色</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4">
+            <div class="d-flex">
+                <div class="p-2 flex-grow-1">
+                    <h1 class="d-block d-md-none">查找二手车</h1>
+                </div>
+                <div class="pt-2">
+                    <div class="form-floating">
+                        <select asp-for="GetUsedCarsInput.Sorting" class="form-select" id="SortingSelect">
+                            @foreach (var sorting in Model.Sorts)
+                            {
+                                <option value="@sorting.Value" selected="@(sorting.Value==Model.GetUsedCarsInput.Sorting)">@sorting.Key</option>
+                            }
+                        </select>
+                        <label asp-for="GetUsedCarsInput.Sorting">排序</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-5 mb-5">
+        @foreach (var item in Model.UsedCars)
+        {
+            @Html.Partial("_Item",item)
+        }
+    </div>
+
+    <abp-paginator model="Model.PagerModel" show-info="true" />
+</div>

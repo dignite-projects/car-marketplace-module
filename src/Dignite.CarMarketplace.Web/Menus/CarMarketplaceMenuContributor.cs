@@ -1,4 +1,6 @@
 ﻿using Dignite.CarMarketplace.Localization;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
 using Volo.Abp.UI.Navigation;
 
@@ -16,12 +18,24 @@ public class CarMarketplaceMenuContributor : IMenuContributor
 
     private Task ConfigureMainMenuAsync(MenuConfigurationContext context)
     {
+        var urlOptions = context.ServiceProvider.GetRequiredService<IOptions<CarMarketplaceUrlOptions>>()
+            .Value;
+
+        var routePrefix = urlOptions.RoutePrefix;
+
         var l = context.GetLocalizer<CarMarketplaceResource>();
 
-        //Add main menu items.
-        context.Menu.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.UsedCars, displayName: l["Menu:UsedCar"], "~/UsedCars"));
-        context.Menu.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.SaleCar, displayName: l["Menu:SaleCar"], "~/SaleCar"));
-        context.Menu.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.Dealers, displayName: l["Menu:Dealers"], "~/Dealers"));
+
+        // 二手车市场
+        var carMarketplaceMenuItem = new ApplicationMenuItem(
+                CarMarketplaceMenus.Prefix,
+                l["CarMarketplace"]
+            );
+        carMarketplaceMenuItem.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.Prefix, displayName: l["CarMarketplace"], routePrefix));
+        carMarketplaceMenuItem.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.UsedCars, displayName: l["Menu:UsedCar"], routePrefix + "used-car"));
+        carMarketplaceMenuItem.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.SaleUsedCar, displayName: l["Menu:SaleUsedCar"], routePrefix + "sale-used-car"));
+        carMarketplaceMenuItem.AddItem(new ApplicationMenuItem(CarMarketplaceMenus.Dealers, displayName: l["Menu:Dealers"], routePrefix + "dealer"));
+        context.Menu.AddItem(carMarketplaceMenuItem);
 
         return Task.CompletedTask;
     }

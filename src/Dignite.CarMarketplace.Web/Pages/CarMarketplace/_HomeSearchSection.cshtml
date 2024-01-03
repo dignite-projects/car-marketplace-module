@@ -1,0 +1,37 @@
+﻿
+<div class="jumbotron">
+    <h1 class="fw-semibold display-1 text-center text-shadows">远通背书，买卖放心</h1>
+    <div class="fs-5 text-center text-shadows">买车，严选商城，车源有保障；卖车，高价回收，省时更省心。</div>
+
+    <form method="get" action="@Url.Page("./UsedCars/Index")">
+        <div class="d-flex justify-content-between justify-content-md-center mt-5 mb-3 pt-lg-5">
+            <div class="input-group input-group-lg w-50">
+                <span class="input-group-text rounded-start-pill ps-4" id="basic-addon1"><i class="fa fa-search"></i></span>
+                <input type="text" class="form-control border-start-0 ps-0  rounded-end-pill" placeholder="搜索二手车" name="filter">
+            </div>
+        </div>
+    </form>
+
+    <div class="row row-cols-3 row-cols-md-auto justify-content-center">
+        <div class="mb-3 text-center">
+            <a class="btn btn-primary rounded-pill px-3 border-primary-subtle" asp-page="./UsedCars/Index" asp-route-tagName="准新车">
+                准新车
+            </a>
+        </div>
+        <div class="mb-3 text-center">
+            <a class="btn btn-primary rounded-pill px-3 border-primary-subtle" asp-page="./UsedCars/Index" asp-route-tagName="急售车型">
+                急售车型
+            </a>
+        </div>
+        <div class="mb-3 text-center">
+            <a class="btn btn-primary rounded-pill px-3 border-primary-subtle" asp-page="./UsedCars/Index" asp-route-tagName="奥迪认证">
+                奥迪认证
+            </a>
+        </div>
+        <div class="mb-3 text-center">
+            <a class="btn btn-primary rounded-pill px-3 border-primary-subtle" asp-page="./UsedCars/Index" asp-route-minPrice="0" asp-route-maxPrice="30000">
+                入门练手
+            </a>
+        </div>
+    </div>
+</div>

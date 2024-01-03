@@ -9,9 +9,4 @@ public class IndexModel : CarMarketplacePageModel
     {
 
     }
-
-    public async Task OnPostLoginAsync()
-    {
-        await HttpContext.ChallengeAsync("oidc");
-    }
 }

@@ -40,6 +40,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Components\Toolbar\LoginLink\Default.cshtml" />
+    <None Include="Components\_ViewImports.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
 
@@ -50,6 +52,10 @@
     <None Update="Pages\**\*.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
 </Project>

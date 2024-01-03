@@ -15,9 +15,9 @@ public interface ICarMarketplaceDbContext : IEfCoreDbContext
     DbSet<Brand> Brand { get; }
     DbSet<Model> Model { get; }
     DbSet<Trim> Trim { get; }
-    DbSet<ConfigurationItem> ConfigurationItem { get; }
+    DbSet<TrimConfigItem> ConfigurationItem { get; }
     DbSet<UsedCar> UsedCar { get; }
-    DbSet<SaleCar> SaleCar { get; }
+    DbSet<SaleUsedCar> SaleCar { get; }
 
-    DbSet<UsedCarConsultation> UsedCarConsultations { get; }
+    DbSet<BuyUsedCar> UsedCarConsultations { get; }
 }

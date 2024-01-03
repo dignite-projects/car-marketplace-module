@@ -14,8 +14,8 @@ using Volo.Abp.Http.Modeling;
 namespace Dignite.CarMarketplace.Public.Cars;
 
 [Dependency(ReplaceServices = true)]
-[ExposeServices(typeof(IModelAppService), typeof(ModelClientProxy))]
-public partial class ModelClientProxy : ClientProxyBase<IModelAppService>, IModelAppService
+[ExposeServices(typeof(IModelPublicAppService), typeof(ModelClientProxy))]
+public partial class ModelClientProxy : ClientProxyBase<IModelPublicAppService>, IModelPublicAppService
 {
     public virtual async Task<ListResultDto<ModelCompanyDto>> GetListAsync(GetModelsInput input)
     {

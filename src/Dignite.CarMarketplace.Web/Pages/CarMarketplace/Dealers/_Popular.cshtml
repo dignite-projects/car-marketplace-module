@@ -1,0 +1,43 @@
+﻿@using Dignite.CarMarketplace.BlobStoring
+@using Dignite.CarMarketplace.Public.Dealers;
+
+@inject IDealerPublicAppService _dealerAppService;
+
+@{
+    IReadOnlyList<DealerDto> Dealers = (await _dealerAppService.GetListAsync(
+                new GetDealersInput
+                        {
+                            SkipCount = 0,
+                            MaxResultCount = 3
+                        })).Items;
+}
+
+<div class="container mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="fw-bold">
+            找对人，买好车
+        </h3>
+        <a class="chevron-right-animate" asp-page="./Dealers/Index">查看更多</a>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-5">
+        @foreach (var item in Dealers)
+        {
+            <div class="col">
+                <div class="card cmpl-card bg-light shadow-sm">
+                    <a href="@Url.Page("/CarMarketplace/Dealers/Home",new{shortName=item.ShortName})">
+                        <img src="@($"/api/file-explorer/files/{BlobContainerConsts.DealerCoverContainerName}/{item.Id.ToString("N")}?Width=400&Height=267")" onerror="this.src='/Pages/CarMarketplace/Shared/dealer-error.jpg';" class="card-img-top" alt="@(item.Name+"封面图")">
+                    </a>
+                    <div class="card-body ps-0 pe-0">
+                        <small class="text-muted">
+                            专业二手车商
+                        </small>
+                        <h5 class="card-title">
+                            <a class="underline-animate" href="@Url.Page("/CarMarketplace/Dealers/Home",new{shortName=item.ShortName})">@item.Name</a>
+                        </h5>
+                        <p>@item.Address</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

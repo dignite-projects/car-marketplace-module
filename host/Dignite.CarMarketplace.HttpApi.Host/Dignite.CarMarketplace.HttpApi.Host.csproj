@@ -31,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Dignite.CarMarketplace.AspNetCore\Dignite.CarMarketplace.AspNetCore.csproj" />
     <ProjectReference Include="..\..\src\Dignite.CarMarketplace.HttpApi\Dignite.CarMarketplace.HttpApi.csproj" />
     <ProjectReference Include="..\..\src\Dignite.CarMarketplace.Application\Dignite.CarMarketplace.Application.csproj" />
     <ProjectReference Include="..\..\src\Dignite.CarMarketplace.EntityFrameworkCore\Dignite.CarMarketplace.EntityFrameworkCore.csproj" />

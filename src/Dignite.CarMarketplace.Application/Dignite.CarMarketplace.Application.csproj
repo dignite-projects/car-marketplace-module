@@ -18,4 +18,9 @@
     <ProjectReference Include="..\Dignite.CarMarketplace.Domain\Dignite.CarMarketplace.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Admin\Cars\" />
+    <Folder Include="DealerPlatform\Cars\" />
+  </ItemGroup>
+
 </Project>

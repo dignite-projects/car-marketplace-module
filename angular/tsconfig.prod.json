@@ -16,16 +16,17 @@
       "dom"
     ],
     "paths": {
-      "@dignite/admin-lib": [
+      "@dignite/car-marketplace-dealer-platform": [
         "dist/admin-li"
       ],
-      "@dignite/admin-lib/config": [
-        "dist/admin-lib/config"
+      "@dignite/car-marketplace-dealer-platform/config": [
+        "dist/car-marketplace-dealer-platform/config"
       ],
-      "admin-lib": [
-        "dist/admin-lib"
+      
+      "car-marketplace-dealer-platform": [
+        "dist/car-marketplace-dealer-platform"
       ],
-      "theme-basic": ["dist/theme-basic"]
+      "components": ["dist/components"]
     }
   },
   "angularCompilerOptions": {

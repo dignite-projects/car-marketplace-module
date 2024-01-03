@@ -1,0 +1,116 @@
+<dignite-page [title]="'详情'" [isback]="true">
+
+    <ng-template #pageBody>
+        <div class="container " overflow>
+
+            <div class="row">
+                <ng-container *ngTemplateOutlet="TextStyleLayout; context: {$implicit: {
+                    key:'名称',value:UsedCarInfo?.name,col:8}}"></ng-container>
+                <ng-container *ngTemplateOutlet="TextStyleLayout; context: {$implicit: {
+                key:'价格',value:UsedCarInfo?.price}}"></ng-container>
+            </div>
+            <div class="row">
+                <ng-container *ngTemplateOutlet="TextStyleLayout; context: {$implicit: {
+                    key:'创建时间',value:UsedCarInfo?.creationTime | dDate:'yy-mm-dd hh:mm:ss'}}"></ng-container>
+                <ng-container *ngTemplateOutlet="StatusStyleLayout; context: {$implicit: {
+                    key:'状态',value:UsedCarInfo?.status}}"></ng-container>
+                <ng-container *ngTemplateOutlet="TextStyleLayout; context: {$implicit: {
+                    key:'标签',value:UsedCarInfo?.tags}}"></ng-container>
+            </div>
+            <div class="row">
+                <ng-container *ngTemplateOutlet="seletStyleLayout; context: {$implicit: {
+                    key:'品牌',value:UsedCarInfo?.brandId,options:brandList,col:4}}"></ng-container>
+                <ng-container *ngTemplateOutlet="seletStyleLayout; context: {$implicit: {
+                    key:'车型',value:UsedCarInfo?.modelId,options:modelList,col:4}}"></ng-container>
+                <ng-container *ngTemplateOutlet="seletStyleLayout; context: {$implicit: {
+                        key:'车款',value:UsedCarInfo?.trimId,options:trimList,col:4}}"></ng-container>
+            </div>
+            <div class="row">
+                <ng-container *ngTemplateOutlet="TextStyleLayout; context: {$implicit: {
+                        key:'modelLevel',value:UsedCarInfo?.modelLevel}}"></ng-container>
+                <ng-container *ngTemplateOutlet="TextStyleLayout; context: {$implicit: {
+                        key:'powerType',value:UsedCarInfo?.powerType}}"></ng-container>
+                <ng-container *ngTemplateOutlet="TextStyleLayout; context: {$implicit: {
+                        key:'transmissionType',value:UsedCarInfo?.transmissionType}}"></ng-container>
+            </div>
+            <div class="row">
+                <ng-container *ngTemplateOutlet="TextStyleLayout; context: {$implicit: {
+                        key:'总里程(公里)',value:UsedCarInfo?.totalMileage}}"></ng-container>
+                <ng-container *ngTemplateOutlet="TextStyleLayout; context: {$implicit: {
+                        key:'过户次数',value:UsedCarInfo?.transfersCount}}"></ng-container>
+
+                <ng-container *ngTemplateOutlet="TextStyleLayout; context: {$implicit: {
+                        key:'颜色',value:UsedCarInfo?.color}}"></ng-container>
+            </div>
+
+
+            <div class="row">
+                <ng-container *ngTemplateOutlet="TextStyleLayout; context: {$implicit: {
+                        key:'初次上牌日期',value:UsedCarInfo?.registrationDate | dDate:'yy-mm-dd'}}"></ng-container>
+                <ng-container *ngTemplateOutlet="TextStyleLayout; context: {$implicit: {
+                        key:'交强险过期日期',value:UsedCarInfo?.creationTime | dDate:'yy-mm-dd'}}"></ng-container>
+                <ng-container
+                    *ngTemplateOutlet="TextStyleLayout; context: {$implicit: {
+                        key:'商业险过期日期',value:UsedCarInfo?.commercialInsuranceExpirationDate | dDate:'yy-mm-dd'}}"></ng-container>
+            </div>
+            <div class="row">
+                <ng-container *ngTemplateOutlet="TextStyleLayout; context: {$implicit: {
+                        key:'车辆描述情况',value:UsedCarInfo?.description}}"></ng-container>
+            </div>
+            <div class="row">
+                <ng-container *ngFor="let item of fileCells; let i=index">
+                    <ng-container *ngTemplateOutlet="ImageStyleLayout; context: {$implicit: {
+                    key:item.displayName,images:item.fileList,col:10}}"></ng-container>
+                </ng-container>
+            </div>
+        </div>
+        <ng-template #TextStyleLayout let-data>
+            <div [class]="'col' + (data.col ? '-' + data.col : '')">
+                <div class="row py-md-2">
+                    <div class="col-auto text-black-50">{{ data?.key }}:</div>
+                    <div class="col text-dark">{{ data?.value }}</div>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template #seletStyleLayout let-data>
+            <div [class]="'col' + (data.col ? '-' + data.col : '')">
+                <div class="row py-md-2">
+                    <div class="col-auto text-black-50">{{ data?.key }}:</div>
+                    <div class="col text-dark">
+                        <ng-container *ngFor="let item of data.options">
+                            <ng-container *ngFor="let mod of item.models">
+                                <ng-container *ngIf="mod.id === data.value">
+                                    {{ mod.name }}
+                                </ng-container>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template #StatusStyleLayout let-data>
+            <div [class]="'col' + (data.col ? '-' + data.col : '')">
+                <div class="row py-md-2">
+                    <div class="col-auto text-black-50">{{ data?.key }}:</div>
+                    <div class="col text-dark">
+                        {{data.value|getUsedCarStatusToName}}
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template #ImageStyleLayout let-data>
+            <div [class]="'col' + (data.col ? '-' + data.col : '')">
+                <div class="row py-md-3">
+                    <div class="col-2" style="min-width: 100px;">{{ data?.key }}:</div>
+                    <div class="col">
+                        <ng-container *ngFor="let item of data.images">
+                            <dignite-image [class]="'rounded m-sm-1'" [isdelete]="false" (deleteClick)="ssss" [src]="item.src" width="120" height="120"  [alt]="data?.key" [title]="data?.key"> </dignite-image>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+
+
+    </ng-template>
+</dignite-page>

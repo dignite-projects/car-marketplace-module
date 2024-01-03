@@ -9,9 +9,9 @@ namespace Dignite.CarMarketplace.DealerPlatform.Dealers
     {
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            var dealerAppService = validationContext.GetRequiredService<Public.Dealers.IDealerAppService>();
-            var dealer = AsyncHelper.RunSync(() => dealerAppService.FindByShortNameAsync(ShortName));
-            if (dealer != null)
+            var dealerAppService = validationContext.GetRequiredService<IDealerPlatformAppService>();
+            var shortNameExists = AsyncHelper.RunSync(() => dealerAppService.ShortNameExistsAsync(ShortName));
+            if (shortNameExists)
             {
                 yield return new ValidationResult(
                         $"{ShortName} 这个短名称已被占用！",

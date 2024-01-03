@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Dignite.CarMarketplace.Cars;
 using Dignite.CarMarketplace.Dealers;
+using Dignite.CarMarketplace.Public.UsedCars;
 using Dignite.CarMarketplace.UsedCars;
 using Volo.Abp.AutoMapper;
 
@@ -11,7 +12,7 @@ public class CarMarketplaceApplicationAutoMapperProfile : Profile
     public CarMarketplaceApplicationAutoMapperProfile()
     {
         CreateMap<Dealer, Admin.Dealers.DealerDto>();
-        CreateMap<SaleCar, Admin.Cars.SaleCarDto>();
+        CreateMap<SaleUsedCar, Admin.UsedCars.SaleUsedCarDto>();
         CreateMap<Brand, Admin.Cars.BrandDto>();
         CreateMap<Model, Admin.Cars.ModelDto>();
         CreateMap<UsedCar, Admin.UsedCars.UsedCarDto>()
@@ -19,19 +20,19 @@ public class CarMarketplaceApplicationAutoMapperProfile : Profile
         CreateMap<Dealer, Admin.Dealers.DealerExcelDto>();
 
         CreateMap<Dealer, DealerPlatform.Dealers.DealerDto>();
-        CreateMap<UsedCar, DealerPlatform.Cars.UsedCarDto>()
+        CreateMap<UsedCar, DealerPlatform.UsedCars.UsedCarDto>()
             .Ignore(x=>x.Tags);
-        CreateMap<UsedCarConsultation, DealerPlatform.UsedCars.UsedCarConsultationDto>();
+        CreateMap<BuyUsedCar, DealerPlatform.UsedCars.BuyUsedCarDto>();
 
         CreateMap<Dealer, Public.Dealers.DealerDto>();
-        CreateMap<UsedCar, Public.Cars.UsedCarDto>()
+        CreateMap<UsedCar, Public.UsedCars.UsedCarDto>()
             .Ignore(x=>x.Tags);
-        CreateMap<SaleCar, Public.Cars.SaleCarDto>();
+        CreateMap<SaleUsedCar, SaleCarDto>();
         CreateMap<Brand, Public.Cars.BrandDto>();
         CreateMap<Model, Public.Cars.ModelDto>();
         CreateMap<Trim, Public.Cars.TrimDto>()
             .MapExtraProperties(Volo.Abp.ObjectExtending.MappingPropertyDefinitionChecks.None);
-        CreateMap<ConfigurationItem, Public.Cars.ConfigurationItemDto>();
-        CreateMap<UsedCarConsultation, Public.UsedCars.UsedCarConsultationDto>();
+        CreateMap<TrimConfigItem, Public.Cars.TrimConfigItemDto>();
+        CreateMap<BuyUsedCar, Public.UsedCars.BuyUsedCarDto>();
     }
 }

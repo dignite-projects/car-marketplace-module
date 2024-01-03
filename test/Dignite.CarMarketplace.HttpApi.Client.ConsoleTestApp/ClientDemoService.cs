@@ -11,12 +11,12 @@ namespace Dignite.CarMarketplace;
 
 public class ClientDemoService : ITransientDependency
 {
-    private readonly IDealerAppService _dealerAppService;
+    private readonly IDealerPublicAppService _dealerAppService;
     private readonly IIdentityModelAuthenticationService _authenticationService;
     private readonly IConfiguration _configuration;
 
     public ClientDemoService(
-        IDealerAppService dealerAppService,
+        IDealerPublicAppService dealerAppService,
         IIdentityModelAuthenticationService authenticationService,
         IConfiguration configuration)
     {

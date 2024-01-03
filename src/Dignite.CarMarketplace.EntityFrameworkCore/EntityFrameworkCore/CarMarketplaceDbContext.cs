@@ -15,10 +15,10 @@ public class CarMarketplaceDbContext : AbpDbContext<CarMarketplaceDbContext>, IC
     public DbSet<Brand> Brand { get; set; }
     public DbSet<Model> Model { get; set; }
     public DbSet<Trim> Trim { get; set; }
-    public DbSet<ConfigurationItem> ConfigurationItem { get; set; }
+    public DbSet<TrimConfigItem> ConfigurationItem { get; set; }
     public DbSet<UsedCar> UsedCar { get; set; }
-    public DbSet<SaleCar> SaleCar { get; set; }
-    public DbSet<UsedCarConsultation> UsedCarConsultations { get; set; }    
+    public DbSet<SaleUsedCar> SaleCar { get; set; }
+    public DbSet<BuyUsedCar> UsedCarConsultations { get; set; }    
 
     public CarMarketplaceDbContext(DbContextOptions<CarMarketplaceDbContext> options)
         : base(options)

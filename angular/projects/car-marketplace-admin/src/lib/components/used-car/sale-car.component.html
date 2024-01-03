@@ -1,0 +1,19 @@
+<dignite-page [title]="'卖车信息'">
+    <ng-template #pageBody>
+        <dignite-table [data]="saleCarList" [columns]="columns" [pages]="page" [loading]="loadingIndicator"
+            (pageChange)="setPage($event)">
+            <ng-template #statusCol let-row="row" let-value="value">
+                {{ value|getDealerStatusName }}
+            </ng-template>
+            <ng-template #registrationDateCol let-row="row" let-value="value">
+                <div> {{ value|dDate:'yy-mm-dd' }}</div>
+            </ng-template>
+            <ng-template #creationTimeCol let-row="row" let-value="value">
+                <div> {{ value|dDate:'yy-mm-dd hh:mm:ss' }}</div>
+            </ng-template>
+            <ng-template #operateCol let-row="row" let-value="value">
+                <a routerLink="/admin/used-car/sale-car/details/{{row.id}}" >详情</a>
+            </ng-template>
+        </dignite-table>
+    </ng-template>
+</dignite-page>

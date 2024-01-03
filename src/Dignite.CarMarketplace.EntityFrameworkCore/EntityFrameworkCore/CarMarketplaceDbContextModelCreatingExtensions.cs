@@ -88,6 +88,17 @@ public static class CarMarketplaceDbContextModelCreatingExtensions
             b.ApplyObjectExtensionMappings();
         });
 
+        builder.Entity<TrimConfigItem>(b =>
+        {
+            b.ToTable(CarMarketplaceDbProperties.DbTablePrefix + "TrimConfigItems", CarMarketplaceDbProperties.DbSchema);
+
+            b.ConfigureByConvention();
+
+            //Properties
+            b.Property(q => q.Name).IsRequired().HasMaxLength(TrimConfigItemConsts.MaxNameLength);
+            b.Property(q => q.Group).IsRequired().HasMaxLength(TrimConfigItemConsts.MaxGroupLength);
+        });
+
 
         builder.Entity<UsedCar>(b =>
         {
@@ -118,41 +129,30 @@ public static class CarMarketplaceDbContextModelCreatingExtensions
         });
 
 
-        builder.Entity<SaleCar>(b =>
+        builder.Entity<SaleUsedCar>(b =>
         {
             //Configure table & schema name
-            b.ToTable(CarMarketplaceDbProperties.DbTablePrefix + "SaleCars", CarMarketplaceDbProperties.DbSchema);
+            b.ToTable(CarMarketplaceDbProperties.DbTablePrefix + "SaleUsedCars", CarMarketplaceDbProperties.DbSchema);
 
             b.ConfigureByConvention();
 
             //Properties
-            b.Property(q => q.Description).IsRequired(false).HasMaxLength(SaleCarConsts.MaxDescriptionLength);
-            b.Property(q => q.Address).IsRequired().HasMaxLength(SaleCarConsts.MaxAddressLength);
-            b.Property(q => q.ContactPerson).IsRequired().HasMaxLength(SaleCarConsts.MaxContactPersonLength);
-            b.Property(q => q.ContactNumber).IsRequired().HasMaxLength(SaleCarConsts.MaxContactNumberLength);
+            b.Property(q => q.Description).IsRequired(false).HasMaxLength(SaleUsedCarConsts.MaxDescriptionLength);
+            b.Property(q => q.Address).IsRequired().HasMaxLength(SaleUsedCarConsts.MaxAddressLength);
+            b.Property(q => q.ContactPerson).IsRequired().HasMaxLength(SaleUsedCarConsts.MaxContactPersonLength);
+            b.Property(q => q.ContactNumber).IsRequired().HasMaxLength(SaleUsedCarConsts.MaxContactNumberLength);
 
         });
 
-        builder.Entity<ConfigurationItem>(b =>
+        builder.Entity<BuyUsedCar>(b =>
         {
-            b.ToTable(CarMarketplaceDbProperties.DbTablePrefix + "ConfigurationItems", CarMarketplaceDbProperties.DbSchema);
+            b.ToTable(CarMarketplaceDbProperties.DbTablePrefix + "BuyUsedCars", CarMarketplaceDbProperties.DbSchema);
 
             b.ConfigureByConvention();
 
             //Properties
-            b.Property(q => q.Name).IsRequired().HasMaxLength(ConfigurationItemConsts.MaxNameLength);
-            b.Property(q => q.Group).IsRequired().HasMaxLength(ConfigurationItemConsts.MaxGroupLength);
-        });
-
-        builder.Entity<UsedCarConsultation>(b =>
-        {
-            b.ToTable(CarMarketplaceDbProperties.DbTablePrefix + "UsedCarConsultations", CarMarketplaceDbProperties.DbSchema);
-
-            b.ConfigureByConvention();
-
-            //Properties
-            b.Property(q => q.ContactPerson).IsRequired().HasMaxLength(UsedCarConsultationConsts.MaxContactPersonLength);
-            b.Property(q => q.ContactNumber).IsRequired().HasMaxLength(UsedCarConsultationConsts.MaxContactNumberLength);
+            b.Property(q => q.ContactPerson).IsRequired().HasMaxLength(BuyUsedCarConsts.MaxContactPersonLength);
+            b.Property(q => q.ContactNumber).IsRequired().HasMaxLength(BuyUsedCarConsts.MaxContactNumberLength);
         });
     }
 }

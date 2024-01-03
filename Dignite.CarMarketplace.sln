@@ -45,6 +45,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dignite.CarMarketplace.Host
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dignite.CarMarketplace.Installer", "src\Dignite.CarMarketplace.Installer\Dignite.CarMarketplace.Installer.csproj", "{BE39FD00-745B-4049-8161-FC129817CBE4}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dignite.CarMarketplace.AspNetCore", "src\Dignite.CarMarketplace.AspNetCore\Dignite.CarMarketplace.AspNetCore.csproj", "{819A2CD4-6F5B-40F4-8444-8B5EB7AA2017}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +125,10 @@ Global
 		{BE39FD00-745B-4049-8161-FC129817CBE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE39FD00-745B-4049-8161-FC129817CBE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE39FD00-745B-4049-8161-FC129817CBE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{819A2CD4-6F5B-40F4-8444-8B5EB7AA2017}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{819A2CD4-6F5B-40F4-8444-8B5EB7AA2017}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{819A2CD4-6F5B-40F4-8444-8B5EB7AA2017}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{819A2CD4-6F5B-40F4-8444-8B5EB7AA2017}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -146,6 +152,7 @@ Global
 		{690203F4-3CD5-4569-88D9-EE831EEA5F5F} = {E400416D-2895-4512-9D17-90681EEC7E0A}
 		{F6AC8D4A-EDD7-4514-8E8A-5BCB019864DB} = {E400416D-2895-4512-9D17-90681EEC7E0A}
 		{BE39FD00-745B-4049-8161-FC129817CBE4} = {649A3FFA-182F-4E56-9717-E6A9A2BEC545}
+		{819A2CD4-6F5B-40F4-8444-8B5EB7AA2017} = {649A3FFA-182F-4E56-9717-E6A9A2BEC545}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4324B3B4-B60B-4E3C-91D8-59576B4E26DD}

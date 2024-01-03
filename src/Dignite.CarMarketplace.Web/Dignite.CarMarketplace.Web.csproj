@@ -43,9 +43,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Pages\SaleCar\Index.js" />
-    <None Remove="Pages\UsedCars\detail.js" />
-    <None Remove="Pages\UsedCars\index.js" />
+    <None Remove="Pages\CarMarketplace\SaleUsedCar\Index.js" />
+    <None Remove="Pages\CarMarketplace\UsedCars\detail.js" />
+    <None Remove="Pages\CarMarketplace\UsedCars\index.js" />
   </ItemGroup>
 
   <ItemGroup>

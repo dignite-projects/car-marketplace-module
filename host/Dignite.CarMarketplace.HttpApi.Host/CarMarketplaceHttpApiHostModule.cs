@@ -1,25 +1,25 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using IdentityModel;
+using Dignite.CarMarketplace.AspNetCore;
+using Dignite.CarMarketplace.EntityFrameworkCore;
+using Dignite.CarMarketplace.MultiTenancy;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.DataProtection;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Dignite.CarMarketplace.EntityFrameworkCore;
-using Dignite.CarMarketplace.MultiTenancy;
-using StackExchange.Redis;
 using Microsoft.OpenApi.Models;
+using StackExchange.Redis;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
-using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.Autofac;
+using Volo.Abp.BlobStoring;
+using Volo.Abp.BlobStoring.FileSystem;
 using Volo.Abp.Caching;
 using Volo.Abp.Caching.StackExchangeRedis;
 using Volo.Abp.EntityFrameworkCore;
@@ -28,15 +28,10 @@ using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
-using Volo.Abp.Security.Claims;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using Volo.Abp.VirtualFileSystem;
-using Dignite.CarMarketplace.BlobStoring;
-using Volo.Abp.BlobStoring;
-using Dignite.Abp.BlobStoring;
-using Volo.Abp.BlobStoring.FileSystem;
 
 namespace Dignite.CarMarketplace;
 
@@ -44,6 +39,7 @@ namespace Dignite.CarMarketplace;
     typeof(CarMarketplaceApplicationModule),
     typeof(CarMarketplaceEntityFrameworkCoreModule),
     typeof(CarMarketplaceHttpApiModule),
+    typeof(CarMarketplaceAspNetCoreModule),
     typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
     typeof(AbpAutofacModule),
     typeof(AbpCachingStackExchangeRedisModule),
@@ -146,12 +142,6 @@ public class CarMarketplaceHttpApiHostModule : AbpModule
 
         Configure<AbpBlobStoringOptions>(options =>
         {
-            options.Containers
-                .Configure<CarPicsBlobContainer>(container =>
-                {
-                    container.SetBlobNameGenerator<UsedCarCellPicBlobNameGenerator>();
-                });
-
             options.Containers.ConfigureAll((containerName, containerConfiguration) =>
             {
                 containerConfiguration.UseFileSystem(fileSystem =>

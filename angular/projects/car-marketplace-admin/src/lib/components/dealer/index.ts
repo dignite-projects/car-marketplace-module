@@ -1,0 +1,1 @@
+export * from './dealer-manage.component'

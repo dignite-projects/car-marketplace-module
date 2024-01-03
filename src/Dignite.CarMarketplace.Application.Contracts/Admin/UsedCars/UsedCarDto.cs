@@ -1,5 +1,5 @@
 ﻿using Dignite.CarMarketplace.Admin.Dealers;
-using Dignite.CarMarketplace.Cars;
+using Dignite.CarMarketplace.UsedCars;
 using System;
 using System.Collections.Generic;
 using Volo.Abp.Application.Dtos;
@@ -38,7 +38,7 @@ namespace Dignite.CarMarketplace.Admin.UsedCars
         /// </summary>
         public string Description { get; set; }
 
-        public CarStatus Status { get; protected set; }
+        public UsedCarStatus Status { get; protected set; }
 
         /// <summary>
         /// 商家Id

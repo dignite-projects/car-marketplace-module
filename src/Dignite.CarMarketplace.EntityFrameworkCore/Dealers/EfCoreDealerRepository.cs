@@ -46,6 +46,13 @@ public class EfCoreDealerRepository : EfCoreRepository<ICarMarketplaceDbContext,
             .PageBy(skipCount, maxResultCount)
             .ToListAsync(GetCancellationToken(cancellationToken));
     }
+
+    public async Task<bool> ShortNameExistsAsync(string shortName, CancellationToken cancellationToken = default)
+    {
+        return await(await GetDbSetAsync())
+            .AnyAsync(d => d.ShortName == shortName);
+    }
+
     public override async Task<IQueryable<Dealer>> WithDetailsAsync()
     {
         return (await GetQueryableAsync()).IncludeDetails();
