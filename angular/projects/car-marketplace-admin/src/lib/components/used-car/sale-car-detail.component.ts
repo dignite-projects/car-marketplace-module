@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SaleUsedCarService } from '../../../../proxy/src/proxy/admin/used-cars';
+import { SaleUsedCarService } from '../../proxy/admin/used-cars';
+// import { SaleUsedCarService } from '../../../../proxy/src/proxy/admin/used-cars';
 
 @Component({
   selector: 'lib-sale-car-detail',

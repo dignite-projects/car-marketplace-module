@@ -1,9 +1,9 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
-import { DealerService } from '../../../../proxy/src/proxy/admin/dealers';
-import { NzMessageService } from 'ng-zorro-antd/message';
-import { authenticationStatusOptions } from '../../../../proxy/src/proxy/dealers';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { Confirmation, ConfirmationService } from '@abp/ng.theme.shared';
+import { ToastService } from '@dignite/components';
+import { DealerService } from '../../proxy/admin/dealers';
+import { authenticationStatusOptions } from '../../proxy/dealers';
 
 
 
@@ -17,8 +17,8 @@ import { Confirmation, ConfirmationService } from '@abp/ng.theme.shared';
 export class DealerManageComponent {
   constructor(
     private DealerServiceAdmin: DealerService,
-    private message: NzMessageService,
     private _confirmationService: ConfirmationService,
+    private _toastService: ToastService,
   ) { }
   /**查询条件 */
   search: any = {
@@ -131,12 +131,20 @@ export class DealerManageComponent {
 
   /**导出车商 */
   exportAsExcelFile() {
-    const id = this.message.loading('资源准备中', { nzDuration: 0 }).messageId;
+    // _toastService
+    const id = this._toastService.show({
+      content: `资源准备中`,
+      type: 'loading',
+    });;
     this.DealerServiceAdmin.getListAsExcelFile({
       authenticationStatus: this.search.authenticationStatus
     }).subscribe((ExcelFile) => {
-      this.message.remove(id);
-      this.message.create('success', `资源已就绪，正在下载中`);
+      this._toastService.remove(id);
+      this._toastService.show({
+        content: `资源已就绪，正在下载中`,
+        type: 'success',
+        delay: 2500
+      })
       const url = window.URL.createObjectURL(ExcelFile);
       // 以动态创建a标签进行下载
       const a = document.createElement('a');
@@ -160,11 +168,18 @@ export class DealerManageComponent {
   }
   /**认证提交 */
   authenticateByIdAndStatusSubmit(data, Status, title = '认证中', seccess = '认证完成') {
-    const messageid = this.message.loading(title, { nzDuration: 0 }).messageId;
+    const messageid = this._toastService.show({
+      content: title,
+      type: 'loading',
+    });;
     this.DealerServiceAdmin.authenticateByIdAndStatus(data.id, Status).subscribe(res => {
       this.getDealerList()
-      this.message.remove(messageid);
-      this.message.info(seccess);
+      this._toastService.remove(messageid);
+      this._toastService.show({
+        content: seccess,
+        type: 'success',
+        delay: 2500
+      })
     })
   }
 
@@ -187,12 +202,19 @@ export class DealerManageComponent {
       .warn(`${data.name}`, '确定要删除这个车商吗?', {})
       .subscribe(async (status: Confirmation.Status) => {
         if (status == 'confirm') {
-          const messageid = this.message.loading('删除中', { nzDuration: 0 }).messageId;
+          const messageid = this._toastService.show({
+            content: `删除中`,
+            type: 'loading',
+          });;
           this.DealerServiceAdmin.delete(data.id).subscribe(res => {
             this.ModalClose();
             this.getDealerList()
-            this.message.remove(messageid);
-            this.message.info('已删除');
+            this._toastService.remove(messageid);
+            this._toastService.show({
+              content: `已删除`,
+              type: 'success',
+              delay: 2500
+            })
           })
         }
         if (status == 'reject') return

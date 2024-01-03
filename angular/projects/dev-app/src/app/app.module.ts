@@ -21,9 +21,9 @@ import { APP_ROUTE_PROVIDER } from './route.provider';
 import { FeatureManagementModule } from '@abp/ng.feature-management';
 import { AbpOAuthModule } from '@abp/ng.oauth';
 import { CarMarketplaceAdminConfigModule } from '@dignite/car-marketplace-admin/config';
-import { CarMarketplaceDealerPlatformConfigModule } from 'projects/car-marketplace-dealer-platform/config/src/car-marketplace-dealer-platform-config.module';
-
-
+import { CarMarketplaceDealerPlatformConfigModule } from '@dignite/car-marketplace-dealer-platform/config';
+ 
+ 
 @NgModule({
   imports: [ 
     CommonModule,
@@ -36,7 +36,7 @@ import { CarMarketplaceDealerPlatformConfigModule } from 'projects/car-marketpla
       sendNullsAsQueryParam: false,
       skipGetAppConfiguration: false,
     }),
-    AbpOAuthModule.forRoot(),
+    AbpOAuthModule.forRoot(), 
     ThemeSharedModule.forRoot(),
     AccountConfigModule.forRoot(),
     IdentityConfigModule.forRoot(),

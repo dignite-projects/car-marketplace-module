@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {usedCarStatusOptions} from '../../../proxy/src/proxy/used-cars/used-car-status.enum'
 import { usedCarStatusName } from '../enums';
+import { usedCarStatusOptions } from '../proxy/used-cars/used-car-status.enum';
 
 @Pipe({
   name: 'getUsedCarStatusToName'

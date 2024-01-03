@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { authenticationStatusOptions } from '../../../proxy/src/proxy/dealers';
 import { AuthenticationStatusName } from '../enums';
+import { authenticationStatusOptions } from '../proxy/dealers';
 
 
 @Pipe({

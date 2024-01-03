@@ -40,15 +40,14 @@ const routes: Routes = [
   //   loadChildren: () =>
   //     import('@dignite/dealer-platform-lib').then(m => m.DealerPlatformLibModule.forLazy()),
   // },
-  {
+  { 
     path: 'admin', 
     loadChildren: () =>
       import('@dignite/car-marketplace-admin').then(m => m.CarMarketplaceAdminModule.forLazy()),
   },
   {
     path: 'dealer-platform', 
-    loadChildren: () =>
-      import('@dignite/car-marketplace-dealer-platform').then(m => m.CarMarketplaceDealerPlatformModule.forLazy()),
+    loadChildren: () =>import('@dignite/car-marketplace-dealer-platform').then(m => m.CarMarketplaceDealerPlatformModule.forLazy()),
   },
 ];
 

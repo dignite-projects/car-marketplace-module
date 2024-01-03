@@ -1,14 +1,14 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
-import { DealerDto, DealerService } from '../../../../proxy/src/proxy/dealer-platform/dealers';
-import { FileDescriptorService } from '../../../../proxy/src/proxy/dignite/file-explorer/files';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DealerEditConfig } from './dealer-edit-config';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
-import { filter } from 'rxjs';
+import { filter, from } from 'rxjs';
 import { EnvironmentService } from '@abp/ng.core';
 import { Confirmation, ConfirmationService } from '@abp/ng.theme.shared';
 import { ToastService } from '@dignite/components';
+import { DealerService, DealerDto } from '../../proxy/dealer-platform/dealers';
+import { FileDescriptorService } from '../../proxy/dignite/file-explorer/files';
 
 
 @Component({
@@ -26,29 +26,50 @@ export class DealerInfoComponent {
     private environment: EnvironmentService,
     private _confirmationService: ConfirmationService,
     private _toastService: ToastService
-  ) { }
+  ) { 
+   
+    
+  }
 
-  @ViewChild('successTpl') successTpl?: TemplateRef<any>;
-  @ViewChild('errTpl') errTpl?: TemplateRef<any>;
   /**
    * 车商信息
    */
   dealerInfo: DealerDto | any;
-  /**1
+
+  /**
    * 封面图片列表
    */
   fileListView_show: any[] = []
+
   /**
    * 是否打开模态框
    */
   isModalVisible?: boolean
+
   /**是否正在加载中 */
   isloading: boolean = false
+
+  
+  /**表单数据 */
+  dealerForm: FormGroup
+
+  /**
+   * 编辑封面图片列表
+   */
+  fileListView: any[] = []
+
+  /**需要删除的图片 */
+  deleteimg: any[] = []
+  
+
+
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.getCarMarketplace()
+    // console.log(this.fb,FormBuilder,'测试');
+    this.dealerForm = this.fb.group({ ...new DealerEditConfig() })
 
   }
   /**获取车商信息 */
@@ -85,13 +106,7 @@ export class DealerInfoComponent {
     this.fileListView = this.fileListView_show
     this.dealerForm.setValue({ ...new DealerEditConfig(this.dealerInfo) })
   }
-  /**提示 */
-  showSuccess(template: TemplateRef<any>) {
-    this._toastService.show({ template, classname: 'bg-success text-light', delay: 5000 });
-  }
-  showDanger(template: TemplateRef<any>) {
-    this._toastService.show({ template, classname: 'bg-danger text-light', delay: 3000 });
-  }
+
   /**模态框确定 */
   ModalConfirm() {
     let input = this.dealerForm.value
@@ -100,15 +115,24 @@ export class DealerInfoComponent {
       .subscribe(async (status: Confirmation.Status) => {
         if (status == 'confirm') {
           this.isloading = true
-
-          await this.uploadfun().catch(err => {
-          
-            this.fileListView = []
-            this.isloading = false
-            this.showDanger(this.errTpl)
-            return
+          let ids = this._toastService.show({
+            content: '更新中',
+            type: 'loading',
           })
-          this.requestDeleteimg()
+          // return
+          /**是否图片上传失败 */
+          let isImgErr = false
+          await this.uploadfun().catch(err => {
+            console.log(err, 'uploadfunuploadfun');
+            isImgErr = true
+            if (isImgErr) {
+              this.fileListView = []
+              this.isloading = false
+              this._toastService.remove(ids)
+              this.toastsOpen('封面上传失败，请重新上传','danger')
+            }
+          })
+          if (!isImgErr) this.requestDeleteimg()
           this.DealerServiceplatform.update(this.dealerInfo.id, {
             name: input.name,
             address: input.address,
@@ -116,15 +140,26 @@ export class DealerInfoComponent {
             contactNumber: input.contactNumber,
             shortName: input.shortName
           }).subscribe(async (res) => {
-            this.ModalClose()
-            this.showSuccess(this.successTpl)
-            this.getCarMarketplace()
-            this.isloading = false
-          })
+            if (!isImgErr) {
+              this._toastService.remove(ids)
+              this.toastsOpen('车商信息提交成功','success')
+              this.ModalClose()
+              this.getCarMarketplace()
+              this.isloading = false
+            }
 
+          })
         }
         if (status == 'reject') return
       });
+  }
+
+  toastsOpen(content,type) {
+    this._toastService.show({
+      content: content,
+      type: type,
+      delay: 2000
+    })
   }
   /**模态框取消 */
   ModalClose() {
@@ -137,14 +172,6 @@ export class DealerInfoComponent {
     this.deleteimg = []
   }
 
-  /**表单数据 */
-  dealerForm: FormGroup = this.fb.group({ ...new DealerEditConfig() })
-  /**
-   * 编辑封面图片列表
-   */
-  fileListView: any[] = []
-  /**需要删除的图片 */
-  deleteimg: any[] = []
   /**上传图片--更改 */
   UploadFlieChange(files) {
     let filesdispose = this.readFile(files.target.files)
@@ -170,11 +197,14 @@ export class DealerInfoComponent {
               entityId: this.dealerInfo?.id,
             }, formData
           ).catch((err) => {
+            // console.log(err,'失败');
             rejects(false)
           })
+
         }
         resolve(true)
       })
+
     })
   }
   /**提交图片到服务器 */

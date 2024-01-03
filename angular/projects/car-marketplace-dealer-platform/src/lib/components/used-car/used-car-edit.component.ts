@@ -1,20 +1,14 @@
 import { EnvironmentService } from '@abp/ng.core';
-import { HttpClient, HttpEvent, HttpEventType, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpClient,  HttpRequest, HttpResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsedCarConfig } from './used-car-config';
-import { BrandService, ModelService, TrimService } from '../../../../proxy/src/proxy/public/cars';
-import { usedCarStatusOptions } from '../../../../proxy/src/proxy/used-cars/used-car-status.enum';
-import { BaseService, TagsService } from '../../services';
-import { CarColorOptions } from '../../enums';
-import { FileDescriptorService } from '../../../../proxy/src/proxy/dignite/file-explorer/files';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Confirmation, ConfirmationService } from '@abp/ng.theme.shared';
-import { UsedCarService } from '../../../../proxy/src/proxy/dealer-platform/used-cars';
 import { filter } from 'rxjs';
-import { NzMessageService } from 'ng-zorro-antd/message';
 import { Location } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ToastService } from '@dignite/components';
+import { UsedCarService } from '../../proxy/dealer-platform/used-cars';
+import { FileDescriptorService } from '../../proxy/dignite/file-explorer/files';
 
 @Component({
   selector: 'lib-used-car-edit',
@@ -26,24 +20,15 @@ export class UsedCarEditComponent {
     private fb: FormBuilder,
     private http: HttpClient,
     private environment: EnvironmentService,
-    private _BrandService: BrandService,
-    private _ModelService: ModelService,
-    private _TrimService: TrimService,
-    private _tagsService: TagsService,
     public _FileDescriptorService: FileDescriptorService,
-    private sanitizer: DomSanitizer,
     private _confirmationService: ConfirmationService,
     private _UsedCarService: UsedCarService,
-    private FileDescriptorService: FileDescriptorService,
-    private message: NzMessageService,
     public _location: Location,
-    private router: Router,
-    private route: ActivatedRoute,
-    private _BaseService: BaseService
+    private _toastService: ToastService,
   ) { }
 
   /**表单数据 */
-  usedCarForm: FormGroup = this.fb.group({ ...new UsedCarConfig() })
+  usedCarForm: FormGroup 
 
 
   /**二手车id */
@@ -58,8 +43,13 @@ export class UsedCarEditComponent {
   /**图片容器中需要删除的图片 */
   deleteimg: any[] = []
 
-    /**删除图片失败记录的名称 */
+  /**删除图片失败记录的名称 */
   fileCellsName: string
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.usedCarForm = this.fb.group({ ...new UsedCarConfig() })
+  }
 
   /**提交 */
   async onsubmit(event) {
@@ -78,7 +68,12 @@ export class UsedCarEditComponent {
           }).subscribe(async (res) => {
             let req_fileCells = this.fileCells.filter((el) => el.fileList.find(ell => !ell.id))
             if (req_fileCells.length === 0) {
-              this.message.info('已完成');
+              // this.message.info('已完成');
+              this._toastService.show({
+                content: `已完成`,
+                type: 'success',
+                delay: 2500
+              })
               this._location.back();
             }
           })
@@ -114,7 +109,13 @@ export class UsedCarEditComponent {
         cell.fileList.map(async (file) => {
           let formData = new FormData();
           formData.append('file', file, file.name);
-          const messageid = this.message.loading(`正在提交“${cell.displayName}”图片`, { nzDuration: 0 }).messageId;
+          // const messageid = this.message.loading(`正在提交“${cell.displayName}”图片`, { nzDuration: 0 }).messageId;
+          const messageid = this._toastService.show({
+            // template: this.successTpl,
+            content: `正在提交“${cell.displayName}”图片`,
+            type: 'loading',
+            classname: '',
+          });
           this.requestImage(
             {
               containerName: 'CarPics',
@@ -123,15 +124,26 @@ export class UsedCarEditComponent {
             }, formData
           ).then(() => {
             count++
-            this.message.remove(messageid);
+            this._toastService.remove(messageid);
             if (req_fileCells.length === count) {
-              this.message.info('已完成');
+              // this.message.info('已完成');
+              this._toastService.show({
+                content: `已完成`,
+                type: 'success',
+                delay: 2500
+              })
               this._location.back();
               resolve()
             }
           }).catch(() => {
-            this.message.remove(messageid);
-            this.message.info(`“${cell.displayName}”图片上传失败，请重新上传`);
+            this._toastService.remove(messageid);
+            // this.message.info(`“${cell.displayName}”图片上传失败，请重新上传`);
+            this._toastService.show({
+              content: `“${cell.displayName}”图片上传失败，请重新上传`,
+              type: 'danger',
+              classname: '',
+              delay: 3000
+            })
             reject(cell.name)
           })
         })

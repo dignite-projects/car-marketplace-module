@@ -5,8 +5,7 @@
   <div class="card-body">
     <div class="container">
       <div class="row">
-        <ng-container
-          *ngTemplateOutlet="
+        <ng-container *ngTemplateOutlet="
             TextStyleLayout;
             context: {
               $implicit: {
@@ -15,10 +14,8 @@
                 col: 4
               }
             }
-          "
-        ></ng-container>
-        <ng-container
-          *ngTemplateOutlet="
+          "></ng-container>
+        <ng-container *ngTemplateOutlet="
             TextStyleLayout;
             context: {
               $implicit: {
@@ -27,12 +24,10 @@
                 col: 6
               }
             }
-          "
-        ></ng-container>
+          "></ng-container>
       </div>
       <div class="row">
-        <ng-container
-          *ngTemplateOutlet="
+        <ng-container *ngTemplateOutlet="
             TextStyleLayout;
             context: {
               $implicit: {
@@ -40,10 +35,8 @@
                 value: dealerInfo?.contactPerson
               }
             }
-          "
-        ></ng-container>
-        <ng-container
-          *ngTemplateOutlet="
+          "></ng-container>
+        <ng-container *ngTemplateOutlet="
             TextStyleLayout;
             context: {
               $implicit: {
@@ -51,10 +44,8 @@
                 value: dealerInfo?.contactNumber
               }
             }
-          "
-        ></ng-container>
-        <ng-container
-          *ngTemplateOutlet="
+          "></ng-container>
+        <ng-container *ngTemplateOutlet="
             TextStyleLayout;
             context: {
               $implicit: {
@@ -62,12 +53,10 @@
                 value: dealerInfo?.authenticationStatus | getDealerStatusToName
               }
             }
-          "
-        ></ng-container>
+          "></ng-container>
       </div>
       <div class="row">
-        <ng-container
-          *ngTemplateOutlet="
+        <ng-container *ngTemplateOutlet="
             TextStyleLayout;
             context: {
               $implicit: {
@@ -75,12 +64,10 @@
                 value: dealerInfo?.creationTime | dateT : 'yy-mm-dd hh:mm:ss'
               }
             }
-          "
-        ></ng-container>
+          "></ng-container>
       </div>
       <div class="row">
-        <ng-container
-          *ngTemplateOutlet="
+        <ng-container *ngTemplateOutlet="
             TextStyleLayout;
             context: {
               $implicit: {
@@ -88,12 +75,10 @@
                 value: dealerInfo?.address
               }
             }
-          "
-        ></ng-container>
+          "></ng-container>
       </div>
       <div class="row">
-        <ng-container
-          *ngTemplateOutlet="
+        <ng-container *ngTemplateOutlet="
             ImageStyleLayout;
             context: {
               $implicit: {
@@ -102,8 +87,7 @@
                 col: 10
               }
             }
-          "
-        ></ng-container>
+          "></ng-container>
       </div>
     </div>
   </div>
@@ -123,13 +107,7 @@
       <div class="col-auto">{{ data?.key }}:</div>
       <div class="col">
         <ng-container *ngFor="let item of data.images">
-          <dignite-image
-            [class]="'rounded m-sm-1'"
-            
-            [src]="item.src"
-            width="240"
-            height="160"
-          >
+          <dignite-image [class]="'rounded m-sm-1'" [src]="item.src" width="240" height="160">
           </dignite-image>
         </ng-container>
       </div>
@@ -143,8 +121,7 @@
   </ng-template>
   <ng-template #digniteBody>
     <form [formGroup]="dealerForm" #newFroupForm="ngForm" autocomplete="off">
-      <ng-container
-        *ngTemplateOutlet="
+      <ng-container *ngTemplateOutlet="
           textFrom;
           context: {
             $implicit: {
@@ -155,10 +132,8 @@
               placeholder: ''
             }
           }
-        "
-      ></ng-container>
-      <ng-container
-        *ngTemplateOutlet="
+        "></ng-container>
+      <ng-container *ngTemplateOutlet="
           textFrom;
           context: {
             $implicit: {
@@ -169,10 +144,8 @@
               placeholder: ''
             }
           }
-        "
-      ></ng-container>
-      <ng-container
-        *ngTemplateOutlet="
+        "></ng-container>
+      <ng-container *ngTemplateOutlet="
           textFrom;
           context: {
             $implicit: {
@@ -183,10 +156,8 @@
               placeholder: ''
             }
           }
-        "
-      ></ng-container>
-      <ng-container
-        *ngTemplateOutlet="
+        "></ng-container>
+      <ng-container *ngTemplateOutlet="
           textFrom;
           context: {
             $implicit: {
@@ -197,10 +168,8 @@
               placeholder: ''
             }
           }
-        "
-      ></ng-container>
-      <ng-container
-        *ngTemplateOutlet="
+        "></ng-container>
+      <ng-container *ngTemplateOutlet="
           textFrom;
           context: {
             $implicit: {
@@ -211,10 +180,8 @@
               placeholder: ''
             }
           }
-        "
-      ></ng-container>
-      <ng-container
-        *ngTemplateOutlet="
+        "></ng-container>
+      <ng-container *ngTemplateOutlet="
           fileFrom;
           context: {
             $implicit: {
@@ -225,78 +192,45 @@
               placeholder: ''
             }
           }
-        "
-      ></ng-container>
+        "></ng-container>
     </form>
 
     <ng-template #textFrom let-data [formGroup]="dealerForm">
       <div [class]="'mb' + (data.mb ? '-' + data.mb : '')">
-        <label class="form-label" [for]="data.label"
-          >{{ data.label }}<ng-container *ngIf="data.required">*</ng-container></label
-        >
-        <input
-          type="text"
-          class="form-control"
-          [id]="data.label"
-          [formControlName]="data.formControlName"
-          [placeholder]="data.placeholder || '请输入' + data.label"
-        />
+        <label class="form-label" [for]="data.label">{{ data.label }}<ng-container
+            *ngIf="data.required">*</ng-container></label>
+        <input type="text" class="form-control" [id]="data.label" [formControlName]="data.formControlName"
+          [placeholder]="data.placeholder || '请输入' + data.label" />
       </div>
     </ng-template>
     <ng-template #fileFrom let-data [formGroup]="dealerForm">
       <div [class]="'mb' + (data.mb ? '-' + data.mb : '')">
-        <label class="form-label" [for]="data.label"
-          >{{ data.label }}<ng-container *ngIf="data.required">*</ng-container></label
-        >
+        <label class="form-label" [for]="data.label">{{ data.label }}<ng-container
+            *ngIf="data.required">*</ng-container></label>
         <div>
           <ng-container *ngFor="let item of fileListView">
-            <dignite-image
-              [class]="'rounded m-sm-1'"
-              
-              [isdelete]="true"
-              (deleteClick)="deleteImage(item)"
-              [src]="item.src"
-              width="240"
-              height="160"
-              [alt]=""
-              [title]=""
-            >
+            <dignite-image [class]="'rounded m-sm-1'" [isdelete]="true" (deleteClick)="deleteImage(item)"
+              [src]="item.src" width="240" height="160" [alt]="" [title]="">
             </dignite-image>
           </ng-container>
-          <div
-            class="uploadImage uploadImage-size m-sm-1 rounded"
-            *ngIf="fileListView.length === 0"
-          >
+          <div class="uploadImage uploadImage-size m-sm-1 rounded" *ngIf="fileListView.length === 0">
             <div class="upload_btn_icon">
               <i class="fa fa-plus" aria-hidden="true"></i>
               <div>上传</div>
             </div>
-            <input
-              type="file"
-              [accept]="allowedFileTypeNames"
-              (change)="UploadFlieChange($event)"
-              class="upload_input"
-              id=""
-            />
+            <input type="file" [accept]="allowedFileTypeNames" (change)="UploadFlieChange($event)" class="upload_input"
+              id="" />
           </div>
         </div>
       </div>
     </ng-template>
   </ng-template>
   <ng-template #digniteFooter>
-    <button type="button" class="btn btn-secondary" (click)="ModalClose()">Close</button>
-    <button
-      type="button"
-      class="btn btn-primary"
-      [disabled]="!(!dealerForm?.invalid && fileListView.length > 0)"
-      (click)="ModalConfirm()"
-    >
+    <button type="button" class="btn btn-secondary" (click)="ModalClose()">取消</button>
+    <button type="button" class="btn btn-primary" [disabled]="!(!dealerForm?.invalid && fileListView.length > 0)"
+      (click)="ModalConfirm()">
       <i class="fa fa-spinner spinner-btn" *ngIf="isloading" aria-hidden="true"></i>
-      Save
+      保存
     </button>
   </ng-template>
 </dignite-modal>
-
-<ng-template #successTpl>车商信息提交成功</ng-template>
-<ng-template #errTpl>封面上传失败，请重新上传</ng-template>
-<dignite-toasts aria-live="polite" aria-atomic="true"></dignite-toasts>

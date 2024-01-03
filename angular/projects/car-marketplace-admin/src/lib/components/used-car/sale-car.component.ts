@@ -1,6 +1,7 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
-import { SaleUsedCarService } from '../../../../proxy/src/proxy/admin/used-cars';
+// import { SaleUsedCarService } from '../../../../proxy/src/proxy/admin/used-cars';
 import { ColumnMode } from '@swimlane/ngx-datatable';
+import { SaleUsedCarService } from '../../proxy/admin/used-cars';
 
 @Component({
   selector: 'lib-sale-car',

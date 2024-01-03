@@ -17,9 +17,6 @@ import {
   NgbDateNativeUTCAdapter,
 } from '@ng-bootstrap/ng-bootstrap';
 import { GetUsedCarStatusToNamePipe } from './pipes/get-used-car-status-to-name.pipe';
-import { NzImageModule } from 'ng-zorro-antd/image';
-import { NzModalModule } from 'ng-zorro-antd/modal';
-import { NzImageService } from 'ng-zorro-antd/image';
 
 @NgModule({
   declarations: [
@@ -52,10 +49,9 @@ import { NzImageService } from 'ng-zorro-antd/image';
     NgbToastModule,
     NgbDropdownModule,
     NgbDatepickerModule,
-    NzModalModule
 
   ],
-  providers: [NzImageService,
+  providers: [
     { provide: NgbDateAdapter, useClass: NgbDateNativeUTCAdapter },
   ],
   exports: [

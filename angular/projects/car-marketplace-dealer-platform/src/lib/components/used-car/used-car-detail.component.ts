@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { Validators } from '@angular/forms';
-import { BrandService, ModelService, TrimService } from '../../../../proxy/src/proxy/public/cars';
-import { usedCarStatusOptions } from '../../../../proxy/src/proxy/used-cars/used-car-status.enum';
 import { CarColorOptions } from '../../enums';
-import { FileDescriptorService } from '../../../../proxy/src/proxy/dignite/file-explorer/files';
-import { UsedCarService } from '../../../../proxy/src/proxy/dealer-platform/used-cars';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { BrandService, ModelService, TrimService } from '../../proxy/public/cars';
+import { usedCarStatusOptions } from '../../proxy/used-cars';
+import { FileDescriptorService } from '../../proxy/dignite/file-explorer/files';
+import { UsedCarService } from '../../proxy/dealer-platform/used-cars';
 
 @Component({
   selector: 'lib-used-car-detail',

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-// import { DealerService } from 'projects/car-marketplace-dealer-platform/proxy/src/proxy/dealer-platform/dealers';
-import { DealerService } from '../../../proxy/src/proxy/dealer-platform/dealers';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot,  } from '@angular/router';
 import { Observable } from 'rxjs';
+import { DealerService } from '../proxy/dealer-platform/dealers';
 /**判断是否是车商 */
 @Injectable({
   providedIn: 'root'

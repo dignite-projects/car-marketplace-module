@@ -3,13 +3,13 @@ import { HttpClient, HttpEvent, HttpEventType, HttpRequest, HttpResponse } from 
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsedCarConfig } from './used-car-config';
-import { FileDescriptorService } from '../../../../proxy/src/proxy/dignite/file-explorer/files';
 import { Confirmation, ConfirmationService } from '@abp/ng.theme.shared';
-import { UsedCarService } from '../../../../proxy/src/proxy/dealer-platform/used-cars';
 import { filter } from 'rxjs';
-import { NzMessageService } from 'ng-zorro-antd/message';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { ToastService } from '@dignite/components';
+import { UsedCarService } from '../../proxy/dealer-platform/used-cars';
+import { FileDescriptorService } from '../../proxy/dignite/file-explorer/files';
 
 
 
@@ -27,15 +27,15 @@ export class UsedCarCreateComponent {
     public _FileDescriptorService: FileDescriptorService,
     private _confirmationService: ConfirmationService,
     private _UsedCarService: UsedCarService,
-    private message: NzMessageService,
     public _location: Location,
     private router: Router,
+    private _toastService: ToastService,
   ) { }
 
   /**表单数据 */
-  usedCarForm: FormGroup = this.fb.group({ ...new UsedCarConfig() })
+  // usedCarForm: FormGroup = this.fb.group({ ...new UsedCarConfig() })
+  usedCarForm: FormGroup 
 
- 
 
   /**二手车id */
   usedCarId: any = ''
@@ -46,11 +46,18 @@ export class UsedCarCreateComponent {
   /**图片容器 */
   fileCells: any[any] = []
 
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.usedCarForm = this.fb.group({ ...new UsedCarConfig() })
+  }
+
   /**提交 */
   async onsubmit(event) {
     let input = event.formGroupValue
-    this.fileCells=event.fileCells
-    this.usedCarId=event.usedCarId
+    this.fileCells = event.fileCells
+    this.usedCarId = event.usedCarId
     this._confirmationService
       .warn(`${input.name}`, '确定要提交这个二手车吗?', {})
       .subscribe(async (status: Confirmation.Status) => {
@@ -80,7 +87,11 @@ export class UsedCarCreateComponent {
         cell.fileList.map(async (file) => {
           let formData = new FormData();
           formData.append('file', file, file.name);
-          const messageid = this.message.loading(`正在提交“${cell.displayName}”图片`, { nzDuration: 0 }).messageId;
+          // const messageid = this.message.loading(`正在提交“${cell.displayName}”图片`, { nzDuration: 0 }).messageId;
+          const messageid = this._toastService.show({
+            content: `正在提交“${cell.displayName}”图片`,
+            type: 'loading',
+          });
           this.requestImage(
             {
               containerName: 'CarPics',
@@ -89,15 +100,26 @@ export class UsedCarCreateComponent {
             }, formData
           ).then(() => {
             count++
-            this.message.remove(messageid);
+            // this.message.remove(messageid);
+            this._toastService.remove(messageid)
             if (req_fileCells.length === count) {
-              this.message.info('已完成');
+              // this.message.info('已完成');
+              this._toastService.show({
+                content: `已完成`,
+                type: 'success',
+                delay: 2500
+              })
               this._location.back();
               resolve()
             }
           }).catch(() => {
-            this.message.remove(messageid);
-            this.message.info(`“${cell.displayName}”图片上传失败，请重新上传`);
+            this._toastService.remove(messageid);
+            // this.message.info(`“${cell.displayName}”图片上传失败，请重新上传`);
+            this._toastService.show({
+              content: `“${cell.displayName}”图片上传失败，请重新上传`,
+              type: 'danger',
+              delay: 2500
+            })
             reject(cell.name)
           })
         })

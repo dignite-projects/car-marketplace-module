@@ -8,3 +8,4 @@ export * from './lib/car-marketplace-admin.module';
 export * from './lib/components'
 export * from './lib/pipes'
 export * from './lib/enums'
+export * from './lib/proxy'

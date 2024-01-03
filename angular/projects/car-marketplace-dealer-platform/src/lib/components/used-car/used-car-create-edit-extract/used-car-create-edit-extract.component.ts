@@ -1,20 +1,15 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { EnvironmentService } from '@abp/ng.core';
-import { HttpClient, HttpEvent, HttpEventType, HttpRequest, HttpResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsedCarConfig } from '../used-car-config';
-import { BrandService, ModelService, TrimService } from '../../../../../proxy/src/proxy/public/cars';
-import { usedCarStatusOptions } from '../../../../../proxy/src/proxy/used-cars/used-car-status.enum';
 import { TagsService } from '../../../services';
 import { CarColorOptions } from '../../../enums';
-import { FileDescriptorService } from '../../../../../proxy/src/proxy/dignite/file-explorer/files';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Confirmation, ConfirmationService } from '@abp/ng.theme.shared';
-import { UsedCarService } from '../../../../../proxy/src/proxy/dealer-platform/used-cars';
-import { filter } from 'rxjs';
-import { NzMessageService } from 'ng-zorro-antd/message';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BrandService, ModelService, TrimService } from '../../../proxy/public/cars';
+import { usedCarStatusOptions } from '../../../proxy/used-cars';
+import { FileDescriptorService } from '../../../proxy/dignite/file-explorer/files';
+import { UsedCarService } from '../../../proxy/dealer-platform/used-cars';
 
 
 @Component({
@@ -25,25 +20,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class UsedCarCreateEditExtractComponent {
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient,
-    private environment: EnvironmentService,
     private _BrandService: BrandService,
     private _ModelService: ModelService,
     private _TrimService: TrimService,
     private _tagsService: TagsService,
     public _FileDescriptorService: FileDescriptorService,
     private sanitizer: DomSanitizer,
-    private _confirmationService: ConfirmationService,
     private _UsedCarService: UsedCarService,
-    private FileDescriptorService: FileDescriptorService,
-    private message: NzMessageService,
     public _location: Location,
-    private router: Router,
     private route: ActivatedRoute,
   ) { }
 
   /**表单数据 */
-  usedCarForm: FormGroup = this.fb.group({ ...new UsedCarConfig() })
+  // usedCarForm: FormGroup = this.fb.group({ ...new UsedCarConfig() })
+  usedCarForm: FormGroup
 
   /**品牌列表 */
   brandList: any[any] = []
@@ -79,7 +69,7 @@ export class UsedCarCreateEditExtractComponent {
   fileCells: any[any] = []
 
   /**预设标签列表 */
-  TagsList: any[any] = this._tagsService.getTagList()
+  TagsList: any[any] 
 
   /**是否显示标签编辑 */
   taInputVisible: boolean = false
@@ -139,6 +129,8 @@ export class UsedCarCreateEditExtractComponent {
   async ngOnInit(): Promise<void> {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+    this.usedCarForm = this.fb.group({ ...new UsedCarConfig() })
+    this.TagsList= this._tagsService.getTagList()
     this.brandList = await this.getgropuValue(await this.getBrandList(), 'firstLetter')
 
     let usedCarId = this.route.snapshot.params.id

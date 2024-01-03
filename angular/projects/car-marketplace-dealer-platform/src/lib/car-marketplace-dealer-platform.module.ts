@@ -1,4 +1,4 @@
-import { Injectable, ModuleWithProviders, NgModule, NgModuleFactory } from '@angular/core';
+import {  ModuleWithProviders, NgModule, NgModuleFactory } from '@angular/core';
 import { CarMarketplaceDealerPlatformComponent } from './car-marketplace-dealer-platform.component';
 import { CarMarketplaceDealerPlatformRoutingModule } from './car-marketplace-dealer-platform-routing.module';
 import { CoreModule, LazyModuleFactory } from '@abp/ng.core';
@@ -10,12 +10,10 @@ import {
   DealerInfoComponent,
   BuyUsedCarComponent
 } from './components';
-import { ComponentsModule } from '@dignite/components'
+// import { ComponentsModule } from '../../../components/src/public-api'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { NzImageModule } from 'ng-zorro-antd/image';
-import { NzModalModule } from 'ng-zorro-antd/modal';
 import {
   GetDealerStatusToNamePipe,
   DateTPipe,
@@ -29,8 +27,8 @@ import {
   NgbDateNativeUTCAdapter,
 } from '@ng-bootstrap/ng-bootstrap';
 import { UsedCarCreateEditExtractComponent } from './components/used-car/used-car-create-edit-extract/used-car-create-edit-extract.component';
+import { ComponentsModule } from '@dignite/components';
 
-// import { GetUsedCarStatusToNamePipe } from './pipes/get-used-car-status-to-name.pipe';
 
 
 
@@ -63,11 +61,9 @@ import { UsedCarCreateEditExtractComponent } from './components/used-car/used-ca
         selectedMessage: 'selected' // Footer selected message
       }
     }),
-    NzImageModule,
     NgbToastModule,
     NgbDropdownModule,
     NgbDatepickerModule,
-    NzModalModule
 
   ],
   providers: [

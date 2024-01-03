@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { Validators } from '@angular/forms';
-import { BrandService, ModelService, TrimService } from '../../../../proxy/src/proxy/public/cars';
-import { usedCarStatusOptions } from '../../../../proxy/src/proxy/used-cars/used-car-status.enum';
-import { FileDescriptorService } from '../../../../proxy/src/proxy/dignite/file-explorer/files';
-import { UsedCarService } from '../../../../proxy/src/proxy/admin/used-cars';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { CarColorOptions } from '@dignite/car-marketplace-dealer-platform';
-// import { NzImageService } from 'ng-zorro-antd/image';
+import { CarColorOptions } from '../../enums';
+import { BrandService, ModelService, TrimService } from '../../proxy/public/cars';
+import { FileDescriptorService } from '../../proxy/dignite/file-explorer/files';
+import { UsedCarService } from '../../proxy/admin/used-cars';
+import { usedCarStatusOptions } from '../../proxy/used-cars';
 
 
 @Component({

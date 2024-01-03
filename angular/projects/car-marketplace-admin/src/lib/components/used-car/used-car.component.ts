@@ -1,9 +1,9 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
-import { UsedCarService } from '../../../../proxy/src/proxy/admin/used-cars';
-import { usedCarStatusOptions } from '../../../../proxy/src/proxy/used-cars/used-car-status.enum';
 import { Router } from '@angular/router';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { Confirmation, ConfirmationService } from '@abp/ng.theme.shared';
+import { usedCarStatusOptions } from '../../proxy/used-cars/used-car-status.enum';
+import { UsedCarService } from '../../proxy/admin/used-cars';
 
 
 @Component({

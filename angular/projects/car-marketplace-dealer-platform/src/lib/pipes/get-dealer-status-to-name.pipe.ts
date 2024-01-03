@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { AuthenticationStatusToName } from '../enums';
-import { authenticationStatusOptions } from '../../../proxy/src/proxy/dealers/authentication-status.enum';
+import { authenticationStatusOptions } from '../proxy/dealers/authentication-status.enum';
 
 /**获取当前车商状态 */
 @Pipe({

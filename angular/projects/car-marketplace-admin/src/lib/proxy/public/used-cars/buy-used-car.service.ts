@@ -1,4 +1,4 @@
-import type { BuyUsedCarCreateDto, BuyUsedCarDto } from './models';
+import type { UsedCarDto } from './models';
 import { RestService, Rest } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
 
@@ -9,8 +9,8 @@ export class BuyUsedCarService {
   apiName = 'CarMarketplace';
   
 
-  create = (input: BuyUsedCarCreateDto, config?: Partial<Rest.Config>) =>
-    this.restService.request<any, BuyUsedCarDto>({
+  create = (input: UsedCarDto, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, UsedCarDto>({
       method: 'POST',
       url: '/api/car-marketplace-public/buy-used-car',
       body: input,
