@@ -95,7 +95,7 @@ public class CarMarketplaceApplicationModule : AbpModule
                     container.AddImageResizeHandler(handler =>
                     {
                         handler.ImageWidth = 420;
-                        handler.ImageHeight = 280;
+                        handler.ImageHeight = 420;
                     });
                     container.SetBlobNameGenerator<DealerCoverBlobNameGenerator>();
                 });
