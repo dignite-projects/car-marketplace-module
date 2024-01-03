@@ -15,22 +15,22 @@ export function configureRoutes(routesService: RoutesService) {
     return () => {
         routesService.add([
             {
-                path: '/admin/dealer/manage',
+                path: '/car-marketplace/dealer/manage',
                 name: eCarMarketplaceAdminRouteNames.DealerManage,
                 iconClass: 'fa fa-gears',
                 layout: eLayoutType.application,
                 order: 6,
                 requiredPolicy: 'CarMarketplace.Dealer.Management'
             }, {
-                path: '/admin/used-car/sale-car',
+                path: '/car-marketplace/used-car/sale-car',
                 name: eCarMarketplaceAdminRouteNames.SaleCarInfo,
                 iconClass: 'fa fa-btc ',
                 layout: eLayoutType.application,
-                order: 7,
+                order: 8,
                 requiredPolicy: 'CarMarketplace.SaleCar.Management'
             },
             {
-                path: '/admin/used-car',
+                path: '/car-marketplace/used-car/manage',
                 name: eCarMarketplaceAdminRouteNames.UsedCarManage,
                 iconClass: 'fa fa-taxi',
                 layout: eLayoutType.application,

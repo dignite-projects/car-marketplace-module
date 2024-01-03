@@ -121,7 +121,7 @@ export class UsedCarComponent {
 
   /**编辑 */
   EditUsedCar(id) {
-    this.router.navigate([`/dealer-platform/used-car/${id}/edit`])
+    this.router.navigate([`/car-marketplace/used-car/${id}/edit`])
   }
   /**删除二手车 */
   SiteDelete(data) {

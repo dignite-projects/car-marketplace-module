@@ -36,13 +36,17 @@ const routes: Routes = [
         ],
       },
       {
-        path: '',
-        component: UsedCarComponent,
-      },
-      {
-        path: 'details/:id',
-        component: UsedCarDetailComponent,
-      },
+        path: 'manage',
+        children: [{
+          path: '',
+          component: UsedCarComponent,
+        },
+        {
+          path: 'details/:id',
+          component: UsedCarDetailComponent,
+        }]
+      }
+
     ],
   }
 ];
@@ -51,4 +55,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes), CommonModule],
   exports: [RouterModule],
 })
-export class CarMarketplaceAdminRoutingModule {}
+export class CarMarketplaceAdminRoutingModule { }

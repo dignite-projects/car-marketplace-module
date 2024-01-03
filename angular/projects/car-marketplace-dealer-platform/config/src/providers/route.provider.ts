@@ -15,7 +15,7 @@ export function configureRoutes(routesService: RoutesService) {
   return () => {
     routesService.add([
       {
-        path: '/dealer-platform/dealer/info',
+        path: '/car-marketplace/dealer/info',
         name: eCarMarketplaceDealerPlatfromRouteNames.DealerInfo,
         iconClass: 'fa fa-window-maximize',
         layout: eLayoutType.application, 
@@ -23,14 +23,14 @@ export function configureRoutes(routesService: RoutesService) {
         // invisible :testauth(),//在该路由中是否可见
         // requiredPolicy: 'CarMarketplace.Dealer'
       }, {
-        path: '/dealer-platform/used-car',
+        path: '/car-marketplace/used-car',
         name: eCarMarketplaceDealerPlatfromRouteNames.UsedCar,
         iconClass: 'fa fa-automobile', 
         layout: eLayoutType.application,
         order: 4,
         // requiredPolicy: 'CarMarketplace.UsedCar'
       }, {
-        path: '/dealer-platform/used-car/buy',
+        path: '/car-marketplace/used-car/buy',
         name: eCarMarketplaceDealerPlatfromRouteNames.Consultation,
         iconClass: 'fa fa-file-text-o',
         layout: eLayoutType.application,

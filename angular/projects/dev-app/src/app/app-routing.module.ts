@@ -30,24 +30,14 @@ const routes: Routes = [
     loadChildren: () =>
       import('@abp/ng.setting-management').then(m => m.SettingManagementModule.forLazy()),
   },
-  // {
-  //   path: 'admin',
-  //   loadChildren: () =>
-  //     import('@dignite/admin-lib').then(m => m.AdminLibModule),
-  // },
-  // {
-  //   path: 'dealer-platform',
-  //   loadChildren: () =>
-  //     import('@dignite/dealer-platform-lib').then(m => m.DealerPlatformLibModule.forLazy()),
-  // },
+  {
+    path: 'car-marketplace', 
+    loadChildren: () =>import('@dignite/car-marketplace-dealer-platform').then(m => m.CarMarketplaceDealerPlatformModule.forLazy()),
+  },
   { 
-    path: 'admin', 
+    path: 'car-marketplace', 
     loadChildren: () =>
       import('@dignite/car-marketplace-admin').then(m => m.CarMarketplaceAdminModule.forLazy()),
-  },
-  {
-    path: 'dealer-platform', 
-    loadChildren: () =>import('@dignite/car-marketplace-dealer-platform').then(m => m.CarMarketplaceDealerPlatformModule.forLazy()),
   },
 ];
 

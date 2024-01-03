@@ -70,7 +70,7 @@ export class UsedCarCreateComponent {
             /**二手车详情 */
             this.UsedCarDetail = res
             await this.reqfengzhaung().catch(errname => {
-              this.router.navigate([`/dealer-platform/used-car/${this.usedCarId}/edit`], { skipLocationChange: true })
+              this.router.navigate([`/car-marketplace/used-car/${this.usedCarId}/edit`], { skipLocationChange: true })
             })
           })
         }

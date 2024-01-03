@@ -41,13 +41,10 @@ div[overflow] {
   display: block;
 }
 
-
 .uploadImage {
-
   border: 1px solid var(--bs-gray-500);
   position: relative;
   overflow: hidden;
-  // cursor: pointer;
   font-size: 16px;
 
   .upload_btn_icon {
@@ -73,15 +70,13 @@ div[overflow] {
     align-items: center;
     justify-content: center;
     display: none;
-    transition: all .2s;
+    transition: all 0.2s;
   }
-
 }
 
 .uploadImage[show]:hover .uploadImage_delete {
   display: flex;
 }
-
 
 @keyframes spinner-btn {
   to {
@@ -90,5 +85,5 @@ div[overflow] {
 }
 
 .spinner-btn {
-  animation: spinner-btn .75s linear infinite;
+  animation: spinner-btn 0.75s linear infinite;
 }

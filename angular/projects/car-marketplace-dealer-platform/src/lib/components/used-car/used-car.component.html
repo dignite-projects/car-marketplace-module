@@ -1,6 +1,6 @@
 <dignite-page [title]="'二手车'">
     <ng-template #pageHeader>
-        <button class="btn btn-primary btn-sm" type="button" routerLink="/dealer-platform/used-car/create"
+        <button class="btn btn-primary btn-sm" type="button" routerLink="/car-marketplace/used-car/create"
             [queryParams]="{}">
             <i class="fa fa-plus" aria-hidden="true"></i>
             新建
@@ -23,7 +23,7 @@
         <dignite-table [data]="UsedCarList" [columns]="columns" [pages]="page" [loading]="loadingIndicator"
             (pageChange)="setPage($event)">
             <ng-template #nameCol let-row="row" let-value="value">
-                <a routerLink="/dealer-platform/used-car/details/{{row?.id }}"> {{value }}</a>
+                <a routerLink="/car-marketplace/used-car/details/{{row?.id }}"> {{value }}</a>
             </ng-template>
             <ng-template #statusCol let-row="row" let-value="value">
                 {{ value|getUsedCarStatusToName }}

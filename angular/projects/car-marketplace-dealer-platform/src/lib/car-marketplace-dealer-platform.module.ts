@@ -27,6 +27,7 @@ import {
   NgbDateNativeUTCAdapter,
 } from '@ng-bootstrap/ng-bootstrap';
 import { UsedCarCreateEditExtractComponent } from './components/used-car/used-car-create-edit-extract/used-car-create-edit-extract.component';
+// import { ComponentsModule } from 'projects/components/src/public-api';
 import { ComponentsModule } from '@dignite/components';
 
 
@@ -52,7 +53,7 @@ import { ComponentsModule } from '@dignite/components';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    ComponentsModule,
+    ComponentsModule.forRoot(),
     CarMarketplaceDealerPlatformRoutingModule,
     NgxDatatableModule.forRoot({
       messages: {
