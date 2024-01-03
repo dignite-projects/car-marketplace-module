@@ -328,18 +328,25 @@ export class CreateComponent {
         nzTitle: '确定要更新这个二手车信息吗',
         nzOkText: '确认',
         nzOkType: 'primary',
-        nzOnOk: () => {
-          const messageid = this.message.loading('正在更新中', { nzDuration: 0 }).messageId;
+        nzOnOk: async () => {
+          // const messageid = this.message.loading('正在更新中', { nzDuration: 0 }).messageId;
+          await this.requestDeleteimg()
+
           this._UsedCarService.update(this.usedCarId, {
             ...this.CarCreateGroup
-          }).subscribe(res => {
-            setTimeout(async () => {
-              await this.requestDeleteimg()
-              await this.reqfengzhaung()
-              this.message.remove(messageid);
+          }).subscribe(async (res) => {
+            let req_fileCells = this.fileCells.filter((el) => el.fileList.length > 0)
+            if (req_fileCells.length === 0) {
               this.message.info('已完成');
               this._location.back();
-            }, 1200)
+            }
+          })
+          await this.reqfengzhaung().catch(errname => {
+            this.fileCells.map(el => {
+              if (el.name === errname) {
+                el.fileList = []
+              }
+            })
           })
         },
         nzCancelText: '取消',
@@ -354,20 +361,19 @@ export class CreateComponent {
       nzOkText: '确认',
       nzOkType: 'primary',
       nzOnOk: () => {
-        const messageid = this.message.loading('正在提交中', { nzDuration: 0 }).messageId;
         this._UsedCarService.create({
           ...this.CarCreateGroup
-        }).subscribe(res => {
+        }).subscribe(async (res) => {
           /**二手车id */
           this.usedCarId = res.id
           /**二手车详情 */
           this.UsedCarDetail = res
-          setTimeout(async () => {
-            await this.reqfengzhaung()
-            this.message.remove(messageid);
-            this.message.info('已完成');
-            this._location.back();
-          }, 1200)
+          await this.reqfengzhaung().catch(errname => {
+            this.isEdit=true
+            this.fileCells.map(el => {
+              if (el.name === errname) el.fileList = [];
+            })
+          })
         })
       },
       nzCancelText: '取消',
@@ -380,12 +386,13 @@ export class CreateComponent {
   /**上传图片的封装方法 */
   reqfengzhaung() {
     return new Promise<void>((resolve, reject) => {
-      let req_fileCells=this.fileCells.filter((el)=>el.fileList.length>0)
+      let req_fileCells = this.fileCells.filter((el) => el.fileList.length > 0)
       let count = 0
       req_fileCells.map(async (cell, index1) => {
         cell.fileList.map(async (file) => {
           let formData = new FormData();
           formData.append('file', file, file.name);
+          const messageid = this.message.loading(`正在提交“${cell.displayName}”图片`, { nzDuration: 0 }).messageId;
           this.requestImage(
             {
               containerName: 'CarPics',
@@ -394,9 +401,16 @@ export class CreateComponent {
             }, formData
           ).then(() => {
             count++
+            this.message.remove(messageid);
             if (req_fileCells.length === count) {
+              this.message.info('已完成');
+              this._location.back();
               resolve()
             }
+          }).catch(() => {
+            this.message.remove(messageid);
+            this.message.info(`“${cell.displayName}”图片上传失败，请重新上传`);
+            reject(cell.name)
           })
         })
       })
@@ -425,15 +439,12 @@ export class CreateComponent {
       this.http
         .request(req)
         .pipe(filter(e => e instanceof HttpResponse)).subscribe((back) => {
-          // console.log(back, '上传图片返回');
           resolve(back)
+        }, error => {
+          reject(error)
         })
-
     })
   }
-
-
-
 
   /**上传图片改变 */
   UploadFlieChange(files, item) {
