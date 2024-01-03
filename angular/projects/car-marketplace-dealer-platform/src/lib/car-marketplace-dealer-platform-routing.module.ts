@@ -5,17 +5,17 @@ import { BuyUsedCarComponent, DealerInfoComponent, UsedCarComponent, UsedCarCrea
 import { IsDealerService } from './services';
 
 
-
+ 
 const routes: Routes = [
   {
-    path: 'dealer',
+    path: 'dealer', 
     canActivate:[IsDealerService],
     children: [{
-      path: 'info',
+      path: 'info', 
       component: DealerInfoComponent
     }]
-  },
-  {
+  }, 
+  { 
     path: 'used-car',
     canActivate:[IsDealerService],
     children: [
@@ -23,7 +23,6 @@ const routes: Routes = [
         path: '',
         component: UsedCarComponent
       },
-
       {
         path: 'create',
         component: UsedCarCreateComponent,

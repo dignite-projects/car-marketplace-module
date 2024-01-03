@@ -1,10 +1,13 @@
-import { NgModule } from '@angular/core';
+import {  ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { ModalComponent,PreviewComponent,PageHeaderComponent,ToastsComponent, TableComponent, PageComponent, TabsComponent } from './components';
 import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { DDatePipe } from './pipes';
+import styles from './constants/styles';
+
+
 
 @NgModule({
   declarations: [
@@ -23,16 +26,30 @@ import { DDatePipe } from './pipes';
     NgbToastModule, 
     NgTemplateOutlet,
     NgxDatatableModule
-  ], 
+  ],  
   exports: [
     PageHeaderComponent,
     ModalComponent,
-    PreviewComponent,
+    PreviewComponent, 
     ToastsComponent,
     PageComponent,
     TableComponent,
     TabsComponent,
     // DDatePipe
-  ]
-})
-export class ComponentsModule { }
+  ],
+  providers:[]
+}) 
+
+export class ComponentsModule { 
+  
+  static forRoot(): ModuleWithProviders<ComponentsModule> {
+    const stylesElement = document.createElement('style');
+    var oText=document.createTextNode(styles);
+    stylesElement.appendChild(oText)
+    document.body.appendChild(stylesElement);
+    return {
+      ngModule: ComponentsModule,
+      providers: [],
+    };
+  }
+}
