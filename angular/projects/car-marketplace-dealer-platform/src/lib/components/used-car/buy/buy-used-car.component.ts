@@ -57,7 +57,7 @@ export class BuyUsedCarComponent {
       this.page.total = res.totalCount;
       this.columns = [
         {
-          name: '二手车名称', prop: 'usedCar.name'
+          name: '二手车名称', prop: 'usedCar.name',
         },
         {
           name: '预约时间', prop: 'reservationTime',

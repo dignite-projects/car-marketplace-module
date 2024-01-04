@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { BaseService } from '@dignite/components';
+import { BaseService } from '@dignite-ng/components';
 
 @Pipe({
   name: 'dDate'

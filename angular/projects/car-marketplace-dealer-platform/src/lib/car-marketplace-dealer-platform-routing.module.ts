@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, UrlSegment } from '@angular/router';
 import { BuyUsedCarComponent, DealerInfoComponent, UsedCarComponent, UsedCarCreateComponent, UsedCarDetailComponent, UsedCarEditComponent } from './components';
 import { IsDealerService } from './services';
 
@@ -21,7 +21,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: UsedCarComponent
+        component: UsedCarComponent,
       },
       {
         path: 'create',
@@ -30,6 +30,9 @@ const routes: Routes = [
       {
         path: 'details/:id',
         component: UsedCarDetailComponent,
+        data:{
+
+        }
       },
       {
         path: ':id/edit',

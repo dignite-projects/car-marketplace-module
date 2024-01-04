@@ -91,7 +91,7 @@
             TextStyleLayout;
             context: {
               $implicit: {
-                key: 'modelLevel',
+                key: '车型级别',
                 value: UsedCarInfo?.modelLevel
               }
             }
@@ -100,7 +100,7 @@
             TextStyleLayout;
             context: {
               $implicit: {
-                key: 'powerType',
+                key: '动力类型',
                 value: UsedCarInfo?.powerType
               }
             }
@@ -109,7 +109,7 @@
             TextStyleLayout;
             context: {
               $implicit: {
-                key: 'transmissionType',
+                key: '变速箱类型',
                 value: UsedCarInfo?.transmissionType
               }
             }
@@ -194,7 +194,7 @@
                 $implicit: {
                   key: item.displayName,
                   images: item.fileList,
-                  col: 10
+                  col: 12
                 }
               }
             "></ng-container>
@@ -204,7 +204,7 @@
         <ng-template #TextStyleLayout let-data>
             <div [class]="'col' + (data.col ? '-' + data.col : '')">
                 <div class="row py-md-2">
-                    <div class="col-auto text-black-50">{{ data?.key }}:</div>
+                    <div class="col-auto ">{{ data?.key }}:</div>
                     <div class="col text-dark">{{ data?.value }}</div>
                 </div>
             </div>
@@ -212,7 +212,7 @@
         <ng-template #seletStyleLayout let-data>
             <div [class]="'col' + (data.col ? '-' + data.col : '')">
                 <div class="row py-md-2">
-                    <div class="col-auto text-black-50">{{ data?.key }}:</div>
+                    <div class="col-auto ">{{ data?.key }}:</div>
                     <div class="col text-dark">
                         <ng-container *ngFor="let item of data.options">
                             <ng-container *ngFor="let mod of item.models">
@@ -228,7 +228,7 @@
         <ng-template #StatusStyleLayout let-data>
             <div [class]="'col' + (data.col ? '-' + data.col : '')">
                 <div class="row py-md-2">
-                    <div class="col-auto text-black-50">{{ data?.key }}:</div>
+                    <div class="col-auto ">{{ data?.key }}:</div>
                     <div class="col text-dark">
                         {{ data.value | getUsedCarStatusToName }}
                     </div>
@@ -238,7 +238,7 @@
         <ng-template #ImageStyleLayout let-data>
             <div [class]="'col' + (data.col ? '-' + data.col : '')">
                 <div class="row py-md-3">
-                    <div class="col-2">{{ data?.key }}:</div>
+                    <div class="col-1">{{ data?.key }}:</div>
                     <div class="col">
                         <ng-container *ngFor="let item of data.images">
                             <dignite-image [class]="'rounded m-sm-1'" [src]="item.src" [alt]="data.key"></dignite-image>

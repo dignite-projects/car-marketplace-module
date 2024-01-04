@@ -6,7 +6,7 @@ import { UsedCarConfig } from './used-car-config';
 import { Confirmation, ConfirmationService } from '@abp/ng.theme.shared';
 import { filter } from 'rxjs';
 import { Location } from '@angular/common';
-import { ToastService } from '@dignite/components';
+import { ToastService } from '@dignite-ng/components';
 import { UsedCarService } from '../../proxy/dealer-platform/used-cars';
 import { FileDescriptorService } from '../../proxy/dignite/file-explorer/files';
 

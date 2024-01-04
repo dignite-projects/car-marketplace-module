@@ -47,7 +47,10 @@ export class SaleCarComponent {
     this.getsaleCarList();
   }
 
+  log(val) {
+    console.log(val, '1111111111');
 
+  }
   async ngOnInit(): Promise<void> {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
@@ -80,6 +83,10 @@ export class SaleCarComponent {
         this.page.total = res.totalCount;
         this.columns = [
           {
+            name: '操作', prop: 'operate',
+            cellTemplate: this.operateCol,
+          },
+          {
             name: '品牌分组', prop: 'model.group',
             // cellTemplate: this.nameCol,
             minWidth: 200,
@@ -102,11 +109,7 @@ export class SaleCarComponent {
             cellTemplate: this.creationTimeCol,
             minWidth: 160,
           },
-          {
-            name: '操作', prop: 'operate',
-            cellTemplate: this.operateCol,
-            minWidth: 160,
-          },
+
         ].map(el => ({
           ...el,
           minWidth: this.getCloumnWidth(el.prop)
@@ -121,10 +124,16 @@ export class SaleCarComponent {
   /**获取列的最小宽度 */
   getCloumnWidth(value) {
     switch (value) {
-      case 'name':
-        return 240;
+      // case 'name':
+      //   return 280;
+      //   break;
+      case 'address':
+        return 180;
         break;
-      case 'status':
+      case 'contactNumber':
+        return 130;
+        break;
+      case 'registrationDate':
         return 120;
         break;
       case 'creationTime':

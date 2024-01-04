@@ -6,7 +6,7 @@ import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
 import { filter, from } from 'rxjs';
 import { EnvironmentService } from '@abp/ng.core';
 import { Confirmation, ConfirmationService } from '@abp/ng.theme.shared';
-import { ToastService } from '@dignite/components';
+import { ToastService } from '@dignite-ng/components';
 import { DealerService, DealerDto } from '../../proxy/dealer-platform/dealers';
 import { FileDescriptorService } from '../../proxy/dignite/file-explorer/files';
 

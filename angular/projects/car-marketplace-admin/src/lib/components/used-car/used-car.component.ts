@@ -72,7 +72,7 @@ export class UsedCarComponent {
           {
             name: '名称', prop: 'name',
             cellTemplate: this.nameCol,
-            minWidth: 200,
+            // minWidth: 200,
           },
           { name: '总里程(公里)', prop: 'totalMileage' },
           { name: '过户次数', prop: 'transfersCount' },
@@ -103,13 +103,13 @@ export class UsedCarComponent {
   getCloumnWidth(value) {
     switch (value) {
       case 'name':
-        return 240;
+        return 300;
         break;
       case 'status':
         return 120;
         break;
       case 'creationTime':
-        return 160;
+        return 180;
         break;
       case 'operate':
         return 100;

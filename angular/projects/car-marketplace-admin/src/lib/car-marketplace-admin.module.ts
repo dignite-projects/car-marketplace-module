@@ -3,7 +3,7 @@ import { CarMarketplaceAdminComponent } from './car-marketplace-admin.component'
 import { CoreModule, LazyModuleFactory } from '@abp/ng.core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ComponentsModule } from '@dignite/components';
+import { ComponentsModule } from '@dignite-ng/components';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { CarMarketplaceAdminRoutingModule } from './car-marketplace-admin-routing.module';

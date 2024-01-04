@@ -34,12 +34,13 @@
                     </button>
                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                         <ng-container *ngIf="row.authenticationStatus === 0">
-                            <button ngbDropdownItem class="btn btn-outline-primary no-round" (click)="authenticateCarMarketplace(row, 'yes')">批准</button>
+                            <button ngbDropdownItem class="btn btn-outline-primary no-round"
+                                (click)="authenticateCarMarketplace(row, 'yes')">批准</button>
                             <button ngbDropdownItem class="btn btn-outline-primary no-round"
                                 (click)="authenticateCarMarketplace(row, 'no')">不批准</button>
                         </ng-container>
-                        <button  *ngIf="row.authenticationStatus !== 0" ngbDropdownItem class="btn btn-outline-primary no-round"
-                            (click)="changeStatus(row)">状态</button>
+                        <button *ngIf="row.authenticationStatus !== 0" ngbDropdownItem
+                            class="btn btn-outline-primary no-round" (click)="changeStatus(row)">状态</button>
 
                         <button ngbDropdownItem class="btn btn-outline-primary no-round"
                             (click)="SiteDelete(row)">删除</button>
@@ -56,14 +57,32 @@
                 <div class="row mb-2">
                     <div class="col">
                         <label class="form-label">状态*</label>
-                        <select class="form-select" [(ngModel)]="StatusValue"
-                            name="StatusValue">
-                            <option selected value="">---</option>
+                        <div class="input-group">
                             <ng-container *ngFor="let item of authenticationStatusList">
-                                <option [value]="item.value">{{item.value|getDealerStatusName}}</option>
+                                <div class="form-check me-md-2">
+                                    <input class="form-check-input" type="radio" [id]="'flexCheckChecked' + item.value"
+                                        [value]="item.value" name="status"
+                                        [checked]="item.value == StatusValue" [(ngModel)]="StatusValue" />
+                                    <label class="form-check-label" [for]="'flexCheckChecked' + item.value">{{
+                                        item.value |getDealerStatusName }}
+                                    </label>
+                                </div>
                             </ng-container>
-                        </select>
+                        </div>
                     </div>
+                </div>
+                <div class="input-group">
+                    <ng-container *ngFor="let item of usedCarStatusList">
+                        <div class="form-check me-md-2">
+                            <input class="form-check-input" type="radio" [id]="'flexCheckChecked' + item.value"
+                                [value]="item.value" name="status" [checked]="item.value == usedCarForm?.value?.status"
+                                formControlName="status" />
+                            <label class="form-check-label" [for]="'flexCheckChecked' + item.value">{{
+                                item.value |
+                                getUsedCarStatusToName }}
+                            </label>
+                        </div>
+                    </ng-container>
                 </div>
             </ng-template>
             <ng-template #digniteFooter>

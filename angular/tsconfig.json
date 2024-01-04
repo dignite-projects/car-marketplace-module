@@ -28,7 +28,7 @@
       "components": [
         "dist/components"
       ],
-      "@dignite/components": [
+      "@dignite-ng/components": [
         // "./projects/components/src/public-api.ts"
         "dist/components"
       ],

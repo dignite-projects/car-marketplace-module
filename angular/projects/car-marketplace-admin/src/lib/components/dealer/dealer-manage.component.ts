@@ -1,7 +1,7 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { Confirmation, ConfirmationService } from '@abp/ng.theme.shared';
-import { ToastService } from '@dignite/components';
+import { ToastService } from '@dignite-ng/components';
 import { DealerService } from '../../proxy/admin/dealers';
 import { authenticationStatusOptions } from '../../proxy/dealers';
 

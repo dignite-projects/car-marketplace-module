@@ -19,22 +19,31 @@
         "hash": "sha512-IJ5ntL4WaXJasQjLIycK5MMop0WCILuVBExhYQKQQYcfbaR3zGZvR4ABfZedCn5JkNsrRaSm/jpOoZ5VoPkW9Q=="
       }
     },
-    "npm:@abp/ng.account.core@7.4.4": {
+    "npm:@abp/ng.account.core@7.4.5": {
       "type": "npm",
-      "name": "npm:@abp/ng.account.core@7.4.4",
+      "name": "npm:@abp/ng.account.core@7.4.5",
       "data": {
-        "version": "7.4.4",
+        "version": "7.4.5",
         "packageName": "@abp/ng.account.core",
-        "hash": "sha512-cn9cUNBF8uQI8lBfGlA3bYIzREdpcTD9wuDeLmpD0Gx+sv8zwcJL9JJcuEHHle1XRseJkfrdJcz43VMeLplSHQ=="
+        "hash": "sha512-QhHCMtH/FkW3vt6wzXLtS9gUi3bmahLq5QVlUOcgFO6fNHnScuxEbVwrujK2sqqKu52AivgDQVqWupP5At1DSA=="
       }
     },
     "npm:@abp/ng.account": {
       "type": "npm",
       "name": "npm:@abp/ng.account",
       "data": {
-        "version": "7.4.4",
+        "version": "7.4.5",
         "packageName": "@abp/ng.account",
-        "hash": "sha512-AFk7SFKx0pEiVCdl+q1NmhbDcrwDGwrUA+7lkOzIpjxm+zgEnRt+tB/8BVz6ieg8KTkhiuae58zy+TCQ3p/emA=="
+        "hash": "sha512-i3WVEVczOWespwkqoWSi13wvPLuYIdQir7Yi04CK1Fu37HZstxi1irt+Ip6Yn/24sXBT0pVea/HAbK2cljr7hg=="
+      }
+    },
+    "npm:@abp/ng.components@7.4.5": {
+      "type": "npm",
+      "name": "npm:@abp/ng.components@7.4.5",
+      "data": {
+        "version": "7.4.5",
+        "packageName": "@abp/ng.components",
+        "hash": "sha512-opjGHPxNVg+1wdmp4sun8D04h2vlPknRgmsjNJZFgYKVeNWvr/+IIu4yWP0BbcHwm4bqdt5pLsTILygqGtAfIg=="
       }
     },
     "npm:@abp/ng.components@7.3.3": {
@@ -46,85 +55,76 @@
         "hash": "sha512-X7kcawlvI4RvxnDSWmVUJzQfgH+V+EJlKqcsZPGAYcbhQc2dsuUoymu9Vtg2AoKol5dXGHtHkEqivlHj11yJNw=="
       }
     },
-    "npm:@abp/ng.components": {
-      "type": "npm",
-      "name": "npm:@abp/ng.components",
-      "data": {
-        "version": "7.4.4",
-        "packageName": "@abp/ng.components",
-        "hash": "sha512-orTAuV50jL0NmwcmM+XP9K5vOaB26OFYemTBUjlA4rcfD73bK48xpLF+L3vZmgtkBPelMb1OGsa9G5uI9Pr6OQ=="
-      }
-    },
     "npm:@abp/ng.core": {
       "type": "npm",
       "name": "npm:@abp/ng.core",
       "data": {
-        "version": "7.4.4",
+        "version": "7.4.5",
         "packageName": "@abp/ng.core",
-        "hash": "sha512-kKL/CLjjtsf5ZA0agdrxB7gVY5Y/vqPeSI9LIhcA0llN77i5KnICyDf9Hgcrw0rVbBxu7NUqqdWklvJxCUpLUw=="
+        "hash": "sha512-8hfWDYAJQBMNaEiYP6EtPsQsRECZ3QnHWTGyAm3bGWfUHx4kO69iaKJ4Kq4s5EusTe3Rc79KI2SbBjP7ujkFag=="
       }
     },
     "npm:@abp/ng.feature-management": {
       "type": "npm",
       "name": "npm:@abp/ng.feature-management",
       "data": {
-        "version": "7.4.4",
+        "version": "7.4.5",
         "packageName": "@abp/ng.feature-management",
-        "hash": "sha512-tzD9xof3KcHcnec3cxqoZ13usJx+0H8B3Ds7P4PQXNKdkcdXRLxh77WP3+QKf386u1Vtirx+BH2kfEfwK2MUYg=="
+        "hash": "sha512-eR2e/YRvST6cW08Z5n/RfuuYnQob7uS0rWtHYV1z+RWQK07et5uf0crzL8F70aA/pAF8umSKxlZ4dmeVwf1i+g=="
       }
     },
     "npm:@abp/ng.identity": {
       "type": "npm",
       "name": "npm:@abp/ng.identity",
       "data": {
-        "version": "7.4.4",
+        "version": "7.4.5",
         "packageName": "@abp/ng.identity",
-        "hash": "sha512-ikeHmYJJonYmKGzVWsHRFdptstyh28JRfRL81gVOFAJ9KcE/ECcW8OIfevOlKc8XYc2DBrgfW+n/uA4dXhmgJQ=="
+        "hash": "sha512-PB8sUZ+vi/aPtwIfa5hNr4itYUu716QRqIVf7XE6np+WJgNB9wacXBpMoLd8hr7tJc5rzoNflN0OlIr1ahS83w=="
       }
     },
     "npm:@abp/ng.oauth": {
       "type": "npm",
       "name": "npm:@abp/ng.oauth",
       "data": {
-        "version": "7.4.4",
+        "version": "7.4.5",
         "packageName": "@abp/ng.oauth",
-        "hash": "sha512-iR9JlKJHcLjkE7UT126y+kiZfdHLtFF6hhX7TRa78lFupmoWu3gyTXJqbzU0VsrqLbbnNFrE7s8MfW2uqI4bdg=="
+        "hash": "sha512-j7vyti1ZPPHkPLXpWCkUOZx02bFKEviPFn3gZeKUnkqADo0gE3prWFavMXVqXOVtekcTIB7AmyDsNC3a4TkZTw=="
       }
     },
     "npm:@abp/ng.permission-management": {
       "type": "npm",
       "name": "npm:@abp/ng.permission-management",
       "data": {
-        "version": "7.4.4",
+        "version": "7.4.5",
         "packageName": "@abp/ng.permission-management",
-        "hash": "sha512-Ov0gIou7FBw+TQcqdff15X/cCy6O3rWNNjbD6D52VxpDasUfqS4Twjca9mez+BzVbvIAbFhVY0JggtDvL1XjrA=="
+        "hash": "sha512-Sfxq3SWmu8sR0YGAnJ0aZy5h96dblA+aOpkRl11d0YccdGjQi+3mZEEECEM4Xci5qGNLQeeNoe/snuuoc93kuA=="
       }
     },
     "npm:@abp/ng.schematics": {
       "type": "npm",
       "name": "npm:@abp/ng.schematics",
       "data": {
-        "version": "7.4.4",
+        "version": "7.4.5",
         "packageName": "@abp/ng.schematics",
-        "hash": "sha512-uAkNSWHGTlJrzaN1KBxSCVyZPrkb5th5ybr0me4Q/vRAObhieSZ41TM1YlzTLd8NFUyOZpI2tiorIhcXXOK4zA=="
+        "hash": "sha512-U7+k7gthYPmL3T1kWl6defJeySxciQPDf88QGzW3j9eXVQ4frKa1/v9KgQ9f5b23IdC0KidtUpDbm7XRSbt58w=="
       }
     },
     "npm:@abp/ng.setting-management": {
       "type": "npm",
       "name": "npm:@abp/ng.setting-management",
       "data": {
-        "version": "7.4.4",
+        "version": "7.4.5",
         "packageName": "@abp/ng.setting-management",
-        "hash": "sha512-3NxcLlIZT5rzRGVpE9HVASpjNYuCxMw/h5J38zDDm7HvN+LZT9S34FvcUtkqVqgEb3e3SHM20MwXJ31V5zH0Cw=="
+        "hash": "sha512-gESWVKT+dSlj/Y1MYhJ5mw31A8gHX2gxDm3ZF1FkzFTkMJ/oOx73UxnFnmFmqDgSr2oIToX66qfiRkqB/1pwFg=="
       }
     },
     "npm:@abp/ng.tenant-management": {
       "type": "npm",
       "name": "npm:@abp/ng.tenant-management",
       "data": {
-        "version": "7.4.4",
+        "version": "7.4.5",
         "packageName": "@abp/ng.tenant-management",
-        "hash": "sha512-havQtRTV+t1zDSB69kBpJ2WdzASF72Ad92zj7n71wGAIfTNPlBDAg8iCcz8ZfiDB0AZVMVKz8PIZ/Ki16mhKIw=="
+        "hash": "sha512-n4UpiJDrNE/hSeKTAtBiuVhhJgu20YiHN5sJLTBow12y5vFqTdGjS5W4aQqEH/wUuhU8y8jiNpusGLaxdye0TA=="
       }
     },
     "npm:@abp/ng.theme.lepton-x": {
@@ -140,18 +140,18 @@
       "type": "npm",
       "name": "npm:@abp/ng.theme.shared",
       "data": {
-        "version": "7.4.4",
+        "version": "7.4.5",
         "packageName": "@abp/ng.theme.shared",
-        "hash": "sha512-vxXSdJD7HO1Q0D/BGcfAwO1oMJ5xhrgo8uk3h/KtENSBBDy/j5iS8hLbfoScoooez9t4QWRaVgHoY0NOICVkMA=="
+        "hash": "sha512-ckxAPm1kCL+RmBiCQK/B9zC32lI4RSQ7hTbxLaRdXEDkxcEBy/JU6lFQZ5gAzSiRSgjOkzX51drhrEpLWq2CSA=="
       }
     },
     "npm:@abp/utils": {
       "type": "npm",
       "name": "npm:@abp/utils",
       "data": {
-        "version": "7.4.4",
+        "version": "7.4.5",
         "packageName": "@abp/utils",
-        "hash": "sha512-MTqBw5TvnbUL5e1KtraqW8n++Bw+47RyC4aMSJoxD+/eL7F3gh66NDMSnsNPTTlVPD41DkEcfRWe+JPVedfeBQ=="
+        "hash": "sha512-fuAU4wgiAFTW2xXUQFtt4J3dpFN4pa/TDsjVAEdX7fz/du/PDQ8EKV6bqxguLC2mXO3YXFaH8aYAgthH9oB4nA=="
       }
     },
     "npm:@ampproject/remapping": {
@@ -10513,9 +10513,9 @@
         "type": "static"
       }
     ],
-    "npm:@abp/ng.account.core@7.4.4": [
+    "npm:@abp/ng.account.core@7.4.5": [
       {
-        "source": "npm:@abp/ng.account.core@7.4.4",
+        "source": "npm:@abp/ng.account.core@7.4.5",
         "target": "npm:tslib",
         "type": "static"
       }
@@ -10523,7 +10523,7 @@
     "npm:@abp/ng.account": [
       {
         "source": "npm:@abp/ng.account",
-        "target": "npm:@abp/ng.account.core@7.4.4",
+        "target": "npm:@abp/ng.account.core@7.4.5",
         "type": "static"
       },
       {
@@ -10533,6 +10533,23 @@
       },
       {
         "source": "npm:@abp/ng.account",
+        "target": "npm:tslib",
+        "type": "static"
+      }
+    ],
+    "npm:@abp/ng.components@7.4.5": [
+      {
+        "source": "npm:@abp/ng.components@7.4.5",
+        "target": "npm:chart.js",
+        "type": "static"
+      },
+      {
+        "source": "npm:@abp/ng.components@7.4.5",
+        "target": "npm:ng-zorro-antd",
+        "type": "static"
+      },
+      {
+        "source": "npm:@abp/ng.components@7.4.5",
         "target": "npm:tslib",
         "type": "static"
       }
@@ -10554,32 +10571,10 @@
         "type": "static"
       }
     ],
-    "npm:@abp/ng.components": [
-      {
-        "source": "npm:@abp/ng.components",
-        "target": "npm:chart.js",
-        "type": "static"
-      },
-      {
-        "source": "npm:@abp/ng.components",
-        "target": "npm:ng-zorro-antd",
-        "type": "static"
-      },
-      {
-        "source": "npm:@abp/ng.components",
-        "target": "npm:tslib",
-        "type": "static"
-      }
-    ],
     "npm:@abp/ng.core": [
       {
         "source": "npm:@abp/ng.core",
         "target": "npm:@abp/utils",
-        "type": "static"
-      },
-      {
-        "source": "npm:@abp/ng.core",
-        "target": "npm:angular-oauth2-oidc",
         "type": "static"
       },
       {
@@ -10618,7 +10613,7 @@
     "npm:@abp/ng.identity": [
       {
         "source": "npm:@abp/ng.identity",
-        "target": "npm:@abp/ng.components",
+        "target": "npm:@abp/ng.components@7.4.5",
         "type": "static"
       },
       {
@@ -10721,7 +10716,7 @@
     "npm:@abp/ng.setting-management": [
       {
         "source": "npm:@abp/ng.setting-management",
-        "target": "npm:@abp/ng.components",
+        "target": "npm:@abp/ng.components@7.4.5",
         "type": "static"
       },
       {

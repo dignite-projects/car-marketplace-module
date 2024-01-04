@@ -35,7 +35,7 @@
         <ng-template #TextStyleLayout let-data>
             <div [class]="'col' + (data.col ? '-' + data.col : '')">
                 <div class="row py-md-2">
-                    <div class="col-auto text-black-50">{{ data?.key }}:</div>
+                    <div class="col-auto ">{{ data?.key }}:</div>
                     <div class="col text-dark">{{ data?.value }}</div>
                 </div>
             </div>
