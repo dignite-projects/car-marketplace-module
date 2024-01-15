@@ -24,6 +24,8 @@ export class ModalComponent {
     if (value) this.open(this.imageModalContent)
     if (!value) this.close(this.imageModalContent)
   }
+  @Input() size: string = 'sm'
+  @Input() fullscreen: boolean = false
   @Output() readonly visibleChange = new EventEmitter<boolean>();
 
   @ViewChild('imageModalContent') imageModalContent?: TemplateRef<any>;
@@ -47,7 +49,8 @@ export class ModalComponent {
    */
   open(content?: TemplateRef<any>) {
     this.modalRef = this.modalService.open(content, {
-      // size: 'lg',
+      size: this.size,
+      fullscreen: this.fullscreen,
       windowClass: 'dignite-modal',
     });
     this.modalRef.result.then(
