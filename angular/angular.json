@@ -62,16 +62,7 @@
                 "inject": false,
                 "bundleName": "bootstrap-dim.rtl"
               },
-              {
-                "input": "node_modules/@volo/ngx-lepton-x.lite/assets/css/font-bundle.rtl.css",
-                "inject": false,
-                "bundleName": "font-bundle.rtl"
-              },
-              {
-                "input": "node_modules/@volo/ngx-lepton-x.lite/assets/css/font-bundle.css",
-                "inject": false,
-                "bundleName": "font-bundle"
-              },
+             
               {
                 "input": "node_modules/@volo/ngx-lepton-x.lite/assets/css/ng-bundle.rtl.css",
                 "inject": false,
@@ -113,7 +104,17 @@
                 "bundleName": "ngx-datatable-material"
               },
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
-              "projects/dev-app/src/styles.scss"
+              "projects/dev-app/src/styles.scss",
+              {
+                "input": "projects/dev-app/src/assets/font-bundle.css",
+                "inject": false,
+                "bundleName": "font-bundle.rtl"
+              },
+              {
+                "input": "projects/dev-app/src/assets/font-bundle.css",
+                "inject": false,
+                "bundleName": "font-bundle"
+              }
             ],
             "scripts": []
           },
